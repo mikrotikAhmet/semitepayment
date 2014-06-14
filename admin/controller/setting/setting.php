@@ -75,6 +75,7 @@ class ControllerSettingSetting extends Controller {
         $this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
         $this->data['entry_template'] = $this->language->get('entry_template');
         $this->data['entry_page'] = $this->language->get('entry_page');
+        $this->data['entry_layout'] = $this->language->get('entry_layout');
         $this->data['entry_country'] = $this->language->get('entry_country');
         $this->data['entry_zone'] = $this->language->get('entry_zone');
         $this->data['entry_language'] = $this->language->get('entry_language');
@@ -297,6 +298,16 @@ class ControllerSettingSetting extends Controller {
         } else {
             $this->data['config_meta_description'] = $this->config->get('config_meta_description');
         }
+        
+        if (isset($this->request->post['config_layout_id'])) {
+            $this->data['config_layout_id'] = $this->request->post['config_layout_id'];
+        } else {
+            $this->data['config_layout_id'] = $this->config->get('config_layout_id');
+        }
+
+        $this->load->model('design/layout');
+
+        $this->data['layouts'] = $this->model_design_layout->getLayouts();
 
         if (isset($this->request->post['config_page_id'])) {
             $this->data['config_page_id'] = $this->request->post['config_page_id'];

@@ -32,6 +32,7 @@ $_['entry_title']                  = 'Title:';
 $_['entry_meta_description']       = 'Meta Tag Description:';
 $_['entry_template']               = 'Template:';
 $_['entry_page']               = 'Page:';
+$_['entry_layout']               = 'Layouts:';
 $_['entry_country']                = 'Country:';
 $_['entry_zone']                   = 'Region / State:';
 $_['entry_language']               = 'Language:';

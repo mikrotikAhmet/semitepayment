@@ -7,7 +7,7 @@
             <h3><?php echo $heading_title?> <small><?php echo $heading_sub_title?></small></h3>
         </div>
     </div>
-    <!-- /page header -->
+    <!-- /layout header -->
     <!-- Breadcrumb line -->
     <div class="breadcrumb-line">
         <ul class="breadcrumb">
@@ -125,14 +125,14 @@
                                     <div class="col-sm-3" id="template"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="config_page" class="col-sm-3 control-label"><?php echo $entry_page; ?></label>
+                                    <label for="config_layout_id" class="col-sm-3 control-label"><?php echo $entry_layout; ?></label>
                                     <div class="col-sm-2">
-                                        <select name="config_page"  class="form-control">
-                                            <?php foreach ($pages as $page) { ?>
-                                            <?php if ($page['page_id'] == $config_page_id) { ?>
-                                            <option value="<?php echo $page['page_id']; ?>" selected="selected"><?php echo $page['title']; ?></option>
+                                        <select name="config_layout_id"  class="form-control">
+                                            <?php foreach ($layouts as $layout) { ?>
+                                            <?php if ($layout['layout_id'] == $config_layout_id) { ?>
+                                            <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
                                             <?php } else { ?>
-                                            <option value="<?php echo $page['page_id']; ?>"><?php echo $page['title']; ?></option>
+                                            <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>
                                             <?php } ?>
                                             <?php } ?>
                                         </select>
