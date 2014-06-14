@@ -34,6 +34,7 @@ $_['text_zone']                      = 'Zones';
 $_['text_tool']                      = 'Tools';
 $_['text_error_log']                      = 'Error Logs';
 $_['text_backup']                      = 'Back & Restore';
+$_['text_profile']                      = 'Profile';
 // Repots Menu
 $_['text_report']                      = 'Reports';
 // Help Menu

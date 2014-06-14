@@ -240,11 +240,11 @@
                 <li class="user dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?php echo $avatar?>" alt="">
-                        <span>Ahmet GUDENOGLU</span>
+                        <span><?php echo $fullname?></span>
                         <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right icons-right">
-                        <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+                        <li><a href="<?php echo $profile?>"><i class="icon-user"></i> <?php echo $text_profile?></a></li>
                         <li><a href="<?php echo $setting?>"><i class="icon-cog"></i> <?php echo $text_setting?></a></li>
                         <li><a href="<?php echo $logout?>"><i class="icon-exit"></i> <?php echo $text_logout?></a></li>
                     </ul>

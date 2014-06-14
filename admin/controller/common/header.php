@@ -50,8 +50,9 @@ class ControllerCommonHeader extends Controller{
 
         $this->data['heading_title'] = $this->language->get('heading_title');
         $this->data['application_owner'] = $this->config->get('config_name');
+        $this->data['text_profile'] = $this->language->get('text_profile');
         $this->data['text_dashboard'] = $this->language->get('text_dashboard');
-            //Application Menu
+        //Application Menu
             $this->data['text_application'] = $this->config->get('config_name');
         //System Menu
             $this->data['text_system'] = $this->language->get('text_system');
@@ -99,6 +100,8 @@ class ControllerCommonHeader extends Controller{
                 $this->data['zone'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['error_log'] = $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['backup'] = $this->url->link('tool/backup', 'token=' . $this->session->data['token'], 'SSL');
+                
+                $this->data['profile'] = $this->url->link('user/user/update','token='.$this->session->data['token'].'&user_id='.$this->user->getId(),'SSL');
             // Report Menu
             // Help Menu
                 $this->data['semitepayment'] = HTTPS_PUBLIC;
