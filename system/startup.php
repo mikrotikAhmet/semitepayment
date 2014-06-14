@@ -108,9 +108,34 @@ require_once (DIR_SYSTEM. 'engine' . DS . 'autoloader.php');
 
 $auto_loader = new Autoloader();
 
-$classes['helper'] = array();
-$classes['engine'] = array();
-$classes['library'] = array();
+$classes['helper'] = array(
+    'json',
+    'utf8',
+    'debug');
+$classes['engine'] = array(
+    'registry',
+    'action',
+    'controller',
+    'front',
+    'loader',
+    'model',
+);
+$classes['library'] = array(
+    'user',
+    'config',
+    'db',
+    'url',
+    'log',
+    'request',
+    'response',
+    'cache',
+    'session',
+    'language',
+    'document',
+    'currency',
+    'mail',
+    'pagination',
+    'image');
 
 if ((isset($classes)) && is_array($classes)) {
 
