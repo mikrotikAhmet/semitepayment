@@ -303,6 +303,7 @@
                         <li id="application">
                             <a href="#"><span><?php echo $text_application?></span> <i class="icon-rating3"></i></a>
                             <ul>
+                                <li id="setting"><a href="<?php echo $content?>"><i class="icon-quill2"></i><span> <?php echo $text_content ?></span></a></li>
                             </ul>
                         </li>
                         <li id="system">

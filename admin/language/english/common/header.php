@@ -18,7 +18,7 @@ $_['heading_title']                    = 'Dashboard';
 $_['text_dashboard']                   = 'Dashboard';
 
 // Application Menu
-
+$_['text_content'] = 'Content';
 
 // System Menu
 $_['text_system'] = 'System';
