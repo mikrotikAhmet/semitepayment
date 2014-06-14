@@ -27,5 +27,42 @@
  *
  * @author ahmet
  */
+// Heading
+$_['heading_title'] = 'Content';
 
+// Text
+$_['text_success'] = 'Success: You have modified content!';
+$_['text_image_manager']           = 'Image Manager';
+$_['text_browse']                  = 'Browse';
+$_['text_clear']                   = 'Clear';
+
+// Column
+$_['column_title'] = 'Content Title';
+$_['column_type'] = 'Type';
+$_['column_author'] = 'Author';
+$_['column_status'] = 'Status';
+$_['column_date_modified'] = 'Updated';
+$_['column_action'] = 'Action';
+
+// Entry
+$_['entry_title'] = 'Content Title:';
+$_['entry_description'] = 'Description:';
+$_['entry_image'] = 'Content Image:';
+$_['entry_type'] = 'Create Type:';
+$_['entry_keyword'] = 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
+$_['entry_status'] = 'Status:';
+$_['entry_author'] = 'Author:';
+$_['entry_date'] = 'Date:';
+$_['entry_review'] = 'Content Comment:<br /><span class="help">You can enable or disable Comment System for this content.</span>';
+$_['entry_revision'] = 'Create new revisions:';
+$_['entry_revision_log'] = 'Revision Log Message:';
+$_['entry_parent'] = 'Parent Item:<br/><span class="help">The maximum depth for a link and all its <br/>children is fixed at 9. Some menu links may not be available as parents if selecting them would exceed this limit.</span>';
+$_['entry_sort_order'] = 'Weight:<br/><span class="help">Optional. In the menu, the heavier links will sink and the lighter links will be positioned nearer the top.</span>';
+
+// Error 
+$_['error_warning'] = 'Warning: Please check the form carefully for errors!';
+$_['error_permission'] = 'Warning: You do not have permission to modify content!';
+$_['error_title'] = 'Content Title must be between 3 and 64 characters!';
+$_['error_description'] = 'Description must be more than 3 characters!';
+$_['error_type'] = 'You must select Content Type!';
 
