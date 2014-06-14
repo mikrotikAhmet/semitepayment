@@ -27,7 +27,32 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h6 class="panel-title"><i class="icon-quill2"></i> <?php echo $heading_title?></h6></div>
                 <div class="panel-body">
-                    
+                    <div class="tabbable page-tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab_general" data-toggle="tab"><?php echo $tab_general ?></a></li>
+                            <li><a href="#tab_data" data-toggle="tab"><?php echo $tab_data ?></a></li>
+                            <li><a href="#tab_revision" data-toggle="tab"><?php echo $tab_revision; ?></a></li>
+                            <li><a href="#tab_review" data-toggle="tab"><?php echo $tab_review; ?></a></li>
+                            <li><a href="#tab_authoring" data-toggle="tab"><?php echo $tab_author; ?></a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active fade in" id="tab_general">
+                                General
+                            </div>
+                            <div class="tab-pane fade in" id="tab_data">
+                                Data
+                            </div>
+                            <div class="tab-pane fade in" id="tab_revision">
+                                Revision
+                            </div>
+                            <div class="tab-pane fade in" id="tab_review">
+                                review
+                            </div>
+                            <div class="tab-pane fade in" id="tab_authoring">
+                                authoring
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-actions text-right">
                         <input type="submit" value="<?php echo $button_save; ?>" class="btn btn-primary">

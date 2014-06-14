@@ -761,7 +761,7 @@
                                     <div class="col-sm-4">
                                         <input type="text" class="form-control" id="config_compression" placeholder="<?php //echo $entry_compression; ?>" name="config_compression" value="<?php echo $config_compression; ?>">
                                     </div>
-                                </div>class="img-thumbnail"
+                                </div>
                                 <div class="form-group">
                                     <label for="config_error_display" class="col-sm-3 control-label"><?php echo $entry_error_display; ?></label>
                                     <div class="col-sm-2">
