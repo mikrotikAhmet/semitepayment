@@ -23,6 +23,8 @@ $_['text_dashboard']                   = 'Dashboard';
 // System Menu
 $_['text_system'] = 'System';
 $_['text_setting'] = 'Settings';
+$_['text_design'] = 'Design';
+$_['text_layout'] = 'Layouts';
 $_['text_users']                      = 'User Management';
 $_['text_user']                      = 'User';
 $_['text_user_group']                      = 'User Groups';

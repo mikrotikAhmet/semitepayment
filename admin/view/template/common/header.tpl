@@ -309,6 +309,11 @@
                             <a href="#"><span><?php echo $text_system?></span> <i class="icon-cogs"></i></a>
                             <ul>
                                 <li id="setting"><a href="<?php echo $setting?>"><i class="icon-cog"></i><span> <?php echo $text_setting?></span></a></li>
+                                <li><a href="#"><i class="icon-insert-template"></i><span> <?php echo $text_design?></span></a>
+                                    <ul>
+                                        <li id="layout"><a href="<?php echo $layout?>"><?php echo $text_layout?></a></li>
+                                    </ul>
+                                </li>
                                 <li><a href="#"><i class="icon-users"></i><span> <?php echo $text_users?></span></a>
                                     <ul>
                                         <li id="user"><a href="<?php echo $user?>"><?php echo $text_user?></a></li>
