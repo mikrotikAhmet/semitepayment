@@ -525,7 +525,7 @@ class ControllerApplicationContent extends Controller {
             $this->data['has_revision'] = 0;
         }
 
-        $this->template = 'application/content/content_form.tpl';
+        $this->template = 'application/content_form.tpl';
         $this->children = array(
             'common/header',
             'common/footer'
