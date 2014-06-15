@@ -43,6 +43,7 @@ $_['text_home']                     = 'Home';
 $_['text_image_manager']           = 'Image Manager';
 $_['text_browse']                  = 'Browse';
 $_['text_clear']                   = 'Clear';
+$_['text_no_message']                   = 'No Message';
 $_['text_add_new']                   = 'Add New';
 
 // Button

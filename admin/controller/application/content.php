@@ -151,6 +151,13 @@ class ControllerApplicationContent extends Controller {
 
         $this->getList();
     }
+    
+    public function revision() {
+        
+        $this->language->load('application/revision');
+
+        $this->getRevision();
+    }
 
     protected function getList() {
         if (isset($this->request->get['sort'])) {
@@ -345,8 +352,6 @@ class ControllerApplicationContent extends Controller {
         $this->data['entry_type'] = $this->language->get('entry_type');
         $this->data['entry_keyword'] = $this->language->get('entry_keyword');
         $this->data['entry_status'] = $this->language->get('entry_status');
-        $this->data['entry_author'] = $this->language->get('entry_author');
-        $this->data['entry_date'] = $this->language->get('entry_date');
         $this->data['entry_review'] = $this->language->get('entry_review');
         $this->data['entry_revision'] = $this->language->get('entry_revision');
         $this->data['entry_revision_log'] = $this->language->get('entry_revision_log');
@@ -354,8 +359,6 @@ class ControllerApplicationContent extends Controller {
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
         $this->data['tab_revision'] = $this->language->get('tab_revision');
-        $this->data['tab_review'] = $this->language->get('tab_review');
-        $this->data['tab_author'] = $this->language->get('tab_author');
 
         $this->data['date'] = date($this->language->get('date_format_short'), strtotime(date("Y-m-d H:i:s")));
 
@@ -425,6 +428,7 @@ class ControllerApplicationContent extends Controller {
 
         if (isset($this->request->get['content_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $content_info = $this->model_application_content->getContent($this->request->get['content_id']);
+            $this->data['content_id'] = $content_info['content_id'];
         }
 
         $this->data['token'] = $this->session->data['token'];
@@ -513,7 +517,6 @@ class ControllerApplicationContent extends Controller {
 
         if (!empty($content_info)) {
             $this->data['has_revision'] = $this->model_application_content->getTotalContentRevisions($content_info['content_id']);
-            $this->data['revision_url'] = $this->url->link('application/content/revision', 'token=' . $this->session->data['token'] . '&content_id=' . $this->request->get['content_id'], 'SSL');
         } else {
             $this->data['has_revision'] = 0;
         }
@@ -569,13 +572,19 @@ class ControllerApplicationContent extends Controller {
         }
     }
 
-    public function revision() {
+    protected function getRevision() {
 
         $this->load->model('application/content');
-
-        $this->data['text_no_results'] = $this->language->get('text_no_results');
-
+        
+        $this->data['heading_title'] = $this->language->get('heading_title');
+        
+        $this->data['column_author'] = $this->language->get('column_author');
+        $this->data['column_date'] = $this->language->get('column_date');
+        $this->data['column_ip'] = $this->language->get('column_ip');
+        $this->data['column_message'] = $this->language->get('column_message');
+        
         if (isset($this->request->get['page'])) {
+            
             $page = $this->request->get['page'];
         } else {
             $page = 1;
@@ -583,9 +592,9 @@ class ControllerApplicationContent extends Controller {
 
         $this->data['revisions'] = array();
 
-        $total_reviews = $this->model_content_content->getTotalContentRevisions($this->request->get['content_id']);
+        $total_revisions = $this->model_application_content->getTotalContentRevisions($this->request->get['content_id']);
 
-        $results = $this->model_content_content->getContentRevisions($this->request->get['content_id'], ($page - 1) * 5, 10);
+        $results = $this->model_application_content->getContentRevisions($this->request->get['content_id'], ($page - 1) * 10, 10);
 
         $this->load->model('user/user');
 
@@ -609,7 +618,7 @@ class ControllerApplicationContent extends Controller {
         }
 
         $pagination = new Pagination();
-        $pagination->total = $total_reviews;
+        $pagination->total = $total_revisions;
         $pagination->page = $page;
         $pagination->limit = 10;
         $pagination->text = $this->language->get('text_pagination');
@@ -617,7 +626,8 @@ class ControllerApplicationContent extends Controller {
 
         $this->data['pagination'] = $pagination->render();
 
-        $this->template = 'application/content/content_review.tpl';
+        $this->template = 'application/content_revision.tpl';
+        
         $this->response->setOutput($this->render());
     }
 

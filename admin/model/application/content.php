@@ -175,13 +175,13 @@ class ModelApplicationContent extends Model{
         return $query->row['total'];
     }
 
-    public function getContentRevisions($content_id, $start = 0, $limit = 20) {
+    public function getContentRevisions($content_id, $start = 0, $limit = 10) {
         if ($start < 0) {
             $start = 0;
         }
 
         if ($limit < 1) {
-            $limit = 20;
+            $limit = 10;
         }
 
         $query = $this->db->query("SELECT *  FROM " . DB_PREFIX . "content_revision WHERE content_id = '" . (int) $content_id . "' ORDER BY revision_date DESC LIMIT " . (int) $start . "," . (int) $limit);

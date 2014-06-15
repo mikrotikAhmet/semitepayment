@@ -32,8 +32,6 @@
                             <li class="active"><a href="#tab_general" data-toggle="tab"><?php echo $tab_general ?></a></li>
                             <li><a href="#tab_data" data-toggle="tab"><?php echo $tab_data ?></a></li>
                             <li><a href="#tab_revision" data-toggle="tab"><?php echo $tab_revision; ?> <?php echo ($has_revision ? '<span class="label label-danger"> '.$has_revision.' </span>' : null)?></a></li>
-                            <li><a href="#tab_review" data-toggle="tab"><?php echo $tab_review; ?></a></li>
-                            <li><a href="#tab_authoring" data-toggle="tab"><?php echo $tab_author; ?></a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active fade in" id="tab_general">
@@ -145,17 +143,14 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade in" id="tab_revision">
-                                Revision
-                            </div>
-                            <div class="tab-pane fade in" id="tab_review">
-                                review
-                            </div>
-                            <div class="tab-pane fade in" id="tab_authoring">
-                                authoring
+                                <div class="callout callout-danger fade in">
+				<h5>You do not have Revisions yet.</h5>
+				<p>You can start tracking Revisions for this Content by clicking the checkbox on <b>Data Tab</b> named <b>Create a new revision</b> item.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-
+                    <br/>
                     <div class="form-actions text-right">
                         <input type="submit" value="<?php echo $button_save; ?>" class="btn btn-primary">
                         <button type="button" onclick="window.location = '<?php echo $cancel?>'" class="btn btn-danger btn-sm"><?php echo $button_cancel; ?></button>
@@ -179,6 +174,13 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 //--></script>
 <script type="text/javascript"><!--
     $('#languages a').tabs(); 
+    //--></script>
+<script type="text/javascript"><!--
+<?php if ($has_revision) { ?>
+
+    $('#tab_revision').load('index.php?route=application/content/revision&token=<?php echo $token; ?>&content_id=<?php echo $content_id?>');
+    
+<?php } ?>
     //--></script>
 <script type="text/javascript"><!--
 function image_upload(field, thumb) {
