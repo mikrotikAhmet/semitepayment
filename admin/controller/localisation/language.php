@@ -508,8 +508,7 @@ class ControllerLocalisationLanguage extends Controller {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 
-        $this->load->model('setting/store');
-        $this->load->model('sale/order');
+        $this->load->model('setting/application');
 
         foreach ($this->request->post['selected'] as $language_id) {
             $language_info = $this->model_localisation_language->getLanguage($language_id);
@@ -523,18 +522,13 @@ class ControllerLocalisationLanguage extends Controller {
                     $this->error['warning'] = $this->language->get('error_admin');
                 }
 
-                $store_total = $this->model_setting_store->getTotalStoresByLanguage($language_info['code']);
+                $application_total = $this->model_setting_application->getTotalApplicationsByLanguage($language_info['code']);
 
-                if ($store_total) {
-                    $this->error['warning'] = sprintf($this->language->get('error_store'), $store_total);
+                if ($application_total) {
+                    $this->error['warning'] = sprintf($this->language->get('error_application'), $application_total);
                 }
             }
 
-            $order_total = $this->model_sale_order->getTotalOrdersByLanguageId($language_id);
-
-            if ($order_total) {
-                $this->error['warning'] = sprintf($this->language->get('error_order'), $order_total);
-            }
         }
 
         if (!$this->error) {

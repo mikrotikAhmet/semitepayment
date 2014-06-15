@@ -34,6 +34,13 @@ class ModelLocalisationLanguage extends Model {
         $this->cache->delete('language');
 
         $language_id = $this->db->getLastId();
+        
+        // Content 
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "content_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+        foreach ($query->rows as $content) {
+                $this->db->query("INSERT INTO " . DB_PREFIX . "content_description SET content_id = '" . (int)$content['content_id'] . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($content['title']) . "',description = '" . $this->db->escape($content['description']) . "'");
+        }
 
     }
 

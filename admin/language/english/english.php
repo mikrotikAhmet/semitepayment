@@ -25,6 +25,8 @@ $_['text_yes']                      = 'Yes';
 $_['text_no']                       = 'No';
 $_['text_enabled']                  = 'Enabled';
 $_['text_disabled']                 = 'Disabled';
+$_['text_published']                  = 'Published';
+$_['text_unpublished']                 = 'Un-Published';
 $_['text_none']                     = ' --- None --- ';
 $_['text_select']                   = ' --- Please Select --- ';
 $_['text_select_all']               = 'Select All';
@@ -126,7 +128,7 @@ $_['tab_voucher']                   = 'Vouchers';
 $_['tab_voucher_history']           = 'Voucher History';
 $_['tab_price']                     = 'Price';
 $_['tab_revision'] = 'Revision Information';
-$_['tab_review'] = 'Reviews (%s)';
+$_['tab_review'] = 'Reviews';
 $_['tab_author'] = 'Authoring Information';
 
 // Error

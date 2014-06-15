@@ -241,7 +241,7 @@ class ControllerApplicationContent extends Controller {
                 'title' => $result['title'],
                 'type' => $type_info['name'],
                 'author' => $author,
-                'status' => ($result['status'] ? $this->language->get('text_published') : $this->language->get('text_unpublished')),
+                'status' => ($result['status'] ? '<span class="label label-success">' . $this->language->get('text_published') . '</span>' : '<span class="label label-danger">' . $this->language->get('text_unpublished') . '</span>'),
                 'date_modified' => date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
                 'selected' => isset($this->request->post['selected']) && in_array($result['content_id'], $this->request->post['selected']),
                 'action' => $action
@@ -325,11 +325,10 @@ class ControllerApplicationContent extends Controller {
     }
 
     protected function getForm() {
+        
         $this->data['heading_title'] = $this->language->get('heading_title');
 
         $this->document->addScript('view/javascript/jquery/tabs.js');
-        $this->document->addScript('view/javascript/colorbox/jquery.colorbox-min.js');
-        $this->document->addStyle('view/javascript/colorbox/colorbox.css');
 
         $this->data['text_default'] = $this->language->get('text_default');
         $this->data['text_enabled'] = $this->language->get('text_enabled');
@@ -351,16 +350,12 @@ class ControllerApplicationContent extends Controller {
         $this->data['entry_review'] = $this->language->get('entry_review');
         $this->data['entry_revision'] = $this->language->get('entry_revision');
         $this->data['entry_revision_log'] = $this->language->get('entry_revision_log');
-        $this->data['entry_parent'] = $this->language->get('entry_parent');
-        $this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
         $this->data['tab_revision'] = $this->language->get('tab_revision');
         $this->data['tab_review'] = $this->language->get('tab_review');
-        $this->data['tab_alias'] = $this->language->get('tab_alias');
         $this->data['tab_author'] = $this->language->get('tab_author');
-        $this->data['tab_publish'] = $this->language->get('tab_publish');
 
         $this->data['date'] = date($this->language->get('date_format_short'), strtotime(date("Y-m-d H:i:s")));
 
@@ -494,20 +489,18 @@ class ControllerApplicationContent extends Controller {
             $this->data['status'] = 1;
         }
 
-        if (isset($this->request->post['link'])) {
-            $this->data['link'] = $this->request->post['link'];
-        } elseif (!empty($content_info)) {
-            $this->data['link'] = $content_info['link'];
-        } else {
-            $this->data['link'] = 0;
-        }
-
         if (isset($this->request->post['revision'])) {
             $this->data['revision'] = $this->request->post['revision'];
         } elseif (!empty($content_info)) {
             $this->data['revision'] = $content_info['revision'];
         } else {
             $this->data['revision'] = 0;
+        }
+        
+        if (isset($this->request->post['revision_log'])) {
+            $this->data['revision_log'] = $this->request->post['revision_log'];
+        } else {
+            $this->data['revision_log'] = "";
         }
 
         if (isset($this->request->post['comment'])) {
@@ -551,18 +544,6 @@ class ControllerApplicationContent extends Controller {
 
         if (empty($this->request->post['type'])) {
             $this->error['type'] = $this->language->get('error_type');
-        }
-
-        if (isset($this->request->post['link']) && $this->request->post['link']) {
-            foreach ($this->request->post['menu_description'] as $language_id => $value) {
-                if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 64)) {
-                    $this->error['menu_title'][$language_id] = $this->language->get('error_menu_title');
-                }
-            }
-
-            if (isset($this->request->post['menu']['path']) && (utf8_strlen($this->request->post['menu']['path']) < 3) || (utf8_strlen($this->request->post['menu']['path']) > 64)) {
-                $this->error['menu_path'] = $this->language->get('error_menu_path');
-            }
         }
 
         if ($this->error && !isset($this->error['warning'])) {

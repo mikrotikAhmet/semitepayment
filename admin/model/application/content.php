@@ -42,7 +42,7 @@ if (!defined('DIR_APPLICATION'))
 
 class ModelApplicationContent extends Model{
     public function addContent($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "content SET author = '" . (int) $this->user->getId() . "' ,status = '" . (int) $data['status'] . "', date_added = NOW(), date_modified = NOW(), `type` = '" . (int) $data['type'] . "', comment = '" . (isset($data['comment']) ? (int) $data['comment'] : 0) . "', link = '" . (isset($data['link']) ? (int) $data['link'] : 0) . "'");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "content SET author = '" . (int) $this->user->getId() . "' ,status = '" . (int) $data['status'] . "', date_added = NOW(), date_modified = NOW(), `type` = '" . (int) $data['type'] . "', comment = '" . (isset($data['comment']) ? (int) $data['comment'] : 0) . "', revision = '" . (isset($data['revision']) ? (int) $data['revision'] : 0) . "'");
 
         $content_id = $this->db->getLastId();
         
