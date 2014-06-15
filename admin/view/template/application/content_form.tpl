@@ -144,8 +144,8 @@
                             </div>
                             <div class="tab-pane fade in" id="tab_revision">
                                 <div class="callout callout-danger fade in">
-				<h5>You do not have Revisions yet.</h5>
-				<p>You can start tracking Revisions for this Content by clicking the checkbox on <b>Data Tab</b> named <b>Create a new revision</b> item.</p>
+				<h5><?php echo $text_no_revision?></h5>
+				<p><?php echo $text_revision_howto?></p>
                                 </div>
                             </div>
                         </div>

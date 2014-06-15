@@ -345,6 +345,8 @@ class ControllerApplicationContent extends Controller {
         $this->data['text_image_manager'] = $this->language->get('text_image_manager');
         $this->data['text_browse'] = $this->language->get('text_browse');
         $this->data['text_clear'] = $this->language->get('text_clear');
+        $this->data['text_no_revision'] = $this->language->get('text_no_revision');
+        $this->data['text_revision_howto'] = $this->language->get('text_revision_howto');
 
         $this->data['entry_title'] = $this->language->get('entry_title');
         $this->data['entry_description'] = $this->language->get('entry_description');

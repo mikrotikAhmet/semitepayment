@@ -35,6 +35,8 @@ $_['text_success'] = 'Success: You have modified content!';
 $_['text_image_manager']           = 'Image Manager';
 $_['text_browse']                  = 'Browse';
 $_['text_clear']                   = 'Clear';
+$_['text_no_revision'] = 'You do not have Revisions yet.';
+$_['text_revision_howto'] = 'You can start tracking Revisions for this Content by clicking the checkbox on <b>Data Tab</b> named <b>Create a new revision</b> item.';
 
 // Column
 $_['column_title'] = 'Content Title';
