@@ -360,6 +360,7 @@ class ControllerApplicationContent extends Controller {
 
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
+        $this->data['tab_links'] = $this->language->get('tab_links');
         $this->data['tab_revision'] = $this->language->get('tab_revision');
 
         $this->data['date'] = date($this->language->get('date_format_short'), strtotime(date("Y-m-d H:i:s")));

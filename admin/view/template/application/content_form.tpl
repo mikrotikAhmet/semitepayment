@@ -31,6 +31,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab_general" data-toggle="tab"><?php echo $tab_general ?></a></li>
                             <li><a href="#tab_data" data-toggle="tab"><?php echo $tab_data ?></a></li>
+                            <li><a href="#tab_link" data-toggle="tab"><?php echo $tab_links ?></a></li>
                             <li><a href="#tab_revision" data-toggle="tab"><?php echo $tab_revision; ?> <?php echo ($has_revision ? '<span class="label label-danger"> '.$has_revision.' </span>' : null)?></a></li>
                         </ul>
                         <div class="tab-content">
@@ -147,6 +148,9 @@
 				<h5><?php echo $text_no_revision?></h5>
 				<p><?php echo $text_revision_howto?></p>
                                 </div>
+                            </div>
+                            <div class="tab-pane fade in" id="tab_link">
+                                Links
                             </div>
                         </div>
                     </div>
