@@ -18,8 +18,8 @@
         <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
         <?php } ?>
         <!-- CSS -->
-        <link rel="stylesheet" media="screen" href="public/view/theme/semitepayment/css/bootstrap.min.css">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" media="screen" href="public/view/theme/semitepayment/css/public.css">
+        <link href="public/view/theme/semitepayment/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" media="screen" href="public/view/theme/semitepayment/css/main.css">
         <!-- Fonts -->
         <link href='//fonts.googleapis.com/css?family=Ubuntu+Mono:700|Ubuntu:300,400,400italic,500' rel='stylesheet' type='text/css'>
@@ -34,27 +34,34 @@
         <?php echo $google_analytics; ?>
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+        <div class="dark">
+            <div class="navbar" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand semite-logo" href="/">SemitePayment</a>
+                    </div>
+
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+
+                            <li class=""><a href="#">Developers</a></li>
+                            <li class=""><a href="#">Pricing</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="https://support.semitepayment.com">Support</a></li>
+
+                            <li><a href="#" data-no-instant>Sign Up</a></li>
+                            <li><a href="#" class=".navbar-btn" data-no-instant>Login</a></li>
+
+                        </ul>
+                    </div>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right" role="form">
-                        <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success">Sign in</button>
-                    </form>
-                </div><!--/.navbar-collapse -->
             </div>
         </div>
