@@ -51,6 +51,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label for="sub_title" class="col-sm-2 control-label"><?php echo $entry_title; ?></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="sub_title" placeholder="" name="page_description[<?php echo $language['language_id']; ?>][sub_title]" value="<?php echo isset($page_description[$language['language_id']]) ? $page_description[$language['language_id']]['sub_title'] : ''; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="meta_description" class="col-sm-2 control-label"><?php echo $entry_meta_description; ?></label>
                                             <div class="col-sm-10">
                                                 <textarea class="form-control" placeholder="" name="page_description[<?php echo $language['language_id']; ?>][meta_description]"><?php echo isset($page_description[$language['language_id']]) ? $page_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
@@ -146,6 +152,18 @@
                                             <input type="checkbox" class="styled" name="show_title" value="1" checked="checked">
                                             <?php } else { ?>
                                             <input type="checkbox" class="styled" name="show_title" value="1">
+                                            <?php } ?>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="show_sub_title" class="col-sm-2 control-label"><?php echo $entry_show_sub_title; ?></label>
+                                    <div class="col-sm-3">
+                                        <label class="checkbox-inline checkbox-info">
+                                            <?php if ($show_sub_title) {  ?>
+                                            <input type="checkbox" class="styled" name="show_sub_title" value="1" checked="checked">
+                                            <?php } else { ?>
+                                            <input type="checkbox" class="styled" name="show_sub_title" value="1">
                                             <?php } ?>
                                         </label>
                                     </div>

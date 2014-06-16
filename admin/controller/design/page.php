@@ -319,6 +319,7 @@ class ControllerDesignPage extends Controller {
         $this->data['text_clear'] = $this->language->get('text_clear');
 
         $this->data['entry_title'] = $this->language->get('entry_title');
+        $this->data['entry_sub_title'] = $this->language->get('entry_sub_title');
         $this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
         $this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
         $this->data['entry_layout'] = $this->language->get('entry_layout');
@@ -326,6 +327,7 @@ class ControllerDesignPage extends Controller {
         $this->data['entry_description'] = $this->language->get('entry_description');
         $this->data['entry_keyword'] = $this->language->get('entry_keyword');
         $this->data['entry_show_title'] = $this->language->get('entry_show_title');
+        $this->data['entry_show_sub_title'] = $this->language->get('entry_show_sub_title');
         $this->data['entry_show_breadcrumb'] = $this->language->get('entry_show_breadcrumb');
         $this->data['entry_protected'] = $this->language->get('entry_protected');
         $this->data['entry_status'] = $this->language->get('entry_status');
@@ -430,6 +432,14 @@ class ControllerDesignPage extends Controller {
             $this->data['show_title'] = $page_info['show_title'];
         } else {
             $this->data['show_title'] = 0;
+        }
+        
+        if (isset($this->request->post['show_sub_title'])) {
+            $this->data['show_sub_title'] = $this->request->post['show_sub_title'];
+        } elseif (!empty($page_info)) {
+            $this->data['show_sub_title'] = $page_info['show_sub_title'];
+        } else {
+            $this->data['show_sub_title'] = 0;
         }
 
         if (isset($this->request->post['show_breadcrumb'])) {
