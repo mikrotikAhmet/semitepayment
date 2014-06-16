@@ -220,6 +220,10 @@ $registry->set('document', new Document());
 // User
 //$registry->set('user', new User($registry));
 
+// Page
+$registry->set('page', new Page($registry));
+
+
 // Encryption
 $registry->set('encryption', new Encryption($config->get('config_encryption')));
 

@@ -1,5 +1,3 @@
 <?php echo $header?>
-<pre>
-<?php print_r($page_info)?>
-</pre>
+<a href="<?php echo $some?>">Some Page (protected)</a>
 <?php echo $footer?>

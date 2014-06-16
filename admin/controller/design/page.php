@@ -448,6 +448,14 @@ class ControllerDesignPage extends Controller {
             $this->data['protected'] = 0;
         }
         
+         if (isset($this->request->post['status'])) {
+            $this->data['status'] = $this->request->post['status'];
+        } elseif (!empty($page_info)) {
+            $this->data['status'] = $page_info['status'];
+        } else {
+            $this->data['status'] = 0;
+        }
+        
         if (isset($this->request->post['keyword'])) {
             $this->data['keyword'] = $this->request->post['keyword'];
         } elseif (!empty($page_info)) {

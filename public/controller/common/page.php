@@ -50,7 +50,7 @@ class ControllerCommonPage extends Controller {
         $page_info = $this->model_design_page->getPage($this->page_id);
         
         if ($page_info){
-            $this->config->set('page_info', $page_info);
+            $this->page->setPage($page_info);
         } else {
             return false;
         }

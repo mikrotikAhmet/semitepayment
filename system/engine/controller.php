@@ -46,7 +46,6 @@ abstract class Controller {
     protected $id;
     protected $layout;
     protected $page_id;
-    public $page_data = array();
     protected $template;
     protected $children = array();
     protected $data = array();

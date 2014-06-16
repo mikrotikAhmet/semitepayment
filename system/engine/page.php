@@ -40,41 +40,47 @@ if (!defined('DIR_APPLICATION'))
  * Date : Jun 16, 2014
  */
 
-class ControllerDesignPage extends Controller {
+class Page {
     
-    public $page_info = array();
-
-
-    public function index() {
+    private $page;
+    private $page_id;
+    private $page_title;
+    
+    public function __construct($registry) {
         
-        $this->page_info = $this->page->getPage();
+        $this->db = $registry->get('db');
+        $this->request = $registry->get('request');
+        $this->session = $registry->get('session');
+        $this->config = $registry->get('config');
+    }
+    
+    public function setPage($page){
+        $this->page = $page;
         
-        if ($this->page_info) {
-                   
-            $this->document->setTitle($this->config->get('config_title'). $this->language->get('text_separator').$this->page->getPageTitle());
-            $this->document->setDescription($this->config->get('config_meta_description'));
-
-            $this->data['heading_title'] = $this->config->get('config_title');
-
-            $this->data['some'] = $this->url->link('design/page','page_id=4');
-
-            if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/design/page.tpl')) {
-                $this->template = $this->config->get('config_template') . '/template/design/page.tpl';
-            } else {
-                $this->template = 'default/template/design/page.tpl';
-            }
-        } else {
-            
-            throw new Exception('Page Not Found');
-            exit(1);
-        }
-
-        $this->children = array(
-            'common/footer',
-            'common/header'
-        );
-
-        $this->response->setOutput($this->render());
+        $this->setPageId($this->page['page_id']);
+        $this->setPageTitle($this->page['title']);
+    }
+    
+    public function getPage(){
+        return $this->page;
+    }
+    
+    public function setPageId($page_id){
+        $this->page_id = $page_id;
+    }
+    
+    public function getPageId(){
+        return $this->page_id;
+    }
+    
+    public function setPageTitle($page_title)
+    {
+        $this->page_title = $page_title;
+    }
+    
+    public function getPageTitle()
+    {
+        return $this->page_title;
     }
 }
 

@@ -119,6 +119,7 @@ $classes['engine'] = array(
     'front',
     'loader',
     'model',
+    'page'
 );
 $classes['library'] = array(
     'user',

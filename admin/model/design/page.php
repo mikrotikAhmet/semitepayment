@@ -70,7 +70,7 @@ class ModelDesignPage extends Model {
         
         if (isset($data['page_application'])) {
                 foreach ($data['page_application'] as $application_id) {
-                        $this->db->query("INSERT INTO " . DB_PREFIX . "page_to_application SET content_id = '" . (int)$page_id . "', application_id = '" . (int)$application_id . "'");
+                        $this->db->query("INSERT INTO " . DB_PREFIX . "page_to_application SET page_id = '" . (int)$page_id . "', application_id = '" . (int)$application_id . "'");
                 }
         }
     }
