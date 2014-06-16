@@ -228,7 +228,7 @@ class ControllerDesignPage extends Controller {
                 'page_id' => $result['page_id'],
                 'title' => $result['title'].($result['page_id'] == $this->config->get('config_page_id') ? $this->language->get('text_default') : ''),
                 'status' => ($result['status'] ? '<span class="label label-success">' . $this->language->get('text_enabled') . '</span>' : '<span class="label label-danger">' . $this->language->get('text_disabled') . '</span>'),
-                'protected'=> ($result['protected'] ? '<span class="btn btn-danger btn-icon btn-xs tip" title="" data-original-title="'.$this->language->get('text_protected').'"><i class="icon-lock2"></i></span>' : '<span class="btn btn-success btn-icon btn-xs tip" title="" data-original-title="'.$this->language->get('text_unprotected').'"><i class="icon-unlocked"></i></span>'),
+                'protected'=> ($result['protected'] ? '<span class="btn btn-danger btn-icon btn-xs tip" title="" data-original-title="'.$this->language->get('text_protected').'"><i class="icon-lock2"></i> '.$this->language->get('text_protected').'</span>' : '<span class="btn btn-success btn-icon btn-xs tip" title="" data-original-title="'.$this->language->get('text_unprotected').'"><i class="icon-unlocked"></i> '.$this->language->get('text_unprotected').'</span>'),
                 'selected' => isset($this->request->post['selected']) && in_array($result['page_id'], $this->request->post['selected']),
                 'action' => $action
             );
