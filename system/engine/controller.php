@@ -45,6 +45,7 @@ abstract class Controller {
     protected $registry;
     protected $id;
     protected $layout;
+    protected $page_id;
     protected $template;
     protected $children = array();
     protected $data = array();
@@ -52,6 +53,14 @@ abstract class Controller {
 
     public function __construct($registry) {
         $this->registry = $registry;
+        $this->config = $registry->get('config');
+        $this->request = $registry->get('request');
+        
+        if (!isset($this->request->get['page_id'])){
+            $this->page_id = $this->config->get('config_page_id');
+        } else {
+            $this->page_id = $this->request->get['page_id'];
+        }
     }
 
     public function __get($key) {

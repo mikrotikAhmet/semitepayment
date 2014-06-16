@@ -202,6 +202,9 @@ $registry->set('language', $language);
 // Document
 $registry->set('document', new Document());
 
+// User
+//$registry->set('user', new User($registry));
+
 // Encryption
 $registry->set('encryption', new Encryption($config->get('config_encryption')));
 
@@ -212,7 +215,7 @@ $controller = new Front($registry);
 $controller->addPreAction(new Action('common/maintenance'));
 
 // SEO URL's
-$controller->addPreAction(new Action('common/seo_url'));
+//$controller->addPreAction(new Action('common/seo_url'));
 
 // Router
 if (isset($request->get['route'])) {
