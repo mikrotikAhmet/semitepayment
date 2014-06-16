@@ -44,6 +44,8 @@ class ControllerCommonFooter extends Controller {
 
     protected function index() {
         $this->language->load('common/footer');
+        
+        $this->data['scripts'] = $this->document->getScripts();
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/footer.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/common/footer.tpl';
