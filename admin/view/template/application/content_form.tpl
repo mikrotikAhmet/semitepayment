@@ -93,12 +93,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="keyword" class="col-sm-2 control-label"><?php echo $entry_keyword; ?></label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" id="keyword" placeholder="" name="keyword" value="<?php echo $keyword; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label for="revision" class="col-sm-2 control-label"><?php echo $entry_revision; ?></label>
                                     <div class="col-sm-3">
                                         <label class="checkbox-inline checkbox-info">

@@ -78,6 +78,12 @@ class ModelSettingApplication extends Model {
 
 		return $query->row['total'];		
 	}
+        
+        public function getTotalApplicationsByPageId($page_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_page_id' AND `value` = '" . (int)$page_id . "' AND application_id != '0'");
+
+		return $query->row['total'];		
+	}
 
 	public function getTotalApplicationsByLanguage($language) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_language' AND `value` = '" . $this->db->escape($language) . "' AND application_id != '0'");
@@ -105,20 +111,6 @@ class ModelSettingApplication extends Model {
 
 	public function getTotalApplicationsByCustomerGroupId($customer_group_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_customer_group_id' AND `value` = '" . (int)$customer_group_id . "' AND application_id != '0'");
-
-		return $query->row['total'];		
-	}	
-
-	public function getTotalApplicationsByInformationId($information_id) {
-		$account_query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_account_id' AND `value` = '" . (int)$information_id . "' AND application_id != '0'");
-
-		$checkout_query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_checkout_id' AND `value` = '" . (int)$information_id . "' AND application_id != '0'");
-
-		return ($account_query->row['total'] + $checkout_query->row['total']);
-	}
-
-	public function getTotalApplicationsByOrderStatusId($order_status_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_order_status_id' AND `value` = '" . (int)$order_status_id . "' AND application_id != '0'");
 
 		return $query->row['total'];		
 	}	

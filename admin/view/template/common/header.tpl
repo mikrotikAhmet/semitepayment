@@ -318,6 +318,11 @@
                                 <li><a href="#"><i class="icon-insert-template"></i><span> <?php echo $text_design?></span></a>
                                     <ul>
                                         <li id="layout"><a href="<?php echo $layout?>"><?php echo $text_layout?></a></li>
+                                        <li id="page"><a href="#"><span> <?php echo $text_pages ?></span></a>
+                                            <ul>
+                                                <li id="page"><a href="<?php echo $page?>"><?php echo $text_page?></a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#"><i class="icon-users"></i><span> <?php echo $text_users?></span></a>

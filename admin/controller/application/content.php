@@ -352,7 +352,6 @@ class ControllerApplicationContent extends Controller {
         $this->data['entry_description'] = $this->language->get('entry_description');
         $this->data['entry_image'] = $this->language->get('entry_image');
         $this->data['entry_type'] = $this->language->get('entry_type');
-        $this->data['entry_keyword'] = $this->language->get('entry_keyword');
         $this->data['entry_status'] = $this->language->get('entry_status');
         $this->data['entry_review'] = $this->language->get('entry_review');
         $this->data['entry_revision'] = $this->language->get('entry_revision');
@@ -480,14 +479,6 @@ class ControllerApplicationContent extends Controller {
             $this->data['type'] = $content_info['type'];
         } else {
             $this->data['type'] = '';
-        }
-
-        if (isset($this->request->post['keyword'])) {
-            $this->data['keyword'] = $this->request->post['keyword'];
-        } elseif (!empty($content_info)) {
-            $this->data['keyword'] = $content_info['keyword'];
-        } else {
-            $this->data['keyword'] = '';
         }
 
         if (isset($this->request->post['status'])) {

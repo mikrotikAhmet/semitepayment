@@ -20,6 +20,8 @@ $_['text_dashboard']                   = 'Dashboard';
 // Application Menu
 $_['text_content'] = 'Contents';
 $_['text_content_type'] = 'Content Types';
+$_['text_pages'] = 'Page Manager';
+$_['text_page'] = 'Page';
 
 // System Menu
 $_['text_system'] = 'System';

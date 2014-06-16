@@ -54,10 +54,6 @@ class ModelApplicationContent extends Model{
             $this->db->query("INSERT INTO " . DB_PREFIX . "content_description SET content_id = '" . (int) $content_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "'");
         }
 
-        if ($data['keyword']) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'content_id=" . (int) $content_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
-        }
-        
         if (isset($data['content_application'])) {
                 foreach ($data['content_application'] as $application_id) {
                         $this->db->query("INSERT INTO " . DB_PREFIX . "content_to_application SET content_id = '" . (int)$content_id . "', application_id = '" . (int)$application_id . "'");
@@ -78,12 +74,6 @@ class ModelApplicationContent extends Model{
 
         foreach ($data['content_description'] as $language_id => $value) {
             $this->db->query("INSERT INTO " . DB_PREFIX . "content_description SET content_id = '" . (int) $content_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "'");
-        }
-
-        $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'content_id=" . (int) $content_id . "'");
-
-        if ($data['keyword']) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'content_id=" . (int) $content_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
         }
 
         if (isset($data['revision'])) {
@@ -113,7 +103,7 @@ class ModelApplicationContent extends Model{
     }
 
     public function getContent($content_id) {
-        $query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'content_id=" . (int) $content_id . "') AS keyword FROM " . DB_PREFIX . "content WHERE content_id = '" . (int) $content_id . "'");
+        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "content WHERE content_id = '" . (int) $content_id . "'");
 
         return $query->row;
     }

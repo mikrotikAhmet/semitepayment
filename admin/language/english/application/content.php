@@ -51,7 +51,6 @@ $_['entry_title'] = 'Content Title:';
 $_['entry_description'] = 'Description:';
 $_['entry_image'] = 'Content Image:';
 $_['entry_type'] = 'Create Type:';
-$_['entry_keyword'] = 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
 $_['entry_status'] = 'Status:';
 $_['entry_author'] = 'Author:';
 $_['entry_date'] = 'Date:';

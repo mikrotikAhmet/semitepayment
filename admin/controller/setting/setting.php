@@ -308,16 +308,22 @@ class ControllerSettingSetting extends Controller {
         $this->load->model('design/layout');
 
         $this->data['layouts'] = $this->model_design_layout->getLayouts();
-
+        
         if (isset($this->request->post['config_page_id'])) {
             $this->data['config_page_id'] = $this->request->post['config_page_id'];
         } else {
             $this->data['config_page_id'] = $this->config->get('config_page_id');
         }
 
-//        $this->load->model('application/page');
-//
-//        $this->data['pages'] = $this->model_application_page->getPages();
+        $this->load->model('design/page');
+
+        $this->data['pages'] = $this->model_design_page->getPages();
+
+        if (isset($this->request->post['config_page_id'])) {
+            $this->data['config_page_id'] = $this->request->post['config_page_id'];
+        } else {
+            $this->data['config_page_id'] = $this->config->get('config_page_id');
+        }
 
         if (isset($this->request->post['config_template'])) {
             $this->data['config_template'] = $this->request->post['config_template'];

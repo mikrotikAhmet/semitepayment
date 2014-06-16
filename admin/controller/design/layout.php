@@ -225,7 +225,7 @@ class ControllerDesignLayout extends Controller {
 
             $this->data['layouts'][] = array(
                 'layout_id' => $result['layout_id'],
-                'name' => $result['name'],
+                'name' => $result['name'].($result['layout_id'] == $this->config->get('config_layout_id') ? $this->language->get('text_default') : ''),
                 'selected' => isset($this->request->post['selected']) && in_array($result['layout_id'], $this->request->post['selected']),
                 'action' => $action
             );
@@ -417,38 +417,24 @@ class ControllerDesignLayout extends Controller {
         }
 
         $this->load->model('setting/application');
-//        $this->load->model('catalog/product');
-//        $this->load->model('catalog/category');
-//        $this->load->model('catalog/information');
+        $this->load->model('design/page');
 
         foreach ($this->request->post['selected'] as $layout_id) {
             if ($this->config->get('config_layout_id') == $layout_id) {
                 $this->error['warning'] = $this->language->get('error_default');
             }
+            
+            $page_total = $this->model_design_page->getTotalPagesByLayoutId($layout_id);
 
-//            $application_total = $this->model_setting_application->getTotalStoresByLayoutId($layout_id);
-//
-//            if ($application_total) {
-//                $this->error['warning'] = sprintf($this->language->get('error_application'), $application_total);
-//            }
-//
-//            $product_total = $this->model_catalog_product->getTotalProductsByLayoutId($layout_id);
-//
-//            if ($product_total) {
-//                $this->error['warning'] = sprintf($this->language->get('error_product'), $product_total);
-//            }
-//
-//            $category_total = $this->model_catalog_category->getTotalCategoriesByLayoutId($layout_id);
-//
-//            if ($category_total) {
-//                $this->error['warning'] = sprintf($this->language->get('error_category'), $category_total);
-//            }
-//
-//            $information_total = $this->model_catalog_information->getTotalInformationsByLayoutId($layout_id);
-//
-//            if ($information_total) {
-//                $this->error['warning'] = sprintf($this->language->get('error_information'), $information_total);
-//            }
+            if ($page_total) {
+                $this->error['warning'] = sprintf($this->language->get('error_page'), $page_total);
+            }
+            
+            $application_total = $this->model_setting_application->getTotalApplicationsByLayoutId($layout_id);
+
+            if ($application_total) {
+                $this->error['warning'] = sprintf($this->language->get('error_application'), $application_total);
+            }
         }
 
         if (!$this->error) {

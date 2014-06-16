@@ -56,11 +56,14 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_application'] = $this->config->get('config_name');
             $this->data['text_content'] = $this->language->get('text_content');
             $this->data['text_content_type'] = $this->language->get('text_content_type');
+            $this->data['text_pages'] = $this->language->get('text_pages');
         //System Menu
             $this->data['text_system'] = $this->language->get('text_system');
             $this->data['text_setting'] = $this->language->get('text_setting');
             $this->data['text_design'] = $this->language->get('text_design');
             $this->data['text_layout'] = $this->language->get('text_layout');
+            $this->data['text_page'] = $this->language->get('text_page');
+            $this->data['text_add_new'] = $this->language->get('text_add_new');
             $this->data['text_users'] = $this->language->get('text_users');
             $this->data['text_user'] = $this->language->get('text_user');
             $this->data['text_user_group'] = $this->language->get('text_user_group');
@@ -99,6 +102,8 @@ class ControllerCommonHeader extends Controller{
             // System Menu
                 $this->data['setting'] = $this->url->link('setting/application', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['page'] = $this->url->link('design/page', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['new_page'] = $this->url->link('design/page/insert', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['user'] = $this->url->link('user/user', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['user_group'] = $this->url->link('user/user_permission', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['language'] = $this->url->link('localisation/language', 'token=' . $this->session->data['token'], 'SSL');
