@@ -151,9 +151,9 @@ class ControllerApplicationContent extends Controller {
 
         $this->getList();
     }
-    
+
     public function revision() {
-        
+
         $this->language->load('application/revision');
 
         $this->getRevision();
@@ -332,7 +332,7 @@ class ControllerApplicationContent extends Controller {
     }
 
     protected function getForm() {
-        
+
         $this->data['heading_title'] = $this->language->get('heading_title');
 
         $this->document->addScript('view/javascript/jquery/tabs.js');
@@ -357,6 +357,7 @@ class ControllerApplicationContent extends Controller {
         $this->data['entry_review'] = $this->language->get('entry_review');
         $this->data['entry_revision'] = $this->language->get('entry_revision');
         $this->data['entry_revision_log'] = $this->language->get('entry_revision_log');
+        $this->data['entry_link'] = $this->language->get('entry_link');
         $this->data['entry_application'] = $this->language->get('entry_application');
 
         $this->data['tab_general'] = $this->language->get('tab_general');
@@ -504,7 +505,7 @@ class ControllerApplicationContent extends Controller {
         } else {
             $this->data['revision'] = 0;
         }
-        
+
         if (isset($this->request->post['revision_log'])) {
             $this->data['revision_log'] = $this->request->post['revision_log'];
         } else {
@@ -524,19 +525,30 @@ class ControllerApplicationContent extends Controller {
         } else {
             $this->data['has_revision'] = 0;
         }
-        
+
+        if (isset($this->request->post['link_id'])) {
+            $this->data['link_id'] = $this->request->post['link_id'];
+        } elseif (!empty($content_info)) {
+            $this->data['link_id'] = $content_info['link_id'];
+        } else {
+            $this->data['link_id'] = 0;
+        }
+
+        $this->data['links'] = $this->model_application_content->getContents();
+
+
         $this->load->model('setting/application');
 
         $this->data['applications'] = $this->model_setting_application->getApplications();
 
         if (isset($this->request->post['content_application'])) {
-                $this->data['content_application'] = $this->request->post['content_application'];
+            $this->data['content_application'] = $this->request->post['content_application'];
         } elseif (isset($this->request->get['content_id'])) {
-                $this->data['content_application'] = $this->model_application_content->getContentApplications($this->request->get['content_id']);
+            $this->data['content_application'] = $this->model_application_content->getContentApplications($this->request->get['content_id']);
         } else {
-                $this->data['content_application'] = array(0);
+            $this->data['content_application'] = array(0);
         }
-        
+
         $this->template = 'application/content_form.tpl';
         $this->children = array(
             'common/header',
@@ -591,16 +603,16 @@ class ControllerApplicationContent extends Controller {
     protected function getRevision() {
 
         $this->load->model('application/content');
-        
+
         $this->data['heading_title'] = $this->language->get('heading_title');
-        
+
         $this->data['column_author'] = $this->language->get('column_author');
         $this->data['column_date'] = $this->language->get('column_date');
         $this->data['column_ip'] = $this->language->get('column_ip');
         $this->data['column_message'] = $this->language->get('column_message');
-        
+
         if (isset($this->request->get['page'])) {
-            
+
             $page = $this->request->get['page'];
         } else {
             $page = 1;
@@ -643,8 +655,47 @@ class ControllerApplicationContent extends Controller {
         $this->data['pagination'] = $pagination->render();
 
         $this->template = 'application/content_revision.tpl';
-        
+
         $this->response->setOutput($this->render());
+    }
+
+    public function autocomplete() {
+        $json = array();
+
+        if (isset($this->request->get['filter_title'])) {
+            
+            $this->load->model('application/content');
+
+            if (isset($this->request->get['filter_title'])) {
+                $filter_title = $this->request->get['filter_title'];
+            } else {
+                $filter_title = '';
+            }
+
+            if (isset($this->request->get['limit'])) {
+                $limit = $this->request->get['limit'];
+            } else {
+                $limit = 20;
+            }
+
+            $data = array(
+                'filter_name' => $filter_title,
+                'start' => 0,
+                'limit' => $limit
+            );
+
+            $results = $this->model_application_content->getContents($data);
+
+            foreach ($results as $result) {
+
+                $json[] = array(
+                    'content_id' => $result['content_id'],
+                    'title' => strip_tags(html_entity_decode($result['title'], ENT_QUOTES, 'UTF-8')),
+                );
+            }
+        }
+
+        $this->response->setOutput(json_encode($json));
     }
 
 }

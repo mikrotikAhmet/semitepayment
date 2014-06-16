@@ -59,6 +59,7 @@ $_['entry_application'] = 'Applications:';
 $_['entry_review'] = 'Content Comment:<br /><span class="help">You can enable or disable Comment System for this content.</span>';
 $_['entry_revision'] = 'Create new revisions:';
 $_['entry_revision_log'] = 'Revision Log Message:';
+$_['entry_link'] = 'Link:<br/><span class="help">Optional. You can link your content to another content.</span>';
 $_['entry_parent'] = 'Parent Item:<br/><span class="help">The maximum depth for a link and all its <br/>children is fixed at 9. Some menu links may not be available as parents if selecting them would exceed this limit.</span>';
 $_['entry_sort_order'] = 'Weight:<br/><span class="help">Optional. In the menu, the heavier links will sink and the lighter links will be positioned nearer the top.</span>';
 

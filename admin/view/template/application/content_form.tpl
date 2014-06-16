@@ -151,6 +151,21 @@
                             </div>
                             <div class="tab-pane fade in" id="tab_link">
                                 <div class="form-group">
+                                    <label for="link" class="col-sm-2 control-label"><?php echo $entry_link; ?></label>
+                                    <div class="col-sm-10">
+                                        <select data-placeholder="<?php echo $heading_title?>" name="link_id" class="clear-results" tabindex="2">
+                                            <option value=""></option> 
+                                            <?php foreach ($links as $link) { ?>
+                                            <?php if ($link['content_id'] == $link_id) { ?>
+                                            <option value="<?php echo $link['content_id']?>" selected="selected"><?php echo $link['title']?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $link['content_id']?>"><?php echo $link['title']?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="application" class="col-sm-2 control-label"><?php echo $entry_application; ?></label>
                                     <div class="col-sm-2">
                                         <div class="scrollbox">
@@ -215,6 +230,34 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 <?php } ?>
     //--></script>
 <script type="text/javascript"><!--
+// Manufacturer
+$('input[name=\'link\']').autocomplete({
+	delay: 500,
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=application/content/autocomplete&token=<?php echo $token; ?>&filter_title=' +  encodeURIComponent(request.term),
+			dataType: 'json',
+			success: function(json) {		
+				response($.map(json, function(item) {
+					return {
+						label: item.title,
+						value: item.content_id
+					}
+				}));
+			}
+		});
+	}, 
+	select: function(event, ui) {
+		$('input[name=\'link\']').attr('value', ui.item.label);
+		$('input[name=\'link_id\']').attr('value', ui.item.value);
+	
+		return false;
+	},
+	focus: function(event, ui) {
+      return false;
+   }
+});
+
 function image_upload(field, thumb) {
 	$('#dialog').remove();
 	

@@ -42,7 +42,7 @@ if (!defined('DIR_APPLICATION'))
 
 class ModelApplicationContent extends Model{
     public function addContent($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "content SET author = '" . (int) $this->user->getId() . "' ,status = '" . (int) $data['status'] . "', date_added = NOW(), date_modified = NOW(), `type` = '" . (int) $data['type'] . "', comment = '" . (isset($data['comment']) ? (int) $data['comment'] : 0) . "', revision = '" . (isset($data['revision']) ? (int) $data['revision'] : 0) . "'");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "content SET author = '" . (int) $this->user->getId() . "' ,status = '" . (int) $data['status'] . "', date_added = NOW(), date_modified = NOW(), `type` = '" . (int) $data['type'] . "', comment = '" . (isset($data['comment']) ? (int) $data['comment'] : 0) . "', revision = '" . (isset($data['revision']) ? (int) $data['revision'] : 0) . "', link_id ='".(isset($data['link_id']) ? (int) $data['link_id'] : 0)."'");
 
         $content_id = $this->db->getLastId();
         
@@ -68,7 +68,7 @@ class ModelApplicationContent extends Model{
     }
 
     public function editContent($content_id, $data) {
-        $this->db->query("UPDATE " . DB_PREFIX . "content SET  status = '" . (int) $data['status'] . "',date_modified = NOW(), `type` = '" . (int) $data['type'] . "', comment = '" . (isset($data['comment']) ? (int) $data['comment'] : 0) . "', link = '" . (isset($data['link']) ? (int) $data['link'] : 0) . "'  WHERE content_id = '" . (int) $content_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "content SET  status = '" . (int) $data['status'] . "',date_modified = NOW(), `type` = '" . (int) $data['type'] . "', comment = '" . (isset($data['comment']) ? (int) $data['comment'] : 0) . "', link_id = '" . (isset($data['link_id']) ? (int) $data['link_id'] : 0) . "'  WHERE content_id = '" . (int) $content_id . "'");
 
         if (isset($data['image'])) {
             $this->db->query("UPDATE " . DB_PREFIX . "content SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE content_id = '" . (int) $content_id . "'");

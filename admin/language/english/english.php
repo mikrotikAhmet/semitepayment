@@ -64,6 +64,7 @@ $_['button_restore']                = 'Restore';
 $_['button_repair']                 = 'Repair';
 $_['button_upload']                 = 'Upload';
 $_['button_submit']                 = 'Submit';
+$_['button_add_field']            = 'Add Field';
 $_['button_invoice']                = 'Print Invoice';
 $_['button_add_address']            = 'Add Address';
 $_['button_add_attribute']          = 'Add Attribute';
