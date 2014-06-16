@@ -44,23 +44,10 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand semite-logo" href="/">SemitePayment</a>
+                        <a class="navbar-brand semite-logo" href="/"></a>
                     </div>
-
                     <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-
-                            <li class=""><a href="#">Developers</a></li>
-                            <li class=""><a href="#">Pricing</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-
-                            <li><a href="https://support.semitepayment.com">Support</a></li>
-
-                            <li><a href="#" data-no-instant>Sign Up</a></li>
-                            <li><a href="#" class=".navbar-btn" data-no-instant>Login</a></li>
-
-                        </ul>
+                        
                     </div>
                 </div>
             </div>

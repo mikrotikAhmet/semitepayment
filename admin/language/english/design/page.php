@@ -49,6 +49,7 @@ $_['entry_title'] = 'Page Title:';
 $_['entry_meta_description'] = 'Meta Description:';
 $_['entry_meta_keyword'] = 'Meta Keyword:';
 $_['entry_image'] = 'Featured Image:';
+$_['entry_application'] = 'Applications:';
 $_['entry_show_title']       = 'Show Page Title:';
 $_['entry_protected']       = 'Protected Page:<br/><span class="help">Set this page protected. Visitors must be logged in to view this page.</span>';
 $_['entry_show_breadcrumb']       = 'Show Breadcrumbs:';

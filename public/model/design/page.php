@@ -40,43 +40,23 @@ if (!defined('DIR_APPLICATION'))
  * Date : Jun 16, 2014
  */
 
-class ControllerDesignPage extends Controller {
-    
-    public $page_info = array();
+class ModelDesignPage extends Model {
 
+    public function getPage($page_id) {
+        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "page p LEFT JOIN " . DB_PREFIX . "page_description pd ON (p.page_id = pd.page_id) LEFT JOIN " . DB_PREFIX . "page_to_application p2a ON (p.page_id = p2a.page_id) WHERE p.page_id = '" . (int) $page_id . "' AND pd.language_id = '" . (int) $this->config->get('config_language_id') . "' AND p2a.application_id = '" . (int) $this->config->get('config_application_id') . "' AND p.status = '1'");
 
-    public function index() {
-        
-        $this->page_info = $this->config->get('page_info');
-        
-        $this->data['page_info'] = $this->page_info;
-        
-        if ($this->page_info) {
-        
-            $this->document->setTitle($this->config->get('config_title'). $this->language->get('text_separator').$this->page_info['title']);
-            $this->document->setDescription($this->config->get('config_meta_description'));
-
-            $this->data['heading_title'] = $this->config->get('config_title');
-
-
-
-            if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/design/page.tpl')) {
-                $this->template = $this->config->get('config_template') . '/template/design/page.tpl';
-            } else {
-                $this->template = 'default/template/design/page.tpl';
-            }
-        } else {
-            
-            throw new Exception('Page Not Found');
-            exit(1);
-        }
-
-        $this->children = array(
-            'common/footer',
-            'common/header'
-        );
-
-        $this->response->setOutput($this->render());
+        return $query->row;
     }
+    
+    public function getPageLayoutId($page_id) {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "page_to_layout WHERE page_id = '" . (int) $page_id . "' AND application_id = '" . (int) $this->config->get('config_application_id') . "'");
+
+        if ($query->num_rows) {
+            return $query->row['layout_id'];
+        } else {
+            return false;
+        }
+    }
+
 }
 

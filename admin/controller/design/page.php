@@ -311,6 +311,7 @@ class ControllerDesignPage extends Controller {
         $this->document->addScript('view/javascript/jquery/tabs.js');
 
         $this->data['text_enabled'] = $this->language->get('text_enabled');
+        $this->data['text_default'] = $this->language->get('text_default');
         $this->data['text_disabled'] = $this->language->get('text_disabled');
         $this->data['text_select'] = $this->language->get('text_select');
         $this->data['text_image_manager'] = $this->language->get('text_image_manager');
@@ -322,6 +323,7 @@ class ControllerDesignPage extends Controller {
         $this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
         $this->data['entry_layout'] = $this->language->get('entry_layout');
         $this->data['entry_image'] = $this->language->get('entry_image');
+        $this->data['entry_description'] = $this->language->get('entry_description');
         $this->data['entry_keyword'] = $this->language->get('entry_keyword');
         $this->data['entry_show_title'] = $this->language->get('entry_show_title');
         $this->data['entry_show_breadcrumb'] = $this->language->get('entry_show_breadcrumb');
@@ -465,6 +467,18 @@ class ControllerDesignPage extends Controller {
         $this->load->model('design/layout');
 
         $this->data['layouts'] = $this->model_design_layout->getLayouts();
+        
+        $this->load->model('setting/application');
+
+        $this->data['applications'] = $this->model_setting_application->getApplications();
+
+        if (isset($this->request->post['page_application'])) {
+            $this->data['page_application'] = $this->request->post['page_application'];
+        } elseif (isset($this->request->get['page_id'])) {
+            $this->data['page_application'] = $this->model_design_page->getPageApplications($this->request->get['page_id']);
+        } else {
+            $this->data['page_application'] = array(0);
+        }
 
 
         $this->template = 'design/page_form.tpl';

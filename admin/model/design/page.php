@@ -63,11 +63,16 @@ class ModelDesignPage extends Model {
                 }
             }
         }
-        
+
         if ($data['keyword']) {
             $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'page_id=" . (int) $page_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
         }
-
+        
+        if (isset($data['page_application'])) {
+                foreach ($data['page_application'] as $application_id) {
+                        $this->db->query("INSERT INTO " . DB_PREFIX . "page_to_application SET content_id = '" . (int)$page_id . "', application_id = '" . (int)$application_id . "'");
+                }
+        }
     }
 
     public function editPage($page_id, $data) {
@@ -93,17 +98,24 @@ class ModelDesignPage extends Model {
                 }
             }
         }
-        
+
         $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'page_id=" . (int) $page_id . "'");
 
         if ($data['keyword']) {
             $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'page_id=" . (int) $page_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
         }
+        
+                $this->db->query("DELETE FROM " . DB_PREFIX . "page_to_application WHERE page_id = '" . (int)$page_id . "'");
 
+        if (isset($data['page_application'])) {
+                foreach ($data['page_application'] as $application_id) {
+                        $this->db->query("INSERT INTO " . DB_PREFIX . "page_to_application SET page_id = '" . (int)$page_id . "', application_id = '" . (int)$application_id . "'");
+                }
+        }
     }
 
     public function getPage($page_id) {
-        
+
         $query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'page_id=" . (int) $page_id . "') AS keyword FROM " . DB_PREFIX . "page WHERE page_id = '" . (int) $page_id . "'");
 
         return $query->row;
@@ -165,6 +177,18 @@ class ModelDesignPage extends Model {
         return $page_description_data;
     }
 
+    public function getPageApplications($page_id) {
+        $page_application_data = array();
+
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "page_to_application WHERE page_id = '" . (int) $page_id . "'");
+
+        foreach ($query->rows as $result) {
+            $page_application_data[] = $result['application_id'];
+        }
+
+        return $page_application_data;
+    }
+
     public function getPageLayouts($page_id) {
 
         $page_layout_data = array();
@@ -178,10 +202,10 @@ class ModelDesignPage extends Model {
         return $page_layout_data;
     }
 
-   public function getTotalPagesByLayoutId($page_id) {
-            $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "page_to_layout WHERE page_id = '" . (int)$page_id . "'");
+    public function getTotalPagesByLayoutId($page_id) {
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "page_to_layout WHERE page_id = '" . (int) $page_id . "'");
 
-            return $query->row['total'];		
+        return $query->row['total'];
     }
 
     public function getTotalPages() {

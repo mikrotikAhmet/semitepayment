@@ -70,19 +70,34 @@ $db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 $registry->set('db', $db);
 
 
-// Settings
-$query = $db->query("SELECT * FROM " . DB_PREFIX . "setting");
-
-foreach ($query->rows as $setting) {
-    if (!$setting['serialized']) {
-        $config->set($setting['key'], $setting['value']);
-    } else {
-        $config->set($setting['key'], unserialize($setting['value']));
-    }
+// Store
+if (isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTPS'] == '1'))) {
+	$store_query = $db->query("SELECT * FROM " . DB_PREFIX . "application WHERE REPLACE(`ssl`, 'www.', '') = '" . $db->escape('https://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
+} else {
+	$store_query = $db->query("SELECT * FROM " . DB_PREFIX . "application WHERE REPLACE(`url`, 'www.', '') = '" . $db->escape('http://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
 }
 
-$config->set('config_url', HTTP_SERVER);
-$config->set('config_ssl', HTTPS_SERVER);
+if ($store_query->num_rows) {
+	$config->set('config_application_id', $store_query->row['application_id']);
+} else {
+	$config->set('config_application_id', 0);
+}
+		
+// Settings
+$query = $db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE application_id = '0' OR application_id = '" . (int)$config->get('config_application_id') . "' ORDER BY application_id ASC");
+
+foreach ($query->rows as $setting) {
+	if (!$setting['serialized']) {
+		$config->set($setting['key'], $setting['value']);
+	} else {
+		$config->set($setting['key'], unserialize($setting['value']));
+	}
+}
+
+if (!$store_query->num_rows) {
+	$config->set('config_url', HTTP_SERVER);
+	$config->set('config_ssl', HTTPS_SERVER);	
+}
 
 // Url
 $url = new Url($config->get('config_url'), $config->get('config_secure') ? $config->get('config_ssl') : $config->get('config_url'));
@@ -211,11 +226,15 @@ $registry->set('encryption', new Encryption($config->get('config_encryption')));
 // Front Controller 
 $controller = new Front($registry);
 
+
 // Maintenance Mode
 $controller->addPreAction(new Action('common/maintenance'));
 
 // SEO URL's
 //$controller->addPreAction(new Action('common/seo_url'));
+
+// Page Data
+$controller->addPreAction(new Action('common/page'));
 
 // Router
 if (isset($request->get['route'])) {

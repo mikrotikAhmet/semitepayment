@@ -42,6 +42,7 @@ if (!defined('DIR_APPLICATION'))
 
 class ControllerCommonMaintenance extends Controller {
 	public function index() {
+            
 		if ($this->config->get('config_maintenance')) {
 			$route = '';
 
