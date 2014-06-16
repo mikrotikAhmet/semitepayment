@@ -150,7 +150,35 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade in" id="tab_link">
-                                Links
+                                <div class="form-group">
+                                    <label for="application" class="col-sm-2 control-label"><?php echo $entry_application; ?></label>
+                                    <div class="col-sm-2">
+                                        <div class="scrollbox">
+                                            <?php $class = 'even'; ?>
+                                            <div class="<?php echo $class; ?>">
+                                              <?php if (in_array(0, $content_application)) { ?>
+                                              <input type="checkbox" name="content_application[]" value="0" checked="checked" />
+                                              <?php echo $text_default; ?>
+                                              <?php } else { ?>
+                                              <input type="checkbox" name="content_application[]" value="0" />
+                                              <?php echo $text_default; ?>
+                                              <?php } ?>
+                                            </div>
+                                            <?php foreach ($applications as $application) { ?>
+                                            <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                                            <div class="<?php echo $class; ?>">
+                                              <?php if (in_array($application['application_id'], $content_application)) { ?>
+                                              <input type="checkbox" name="content_application[]" value="<?php echo $application['application_id']; ?>" checked="checked" />
+                                              <?php echo $application['name']; ?>
+                                              <?php } else { ?>
+                                              <input type="checkbox" name="content_application[]" value="<?php echo $application['application_id']; ?>" />
+                                              <?php echo $application['name']; ?>
+                                              <?php } ?>
+                                            </div>
+                                            <?php } ?>
+                                          </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

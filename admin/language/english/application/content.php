@@ -55,6 +55,7 @@ $_['entry_keyword'] = 'SEO Keyword:<br /><span class="help">Do not use spaces in
 $_['entry_status'] = 'Status:';
 $_['entry_author'] = 'Author:';
 $_['entry_date'] = 'Date:';
+$_['entry_application'] = 'Applications:';
 $_['entry_review'] = 'Content Comment:<br /><span class="help">You can enable or disable Comment System for this content.</span>';
 $_['entry_revision'] = 'Create new revisions:';
 $_['entry_revision_log'] = 'Revision Log Message:';

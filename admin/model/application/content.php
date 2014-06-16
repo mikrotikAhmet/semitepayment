@@ -57,6 +57,12 @@ class ModelApplicationContent extends Model{
         if ($data['keyword']) {
             $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'content_id=" . (int) $content_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
         }
+        
+        if (isset($data['content_application'])) {
+                foreach ($data['content_application'] as $application_id) {
+                        $this->db->query("INSERT INTO " . DB_PREFIX . "content_to_application SET content_id = '" . (int)$content_id . "', application_id = '" . (int)$application_id . "'");
+                }
+        }
 
         $this->cache->delete('content');
     }
@@ -84,6 +90,14 @@ class ModelApplicationContent extends Model{
             $this->db->query("DELETE FROM `" . DB_PREFIX . "content_revision` WHERE (UNIX_TIMESTAMP(`revision_date`) + 3600) < UNIX_TIMESTAMP(NOW())");
 
             $this->db->query("REPLACE INTO `" . DB_PREFIX . "content_revision` SET `ip` = '" . $this->db->escape($_SERVER['REMOTE_ADDR']) . "', `author` = '" . (int) $this->user->getId() . "', `content_id` = '" . (int) $content_id . "',revision_date = NOW(), message = '" . $this->db->escape($data['revision_log']) . "'");
+        }
+        
+        $this->db->query("DELETE FROM " . DB_PREFIX . "content_to_application WHERE content_id = '" . (int)$content_id . "'");
+
+        if (isset($data['content_application'])) {
+                foreach ($data['content_application'] as $application_id) {
+                        $this->db->query("INSERT INTO " . DB_PREFIX . "content_to_application SET content_id = '" . (int)$content_id . "', application_id = '" . (int)$application_id . "'");
+                }
         }
 
         $this->cache->delete('content');
@@ -188,6 +202,18 @@ class ModelApplicationContent extends Model{
 
         return $query->rows;
     }
+    
+    public function getContentApplications($content_id) {
+		$content_application_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "content_to_application WHERE content_id = '" . (int)$content_id . "'");
+
+		foreach ($query->rows as $result) {
+			$content_application_data[] = $result['application_id'];
+		}
+
+		return $content_application_data;
+	}
 
     public function getTotalContentRevisions($content_id) {
         $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "content_revision WHERE content_id = '" . (int) $content_id . "'");

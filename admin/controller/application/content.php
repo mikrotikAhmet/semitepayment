@@ -357,6 +357,7 @@ class ControllerApplicationContent extends Controller {
         $this->data['entry_review'] = $this->language->get('entry_review');
         $this->data['entry_revision'] = $this->language->get('entry_revision');
         $this->data['entry_revision_log'] = $this->language->get('entry_revision_log');
+        $this->data['entry_application'] = $this->language->get('entry_application');
 
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
@@ -523,7 +524,19 @@ class ControllerApplicationContent extends Controller {
         } else {
             $this->data['has_revision'] = 0;
         }
+        
+        $this->load->model('setting/application');
 
+        $this->data['applications'] = $this->model_setting_application->getApplications();
+
+        if (isset($this->request->post['content_application'])) {
+                $this->data['content_application'] = $this->request->post['content_application'];
+        } elseif (isset($this->request->get['content_id'])) {
+                $this->data['content_application'] = $this->model_application_content->getContentApplications($this->request->get['content_id']);
+        } else {
+                $this->data['content_application'] = array(0);
+        }
+        
         $this->template = 'application/content_form.tpl';
         $this->children = array(
             'common/header',
