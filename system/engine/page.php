@@ -45,20 +45,30 @@ class Page {
     private $page;
     private $page_id;
     private $page_title;
+    private $featured;
     
     public function __construct($registry) {
+        
+        
         
         $this->db = $registry->get('db');
         $this->request = $registry->get('request');
         $this->session = $registry->get('session');
         $this->config = $registry->get('config');
+        
+        require_once DIR_APPLICATION.'model/tool/image.php';
+        
+        $this->imager = new ModelToolImage($registry);
     }
     
     public function setPage($page){
         $this->page = $page;
         
+        
+        
         $this->setPageId($this->page['page_id']);
         $this->setPageTitle($this->page['title']);
+        $this->setFeatured($this->page['image']);
     }
     
     public function getPage(){
@@ -81,6 +91,28 @@ class Page {
     public function getPageTitle()
     {
         return $this->page_title;
+    }
+    
+    public function setFeatured($featured){
+               
+        if (isset($featured) && file_exists(DIR_IMAGE . $featured)) {
+            $this->featured = $this->imager->resize($featured, 1170, 239);
+        }  else {
+            return false;
+        }
+    }
+    
+    public function getFeatured(){
+        
+        if ($this->featured){
+        $featured = '<img src="'.$this->featured.'"/>';
+        
+        return $featured;
+        
+        } else {
+            return false;
+        }
+        
     }
 }
 

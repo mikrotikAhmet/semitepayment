@@ -50,7 +50,7 @@ class User {
 
     public function __construct($registry) {
         
-        require_once 'model/tool/image.php';
+        require_once DIR_APPLICATION.'model/tool/image.php';
         
         $this->db = $registry->get('db');
         $this->imager = new ModelToolImage($registry);
