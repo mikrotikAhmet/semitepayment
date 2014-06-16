@@ -27,4 +27,5 @@
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
     </div>
+    </div>
     <?php echo $footer?>
