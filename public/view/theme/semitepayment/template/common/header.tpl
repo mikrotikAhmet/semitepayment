@@ -44,7 +44,11 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand semite-logo" href="/"></a>
+                        <?php if (!$logo) { ?>
+                            <a class="navbar-brand" href="<?php echo $home?>" title="<?php echo $name?>"><?php echo $name?></a>
+                            <?php } else { ?>
+                            <a href="<?php echo $home?>" title="<?php echo $name?>"><img style="padding: 5px 0px;" src="<?php echo $logo?>"/></a>
+                        <?php } ?>
                     </div>
                     <div class="navbar-collapse collapse">
                         

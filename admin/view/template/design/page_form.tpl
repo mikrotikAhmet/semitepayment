@@ -52,7 +52,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="sub_title" class="col-sm-2 control-label"><?php echo $entry_title; ?></label>
+                                        <label for="sub_title" class="col-sm-2 control-label"><?php echo $entry_sub_title; ?></label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" id="sub_title" placeholder="" name="page_description[<?php echo $language['language_id']; ?>][sub_title]" value="<?php echo isset($page_description[$language['language_id']]) ? $page_description[$language['language_id']]['sub_title'] : ''; ?>">
                                         </div>

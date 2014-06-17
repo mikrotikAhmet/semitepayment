@@ -47,6 +47,7 @@
                               <a href="<?php echo $sort_title; ?>"><?php echo $column_title; ?></a>
                               <?php } ?></th>
                             <th class="left"><?php echo $column_protected; ?></th>
+                            <th class="left"><?php echo $column_ssl; ?></th>
                             <th class="left"><?php echo $column_status; ?></th>
                             <th class="right"><?php echo $column_action; ?></th>
                         </tr>
@@ -62,6 +63,7 @@
                             <?php } ?></td>
                           <td class="left"><?php echo $page['title']; ?></td>
                           <td class="left"><?php echo $page['protected']; ?></td>
+                          <td class="left"><?php echo $page['ssl']; ?></td>
                           <td class="left"><?php echo $page['status']; ?></td>
                           <td class="right"><?php foreach ($page['action'] as $action) { ?>
                             [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
@@ -70,7 +72,7 @@
                         <?php } ?>
                         <?php } else { ?>
                         <tr>
-                          <td class="center" colspan="3"><?php echo $text_no_results; ?></td>
+                          <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
                         </tr>
                         <?php } ?>
                     </tbody>

@@ -41,6 +41,7 @@ $_['text_unprotected']             = 'UnProtected';
 // Column
 $_['column_title']       = 'Page Title';
 $_['column_protected']     = 'Protected Page';
+$_['column_ssl']     = 'Secured Page (SSL)';
 $_['column_status']     = 'Status';
 $_['column_action']     = 'Action';
 
