@@ -18,12 +18,12 @@ if (!defined('DIR_APPLICATION'))
 class ModelDesignBlock extends Model {
 
     public function addBlock($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "block SET date_add = NOW , date_modified = NOW()");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "block SET date_added = NOW() , date_modified = NOW()");
 
         $block_id = $this->db->getLastId();
 
         foreach ($data['block_description'] as $language_id => $value) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "block_description SET block_id = '" . (int) $block_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "'");
+            $this->db->query("INSERT INTO " . DB_PREFIX . "block_description SET block_id = '" . (int) $block_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', sub_title = '" . $this->db->escape($value['sub_title']) . "'");
         }
     }
 
@@ -33,7 +33,7 @@ class ModelDesignBlock extends Model {
         $this->db->query("DELETE FROM " . DB_PREFIX . "block_description WHERE block_id = '" . (int) $block_id . "'");
 
         foreach ($data['block_description'] as $language_id => $value) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "block_description SET block_id = '" . (int) $block_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "'");
+            $this->db->query("INSERT INTO " . DB_PREFIX . "block_description SET block_id = '" . (int) $block_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', sub_title = '" . $this->db->escape($value['sub_title']) . "'");
         }
     }
 
