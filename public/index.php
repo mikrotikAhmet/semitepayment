@@ -231,11 +231,12 @@ $registry->set('encryption', new Encryption($config->get('config_encryption')));
 $controller = new Front($registry);
 
 
-// Maintenance Mode
-$controller->addPreAction(new Action('common/maintenance'));
 
 // Page Data
 $controller->addPreAction(new Action('common/page'));
+
+// Maintenance Mode
+$controller->addPreAction(new Action('common/maintenance'));
 
 // SEO URL's
 $controller->addPreAction(new Action('common/seo_url'));
