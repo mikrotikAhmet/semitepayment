@@ -288,10 +288,16 @@ class ControllerDesignBlock extends Controller {
 
         $this->data['entry_title'] = $this->language->get('entry_title');
         $this->data['entry_sub_title'] = $this->language->get('entry_sub_title');
+        $this->data['entry_image'] = $this->language->get('entry_image');
+        $this->data['entry_class'] = $this->language->get('entry_class');
+        $this->data['entry_additional_classes'] = $this->language->get('entry_additional_classes');
+        $this->data['entry_show_title'] = $this->language->get('entry_show_title');
+        $this->data['entry_show_sub_title'] = $this->language->get('entry_show_sub_title');
         $this->data['entry_description'] = $this->language->get('entry_description');
 
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
+        $this->data['tab_block_content'] = $this->language->get('tab_block_content');
 
         $this->data['button_save'] = $this->language->get('button_save');
         $this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -360,6 +366,58 @@ class ControllerDesignBlock extends Controller {
             $this->data['block_description'] = $this->model_design_block->getBlockDescriptions($this->request->get['block_id']);
         } else {
             $this->data['block_description'] = array();
+        }
+        
+        if (isset($this->request->post['image'])) {
+            $this->data['image'] = $this->request->post['image'];
+        } elseif (!empty($block_info)) {
+            $this->data['image'] = $block_info['image'];
+        } else {
+            $this->data['image'] = '';
+        }
+
+        $this->load->model('tool/image');
+
+        if (isset($this->request->post['image']) && file_exists(DIR_IMAGE . $this->request->post['image'])) {
+            $this->data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
+        } elseif (!empty($block_info) && $block_info['image'] && file_exists(DIR_IMAGE . $block_info['image'])) {
+            $this->data['thumb'] = $this->model_tool_image->resize($block_info['image'], 100, 100);
+        } else {
+            $this->data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+        }
+
+        $this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+        
+        if (isset($this->request->post['class'])) {
+            $this->data['class'] = $this->request->post['class'];
+        } elseif (!empty($block_info)) {
+            $this->data['class'] = $block_info['class'];
+        } else {
+            $this->data['class'] = 'block';
+        }
+
+        if (isset($this->request->post['additional_classes'])) {
+            $this->data['additional_classes'] = $this->request->post['additional_classes'];
+        } elseif (!empty($block_info)) {
+            $this->data['additional_classes'] = $block_info['additional_classes'];
+        } else {
+            $this->data['additional_classes'] = '';
+        }
+        
+        if (isset($this->request->post['show_title'])) {
+            $this->data['show_title'] = $this->request->post['show_title'];
+        } elseif (!empty($block_info)) {
+            $this->data['show_title'] = $block_info['show_title'];
+        } else {
+            $this->data['show_title'] = 0;
+        }
+        
+        if (isset($this->request->post['show_sub_title'])) {
+            $this->data['show_sub_title'] = $this->request->post['show_sub_title'];
+        } elseif (!empty($block_info)) {
+            $this->data['show_sub_title'] = $block_info['show_sub_title'];
+        } else {
+            $this->data['show_sub_title'] = 0;
         }
 
         $this->template = 'design/block_form.tpl';

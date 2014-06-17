@@ -97,6 +97,7 @@ $_['tab_application']                   = 'Application';
 $_['tab_address']                   = 'Address';
 $_['tab_admin']                     = 'Admin';
 $_['tab_attribute']                 = 'Attribute';
+$_['tab_block_content'] = 'Block Content';
 $_['tab_customer']                  = 'Customer Details';
 $_['tab_data']                      = 'Data';
 $_['tab_design']                    = 'Design';

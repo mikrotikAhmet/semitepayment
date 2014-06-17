@@ -31,6 +31,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab_general" data-toggle="tab"><?php echo $tab_general ?></a></li>
                             <li><a href="#tab_data" data-toggle="tab"><?php echo $tab_data ?></a></li>
+                            <li><a href="#tab_block_content" data-toggle="tab"><?php echo $tab_block_content ?></a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active fade in" id="tab_general">
@@ -60,7 +61,57 @@
                                 <?php } ?>
                             </div>
                             <div class="tab-pane fade in" id="tab_data">
-                                
+                                <div class="form-group">
+                                    <label for="image" class="col-sm-2 control-label"><?php echo $entry_image; ?></label>
+                                    <div class="col-sm-3">
+                                        <div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" class="img-thumbnail"/>
+                                            <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
+                                            <br />
+                                            <button type="button" onclick="image_upload('image', 'thumb');" class="btn btn-primary btn-xs"><?php echo $text_browse; ?></button>&nbsp;&nbsp;|&nbsp;&nbsp;<button type="button" class="btn btn-danger btn-xs" onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="class" class="col-sm-2 control-label"><?php echo $entry_class; ?></label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" value="<?php echo $class?>" name="class"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="additional_classes" class="col-sm-2 control-label"><?php echo $entry_additional_classes; ?></label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" value="<?php echo $additional_classes?>" name="additional_classes"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="show_title" class="col-sm-2 control-label"><?php echo $entry_show_title; ?></label>
+                                    <div class="col-sm-3">
+                                        <label class="checkbox-inline checkbox-info">
+                                            <?php if ($show_title) {  ?>
+                                            <input type="checkbox" class="styled" name="show_title" value="1" checked="checked">
+                                            <?php } else { ?>
+                                            <input type="checkbox" class="styled" name="show_title" value="1">
+                                            <?php } ?>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="show_sub_title" class="col-sm-2 control-label"><?php echo $entry_show_sub_title; ?></label>
+                                    <div class="col-sm-3">
+                                        <label class="checkbox-inline checkbox-info">
+                                            <?php if ($show_sub_title) {  ?>
+                                            <input type="checkbox" class="styled" name="show_sub_title" value="1" checked="checked">
+                                            <?php } else { ?>
+                                            <input type="checkbox" class="styled" name="show_sub_title" value="1">
+                                            <?php } ?>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade in" id="tab_block_content">
+                                Block Content Here!<br/>
+                                <p>Rows</p>
+                                <p>Row Units</p>
                             </div>
                         </div>
                     </div>
@@ -76,4 +127,33 @@
 <script type="text/javascript"><!--
     $('#languages a').tabs(); 
     //--></script>
+<script type="text/javascript"><!--
+  
+    
+function image_upload(field, thumb) {
+	$('#dialog').remove();
+	
+	$('#filemanager').prepend('<div id="dialog" style="padding: 3px 0px 0px 0px;"><iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="padding:0; margin: 0; display: block; width: 100%; height: 100%;" frameborder="no" scrolling="auto"></iframe></div>');
+	
+	$('#dialog').dialog({
+		title: '<?php echo $text_image_manager; ?>',
+		close: function (event, ui) {
+			if ($('#' + field).attr('value')) {
+				$.ajax({
+					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).val()),
+					dataType: 'text',
+					success: function(data) {
+						$('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" class="img-thumbnail"/>');
+					}
+				});
+			}
+		},	
+		bgiframe: false,
+		width: 800,
+		height: 400,
+		resizable: false,
+		modal: false
+	});
+};
+//--></script> 
 <?php echo $footer?>

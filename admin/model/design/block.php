@@ -18,9 +18,13 @@ if (!defined('DIR_APPLICATION'))
 class ModelDesignBlock extends Model {
 
     public function addBlock($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "block SET date_added = NOW() , date_modified = NOW()");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "block SET `class` = '" . $this->db->escape($data['class']) . "',additional_classes = '" . $this->db->escape($data['additional_classes']) . "',show_title = '" . (isset($data['show_title']) ? (int) $data['show_title'] : 0) . "',show_sub_title = '" . (isset($data['show_sub_title']) ? (int) $data['show_sub_title'] : 0) . "',date_added = NOW() , date_modified = NOW()");
 
         $block_id = $this->db->getLastId();
+        
+        if (isset($data['image'])) {
+            $this->db->query("UPDATE " . DB_PREFIX . "block SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE block_id = '" . (int) $block_id . "'");
+        }
 
         foreach ($data['block_description'] as $language_id => $value) {
             $this->db->query("INSERT INTO " . DB_PREFIX . "block_description SET block_id = '" . (int) $block_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', sub_title = '" . $this->db->escape($value['sub_title']) . "'");
@@ -28,8 +32,12 @@ class ModelDesignBlock extends Model {
     }
 
     public function editBlock($block_id, $data) {
-        $this->db->query("UPDATE " . DB_PREFIX . "block SET date_modified = NOW() WHERE block_id = '" . (int) $block_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "block SET `class` = '" . $this->db->escape($data['class']) . "',additional_classes = '" . $this->db->escape($data['additional_classes']) . "',show_title = '" . (isset($data['show_title']) ? (int) $data['show_title'] : 0) . "',show_sub_title = '" . (isset($data['show_sub_title']) ? (int) $data['show_sub_title'] : 0) . "', date_modified = NOW() WHERE block_id = '" . (int) $block_id . "'");
 
+        if (isset($data['image'])) {
+            $this->db->query("UPDATE " . DB_PREFIX . "block SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE block_id = '" . (int) $block_id . "'");
+        }
+        
         $this->db->query("DELETE FROM " . DB_PREFIX . "block_description WHERE block_id = '" . (int) $block_id . "'");
 
         foreach ($data['block_description'] as $language_id => $value) {
