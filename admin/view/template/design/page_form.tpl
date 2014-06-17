@@ -31,6 +31,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab_general" data-toggle="tab"><?php echo $tab_general ?></a></li>
                             <li><a href="#tab_data" data-toggle="tab"><?php echo $tab_data ?></a></li>
+                            <li><a href="#tab_links" data-toggle="tab"><?php echo $tab_links ?></a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active fade in" id="tab_general">
@@ -126,24 +127,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="keyword" class="col-sm-2 control-label"><?php echo $entry_keyword; ?></label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" id="keyword" placeholder="" name="keyword" value="<?php echo $keyword; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="protected" class="col-sm-2 control-label"><?php echo $entry_protected; ?></label>
-                                    <div class="col-sm-3">
-                                        <label class="checkbox-inline checkbox-info">
-                                            <?php if ($protected) {  ?>
-                                            <input type="checkbox" class="styled" name="protected" value="1" checked="checked">
-                                            <?php } else { ?>
-                                            <input type="checkbox" class="styled" name="protected" value="1">
-                                            <?php } ?>
-                                        </label>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group">
                                     <label for="show_title" class="col-sm-2 control-label"><?php echo $entry_show_title; ?></label>
                                     <div class="col-sm-3">
@@ -195,6 +179,44 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane fade in" id="tab_links">
+                                <div class="form-group">
+                                    <label for="keyword" class="col-sm-2 control-label"><?php echo $entry_keyword; ?></label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="keyword" placeholder="" name="keyword" value="<?php echo $keyword; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="permalink" class="col-sm-2 control-label"><?php echo $entry_permalink; ?></label>
+                                    <div class="col-sm-3">
+                                        <?php echo $permalink?><b><i  class="permalink"><?php echo $keyword; ?></i></b>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ssl" class="col-sm-2 control-label"><?php echo $entry_ssl; ?></label>
+                                    <div class="col-sm-3">
+                                        <label class="checkbox-inline checkbox-info">
+                                            <?php if ($ssl) {  ?>
+                                            <input type="checkbox" class="styled" name="ssl" value="1" checked="checked">
+                                            <?php } else { ?>
+                                            <input type="checkbox" class="styled" name="ssl" value="1">
+                                            <?php } ?>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="protected" class="col-sm-2 control-label"><?php echo $entry_protected; ?></label>
+                                    <div class="col-sm-3">
+                                        <label class="checkbox-inline checkbox-info">
+                                            <?php if ($protected) {  ?>
+                                            <input type="checkbox" class="styled" name="protected" value="1" checked="checked">
+                                            <?php } else { ?>
+                                            <input type="checkbox" class="styled" name="protected" value="1">
+                                            <?php } ?>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <br/>
@@ -210,6 +232,12 @@
     $('#languages a').tabs(); 
     //--></script>
 <script type="text/javascript"><!--
+
+$("input[name=\'keyword\']").keyup(function(){
+    $('.permalink').html(this.value);
+});
+   
+    
 function image_upload(field, thumb) {
 	$('#dialog').remove();
 	

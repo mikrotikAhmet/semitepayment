@@ -47,6 +47,8 @@ class Page {
     private $page_title;
     private $page_sub_title;
     private $featured;
+    private $description;
+    private $keyword;
 
     public function __construct($registry) {
 
@@ -69,6 +71,8 @@ class Page {
         $this->setPageTitle($this->page['title']);
         $this->setPageSubTitle($this->page['sub_title']);
         $this->setFeatured($this->page['image']);
+        $this->setDescription($this->page['meta_description']);
+        $this->setKeyword($this->page['meta_keyword']);
     }
 
     public function getPage() {
@@ -127,6 +131,24 @@ class Page {
         } else {
             return false;
         }
+    }
+    
+    public function setDescription($description){
+        
+        $this->description = $description;
+    }
+    
+    public function getDescription(){
+        return $this->description;
+    }
+    
+    public function setKeyword($keyword){
+        
+        $this->keyword = $keyword;
+    }
+    
+    public function getKeyword(){
+        return $this->keyword;
     }
 
 }

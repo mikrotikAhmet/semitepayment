@@ -324,16 +324,22 @@ class ControllerDesignPage extends Controller {
         $this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
         $this->data['entry_layout'] = $this->language->get('entry_layout');
         $this->data['entry_image'] = $this->language->get('entry_image');
+        $this->data['entry_application'] = $this->language->get('entry_application');
         $this->data['entry_description'] = $this->language->get('entry_description');
         $this->data['entry_keyword'] = $this->language->get('entry_keyword');
+        $this->data['entry_permalink'] = $this->language->get('entry_permalink');
         $this->data['entry_show_title'] = $this->language->get('entry_show_title');
         $this->data['entry_show_sub_title'] = $this->language->get('entry_show_sub_title');
         $this->data['entry_show_breadcrumb'] = $this->language->get('entry_show_breadcrumb');
         $this->data['entry_protected'] = $this->language->get('entry_protected');
+        $this->data['entry_ssl'] = $this->language->get('entry_ssl');
         $this->data['entry_status'] = $this->language->get('entry_status');
+        
+        $this->data['permalink'] = HTTPS_PUBLIC;
 
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
+        $this->data['tab_links'] = $this->language->get('tab_links');
 
         $this->data['button_save'] = $this->language->get('button_save');
         $this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -456,6 +462,14 @@ class ControllerDesignPage extends Controller {
             $this->data['protected'] = $page_info['protected'];
         } else {
             $this->data['protected'] = 0;
+        }
+        
+         if (isset($this->request->post['ssl'])) {
+            $this->data['ssl'] = $this->request->post['ssl'];
+        } elseif (!empty($page_info)) {
+            $this->data['ssl'] = $page_info['ssl'];
+        } else {
+            $this->data['ssl'] = 0;
         }
         
          if (isset($this->request->post['status'])) {

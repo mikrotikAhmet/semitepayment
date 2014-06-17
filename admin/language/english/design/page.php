@@ -54,10 +54,12 @@ $_['entry_application'] = 'Applications:';
 $_['entry_show_title']       = 'Show Page Title:';
 $_['entry_show_sub_title']       = 'Show Page Sub Title:';
 $_['entry_protected']       = 'Protected Page:<br/><span class="help">Set this page protected. Visitors must be logged in to view this page.</span>';
+$_['entry_ssl']       = 'Use SSL:<br/><span class="help">Set this page as a secure SSL page.</span>';
 $_['entry_show_breadcrumb']       = 'Show Breadcrumbs:';
 $_['entry_layout']           = 'Layout Override:';
 $_['entry_keyword'] = 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
 $_['entry_status']       = 'Status:';
+$_['entry_permalink']       = 'Permalink:<br/><span class="help">Please specify your Permalik that will be shown on URL Link.</span>';
 
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify pages!';

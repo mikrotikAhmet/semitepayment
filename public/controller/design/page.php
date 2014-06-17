@@ -41,19 +41,27 @@ if (!defined('DIR_APPLICATION'))
  */
 
 class ControllerDesignPage extends Controller {
-    
+
     public $page_info = array();
 
-
     public function index() {
-        
-        $this->page_info = $this->page->getPage();
-        
-        if ($this->page_info) {
-                   
-            $this->document->setTitle($this->config->get('config_title'). $this->language->get('text_separator').$this->page->getPageTitle());
-            $this->document->setDescription($this->config->get('config_meta_description'));
 
+        $this->page_info = $this->page->getPage();
+
+        if ($this->page_info) {
+            
+            
+
+            if ($this->page->getDescription()) {
+                $this->document->setDescription($this->page->getDescription());
+            } else {
+               $this->document->setDescription($this->config->get('config_meta_description'));
+            }
+            
+            $this->document->setKeywords($this->page->getKeyword());
+
+            $this->document->setTitle($this->config->get('config_title') . $this->language->get('text_separator') . $this->page->getPageTitle());
+            
             $this->data['heading_title'] = $this->config->get('config_title');
 
             if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/design/page.tpl')) {
@@ -62,7 +70,7 @@ class ControllerDesignPage extends Controller {
                 $this->template = 'default/template/design/page.tpl';
             }
         } else {
-            
+
             throw new Exception('Page Not Found');
             exit(1);
         }
@@ -74,5 +82,6 @@ class ControllerDesignPage extends Controller {
 
         $this->response->setOutput($this->render());
     }
+
 }
 
