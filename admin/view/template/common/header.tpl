@@ -321,6 +321,7 @@
                                         <li id="page"><a href="#"><span> <?php echo $text_pages ?></span></a>
                                             <ul>
                                                 <li id="page"><a href="<?php echo $page?>"><?php echo $text_page?></a></li>
+                                                <li id="block"><a href="<?php echo $block?>"><?php echo $text_block?></a></li>
                                             </ul>
                                         </li>
                                     </ul>

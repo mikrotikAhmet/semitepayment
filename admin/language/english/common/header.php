@@ -20,14 +20,15 @@ $_['text_dashboard']                   = 'Dashboard';
 // Application Menu
 $_['text_content'] = 'Contents';
 $_['text_content_type'] = 'Content Types';
-$_['text_pages'] = 'Page Manager';
-$_['text_page'] = 'Page';
 
 // System Menu
 $_['text_system'] = 'System';
 $_['text_setting'] = 'Settings';
 $_['text_design'] = 'Design';
 $_['text_layout'] = 'Layouts';
+$_['text_pages'] = 'Page Manager';
+$_['text_page'] = 'Page';
+$_['text_block'] = 'Page Blocks';
 $_['text_users']                      = 'User Management';
 $_['text_user']                      = 'User';
 $_['text_user_group']                      = 'User Groups';

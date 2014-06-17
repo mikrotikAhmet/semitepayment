@@ -43,7 +43,7 @@ if (!defined('DIR_APPLICATION'))
 class ModelDesignPage extends Model {
 
     public function addPage($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "page SET status = '" . (isset($data['status']) ? (int) $data['status'] : 0) . "',protected = '" . (isset($data['protected']) ? (int) $data['protected'] : 0) . "',show_title = '" . (isset($data['show_title']) ? (int) $data['show_title'] : 0) . "',show_breadcrumb = '" . (isset($data['show_breadcrumb']) ? (int) $data['show_breadcrumb'] : 0) . "',date_added = NOW(), date_modified = NOW()");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "page SET status = '" . (isset($data['status']) ? (int) $data['status'] : 0) . "',protected = '" . (isset($data['protected']) ? (int) $data['protected'] : 0) . "',show_title = '" . (isset($data['show_title']) ? (int) $data['show_title'] : 0) . "',show_sub_title = '" . (isset($data['show_sub_title']) ? (int) $data['show_sub_title'] : 0) . "',show_breadcrumb = '" . (isset($data['show_breadcrumb']) ? (int) $data['show_breadcrumb'] : 0) . "',date_added = NOW(), date_modified = NOW()");
 
         $page_id = $this->db->getLastId();
 
@@ -52,7 +52,7 @@ class ModelDesignPage extends Model {
         }
 
         foreach ($data['page_description'] as $language_id => $value) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "page_description SET page_id = '" . (int) $page_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "',meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+            $this->db->query("INSERT INTO " . DB_PREFIX . "page_description SET page_id = '" . (int) $page_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "',sub_title = '" . $this->db->escape($value['sub_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "',meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
         }
 
         // Set which layout to use with this category
@@ -76,7 +76,7 @@ class ModelDesignPage extends Model {
     }
 
     public function editPage($page_id, $data) {
-        $this->db->query("UPDATE " . DB_PREFIX . "page SET status = '" . (isset($data['status']) ? (int) $data['status'] : 0) . "',protected = '" . (isset($data['protected']) ? (int) $data['protected'] : 0) . "',show_title = '" . (isset($data['show_title']) ? (int) $data['show_title'] : 0) . "',show_breadcrumb = '" . (isset($data['show_breadcrumb']) ? (int) $data['show_breadcrumb'] : 0) . "', date_modified = NOW() WHERE page_id = '" . (int) $page_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "page SET status = '" . (isset($data['status']) ? (int) $data['status'] : 0) . "',protected = '" . (isset($data['protected']) ? (int) $data['protected'] : 0) . "',show_title = '" . (isset($data['show_title']) ? (int) $data['show_title'] : 0) . "',show_sub_title = '" . (isset($data['show_sub_title']) ? (int) $data['show_sub_title'] : 0) . "',show_breadcrumb = '" . (isset($data['show_breadcrumb']) ? (int) $data['show_breadcrumb'] : 0) . "', date_modified = NOW() WHERE page_id = '" . (int) $page_id . "'");
 
         if (isset($data['image'])) {
             $this->db->query("UPDATE " . DB_PREFIX . "page SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE page_id = '" . (int) $page_id . "'");
@@ -85,7 +85,7 @@ class ModelDesignPage extends Model {
         $this->db->query("DELETE FROM " . DB_PREFIX . "page_description WHERE page_id = '" . (int) $page_id . "'");
 
         foreach ($data['page_description'] as $language_id => $value) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "page_description SET page_id = '" . (int) $page_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "',meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+            $this->db->query("INSERT INTO " . DB_PREFIX . "page_description SET page_id = '" . (int) $page_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "',sub_title = '" . $this->db->escape($value['sub_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "',meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
         }
 
         $this->db->query("DELETE FROM " . DB_PREFIX . "page_to_layout WHERE page_id = '" . (int) $page_id . "'");
@@ -169,6 +169,7 @@ class ModelDesignPage extends Model {
         foreach ($query->rows as $result) {
             $page_description_data[$result['language_id']] = array(
                 'title' => $result['title'],
+                'sub_title' => $result['sub_title'],
                 'meta_description' => $result['meta_description'],
                 'meta_keyword' => $result['meta_keyword']
             );

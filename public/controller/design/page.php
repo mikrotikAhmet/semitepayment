@@ -56,8 +56,6 @@ class ControllerDesignPage extends Controller {
 
             $this->data['heading_title'] = $this->config->get('config_title');
 
-            $this->data['some'] = $this->url->link('design/page','page_id=4');
-
             if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/design/page.tpl')) {
                 $this->template = $this->config->get('config_template') . '/template/design/page.tpl';
             } else {

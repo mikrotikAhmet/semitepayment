@@ -57,6 +57,7 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_content'] = $this->language->get('text_content');
             $this->data['text_content_type'] = $this->language->get('text_content_type');
             $this->data['text_pages'] = $this->language->get('text_pages');
+            $this->data['text_block'] = $this->language->get('text_block');
         //System Menu
             $this->data['text_system'] = $this->language->get('text_system');
             $this->data['text_setting'] = $this->language->get('text_setting');
@@ -103,6 +104,7 @@ class ControllerCommonHeader extends Controller{
                 $this->data['setting'] = $this->url->link('setting/application', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['page'] = $this->url->link('design/page', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['block'] = $this->url->link('design/block', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['new_page'] = $this->url->link('design/page/insert', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['user'] = $this->url->link('user/user', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['user_group'] = $this->url->link('user/user_permission', 'token=' . $this->session->data['token'], 'SSL');

@@ -41,46 +41,92 @@ if (!defined('DIR_APPLICATION'))
  */
 
 class Page {
-    
+
     private $page;
     private $page_id;
     private $page_title;
-    
+    private $page_sub_title;
+    private $featured;
+
     public function __construct($registry) {
-        
+
+
+
         $this->db = $registry->get('db');
         $this->request = $registry->get('request');
         $this->session = $registry->get('session');
         $this->config = $registry->get('config');
+
+        require_once DIR_APPLICATION . 'model/tool/image.php';
+
+        $this->imager = new ModelToolImage($registry);
     }
-    
-    public function setPage($page){
+
+    public function setPage($page) {
         $this->page = $page;
-        
+
         $this->setPageId($this->page['page_id']);
         $this->setPageTitle($this->page['title']);
+        $this->setPageSubTitle($this->page['sub_title']);
+        $this->setFeatured($this->page['image']);
     }
-    
-    public function getPage(){
+
+    public function getPage() {
         return $this->page;
     }
-    
-    public function setPageId($page_id){
+
+    public function setPageId($page_id) {
         $this->page_id = $page_id;
     }
-    
-    public function getPageId(){
+
+    public function getPageId() {
         return $this->page_id;
     }
-    
-    public function setPageTitle($page_title)
-    {
+
+    public function setPageTitle($page_title) {
         $this->page_title = $page_title;
     }
-    
-    public function getPageTitle()
-    {
-        return $this->page_title;
-    }
-}
 
+    public function getPageTitle() {
+        if ($this->page['show_title']) {
+
+            return $this->page_title;
+        } else {
+            return false;
+        }
+    }
+
+    public function setPageSubTitle($page_sub_title) {
+        $this->page_sub_title = $page_sub_title;
+    }
+
+    public function getPageSubTitle() {
+        if ($this->page['show_sub_title']) {
+
+            return $this->page_sub_title;
+        } else {
+            return false;
+        }
+    }
+
+    public function setFeatured($featured) {
+
+        if (isset($featured) && file_exists(DIR_IMAGE . $featured)) {
+            $this->featured = $this->imager->resize($featured, 1170, 239);
+        } else {
+            return false;
+        }
+    }
+
+    public function getFeatured() {
+
+        if ($this->featured) {
+            $featured = '<img src="' . $this->featured . '"/>';
+
+            return $featured;
+        } else {
+            return false;
+        }
+    }
+
+}

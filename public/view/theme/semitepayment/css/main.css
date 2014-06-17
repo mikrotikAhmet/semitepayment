@@ -5,3 +5,17 @@
     Description:
         Purpose of the stylesheet follows.
 */
+
+/*
+    PAGE STYLE OVERRIDES
+*/
+
+.featured {
+    padding: 48px;
+    color: inherit;
+    background-color: transparent;
+}
+
+.featured .container {
+    max-width: 100%;
+}
