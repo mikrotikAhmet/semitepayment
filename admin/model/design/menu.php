@@ -43,7 +43,7 @@ if (!defined('DIR_APPLICATION'))
 class ModelDesignMenu extends Model {
 
     public function addMenu($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "menu SET status = '" . (isset($data['status']) ? (int) $data['status'] : 0) . "', sort_order = '" . (isset($data['sort_order']) ? (int) $data['sort_order'] : 0) . "', position = '".$this->db->escape($data['position'])."'");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "menu SET status = '" . (isset($data['status']) ? (int) $data['status'] : 0) . "', sort_order = '" . (isset($data['sort_order']) ? (int) $data['sort_order'] : 0) . "', position = '".$this->db->escape($data['position'])."', page_link = '".$this->db->escape($data['page_link'])."'");
 
         $menu_id = $this->db->getLastId();
 
@@ -54,7 +54,7 @@ class ModelDesignMenu extends Model {
   }
 
     public function editMenu($menu_id, $data) {
-        $this->db->query("UPDATE " . DB_PREFIX . "menu SET status = '" . (isset($data['status']) ? (int) $data['status'] : 0) . "', sort_order = '" . (isset($data['sort_order']) ? (int) $data['sort_order'] : 0) . "',position = '".$this->db->escape($data['position'])."' WHERE menu_id = '" . (int) $menu_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "menu SET status = '" . (isset($data['status']) ? (int) $data['status'] : 0) . "', sort_order = '" . (isset($data['sort_order']) ? (int) $data['sort_order'] : 0) . "',position = '".$this->db->escape($data['position'])."',page_link = '".$this->db->escape($data['page_link'])."' WHERE menu_id = '" . (int) $menu_id . "'");
 
         $this->db->query("DELETE FROM " . DB_PREFIX . "menu_description WHERE menu_id = '" . (int) $menu_id . "'");
 

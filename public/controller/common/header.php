@@ -111,7 +111,7 @@ class ControllerCommonHeader extends Controller {
 
         foreach ($menus as $menu) {
 
-            $link = $this->url->link('design/page', 'page_id='.$this->config->get('config_page_id'));
+            $link = $this->url->link('design/page', $menu['page_link']);
 
             if ($menu['position'] == 'left') {
 

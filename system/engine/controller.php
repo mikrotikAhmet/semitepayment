@@ -52,15 +52,40 @@ abstract class Controller {
     protected $output;
 
     public function __construct($registry) {
+        
         $this->registry = $registry;
+        $this->db = $registry->get('db');
         $this->config = $registry->get('config');
         $this->request = $registry->get('request');
+        
+               // Decode URL
+        if (isset($this->request->get['_route_'])) {
+            
+            $parts = explode('/', $this->request->get['_route_']);
+            
+            foreach ($parts as $part) {
+                $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE keyword = '" . $this->db->escape($part) . "'");
 
-        if (!isset($this->request->get['page_id'])) {
+                if ($query->num_rows) {
+                    $url = explode('=', $query->row['query']);
+
+                    if ($url[0] == 'page_id') {
+                        $this->page_id = $url[1];
+                        
+                    }
+
+                } else {
+                    $this->page_id = $this->config->get('config_page_id');
+                }
+            }
+        } elseif (!isset($this->request->get['_route_']) && !isset($this->request->get['page_id'])) {
+            
             $this->page_id = $this->config->get('config_page_id');
         } else {
             $this->page_id = $this->request->get['page_id'];
         }
+
+        
     }
 
     public function __get($key) {

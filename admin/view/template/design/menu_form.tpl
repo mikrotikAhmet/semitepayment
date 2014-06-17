@@ -88,6 +88,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $entry_link?> </label>
+                                        <div class="col-sm-7">
+                                        <select data-placeholder="<?php echo $text_data_link?>" name="page_link" class="select-full" tabindex="2">
+                                            <option value=""><?php echo $text_select?></option> 
+                                            <?php foreach ($pages as $page) { ?>
+                                            <?php if ($page['page_id'] == $page_link) { ?>
+                                            <option value="page_id=<?php echo $page['page_id']?>" selected="selected"><?php echo $page['title']?></option>
+                                            <?php } else { ?>
+                                            <option value="page_id=<?php echo $page['page_id']?>"><?php echo $page['title']?></option>
+                                            <?php }?>
+                                            <?php } ?>
+                                        </select>
+                                        </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="status" class="col-sm-2 control-label"><?php echo $entry_status; ?></label>
                                     <div class="col-sm-2">
                                         <select name="status" class="form-control">

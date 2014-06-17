@@ -307,10 +307,13 @@ class ControllerDesignMenu extends Controller {
 
         $this->data['text_enabled'] = $this->language->get('text_enabled');
         $this->data['text_disabled'] = $this->language->get('text_disabled');
+        $this->data['text_select'] = $this->language->get('text_select');
         $this->data['text_left'] = $this->language->get('text_left');
         $this->data['text_right'] = $this->language->get('text_right');
+        $this->data['text_data_link'] = $this->language->get('text_data_link');
 
         $this->data['entry_title'] = $this->language->get('entry_title');
+        $this->data['entry_link'] = $this->language->get('entry_link');
         $this->data['entry_position'] = $this->language->get('entry_position');
         $this->data['entry_status'] = $this->language->get('entry_status');
         $this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -386,6 +389,18 @@ class ControllerDesignMenu extends Controller {
         } else {
             $this->data['menu_description'] = array();
         }
+        
+        if (isset($this->request->post['page_link'])) {
+            $this->data['page_link'] = $this->request->post['page_link'];
+        } elseif (!empty($menu_info)) {
+            $this->data['page_link'] = str_replace("page_id=", "", $menu_info['page_link']);
+        } else {
+            $this->data['page_link'] = '';
+        }
+        
+        $this->load->model('design/page');
+        
+        $this->data['pages'] = $this->model_design_page->getPages();
         
         if (isset($this->request->post['position'])) {
             $this->data['position'] = $this->request->post['position'];

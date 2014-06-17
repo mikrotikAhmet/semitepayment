@@ -34,6 +34,7 @@ $_['heading_title']     = 'Page Menus';
 $_['text_success']      = 'Success: You have modified menus!';
 $_['text_left'] = 'Left';
 $_['text_right'] = 'Right';
+$_['text_data_link'] = 'Page Link';
 
 // Column
 $_['column_title']       = 'Menu Title';
@@ -42,6 +43,7 @@ $_['column_action']     = 'Action';
 // Entry
 $_['entry_title'] = 'Menu Title:';
 $_['entry_position'] = 'Position:';
+$_['entry_link'] = 'Page Link:';
 $_['entry_status'] = 'Status:';
 $_['entry_sort_order'] = 'Sort Order:';
 
