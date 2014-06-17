@@ -47,10 +47,8 @@ class ControllerDesignPage extends Controller {
     public function index() {
 
         $this->page_info = $this->page->getPage();
-
+        
         if ($this->page_info) {
-            
-            
 
             if ($this->page->getDescription()) {
                 $this->document->setDescription($this->page->getDescription());
@@ -71,7 +69,8 @@ class ControllerDesignPage extends Controller {
             }
         } else {
 
-            throw new Exception('Page Not Found');
+            error_log('ajajajaj');
+//            throw new Exception('Page Not Found');
             exit(1);
         }
 

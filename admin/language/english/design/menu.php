@@ -27,5 +27,26 @@
  *
  * @author ahmet
  */
+// Heading
+$_['heading_title']     = 'Page Menus';
 
+// Text
+$_['text_success']      = 'Success: You have modified menus!';
+$_['text_left'] = 'Left';
+$_['text_right'] = 'Right';
+
+// Column
+$_['column_title']       = 'Menu Title';
+$_['column_action']     = 'Action';
+
+// Entry
+$_['entry_title'] = 'Menu Title:';
+$_['entry_position'] = 'Position:';
+$_['entry_status'] = 'Status:';
+$_['entry_sort_order'] = 'Sort Order:';
+
+
+// Error
+$_['error_permission']  = 'Warning: You do not have permission to modify menus!';
+$_['error_title']        = 'Menu Title must be between 3 and 64 characters!';
 

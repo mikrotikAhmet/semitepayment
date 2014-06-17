@@ -43,12 +43,10 @@ if (!defined('DIR_APPLICATION'))
 class ControllerCommonSeoUrl extends Controller {
 
     public function index() {
-
         // Add rewrite to url class
         if ($this->config->get('config_seo_url')) {
             $this->url->addRewrite($this);
         }
-
 
         // Decode URL
         if (isset($this->request->get['_route_'])) {
@@ -60,17 +58,24 @@ class ControllerCommonSeoUrl extends Controller {
                 if ($query->num_rows) {
                     $url = explode('=', $query->row['query']);
 
+                    if ($url[0] == 'page_id') {
+                        $this->request->get['page_id'] = $url[1];
+                        
+                    }
+
                 } else {
                     $this->request->get['route'] = 'error/not_found';
                 }
             }
 
+            if (isset($this->request->get['page_id'])) {
+                $this->request->get['route'] = 'design/page';
+            }
 
             if (isset($this->request->get['route'])) {
-                
                 return $this->forward($this->request->get['route']);
             }
-        } 
+        }
     }
 
     public function rewrite($link) {

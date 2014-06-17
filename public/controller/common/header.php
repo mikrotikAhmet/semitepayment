@@ -101,6 +101,37 @@ class ControllerCommonHeader extends Controller {
             }
         }
 
+        // Application Menu
+        $this->load->model('design/menu');
+
+        $this->data['leftmenus'] = array();
+        $this->data['rightmenus'] = array();
+
+        $menus = $this->model_design_menu->getMenus();
+
+        foreach ($menus as $menu) {
+
+            $link = $this->url->link('design/page', 'page_id='.$this->config->get('config_page_id'));
+
+            if ($menu['position'] == 'left') {
+
+                // Left menu
+                $this->data['leftmenus'][] = array(
+                    'title' => $menu['title'],
+                    'href' => $link
+                );
+                
+            } elseif ($menu['position'] == 'right'){
+                
+                // Right menu
+                $this->data['rightmenus'][] = array(
+                    'title' => $menu['title'],
+                    'href' => $link
+                );
+            }
+        }
+
+
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/common/header.tpl';
         } else {

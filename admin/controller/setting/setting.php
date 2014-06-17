@@ -319,12 +319,6 @@ class ControllerSettingSetting extends Controller {
 
         $this->data['pages'] = $this->model_design_page->getPages();
 
-        if (isset($this->request->post['config_page_id'])) {
-            $this->data['config_page_id'] = $this->request->post['config_page_id'];
-        } else {
-            $this->data['config_page_id'] = $this->config->get('config_page_id');
-        }
-
         if (isset($this->request->post['config_template'])) {
             $this->data['config_template'] = $this->request->post['config_template'];
         } else {

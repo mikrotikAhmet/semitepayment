@@ -234,11 +234,12 @@ $controller = new Front($registry);
 // Maintenance Mode
 $controller->addPreAction(new Action('common/maintenance'));
 
-// SEO URL's
-//$controller->addPreAction(new Action('common/seo_url'));
-
 // Page Data
 $controller->addPreAction(new Action('common/page'));
+
+// SEO URL's
+$controller->addPreAction(new Action('common/seo_url'));
+
 
 // Router
 if (isset($request->get['route'])) {

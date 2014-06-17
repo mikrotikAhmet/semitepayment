@@ -143,7 +143,7 @@
                                     <div class="col-sm-2">
                                         <select name="config_page_id"  class="form-control">
                                             <?php foreach ($pages as $page) { ?>
-                                            <?php if ($layout['page_id'] == $config_page_id) { ?>
+                                            <?php if ($page['page_id'] == $config_page_id) { ?>
                                             <option value="<?php echo $page['page_id']; ?>" selected="selected"><?php echo $page['title']; ?></option>
                                             <?php } else { ?>
                                             <option value="<?php echo $page['page_id']; ?>"><?php echo $page['title']; ?></option>

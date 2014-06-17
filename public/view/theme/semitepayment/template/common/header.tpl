@@ -51,7 +51,20 @@
                         <?php } ?>
                     </div>
                     <div class="navbar-collapse collapse">
-                        
+                        <?php if ($leftmenus) { ?>
+                        <ul class="nav navbar-nav">
+                            <?php foreach ($leftmenus as $leftmenu) { ?>
+                            <li class=""><a href="<?php echo $leftmenu['href']?>"><?php echo $leftmenu['title']?></a></li>
+                            <?php } ?>
+                        </ul>
+                        <?php } ?>
+                        <?php if ($rightmenus) { ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <?php foreach ($rightmenus as $rightmenu) { ?>
+                            <li class=""><a href="<?php echo $rightmenu['href']?>"><?php echo $rightmenu['title']?></a></li>
+                            <?php } ?>
+                        </ul>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

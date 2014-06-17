@@ -55,8 +55,8 @@ abstract class Controller {
         $this->registry = $registry;
         $this->config = $registry->get('config');
         $this->request = $registry->get('request');
-        
-        if (!isset($this->request->get['page_id'])){
+
+        if (!isset($this->request->get['page_id'])) {
             $this->page_id = $this->config->get('config_page_id');
         } else {
             $this->page_id = $this->request->get['page_id'];
