@@ -36,6 +36,8 @@ $_['entry_show_image']       = 'Show Block Image:';
 $_['entry_show_sub_title']       = 'Show Block Sub Title:';
 $_['entry_description'] = 'Block Lead:';
 
+$_['entry_subject'] = 'Select Subject :';
+
 
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify blocks!';

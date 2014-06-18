@@ -104,6 +104,10 @@ class ModelDesignBlock extends Model {
 
         return $block_description_data;
     }
+    
+    public function getUnitsByBlockId($block_id){
+        
+    }
 
     public function getTotalBlocks() {
         $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "block");

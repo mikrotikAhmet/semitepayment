@@ -124,9 +124,11 @@
                                 <div class="tabbable page-tabs">
                                     <div class="vtabs">
                                         <?php $unit_row = 1; ?>
+                                        <?php if ($units) { ?>
                                             <?php foreach ($units as $unit) { ?>
                                             <a href="#tab-unit-<?php echo $unit_row; ?>" id="unit-<?php echo $unit_row; ?>"><?php echo $tab_unit . ' ' . $unit_row; ?>&nbsp;<img src="view/images/custom/delete.png" alt="" onclick="$('.vtabs a:first').trigger('click'); $('#unit-<?php echo $unit_row; ?>').remove(); $('#tab-unit-<?php echo $unit_row; ?>').remove(); return false;" /></a>
                                             <?php $unit_row++; ?>
+                                            <?php } ?>
                                             <?php } ?>
                                             <span id="unit-add"><?php echo $button_add_unit; ?>&nbsp;<img src="view/images/custom/add.png" alt="" onclick="addUnit();" /></span> 
                                         </div>
@@ -153,8 +155,14 @@
 var unit_row = <?php echo $unit_row; ?>;
 
 function addUnit() {	
-	html  = '<div id="tab-unit-' + unit_row + '" class="vtabs-content">';
-        html +='<p>HAHAHAHA'+unit_row+'</p>';
+	html  = '<div id="tab-unit-' + unit_row + '" class="vtabs-content form-horizontal form-bordered">';
+        
+        html +='<label for="show_sub_title" class="col-sm-3 control-label"><?php echo $entry_subject; ?></label>';
+        html +='<div class="col-sm-4">';
+        html +='<select name="" class="form-control"';
+        html +='</select>';
+        html +='</div>';        
+        
 	html += '</div>';
 	
 	$('.vtabs').after(html);

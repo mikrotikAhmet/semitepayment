@@ -295,6 +295,8 @@ class ControllerDesignBlock extends Controller {
         $this->data['entry_show_title'] = $this->language->get('entry_show_title');
         $this->data['entry_show_sub_title'] = $this->language->get('entry_show_sub_title');
         $this->data['entry_description'] = $this->language->get('entry_description');
+        
+        $this->data['entry_subject'] = $this->language->get('entry_subject');
 
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
@@ -430,8 +432,15 @@ class ControllerDesignBlock extends Controller {
         } else {
             $this->data['show_sub_title'] = 0;
         }
+        
+        if (isset($this->request->post['units'])) {
+            $this->data['units'] = $this->request->post['units'];
+        } elseif (!empty($block_info)) {
+            $this->data['units'] = $this->model_design_block->getUnitsByBlockId($block_info['block_id']);
+        } else {
+            $this->data['units'] = array();
+        }
 
-        $this->data['units'] = array();
         
         $this->template = 'design/block_form.tpl';
         $this->children = array(
