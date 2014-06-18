@@ -32,6 +32,7 @@
                             <li class="active"><a href="#tab_general" data-toggle="tab"><?php echo $tab_general ?></a></li>
                             <li><a href="#tab_data" data-toggle="tab"><?php echo $tab_data ?></a></li>
                             <li><a href="#tab_links" data-toggle="tab"><?php echo $tab_links ?></a></li>
+                            <li><a href="#tab_blocks" data-toggle="tab"><?php echo $tab_blocks ?></a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active fade in" id="tab_general">
@@ -115,7 +116,7 @@
                                 <div class="form-group">
                                     <label for="layout" class="col-sm-2 control-label"><?php echo $entry_layout; ?></label>
                                     <div class="col-sm-10">
-                                        <select data-placeholder="<?php echo $entry_layout; ?>" name="page_layout[layout_id]" class="clear-results" tabindex="2">
+                                        <select data-placeholder="<?php echo $entry_layout; ?>" name="page_layout[page_id]" class="clear-results" tabindex="2">
                                             <option value=""></option>
                                             <?php foreach ($layouts as $layout) { ?>
                                             <?php if ($page_layout[0] == $layout['layout_id']) { ?>
@@ -217,6 +218,36 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane fade in" id="tab_blocks">
+                                <div class="table-responsive">
+                                <table id="block" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="left"><?php echo $entry_block; ?></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <?php $block_row = 0; ?>
+                                    <?php foreach ($page_blocks as $page_block) { ?>
+                                    <tbody id="block-row<?php echo $block_row; ?>">
+                                        <tr>
+                                            <td class="left"><select name="page_block[<?php echo $block_row; ?>][block_id]" class="form-control">
+                                                    
+                                                </select></td>
+                                            <td class="right"><a onclick="$('#block-row<?php echo $block_row; ?>').remove();" class="btn btn-danger"><?php echo $button_remove; ?></a></td>
+                                        </tr>
+                                    </tbody>
+                                    <?php $block_row++; ?>
+                                    <?php } ?>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3"></td>
+                                            <td class="right"><a onclick="addBlock();" class="btn btn-primary"><?php echo $button_add_block; ?></a></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <br/>
@@ -232,6 +263,24 @@
     $('#languages a').tabs(); 
     //--></script>
 <script type="text/javascript"><!--
+var block_row = <?php echo $block_row; ?>;
+
+function addBlock() {
+	html  = '<tbody id="block-row' + block_row + '">';
+	html += '  <tr>';
+	html += '    <td class="left"><select name="page_block[' + block_row + '][block_id]" class="form-control">';
+ 
+	html += '    </select></td>';
+	html += '    <td class="left"><a onclick="$(\'#block-row' + block_row + '\').remove();" class="btn btn-danger"><?php echo $button_remove; ?></a></td>';
+	html += '  </tr>';
+	html += '</tbody>';
+	
+	$('#block > tfoot').before(html);
+	
+	block_row++;
+}
+//--></script>
+<script type="text/javascript"><!--
 
 $("input[name=\'keyword\']").keyup(function(){
     $('.permalink').html(this.value);
@@ -241,14 +290,14 @@ $("input[name=\'keyword\']").keyup(function(){
 function image_upload(field, thumb) {
 	$('#dialog').remove();
 	
-	$('#filemanager').prepend('<div id="dialog" style="padding: 3px 0px 0px 0px;"><iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="padding:0; margin: 0; display: block; width: 100%; height: 100%;" frameborder="no" scrolling="auto"></iframe></div>');
+	$('#filemanager').prepend('<div id="dialog" style="padding: 3px 0px 0px 0px;"><iframe src="index.php?block=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="padding:0; margin: 0; display: block; width: 100%; height: 100%;" frameborder="no" scrolling="auto"></iframe></div>');
 	
 	$('#dialog').dialog({
 		title: '<?php echo $text_image_manager; ?>',
 		close: function (event, ui) {
 			if ($('#' + field).attr('value')) {
 				$.ajax({
-					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).val()),
+					url: 'index.php?block=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).val()),
 					dataType: 'text',
 					success: function(data) {
 						$('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" class="img-thumbnail"/>');

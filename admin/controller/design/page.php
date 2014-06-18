@@ -336,12 +336,14 @@ class ControllerDesignPage extends Controller {
         $this->data['entry_protected'] = $this->language->get('entry_protected');
         $this->data['entry_ssl'] = $this->language->get('entry_ssl');
         $this->data['entry_status'] = $this->language->get('entry_status');
+        $this->data['entry_block'] = $this->language->get('entry_block');
         
         $this->data['permalink'] = HTTPS_PUBLIC;
 
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
         $this->data['tab_links'] = $this->language->get('tab_links');
+        $this->data['tab_blocks'] = $this->language->get('tab_blocks');
 
         $this->data['button_save'] = $this->language->get('button_save');
         $this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -513,6 +515,8 @@ class ControllerDesignPage extends Controller {
         } else {
             $this->data['page_application'] = array(0);
         }
+        
+        $this->data['page_blocks'] = array();
 
 
         $this->template = 'design/page_form.tpl';

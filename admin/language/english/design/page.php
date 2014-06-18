@@ -61,6 +61,7 @@ $_['entry_layout']           = 'Layout Override:';
 $_['entry_keyword'] = 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
 $_['entry_status']       = 'Status:';
 $_['entry_permalink']       = 'Permalink:<br/><span class="help">Please specify your Permalik that will be shown on URL Link.</span>';
+$_['entry_block']       = 'Blocks:';
 
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify pages!';
