@@ -121,13 +121,22 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade in" id="tab_block_content">
-                                Block Content Here!<br/>
-                                <p>Rows</p>
-                                <p>Row Units</p>
+                                <div class="tabbable page-tabs">
+                                    <div class="vtabs">
+                                        <?php $unit_row = 1; ?>
+                                            <?php foreach ($units as $unit) { ?>
+                                            <a href="#tab-unit-<?php echo $unit_row; ?>" id="unit-<?php echo $unit_row; ?>"><?php echo $tab_unit . ' ' . $unit_row; ?>&nbsp;<img src="view/images/custom/delete.png" alt="" onclick="$('.vtabs a:first').trigger('click'); $('#unit-<?php echo $unit_row; ?>').remove(); $('#tab-unit-<?php echo $unit_row; ?>').remove(); return false;" /></a>
+                                            <?php $unit_row++; ?>
+                                            <?php } ?>
+                                            <span id="unit-add"><?php echo $button_add_unit; ?>&nbsp;<img src="view/images/custom/add.png" alt="" onclick="addUnit();" /></span> 
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <br/>
+                    <div class="clearfix"></div>
                     <div class="form-actions text-right">
                         <input type="submit" value="<?php echo $button_save; ?>" class="btn btn-primary">
                         <button type="button" onclick="window.location = '<?php echo $cancel?>'" class="btn btn-danger btn-sm"><?php echo $button_cancel; ?></button>
@@ -137,8 +146,28 @@
         </form>
 </div>
 <script type="text/javascript"><!--
+    $('.vtabs a').tabs();
     $('#languages a').tabs(); 
     //--></script>
+<script type="text/javascript"><!--
+var unit_row = <?php echo $unit_row; ?>;
+
+function addUnit() {	
+	html  = '<div id="tab-unit-' + unit_row + '" class="vtabs-content">';
+        html +='<p>HAHAHAHA'+unit_row+'</p>';
+	html += '</div>';
+	
+	$('.vtabs').after(html);
+	
+	$('#unit-add').before('<a href="#tab-unit-' + unit_row + '" id="unit-' + unit_row + '"><?php echo $tab_unit; ?> ' + unit_row + '&nbsp;<img src="view/images/custom/delete.png" alt="" onclick="$(\'.vtabs a:first\').trigger(\'click\'); $(\'#unit-' + unit_row + '\').remove(); $(\'#tab-unit-' + unit_row + '\').remove(); return false;" /></a>');
+	
+	$('.vtabs a').tabs();
+	
+	$('#unit-' + unit_row).trigger('click');
+	
+	unit_row++;
+}
+//--></script>
 <script type="text/javascript"><!--
   
     

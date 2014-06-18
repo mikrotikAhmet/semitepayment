@@ -7188,19 +7188,20 @@ li.plupload_droptext {
     margin-bottom: 5px;
     clear: both;
     border-top: 1px solid #DDDDDD;
-    border-left: 1px solid #DDDDDD;
+    color: #428BCA;
+    border-left: #D65C4F;
     border-bottom: 1px solid #DDDDDD;
-    background: #F7F7F7;
+    background: #fafafa;
     padding: 6px 14px 7px 15px;
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
     font-size: 13px;
     font-weight: bold;
     text-align: right;
     text-decoration: none;
-    color: #000000;
 }
 .vtabs a.selected {
     padding-right: 15px;
+    border-left: 1px solid #D65C4F;
     background: #FFFFFF;
 }
 .vtabs a img, .vtabs span img {

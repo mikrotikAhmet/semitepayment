@@ -92,6 +92,7 @@ $_['button_update_total']           = 'Update Totals';
 $_['button_approve']                = 'Approve';
 $_['button_reset']                  = 'Reset';
 $_['button_add_profile']            = 'Add Profile';
+$_['button_add_unit']            = 'Add Unit';
 
 // Tab
 $_['tab_application']                   = 'Application';
@@ -102,6 +103,7 @@ $_['tab_block_content'] = 'Block Content';
 $_['tab_blocks'] = 'Blocks';
 $_['tab_customer']                  = 'Customer Details';
 $_['tab_data']                      = 'Data';
+$_['tab_unit']                      = 'Unit';
 $_['tab_design']                    = 'Design';
 $_['tab_discount']                  = 'Discount';
 $_['tab_general']                   = 'General';

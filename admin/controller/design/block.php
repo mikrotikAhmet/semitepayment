@@ -299,9 +299,11 @@ class ControllerDesignBlock extends Controller {
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
         $this->data['tab_block_content'] = $this->language->get('tab_block_content');
+        $this->data['tab_unit'] = $this->language->get('tab_unit');
 
         $this->data['button_save'] = $this->language->get('button_save');
         $this->data['button_cancel'] = $this->language->get('button_cancel');
+        $this->data['button_add_unit'] = $this->language->get('button_add_unit');
 
         if (isset($this->error['warning'])) {
             $this->data['error_warning'] = $this->error['warning'];
@@ -429,6 +431,8 @@ class ControllerDesignBlock extends Controller {
             $this->data['show_sub_title'] = 0;
         }
 
+        $this->data['units'] = array();
+        
         $this->template = 'design/block_form.tpl';
         $this->children = array(
             'common/header',
