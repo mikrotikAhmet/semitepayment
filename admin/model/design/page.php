@@ -176,6 +176,8 @@ class ModelDesignPage extends Model {
     public function deletePage($page_id) {
         $this->db->query("DELETE FROM " . DB_PREFIX . "page WHERE page_id = '" . (int) $page_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "page_description WHERE page_id = '" . (int) $page_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "page_to_layout WHERE page_id = '" . (int) $page_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "page_to_block WHERE page_id = '" . (int) $page_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'page_id=" . (int) $page_id . "'");
     }
 
@@ -234,8 +236,15 @@ class ModelDesignPage extends Model {
         return $page_block_data;
     }
 
-    public function getTotalPagesByLayoutId($page_id) {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "page_to_layout WHERE page_id = '" . (int) $page_id . "'");
+    public function getTotalPagesByLayoutId($layout_id) {
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "page_to_layout WHERE layout_id = '" . (int) $layout_id . "'");
+
+        return $query->row['total'];
+    }
+    
+    public function getTotalPagesByBlockId($block_id) {
+        
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "page_to_block WHERE block_id = '" . (int) $block_id . "'");
 
         return $query->row['total'];
     }

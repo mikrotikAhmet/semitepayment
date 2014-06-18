@@ -460,6 +460,17 @@ class ControllerDesignBlock extends Controller {
         if (!$this->user->hasPermission('modify', 'design/block')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
+        
+        $this->load->model('design/page');
+        
+        foreach ($this->request->post['selected'] as $block_id) {
+            
+            $page_total = $this->model_design_page->getTotalPagesByBlockId($block_id);
+
+            if ($page_total) {
+                $this->error['warning'] = sprintf($this->language->get('error_page'), $page_total);
+            }
+        }
 
         if (!$this->error) {
             return true;

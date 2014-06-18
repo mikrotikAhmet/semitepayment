@@ -23,7 +23,7 @@
     <div class="container">
         <header class="<?php echo $block['block_data']['class']?>-header">
             <?php if($block['block_data']['show_image']) { ?>
-            <figure class="text-center"><img src="public/view/theme/semitepayment/img/bitcoin-outline-white.png" alt="bitcoin" width="150"></figure>
+            <figure class="text-center"><img src="<?php echo $block['block_data']['image']?>" alt="bitcoin" width="150"></figure>
             <?php } ?>
             <?php if($block['block_data']['show_title']) { ?>
                 <h2><?php echo $block['block_data']['title']?></h2>

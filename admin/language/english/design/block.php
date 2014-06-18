@@ -40,3 +40,4 @@ $_['entry_description'] = 'Block Lead:';
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify blocks!';
 $_['error_title']        = 'Block Title must be between 3 and 64 characters!';
+$_['error_page']     = 'Warning: This block cannot be deleted as it is currently assigned to %s pages!';

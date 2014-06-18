@@ -67,11 +67,35 @@ class ControllerDesignPage extends Controller {
             $this->data['page_blocks'] = array();
             
             $this->load->model('design/block');
+            $this->load->model('tool/image');
+            
+            $block_data = array();
             
             foreach ($page_blocks as $page_block){
                 
+                $result = $this->model_design_block->getBlock($page_block['block_id']);
+                
+                if (!empty($result['image']) && file_exists(DIR_IMAGE . $result['image'])) {
+                        $image = $this->model_tool_image->resize($result['image'], 150, 150);
+                    } else {
+                        $image = '';
+                    }
+                
+                $block_data = array(
+                    'block_id'=>$result['block_id'],
+                    'image'=>$image,
+                    'class'=>$result['class'],
+                    'additional_classes'=>$result['additional_classes'],
+                    'show_title'=>$result['show_title'],
+                    'show_sub_title'=>$result['show_sub_title'],
+                    'show_image'=>$result['show_image'],
+                    'title'=>$result['title'],
+                    'sub_title'=>$result['sub_title']
+                );
+                
+                
                 $this->data['page_blocks'][] = array(
-                    'block_data'=>$this->model_design_block->getBlock($page_block['block_id']),
+                    'block_data'=> $block_data,
                     'unit_data'=>array()
                 );
             }
