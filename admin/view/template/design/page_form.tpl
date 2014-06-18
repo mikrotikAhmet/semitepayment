@@ -232,7 +232,13 @@
                                     <tbody id="block-row<?php echo $block_row; ?>">
                                         <tr>
                                             <td class="left"><select name="page_block[<?php echo $block_row; ?>][block_id]" class="form-control">
-                                                    
+                                                  <?php foreach ($blocks as $block) { ?>
+                                                  <?php if ($page_block == $block['block_id']) { ?>
+                                                  <option value="<?php echo $block['block_id']?>" selected="selected"><?php echo $block['title']?></option>
+                                                  <?php } else { ?>
+                                                  <option value="<?php echo $block['block_id']?>"><?php echo $block['title']?></option>
+                                                  <?php } ?>
+                                                  <?php } ?>
                                                 </select></td>
                                             <td class="right"><a onclick="$('#block-row<?php echo $block_row; ?>').remove();" class="btn btn-danger"><?php echo $button_remove; ?></a></td>
                                         </tr>
@@ -269,7 +275,9 @@ function addBlock() {
 	html  = '<tbody id="block-row' + block_row + '">';
 	html += '  <tr>';
 	html += '    <td class="left"><select name="page_block[' + block_row + '][block_id]" class="form-control">';
- 
+        <?php foreach ($blocks as $block) { ?>
+        html +='<option value="<?php echo $block['block_id']?>"><?php echo $block['title']?></option>';
+        <?php } ?>
 	html += '    </select></td>';
 	html += '    <td class="left"><a onclick="$(\'#block-row' + block_row + '\').remove();" class="btn btn-danger"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';

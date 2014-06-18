@@ -49,6 +49,7 @@ class Page {
     private $featured;
     private $description;
     private $keyword;
+    private $page_blocks = array();
 
     public function __construct($registry) {
 
@@ -58,6 +59,7 @@ class Page {
         $this->request = $registry->get('request');
         $this->session = $registry->get('session');
         $this->config = $registry->get('config');
+        $this->load = $registry->get('load');
 
         require_once DIR_APPLICATION . 'model/tool/image.php';
 
@@ -149,6 +151,14 @@ class Page {
     
     public function getKeyword(){
         return $this->keyword;
+    }
+    
+    public function getPageBlocks(){
+        
+        $results = $this->db->query("SELECT * FROM ".DB_PREFIX."page_to_block WHERE page_id = '".(int) $this->page_id."'");
+        
+        
+        return $results->rows;
     }
 
 }

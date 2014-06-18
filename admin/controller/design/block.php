@@ -291,6 +291,7 @@ class ControllerDesignBlock extends Controller {
         $this->data['entry_image'] = $this->language->get('entry_image');
         $this->data['entry_class'] = $this->language->get('entry_class');
         $this->data['entry_additional_classes'] = $this->language->get('entry_additional_classes');
+        $this->data['entry_show_image'] = $this->language->get('entry_show_image');
         $this->data['entry_show_title'] = $this->language->get('entry_show_title');
         $this->data['entry_show_sub_title'] = $this->language->get('entry_show_sub_title');
         $this->data['entry_description'] = $this->language->get('entry_description');
@@ -402,6 +403,14 @@ class ControllerDesignBlock extends Controller {
             $this->data['additional_classes'] = $block_info['additional_classes'];
         } else {
             $this->data['additional_classes'] = '';
+        }
+        
+        if (isset($this->request->post['show_image'])) {
+            $this->data['show_image'] = $this->request->post['show_image'];
+        } elseif (!empty($block_info)) {
+            $this->data['show_image'] = $block_info['show_image'];
+        } else {
+            $this->data['show_image'] = 0;
         }
         
         if (isset($this->request->post['show_title'])) {

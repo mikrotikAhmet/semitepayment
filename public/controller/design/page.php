@@ -61,16 +61,31 @@ class ControllerDesignPage extends Controller {
             $this->document->setTitle($this->config->get('config_title') . $this->language->get('text_separator') . $this->page->getPageTitle());
             
             $this->data['heading_title'] = $this->config->get('config_title');
+            
+            $page_blocks = $this->page->getPageBlocks();
+            
+            $this->data['page_blocks'] = array();
+            
+            $this->load->model('design/block');
+            
+            foreach ($page_blocks as $page_block){
+                
+                $this->data['page_blocks'][] = array(
+                    'block_data'=>$this->model_design_block->getBlock($page_block['block_id']),
+                    'unit_data'=>array()
+                );
+            }
+            
 
             if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/design/page.tpl')) {
                 $this->template = $this->config->get('config_template') . '/template/design/page.tpl';
             } else {
                 $this->template = 'default/template/design/page.tpl';
             }
+            
         } else {
 
-            error_log('ajajajaj');
-//            throw new Exception('Page Not Found');
+            throw new Exception('Page Not Found');
             exit(1);
         }
 

@@ -516,9 +516,21 @@ class ControllerDesignPage extends Controller {
             $this->data['page_application'] = array(0);
         }
         
-        $this->data['page_blocks'] = array();
-
-
+        
+        if (isset($this->request->post['page_blocks'])) {
+            $this->data['page_blocks'] = $this->request->post['page_blocks'];
+        } elseif (isset($this->request->get['page_id'])) {
+            $this->data['page_blocks'] = $this->model_design_page->getPageBlocks($this->request->get['page_id']);
+        } else {
+            $this->data['page_blocks'] = array();
+        }
+        
+        $this->data['blocks'] = array();
+        
+        $this->load->model('design/block');
+        
+        $this->data['blocks'] = $this->model_design_block->getBlocks();
+        
         $this->template = 'design/page_form.tpl';
         $this->children = array(
             'common/header',

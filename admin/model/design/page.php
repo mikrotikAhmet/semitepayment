@@ -73,6 +73,14 @@ class ModelDesignPage extends Model {
                         $this->db->query("INSERT INTO " . DB_PREFIX . "page_to_application SET page_id = '" . (int)$page_id . "', application_id = '" . (int)$application_id . "'");
                 }
         }
+        
+        if (isset($data['page_block'])) {
+            foreach ($data['page_block'] as $block) {
+                if ($block) {
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "page_to_block SET page_id = '" . (int) $page_id . "', block_id = '" . (int) $block['block_id'] . "'");
+                }
+            }
+        }
     }
 
     public function editPage($page_id, $data) {
@@ -90,7 +98,7 @@ class ModelDesignPage extends Model {
 
         $this->db->query("DELETE FROM " . DB_PREFIX . "page_to_layout WHERE page_id = '" . (int) $page_id . "'");
 
-        // Set which layout to use with this category
+        // Set which layout to use with this page
         if (isset($data['page_layout'])) {
             foreach ($data['page_layout'] as $layout) {
                 if ($layout) {
@@ -111,6 +119,16 @@ class ModelDesignPage extends Model {
                 foreach ($data['page_application'] as $application_id) {
                         $this->db->query("INSERT INTO " . DB_PREFIX . "page_to_application SET page_id = '" . (int)$page_id . "', application_id = '" . (int)$application_id . "'");
                 }
+        }
+        
+        $this->db->query("DELETE FROM " . DB_PREFIX . "page_to_block WHERE page_id = '" . (int) $page_id . "'");
+        
+        if (isset($data['page_block'])) {
+            foreach ($data['page_block'] as $block) {
+                if ($block) {
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "page_to_block SET page_id = '" . (int) $page_id . "', block_id = '" . (int) $block['block_id'] . "'");
+                }
+            }
         }
     }
 
@@ -201,6 +219,19 @@ class ModelDesignPage extends Model {
         }
 
         return $page_layout_data;
+    }
+    
+    public function getPageBlocks($page_id) {
+
+        $page_block_data = array();
+
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "page_to_block WHERE page_id = '" . (int) $page_id . "'");
+
+        foreach ($query->rows as $result) {
+            $page_block_data[] = $result['block_id'];
+        }
+
+        return $page_block_data;
     }
 
     public function getTotalPagesByLayoutId($page_id) {

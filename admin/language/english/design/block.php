@@ -32,6 +32,7 @@ $_['entry_image'] = 'Block Image:';
 $_['entry_class'] = 'Block Class:';
 $_['entry_additional_classes'] = 'Additional Class:<br/><span class="help">You can add more style classed to certain block object. Please write classes with comma seperated.</span>';
 $_['entry_show_title']       = 'Show Block Title:';
+$_['entry_show_image']       = 'Show Block Image:';
 $_['entry_show_sub_title']       = 'Show Block Sub Title:';
 $_['entry_description'] = 'Block Lead:';
 
