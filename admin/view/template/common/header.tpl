@@ -322,6 +322,7 @@
                                             <ul>
                                                 <li id="page"><a href="<?php echo $page?>"><?php echo $text_page?></a></li>
                                                 <li id="block"><a href="<?php echo $block?>"><?php echo $text_block?></a></li>
+                                                <li id="unit"><a href="<?php echo $unit?>"><?php echo $text_unit?></a></li>
                                                 <li id="menu"><a href="<?php echo $menu?>"><?php echo $text_menu?></a></li>
                                             </ul>
                                         </li>
