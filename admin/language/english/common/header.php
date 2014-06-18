@@ -29,7 +29,6 @@ $_['text_layout'] = 'Layouts';
 $_['text_pages'] = 'Page Manager';
 $_['text_page'] = 'Page';
 $_['text_block'] = 'Page Blocks';
-$_['text_unit'] = 'Page Block Units';
 $_['text_menu'] = 'Page Menus';
 $_['text_users']                      = 'User Management';
 $_['text_user']                      = 'User';

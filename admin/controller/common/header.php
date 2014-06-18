@@ -58,7 +58,6 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_content_type'] = $this->language->get('text_content_type');
             $this->data['text_pages'] = $this->language->get('text_pages');
             $this->data['text_block'] = $this->language->get('text_block');
-            $this->data['text_unit'] = $this->language->get('text_unit');
             $this->data['text_menu'] = $this->language->get('text_menu');
         //System Menu
             $this->data['text_system'] = $this->language->get('text_system');
@@ -107,7 +106,6 @@ class ControllerCommonHeader extends Controller{
                 $this->data['layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['page'] = $this->url->link('design/page', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['block'] = $this->url->link('design/block', 'token=' . $this->session->data['token'], 'SSL');
-                $this->data['unit'] = $this->url->link('design/unit', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['menu'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['new_page'] = $this->url->link('design/page/insert', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['user'] = $this->url->link('user/user', 'token=' . $this->session->data['token'], 'SSL');
