@@ -297,6 +297,8 @@ class ControllerDesignBlock extends Controller {
         $this->data['entry_description'] = $this->language->get('entry_description');
         
         $this->data['entry_subject'] = $this->language->get('entry_subject');
+        $this->data['entry_unit_class'] = $this->language->get('entry_unit_class');
+        $this->data['entry_unit_additional_class'] = $this->language->get('entry_unit_additional_class');
 
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
@@ -440,6 +442,10 @@ class ControllerDesignBlock extends Controller {
         } else {
             $this->data['units'] = array();
         }
+        
+        $this->load->model('application/content');
+        
+        $this->data['contents'] = $this->model_application_content->getContents();
 
         
         $this->template = 'design/block_form.tpl';

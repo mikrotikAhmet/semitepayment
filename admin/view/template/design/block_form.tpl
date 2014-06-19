@@ -131,7 +131,39 @@
                                             <?php } ?>
                                             <?php } ?>
                                             <span id="unit-add"><?php echo $button_add_unit; ?>&nbsp;<img src="view/images/custom/add.png" alt="" onclick="addUnit();" /></span> 
+                                    </div>
+                                    <div class="unit-form">
+                                        <?php $unit_row = 1; ?>
+                                        <?php if ($units) { ?>
+                                        <?php foreach ($units as $unit) { ?>
+                                        <div id="tab-unit-<?php echo $unit_row; ?>" class="vtabs-content">
+                                            <table class="table table-hover">
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="class" class="col-sm-2 control-label"><?php echo $entry_unit_class?></label>
+                                                            <div class="col-sm-5">
+                                                                <input type="text" name="units[<?php echo $unit_row; ?>][class]" class="form-control" value="<?php echo $unit['class']?>">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="additional_class" class="col-sm-2 control-label"><?php echo $entry_unit_additional_class?></label>
+                                                            <div class="col-sm-5">
+                                                                <input type="text" name="units[<?php echo $unit_row; ?>][additional_class]" class="form-control" value="<?php echo $unit['additional_class']?>">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
+                                        <?php $unit_row++; ?>
+                                        <?php } ?>
+                                        <?php } ?>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -154,18 +186,36 @@
 <script type="text/javascript"><!--
 var unit_row = <?php echo $unit_row; ?>;
 
-function addUnit() {	
-	html  = '<div id="tab-unit-' + unit_row + '" class="vtabs-content form-horizontal form-bordered">';
+function addUnit() {
+	html  = '<div id="tab-unit-' + unit_row + '" class="vtabs-content">';
+        html +='<table class="table table-hover">';
+                
+        html +='<tr>';
+        html +='<td>';
+        html +='<div class="form-group">';
+        html +='<label for="class" class="col-sm-2 control-label"><?php echo $entry_class?></label>';
+        html +='<div class="col-sm-5">';
+        html +='<input type="text" name="units['+unit_row+'][class]" class="form-control" value=""/>';
+        html +='</div>';
+        html +='</div>';
+        html +='</td>';
+        html +='</tr>';
         
-        html +='<label for="show_sub_title" class="col-sm-3 control-label"><?php echo $entry_subject; ?></label>';
-        html +='<div class="col-sm-4">';
-        html +='<select name="" class="form-control"';
-        html +='</select>';
-        html +='</div>';        
+        html +='<tr>';
+        html +='<td>';
+        html +='<div class="form-group">';
+        html +='<label for="additional_class" class="col-sm-2 control-label"><?php echo $entry_unit_additional_class?></label>';
+        html +='<div class="col-sm-5">';
+        html +='<input type="text" name="units['+unit_row+'][additional_class]" class="form-control" value=""/>';
+        html +='</div>';
+        html +='</div>';
+        html +='</td>';
+        html +='</tr>';
+        html +='</table>';
         
 	html += '</div>';
 	
-	$('.vtabs').after(html);
+	$('.unit-form').append(html);
 	
 	$('#unit-add').before('<a href="#tab-unit-' + unit_row + '" id="unit-' + unit_row + '"><?php echo $tab_unit; ?> ' + unit_row + '&nbsp;<img src="view/images/custom/delete.png" alt="" onclick="$(\'.vtabs a:first\').trigger(\'click\'); $(\'#unit-' + unit_row + '\').remove(); $(\'#tab-unit-' + unit_row + '\').remove(); return false;" /></a>');
 	
