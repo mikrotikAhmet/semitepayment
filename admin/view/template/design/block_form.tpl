@@ -175,10 +175,27 @@
                                                     <thead>
                                                         <tr>
                                                             <th class="left"><?php echo $entry_subject; ?></th>
-                                                            <th class="left">column</th>
+                                                            <th class="left">Subject Column</th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
+                                                    <?php $subject_row = 0; ?>
+                                                    <?php foreach ($unit_subjects as $unit_subject) { ?>
+                                                    <tbody id="subject-row-<?php echo $unit_row?>-<?php echo $subject_row; ?>">
+                                                        <tr>
+                                                            <td>Subject<?php echo $subject_row; ?></td>
+                                                            <td>Column<?php echo $subject_row; ?></td>
+                                                            <td class="left"><a onclick="$('#subject-row<?php echo $unit_row; ?>-<?php echo $subject_row; ?>').remove();" class="btn btn-danger"><?php echo $button_remove; ?></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <?php $subject_row++; ?>
+                                                    <?php } ?>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td colspan="2"></td>
+                                                            <td class="left"><a onclick="addSubject(<?php echo $unit_row?>);" class="btn btn-primary"><?php echo $button_add_subject; ?></a></td>
+                                                        </tr>
+                                                    </tfoot>
                                                     </table>
                                             </div>
                                     </div>
@@ -257,6 +274,30 @@ function addUnit() {
 	$('#unit-' + unit_row).trigger('click');
 	
 	unit_row++;
+}
+
+var subject_row = <?php echo $subject_row; ?>;
+
+function addSubject(unit) {
+html  = '<tbody id="subject-row' + unit + '-'+subject_row+'">';
+	html += '  <tr>';
+	html += '    <td class="left"><div class="col-sm-10">';
+        html +='<select name="subject['+unit+']['+subject_row+'][subject_id]" class="form-control">';
+        <?php foreach ($contents as $content) { ?>
+        html +='<option value="<?php echo $content['content_id']?>"><?php echo $content['title']?></option>';
+        <?php } ?>
+        html +='</select>';
+        html +='</div></td>';
+	html += '    <td class="left"><div class="col-sm-10">';
+        html +='<input type="text" name="subject['+unit+']['+subject_row+'][column]" class="form-control" value=""/>';
+        html +='</div></td>';
+	html += '    <td class="left"><a onclick="$(\'#subject-row' + unit + '-'+subject_row+'\').remove();" class="btn btn-danger"><?php echo $button_remove; ?></a></td>';
+	html += '  </tr>';
+	html += '</tbody>';
+	
+	$('#subject-'+unit+' > tfoot').before(html);
+	
+	subject_row++;
 }
 //--></script>
 <script type="text/javascript"><!--

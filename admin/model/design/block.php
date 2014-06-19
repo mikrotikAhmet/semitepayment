@@ -53,10 +53,18 @@ class ModelDesignBlock extends Model {
         $this->db->query("DELETE FROM " . DB_PREFIX . "block_unit WHERE block_id = '" . (int) $block_id . "'");
 
         if (isset($data['units'])) {
-            foreach ($data['units'] as $unit) {
+            foreach ($data['units'] as $key=>$unit) {
                 $this->db->query("INSERT INTO " . DB_PREFIX . "block_unit SET block_id = '" . (int) $block_id . "', `class`='".$this->db->escape($unit['class'])."',`additional_class`='".$this->db->escape($unit['additional_class'])."',sort_order = '".(isset($unit['sort_order']) ? (int) $unit['sort_order'] : 0)."'");
+                
+                $unit_id = $this->db->getLastId();
+                
+                if (isset($data['subject'][$key])) {
+                    $this->db->query("UPDATE ".DB_PREFIX."block_unit SET `subject` = '".$this->db->escape(serialize($data['subject'][$key]))."' WHERE block_unit_id = '".(int) $unit_id."'");
+                }
             }
         }
+        
+        
     }
 
     public function getBlock($block_id) {

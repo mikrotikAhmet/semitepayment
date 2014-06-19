@@ -308,7 +308,9 @@ class ControllerDesignBlock extends Controller {
 
         $this->data['button_save'] = $this->language->get('button_save');
         $this->data['button_cancel'] = $this->language->get('button_cancel');
+        $this->data['button_remove'] = $this->language->get('button_remove');
         $this->data['button_add_unit'] = $this->language->get('button_add_unit');
+        $this->data['button_add_subject'] = $this->language->get('button_add_subject');
 
         if (isset($this->error['warning'])) {
             $this->data['error_warning'] = $this->error['warning'];
@@ -447,6 +449,8 @@ class ControllerDesignBlock extends Controller {
         $this->load->model('application/content');
         
         $this->data['contents'] = $this->model_application_content->getContents();
+        
+        $this->data['unit_subjects'] = array();
 
         
         $this->template = 'design/block_form.tpl';
