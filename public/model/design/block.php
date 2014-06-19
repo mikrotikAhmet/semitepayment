@@ -48,5 +48,12 @@ class ModelDesignBlock extends Model{
 
         return $query->row;
     }
+    
+    public function getBlockUnits($block_id) {
+        
+        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "block_unit WHERE block_id = '" . (int) $block_id . "'");
+
+        return $query->rows;
+    }
 }
 

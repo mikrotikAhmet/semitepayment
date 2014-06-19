@@ -32,7 +32,13 @@
             <p class="lead"><?php echo $block['block_data']['sub_title']?></p>
             <?php } ?>
         </header>
+        <?php foreach ($block['block_unit_data']['block_unit'] as $block_unit) { ?>
+        <div class="<?php echo $block_unit['class']?> <?php echo $block_unit['additional_class']?>"></div>
+        <?php } ?>
     </div>
 </section>
 <?php } ?>
+<pre>
+<?php print_r($page_blocks)?>
+</pre>
 <?php echo $footer?>

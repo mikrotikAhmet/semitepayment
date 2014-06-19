@@ -93,10 +93,16 @@ class ControllerDesignPage extends Controller {
                     'sub_title'=>$result['sub_title']
                 );
                 
+                $block_units = $this->model_design_block->getBlockUnits($result['block_id']);
+                
+                $block_unit_data = array(
+                    'block_unit'=>$block_units
+                );
+                
                 
                 $this->data['page_blocks'][] = array(
                     'block_data'=> $block_data,
-                    'unit_data'=>array()
+                    'block_unit_data'=>$block_unit_data
                 );
             }
             
