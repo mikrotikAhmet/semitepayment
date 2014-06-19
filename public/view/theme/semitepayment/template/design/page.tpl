@@ -32,13 +32,23 @@
             <p class="lead"><?php echo $block['block_data']['sub_title']?></p>
             <?php } ?>
         </header>
-        <?php foreach ($block['block_unit_data']['block_unit'] as $block_unit) { ?>
-        <div class="<?php echo $block_unit['class']?> <?php echo $block_unit['additional_class']?>"></div>
+        <?php foreach ($block['block_unit_data']['block_unit'] as $block_unit) { 
+            $subjects = unserialize($block_unit['subject']);
+        ?>
+        <div class="<?php echo $block_unit['class']?> <?php echo $block_unit['additional_class']?>">
+            <?php if ($subjects) { ?>
+            <?php foreach ($subjects as $subject) { ?>
+            <div class="<?php echo $subject['column']?>">
+                <?php echo $subject['subject_id']?>
+            </div>
+            <?php } ?>
+            <?php } ?>
+        </div>
         <?php } ?>
     </div>
 </section>
 <?php } ?>
 <pre>
-<?php print_r($page_blocks)?>
+<?php print_r(unserialize($page_blocks[1]['block_unit_data']['block_unit'][0]['subject']))?>
 </pre>
 <?php echo $footer?>

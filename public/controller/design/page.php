@@ -98,7 +98,7 @@ class ControllerDesignPage extends Controller {
                 $block_unit_data = array(
                     'block_unit'=>$block_units
                 );
-                
+                               
                 
                 $this->data['page_blocks'][] = array(
                     'block_data'=> $block_data,
