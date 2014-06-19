@@ -39,6 +39,7 @@ $_['entry_description'] = 'Block Lead:';
 $_['entry_subject'] = 'Select Subject :';
 $_['entry_unit_class'] = 'Unit Class :';
 $_['entry_unit_additional_class'] = 'Additional Class :';
+$_['entry_sort_order'] = 'Sort Order :';
 
 
 // Error

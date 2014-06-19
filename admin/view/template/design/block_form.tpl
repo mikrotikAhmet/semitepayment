@@ -158,12 +158,33 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="sort_order" class="col-sm-2 control-label"><?php echo $entry_sort_order?></label>
+                                                            <div class="col-sm-5">
+                                                                <input type="text" name="units[<?php echo $unit_row; ?>][sort_order]" class="form-control" value="<?php echo $unit['sort_order']?>">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             </table>
-                                        </div>
+                                            <br />
+                                            <div class="table-responsive">
+                                                <table id="subject-<?php echo $unit_row?>" class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="left"><?php echo $entry_subject; ?></th>
+                                                            <th class="left">column</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    </table>
+                                            </div>
+                                    </div>
                                         <?php $unit_row++; ?>
                                         <?php } ?>
                                         <?php } ?>
-                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +214,7 @@ function addUnit() {
         html +='<tr>';
         html +='<td>';
         html +='<div class="form-group">';
-        html +='<label for="class" class="col-sm-2 control-label"><?php echo $entry_class?></label>';
+        html +='<label for="class" class="col-sm-2 control-label"><?php echo $entry_unit_class?></label>';
         html +='<div class="col-sm-5">';
         html +='<input type="text" name="units['+unit_row+'][class]" class="form-control" value=""/>';
         html +='</div>';
@@ -211,6 +232,18 @@ function addUnit() {
         html +='</div>';
         html +='</td>';
         html +='</tr>';
+        
+        html +='<tr>';
+        html +='<td>';
+        html +='<div class="form-group">';
+        html +='<label for="sort_order" class="col-sm-2 control-label"><?php echo $entry_sort_order?></label>';
+        html +='<div class="col-sm-2">';
+        html +='<input type="text" name="units['+unit_row+'][sort_order]" class="form-control" value=""/>';
+        html +='</div>';
+        html +='</div>';
+        html +='</td>';
+        html +='</tr>';
+        
         html +='</table>';
         
 	html += '</div>';

@@ -32,7 +32,7 @@ class ModelDesignBlock extends Model {
         
         if (isset($data['units'])) {
             foreach ($data['units'] as $unit) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "block_unit SET block_id = '" . (int) $block_id . "', `class`='".$this->db->escape($unit['class'])."',`additional_class`='".$this->db->escape($unit['additional_class'])."'");
+                $this->db->query("INSERT INTO " . DB_PREFIX . "block_unit SET block_id = '" . (int) $block_id . "', `class`='".$this->db->escape($unit['class'])."',`additional_class`='".$this->db->escape($unit['additional_class'])."', sort_order = '".(isset($unit['sort_order']) ? (int) $unit['sort_order'] : 0)."'");
             }
         }
     }
@@ -54,7 +54,7 @@ class ModelDesignBlock extends Model {
 
         if (isset($data['units'])) {
             foreach ($data['units'] as $unit) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "block_unit SET block_id = '" . (int) $block_id . "', `class`='".$this->db->escape($unit['class'])."',`additional_class`='".$this->db->escape($unit['additional_class'])."'");
+                $this->db->query("INSERT INTO " . DB_PREFIX . "block_unit SET block_id = '" . (int) $block_id . "', `class`='".$this->db->escape($unit['class'])."',`additional_class`='".$this->db->escape($unit['additional_class'])."',sort_order = '".(isset($unit['sort_order']) ? (int) $unit['sort_order'] : 0)."'");
             }
         }
     }

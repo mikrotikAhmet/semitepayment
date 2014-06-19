@@ -299,6 +299,7 @@ class ControllerDesignBlock extends Controller {
         $this->data['entry_subject'] = $this->language->get('entry_subject');
         $this->data['entry_unit_class'] = $this->language->get('entry_unit_class');
         $this->data['entry_unit_additional_class'] = $this->language->get('entry_unit_additional_class');
+        $this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_data'] = $this->language->get('tab_data');
