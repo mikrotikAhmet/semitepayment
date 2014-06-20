@@ -36,24 +36,44 @@ if (!defined('DIR_APPLICATION'))
  */
 
 /*
- * Semite LLC block Class
- * Date : Jun 18, 2014
+ * Semite LLC content Class
+ * Date : Jun 19, 2014
  */
 
-class ModelDesignBlock extends Model{
+class Content {
     
-    public function getBlock($block_id) {
-        
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "block b LEFT JOIN ".DB_PREFIX."block_description bd ON(b.block_id = bd.block_id) WHERE b.block_id = '" . (int) $block_id . "'");
+    private $content_data = array();
+    private $title;
+    private $image;
+    private $content;
+    private $type;
 
-        return $query->row;
+
+    public function __construct($registry) {
+        
+        require_once DIR_APPLICATION.'model/tool/image.php';
+        
+        $this->db = $registry->get('db');
+        $this->imager = new ModelToolImage($registry);
+        $this->request = $registry->get('request');
+        $this->session = $registry->get('session');
+        $this->config = $registry->get('config');
     }
     
-    public function getBlockUnits($block_id) {
+    public function setContent($content_id){
         
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "block_unit WHERE block_id = '" . (int) $block_id . "' ORDER BY sort_order ASC");
-
-        return $query->rows;
+        $this->content_data = $this->db->query("SELECT * FROM ".DB_PREFIX."content_description WHERE language_id = '".(int) $this->config->get('config_language_id')."' AND content_id = '".(int) $content_id."'");
+           
     }
+    
+    public function getTitle(){
+        return $this->content_data->row['title'];
+    }
+    
+    public function getContent(){
+        return html_entity_decode($this->content_data->row['description'], ENT_QUOTES, 'UTF-8');
+        
+    }
+    
 }
 

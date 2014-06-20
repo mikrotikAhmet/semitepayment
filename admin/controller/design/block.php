@@ -451,6 +451,16 @@ class ControllerDesignBlock extends Controller {
         $this->data['contents'] = $this->model_application_content->getContents();
         
         $this->data['unit_subjects'] = array();
+        
+        if (isset($this->request->post['subject'])) {
+            $this->data['unit_subjects'] = $this->request->post['subject'];
+        } elseif (!empty($block_info)) {
+            $units = $this->model_design_block->getUnitsByBlockId($block_info['block_id']);
+            $this->data['unit_subjects'] = (!empty($units[0]['subject']) ? unserialize($units[0]['subject']) : array());
+        } else {
+            $this->data['unit_subjects'] = array();
+        }
+        
 
         
         $this->template = 'design/block_form.tpl';

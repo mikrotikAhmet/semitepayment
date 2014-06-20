@@ -183,8 +183,16 @@
                                                     <?php foreach ($unit_subjects as $unit_subject) { ?>
                                                     <tbody id="subject-row-<?php echo $unit_row?>-<?php echo $subject_row; ?>">
                                                         <tr>
-                                                            <td>Subject<?php echo $subject_row; ?></td>
-                                                            <td>Column<?php echo $subject_row; ?></td>
+                                                            <td><select name="subject[<?php echo $unit_row?>][<?php echo $subject_row?>][subject_id]" class="form-control">
+                                                                    <?php foreach ($contents as $content) { ?>
+                                                                    <?php if ($unit_subject['subject_id'] == $content['content_id']) { ?>
+                                                                    <option value="<?php echo $content['content_id']?>" selected="selected"><?php echo $content['title']?></option>
+                                                                    <?php } else { ?>
+                                                                    <option value="<?php echo $content['content_id']?>" ><?php echo $content['title']?></option>
+                                                                    <?php } ?>
+                                                                    <?php } ?>
+                                                                </select></td>
+                                                                <td><input type="text" name="subject[<?php echo $unit_row?>][<?php echo $subject_row?>][column]" class="form-control" value="<?php echo $unit_subject['column']?>"/></td>
                                                             <td class="left"><a onclick="$('#subject-row<?php echo $unit_row; ?>-<?php echo $subject_row; ?>').remove();" class="btn btn-danger"><?php echo $button_remove; ?></a></td>
                                                         </tr>
                                                     </tbody>

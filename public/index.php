@@ -218,7 +218,10 @@ $registry->set('language', $language);
 $registry->set('document', new Document());
 
 // User
-//$registry->set('user', new User($registry));
+$registry->set('user', new User($registry));
+
+// Content
+$registry->set('content', new Content($registry));
 
 // Page
 $registry->set('page', new Page($registry));

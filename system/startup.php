@@ -137,7 +137,8 @@ $classes['library'] = array(
     'mail',
     'pagination',
     'image',
-    'encryption');
+    'encryption',
+    'content');
 
 if ((isset($classes)) && is_array($classes)) {
 

@@ -39,7 +39,9 @@
             <?php if ($subjects) { ?>
             <?php foreach ($subjects as $subject) { ?>
             <div class="<?php echo $subject['column']?>">
-                <?php echo $subject['subject_id']?>
+                <?php $this->content->setContent($subject['subject_id'])?>
+                <h3 class="h4"><?php echo $this->content->getTitle()?></h3>
+                <p><?php echo $this->content->getContent()?></p>
             </div>
             <?php } ?>
             <?php } ?>
