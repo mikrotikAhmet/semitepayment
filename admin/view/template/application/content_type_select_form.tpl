@@ -52,6 +52,7 @@
 </div>
 <script>
     var selection = "";
+    $.removeCookie("content_type");
     
     function setType(value){
     
@@ -59,7 +60,9 @@
 }
 
 function continueContent(){
+    $.cookie("content_type", selection);
     
+    window.location = 'index.php?route=application/content/insert&token=<?php echo $token?>';
 }
 </script>
 <?php echo $footer?>

@@ -74,24 +74,8 @@
                                             <button type="button" onclick="image_upload('image', 'thumb');" class="btn btn-primary btn-xs"><?php echo $text_browse; ?></button>&nbsp;&nbsp;|&nbsp;&nbsp;<button type="button" class="btn btn-danger btn-xs" onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></button>
                                         </div>
                                     </div>
-                                </div><div class="form-group">
-                                    <label for="type" class="col-sm-2 control-label"><?php echo $entry_type; ?></label>
-                                    <div class="col-sm-3">
-                                        <select name="type"  class="form-control">
-                                            <option value=""><?php echo $text_select?></option>
-                                            <?php foreach ($types as $content_type) { ?>
-                                            <?php if ($type == $content_type['content_type_id']) { ?>
-                                                <option value="<?php echo $content_type['content_type_id']?>" selected="selected"><?php echo $content_type['name']?></option>
-                                                 <?php } else { ?>
-                                                 <option value="<?php echo $content_type['content_type_id']?>"><?php echo $content_type['name']?></option>
-                                                 <?php } ?>
-                                            <?php } ?>
-                                          </select>
-                                        <?php if (isset($error_type)) { ?>
-                                            <span class="error"><?php echo $error_type; ?></span>
-                                            <?php } ?>
-                                    </div>
                                 </div>
+                                <input type="hidden" name="type" value="<?php echo $type?>">
                                 <div class="form-group">
                                     <label for="revision" class="col-sm-2 control-label"><?php echo $entry_revision; ?></label>
                                     <div class="col-sm-3">

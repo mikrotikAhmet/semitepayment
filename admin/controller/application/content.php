@@ -476,16 +476,13 @@ class ControllerApplicationContent extends Controller {
 
         $this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
-        $this->load->model('application/content_type');
-
-        $this->data['types'] = $this->model_application_content_type->getContentTypes();
 
         if (isset($this->request->post['type'])) {
             $this->data['type'] = $this->request->post['type'];
         } elseif (!empty($content_info)) {
             $this->data['type'] = $content_info['type'];
         } else {
-            $this->data['type'] = '';
+            $this->data['type'] = $_COOKIE['content_type'];
         }
 
         if (isset($this->request->post['status'])) {
@@ -628,12 +625,14 @@ class ControllerApplicationContent extends Controller {
         $this->data['continue'] = $this->url->link('application/content/insert', 'token=' . $this->session->data['token'] , 'SSL');
         $this->data['cancel'] = $this->url->link('application/content', 'token=' . $this->session->data['token'] , 'SSL');
         
+        $this->data['token'] = $this->session->data['token'];
         
         $this->template = 'application/content_type_select_form.tpl';
         $this->children = array(
             'common/header',
             'common/footer'
         );
+        
 
         $this->response->setOutput($this->render());
         
