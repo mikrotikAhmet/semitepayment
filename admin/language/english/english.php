@@ -57,6 +57,7 @@ $_['button_filter']                 = 'Filter';
 $_['button_send']                   = 'Send';
 $_['button_edit']                   = 'Edit';
 $_['button_copy']                   = 'Copy';
+$_['button_continue']                   = 'Continue';
 $_['button_back']                   = 'Back';
 $_['button_remove']                 = 'Remove';
 $_['button_backup']                 = 'Backup';

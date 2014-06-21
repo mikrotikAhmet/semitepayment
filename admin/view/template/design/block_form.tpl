@@ -123,7 +123,8 @@
                             <div class="tab-pane fade in" id="tab_block_content">
                                 <div class="tabbable page-tabs">
                                     <div class="vtabs">
-                                        <?php $unit_row = 1; ?>
+                                        <?php $unit_row = 0; ?>
+                                        <?php $subject_row = 0; ?>
                                         <?php if ($units) { ?>
                                             <?php foreach ($units as $unit) { ?>
                                             <a href="#tab-unit-<?php echo $unit_row; ?>" id="unit-<?php echo $unit_row; ?>"><?php echo $tab_unit . ' ' . $unit_row; ?>&nbsp;<img src="view/images/custom/delete.png" alt="" onclick="$('.vtabs a:first').trigger('click'); $('#unit-<?php echo $unit_row; ?>').remove(); $('#tab-unit-<?php echo $unit_row; ?>').remove(); return false;" /></a>
@@ -133,7 +134,8 @@
                                             <span id="unit-add"><?php echo $button_add_unit; ?>&nbsp;<img src="view/images/custom/add.png" alt="" onclick="addUnit();" /></span> 
                                     </div>
                                     <div class="unit-form">
-                                        <?php $unit_row = 1; ?>
+                                        <?php $unit_row = 0; ?>
+                                        <?php $subject_row = 0; ?>
                                         <?php if ($units) { ?>
                                         <?php foreach ($units as $unit) { ?>
                                         <div id="tab-unit-<?php echo $unit_row; ?>" class="vtabs-content">
@@ -193,7 +195,7 @@
                                                                     <?php } ?>
                                                                 </select></td>
                                                                 <td><input type="text" name="subject[<?php echo $unit_row?>][<?php echo $subject_row?>][column]" class="form-control" value="<?php echo $unit_subject['column']?>"/></td>
-                                                            <td class="left"><a onclick="$('#subject-row<?php echo $unit_row; ?>-<?php echo $subject_row; ?>').remove();" class="btn btn-danger"><?php echo $button_remove; ?></a></td>
+                                                            <td class="left"><a onclick="$('#subject-row-<?php echo $unit_row; ?>-<?php echo $subject_row; ?>').remove();" class="btn btn-danger"><?php echo $button_remove; ?></a></td>
                                                         </tr>
                                                     </tbody>
                                                     <?php $subject_row++; ?>
@@ -231,6 +233,7 @@
     //--></script>
 <script type="text/javascript"><!--
 var unit_row = <?php echo $unit_row; ?>;
+var subject_row = <?php echo $subject_row; ?>;
 
 function addUnit() {
 	html  = '<div id="tab-unit-' + unit_row + '" class="vtabs-content">';
@@ -283,8 +286,6 @@ function addUnit() {
 	
 	unit_row++;
 }
-
-var subject_row = <?php echo $subject_row; ?>;
 
 function addSubject(unit) {
 html  = '<tbody id="subject-row' + unit + '-'+subject_row+'">';

@@ -40,6 +40,11 @@
             <?php foreach ($subjects as $subject) { ?>
             <div class="<?php echo $subject['column']?>">
                 <?php $this->content->setContent($subject['subject_id'])?>
+                <?php if (empty($block_unit['additional_class'])) { ?>
+                    <span><img src="<?php echo $this->content->getImage()?>"></span>
+                <?php } else { ?>
+                    <span class="img-responsive wow fade-in-up animated" style="visibility: visible;"><img src="<?php echo $this->content->getImage(273,199)?>"></span>
+                <?php } ?>
                 <h3 class="h4"><?php echo $this->content->getTitle()?></h3>
                 <p><?php echo $this->content->getContent()?></p>
             </div>

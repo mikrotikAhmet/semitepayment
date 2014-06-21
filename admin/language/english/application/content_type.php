@@ -33,6 +33,7 @@ $_['heading_title']      = 'Content Type';
 
 // Text
 $_['text_success']       = 'Success: You have modified content types!';
+$_['text_content_howto'] = 'Please select your Content Type before continue.';
 
 // Column
 $_['column_name']        = 'Type Name';
@@ -42,6 +43,8 @@ $_['column_action']      = 'Action';
 $_['entry_name']         = 'Type Name:';
 $_['entry_field']         = 'Field:';
 $_['entry_status']         = 'Status:';
+
+$_['entry_select_type']         = 'Select Content Type:';
 
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify content types!';

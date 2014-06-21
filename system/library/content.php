@@ -41,39 +41,61 @@ if (!defined('DIR_APPLICATION'))
  */
 
 class Content {
-    
+
     private $content_data = array();
     private $title;
     private $image;
     private $content;
-    private $type;
-
+    private $type = array();
 
     public function __construct($registry) {
-        
-        require_once DIR_APPLICATION.'model/tool/image.php';
-        
+
+        require_once DIR_APPLICATION . 'model/tool/image.php';
+
         $this->db = $registry->get('db');
         $this->imager = new ModelToolImage($registry);
         $this->request = $registry->get('request');
         $this->session = $registry->get('session');
         $this->config = $registry->get('config');
     }
+
+    public function setContent($content_id) {
+
+        $this->content_data = $this->db->query("SELECT * FROM " . DB_PREFIX . "content c LEFT JOIN " . DB_PREFIX . "content_description cd ON(c.content_id = cd.content_id) WHERE cd.language_id = '" . (int) $this->config->get('config_language_id') . "' AND c.content_id = '" . (int) $content_id . "'");
+    }
+
+    public function getTitle() {
+
+        if ($this->getType('title')){
+            return $this->content_data->row['title'];
+        }
+    }
+
+    public function getContent() {
+        if ($this->getType('description')){
+            return html_entity_decode($this->content_data->row['description'], ENT_QUOTES, 'UTF-8');
+        }
+    }
     
-    public function setContent($content_id){
+    public function getImage($width = "100", $heigth = "100") {
+        if ($this->getType('image')){
+            if (file_exists(DIR_IMAGE . $this->content_data->row['image'])) {
+            $this->image = $this->imager->resize($this->content_data->row['image'], $width, $heigth);
+                } else {
+                    $this->image = null;
+                }
+
+            return $this->image;
+        }
+    }
+
+    protected function getType($field) {
         
-        $this->content_data = $this->db->query("SELECT * FROM ".DB_PREFIX."content_description WHERE language_id = '".(int) $this->config->get('config_language_id')."' AND content_id = '".(int) $content_id."'");
-           
-    }
-    
-    public function getTitle(){
-        return $this->content_data->row['title'];
-    }
-    
-    public function getContent(){
-        return html_entity_decode($this->content_data->row['description'], ENT_QUOTES, 'UTF-8');
+        $content_type_fields = $this->db->query("SELECT * FROM ".DB_PREFIX."content_type_field WHERE content_type_id = '".(int) $this->content_data->row['type']."' AND `field` = '".$this->db->escape($field)."' AND status = '1'"); 
+
+        return count($content_type_fields->row);
         
     }
-    
+
 }
 

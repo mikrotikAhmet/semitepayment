@@ -151,6 +151,13 @@ class ControllerApplicationContent extends Controller {
 
         $this->getList();
     }
+    
+    public function type(){
+        
+        $this->language->load('application/content_type');
+        
+        $this->getType();
+    }
 
     public function revision() {
 
@@ -206,7 +213,7 @@ class ControllerApplicationContent extends Controller {
             'separator' => ' :: '
         );
 
-        $this->data['insert'] = $this->url->link('application/content/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
+        $this->data['insert'] = $this->url->link('application/content/type', 'token=' . $this->session->data['token'] . $url, 'SSL');
         $this->data['delete'] = $this->url->link('application/content/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
         $this->data['contents'] = array();
@@ -589,6 +596,47 @@ class ControllerApplicationContent extends Controller {
         } else {
             return false;
         }
+    }
+    
+    protected function getType(){
+        
+        $this->load->model('application/content_type');
+        
+        $this->data['heading_title'] = $this->language->get('heading_title');
+        
+        $this->data['content_types'] = $this->model_application_content_type->getContentTypes();
+        
+        $this->data['entry_select_type'] = $this->language->get('entry_select_type');
+        $this->data['text_content_howto'] = $this->language->get('text_content_howto');
+        
+        $this->data['button_continue'] = $this->language->get('button_continue');
+        $this->data['button_cancel'] = $this->language->get('button_cancel');
+        
+        $this->data['breadcrumbs'] = array();
+
+        $this->data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+            'separator' => false
+        );
+
+        $this->data['breadcrumbs'][] = array(
+            'text' => $this->language->get('heading_title'),
+            'href' => $this->url->link('application/content', 'token=' . $this->session->data['token'], 'SSL'),
+            'separator' => ' :: '
+        );
+        $this->data['continue'] = $this->url->link('application/content/insert', 'token=' . $this->session->data['token'] , 'SSL');
+        $this->data['cancel'] = $this->url->link('application/content', 'token=' . $this->session->data['token'] , 'SSL');
+        
+        
+        $this->template = 'application/content_type_select_form.tpl';
+        $this->children = array(
+            'common/header',
+            'common/footer'
+        );
+
+        $this->response->setOutput($this->render());
+        
     }
 
     protected function getRevision() {
