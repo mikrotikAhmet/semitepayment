@@ -1,31 +1,64 @@
 <?php echo $header?>
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
+<?php if ($this->page->getFeatured()) { ?>
+    <div class="featured">
+        <div class="container"><?php echo $this->page->getFeatured() ?></div>
+    </div>
+<?php } else?>
+<?php if ($this->page->getPageTitle()) { ?>
+<div class="dark">
+    <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a <b>Semite Framework</b> default website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="primary-text"><?php echo $this->page->getPageTitle()?></h1>
+          <p class="secondary-text"><?php echo $this->page->getPageSubTitle()?></p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
-<div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+<?php } ?>
+<?php foreach ($page_blocks as $block) { ?>
+<section class="<?php echo $block['block_data']['class']?> <?php echo str_replace(',','',$block['block_data']['additional_classes']) ?>">
+    <div class="container">
+        <?php if ($block['block_data']['show_title']) { ?>
+        <header class="<?php echo $block['block_data']['class']?>-header">
+            <?php if($block['block_data']['show_image']) { ?>
+            <figure class="text-center"><img src="<?php echo $block['block_data']['image']?>" alt="bitcoin" width="150"></figure>
+            <?php } ?>
+            <?php if($block['block_data']['show_title']) { ?>
+                <h2><?php echo $block['block_data']['title']?></h2>
+            <?php } ?>
+            <?php if($block['block_data']['show_sub_title']) { ?>
+            <p class="lead"><?php echo $block['block_data']['sub_title']?></p>
+            <?php } ?>
+        </header>
+        <?php } ?>
+        <?php foreach ($block['block_unit_data']['block_unit'] as $block_unit) { 
+            $subjects = unserialize($block_unit['subject']);
+        ?>
+        <div class="<?php echo $block_unit['class']?> <?php echo $block_unit['additional_class']?>">
+            <?php if ($subjects) { ?>
+            <?php foreach ($subjects as $subject) { ?>
+            <div class="<?php echo $subject['column']?>">
+                <?php $this->content->setContent($subject['subject_id'])?>
+                <?php if (empty($block_unit['additional_class'])) { ?>
+                    <span><img src="<?php echo $this->content->getImage()?>"></span>
+                <?php } else { ?>
+                    <span class="img-responsive wow fade-in-up animated" style="visibility: visible;"><img src="<?php echo $this->content->getImage(273,199)?>"></span>
+                <?php } ?>
+                <?php if ($this->content->getTitle()) { ?>
+                <h3 class="h4"><?php echo $this->content->getTitle()?></h3>
+                <?php } ?>
+                <?php if ($this->content->getContent()) { ?>
+                <p><?php echo $this->content->getContent()?></p>
+                <?php } ?>
+            </div>
+            <?php } ?>
+            <?php } ?>
         </div>
-        <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
+        <?php } ?>
     </div>
-    </div>
-    <?php echo $footer?>
+</section>
+<?php } ?>
+<?php echo $footer?>

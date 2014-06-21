@@ -12,10 +12,13 @@
 
         <!-- Bootstrap core CSS -->
         <link href="public/view/theme/default/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- Fonts -->
+        <link href='//fonts.googleapis.com/css?family=Ubuntu+Mono:700|Ubuntu:300,400,400italic,500' rel='stylesheet' type='text/css'>
 
         <!-- Custom styles for this template -->
         <link href="jumbotron.css" rel="stylesheet">
-
+        <link href="public/view/theme/default/css/main.css" rel="stylesheet">
         <!-- Just for debugging purposes. Don't actually copy this line! -->
         <!--[if lt IE 9]><script src="public/view/theme/default/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -28,25 +31,34 @@
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <?php if (!$logo) { ?>
+                            <a class="navbar-brand" href="<?php echo $home?>" title="<?php echo $name?>"><?php echo $name?></a>
+                            <?php } else { ?>
+                            <a href="<?php echo $home?>" title="<?php echo $name?>"><img style="padding: 5px 0px;" src="<?php echo $logo?>"/></a>
+                        <?php } ?>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <?php if ($leftmenus) { ?>
+                        <ul class="nav navbar-nav">
+                            <?php foreach ($leftmenus as $leftmenu) { ?>
+                            <li class=""><a href="<?php echo $leftmenu['href']?>"><?php echo $leftmenu['title']?></a></li>
+                            <?php } ?>
+                        </ul>
+                        <?php } ?>
+                        <?php if ($rightmenus) { ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <?php foreach ($rightmenus as $rightmenu) { ?>
+                            <li class=""><a href="<?php echo $rightmenu['href']?>"><?php echo $rightmenu['title']?></a></li>
+                            <?php } ?>
+                        </ul>
+                        <?php } ?>
+                    </div>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right" role="form">
-                        <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success">Sign in</button>
-                    </form>
-                </div><!--/.navbar-collapse -->
-            </div>
         </div>
