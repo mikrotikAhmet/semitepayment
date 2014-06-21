@@ -52,6 +52,7 @@
                                             <?php } ?>
                                         </div>
                                     </div>
+                                    <?php if (in_array('description', $fields)) { ?>
                                     <div class="form-group">
                                         <label for="description" class="col-sm-2 control-label"><?php echo $entry_description; ?></label>
                                             <div class="col-sm-10">
@@ -61,6 +62,7 @@
                                                 <?php } ?>
                                             </div>
                                     </div>
+                                    <?php } ?>
                                 </div>
                                 <?php } ?>
                             </div>

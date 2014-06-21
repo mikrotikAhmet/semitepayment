@@ -151,11 +151,11 @@ class ControllerApplicationContent extends Controller {
 
         $this->getList();
     }
-    
-    public function type(){
-        
+
+    public function type() {
+
         $this->language->load('application/content_type');
-        
+
         $this->getType();
     }
 
@@ -477,12 +477,30 @@ class ControllerApplicationContent extends Controller {
         $this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
 
+        $this->load->model('application/content_type');
+        $this->data['fields'] = array();
+
         if (isset($this->request->post['type'])) {
             $this->data['type'] = $this->request->post['type'];
+            $typeFields = $this->model_application_content_type->getContentTypeFields($this->request->post['type']);
+
+            foreach ($typeFields as $field) {
+                $this->data['fields'][] = $field['field'];
+            }
         } elseif (!empty($content_info)) {
             $this->data['type'] = $content_info['type'];
+            $typeFields = $this->model_application_content_type->getContentTypeFields($content_info['type']);
+
+            foreach ($typeFields as $field) {
+                $this->data['fields'][] = $field['field'];
+            }
         } else {
             $this->data['type'] = $_COOKIE['content_type'];
+            $typeFields = $this->model_application_content_type->getContentTypeFields($_COOKIE['content_type']);
+
+            foreach ($typeFields as $field) {
+                $this->data['fields'][] = $field['field'];
+            }
         }
 
         if (isset($this->request->post['status'])) {
@@ -557,14 +575,25 @@ class ControllerApplicationContent extends Controller {
         if (!$this->user->hasPermission('modify', 'application/content')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
+        
+        $this->load->model('application/content_type');
 
         foreach ($this->request->post['content_description'] as $language_id => $value) {
             if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 255)) {
                 $this->error['title'][$language_id] = $this->language->get('error_title');
             }
+            
+            $typeFields = $this->model_application_content_type->getContentTypeFields($this->request->post['type']);
 
-            if (utf8_strlen($value['description']) < 3) {
-                $this->error['description'][$language_id] = $this->language->get('error_description');
+            foreach ($typeFields as $field) {
+                $fields[] = $field['field'];
+            }
+            
+            if (in_array('description', $fields)){
+            
+                if (utf8_strlen($value['description']) < 3) {
+                    $this->error['description'][$language_id] = $this->language->get('error_description');
+                }
             }
         }
 
@@ -594,21 +623,21 @@ class ControllerApplicationContent extends Controller {
             return false;
         }
     }
-    
-    protected function getType(){
-        
+
+    protected function getType() {
+
         $this->load->model('application/content_type');
-        
+
         $this->data['heading_title'] = $this->language->get('heading_title');
-        
+
         $this->data['content_types'] = $this->model_application_content_type->getContentTypes();
-        
+
         $this->data['entry_select_type'] = $this->language->get('entry_select_type');
         $this->data['text_content_howto'] = $this->language->get('text_content_howto');
-        
+
         $this->data['button_continue'] = $this->language->get('button_continue');
         $this->data['button_cancel'] = $this->language->get('button_cancel');
-        
+
         $this->data['breadcrumbs'] = array();
 
         $this->data['breadcrumbs'][] = array(
@@ -622,20 +651,19 @@ class ControllerApplicationContent extends Controller {
             'href' => $this->url->link('application/content', 'token=' . $this->session->data['token'], 'SSL'),
             'separator' => ' :: '
         );
-        $this->data['continue'] = $this->url->link('application/content/insert', 'token=' . $this->session->data['token'] , 'SSL');
-        $this->data['cancel'] = $this->url->link('application/content', 'token=' . $this->session->data['token'] , 'SSL');
-        
+        $this->data['continue'] = $this->url->link('application/content/insert', 'token=' . $this->session->data['token'], 'SSL');
+        $this->data['cancel'] = $this->url->link('application/content', 'token=' . $this->session->data['token'], 'SSL');
+
         $this->data['token'] = $this->session->data['token'];
-        
+
         $this->template = 'application/content_type_select_form.tpl';
         $this->children = array(
             'common/header',
             'common/footer'
         );
-        
+
 
         $this->response->setOutput($this->render());
-        
     }
 
     protected function getRevision() {
@@ -701,7 +729,7 @@ class ControllerApplicationContent extends Controller {
         $json = array();
 
         if (isset($this->request->get['filter_title'])) {
-            
+
             $this->load->model('application/content');
 
             if (isset($this->request->get['filter_title'])) {
