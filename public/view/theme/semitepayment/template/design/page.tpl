@@ -55,7 +55,4 @@
     </div>
 </section>
 <?php } ?>
-<pre>
-<?php print_r(unserialize($page_blocks[1]['block_unit_data']['block_unit'][0]['subject']))?>
-</pre>
 <?php echo $footer?>

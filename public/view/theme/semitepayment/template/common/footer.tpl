@@ -1,3 +1,16 @@
+<footer class="section-block">
+  <div class="container text-center">
+    <a class="footer-link " href="/team">Team</a>
+    <a class="footer-link " href="/media" data-no-instant>Media</a>
+    <a class="footer-link" href="https://support.bitpay.com/">Support</a>
+    
+    <a class="footer-link " href="/legal">Legal</a>
+    <a class="footer-link " href="/developers">Developers</a>
+    <a class="footer-link " href="/pricing">Pricing</a>
+    <a class="footer-link" href="http://blog.bitpay.com/" data-no-instant>Blog</a>
+    <a class="footer-link" href="/start" data-no-instant>Sign Up</a>
+  </div>
+</footer>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

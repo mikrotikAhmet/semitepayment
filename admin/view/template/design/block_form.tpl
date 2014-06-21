@@ -123,6 +123,7 @@
                             <div class="tab-pane fade in" id="tab_block_content">
                                 <div class="tabbable page-tabs">
                                     <div class="vtabs">
+                                        <?php $subject_row = 0; ?>
                                         <?php $unit_row = 0; ?>
                                         <?php if ($units) { ?>
                                             <?php foreach ($units as $unit) { ?>
@@ -271,6 +272,25 @@ function addUnit() {
         html +='</tr>';
         
         html +='</table>';
+        
+        html +='<br />';
+        html +='<div class="table-responsive">';
+        html +='<table id="subject-'+unit_row+'" class="table table-hover">';
+        html +='<thead>';
+        html +='    <tr>';
+        html +='        <th class="left"><?php echo $entry_subject; ?></th>';
+        html +='        <th class="left">Subject Column</th>';
+        html +='        <th></th>';
+        html +='    </tr>';
+        html +='</thead>';
+        html +='<tfoot>';
+        html +='    <tr>';
+        html +='        <td colspan="2"></td>';
+        html +='        <td class="left"><a onclick="addSubject(\''+unit_row+'\');" class="btn btn-primary"><?php echo $button_add_subject; ?></a></td>';
+        html +='    </tr>';
+        html +='</tfoot>';
+        html +='</table>';
+        html +='</div>';
         
 	html += '</div>';
 	
