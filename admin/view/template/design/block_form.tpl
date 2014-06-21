@@ -124,7 +124,6 @@
                                 <div class="tabbable page-tabs">
                                     <div class="vtabs">
                                         <?php $unit_row = 0; ?>
-                                        <?php $subject_row = 0; ?>
                                         <?php if ($units) { ?>
                                             <?php foreach ($units as $unit) { ?>
                                             <a href="#tab-unit-<?php echo $unit_row; ?>" id="unit-<?php echo $unit_row; ?>"><?php echo $tab_unit . ' ' . $unit_row; ?>&nbsp;<img src="view/images/custom/delete.png" alt="" onclick="$('.vtabs a:first').trigger('click'); $('#unit-<?php echo $unit_row; ?>').remove(); $('#tab-unit-<?php echo $unit_row; ?>').remove(); return false;" /></a>
@@ -135,7 +134,6 @@
                                     </div>
                                     <div class="unit-form">
                                         <?php $unit_row = 0; ?>
-                                        <?php $subject_row = 0; ?>
                                         <?php if ($units) { ?>
                                         <?php foreach ($units as $unit) { ?>
                                         <div id="tab-unit-<?php echo $unit_row; ?>" class="vtabs-content">
@@ -182,7 +180,7 @@
                                                         </tr>
                                                     </thead>
                                                     <?php $subject_row = 0; ?>
-                                                    <?php foreach ($unit_subjects as $unit_subject) { ?>
+                                                    <?php foreach ($unit_subjects[$unit_row] as $unit_subject) { ?>
                                                     <tbody id="subject-row-<?php echo $unit_row?>-<?php echo $subject_row; ?>">
                                                         <tr>
                                                             <td><select name="subject[<?php echo $unit_row?>][<?php echo $subject_row?>][subject_id]" class="form-control">
