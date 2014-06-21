@@ -19,3 +19,12 @@
 .featured .container {
     max-width: 100%;
 }
+
+.overlay-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.overlay-header-header-topic {
+    text-transform: uppercase;
+}
+

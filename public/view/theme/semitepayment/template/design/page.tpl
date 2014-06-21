@@ -3,7 +3,7 @@
     <div class="featured">
         <div class="container"><?php echo $this->page->getFeatured() ?></div>
     </div>
-<?php } ?>
+<?php } else?>
 <?php if ($this->page->getPageTitle()) { ?>
 <div class="dark">
     <div class="jumbotron">
@@ -21,6 +21,7 @@
 <?php foreach ($page_blocks as $block) { ?>
 <section class="<?php echo $block['block_data']['class']?> <?php echo str_replace(',','',$block['block_data']['additional_classes']) ?>">
     <div class="container">
+        <?php if ($block['block_data']['show_title']) { ?>
         <header class="<?php echo $block['block_data']['class']?>-header">
             <?php if($block['block_data']['show_image']) { ?>
             <figure class="text-center"><img src="<?php echo $block['block_data']['image']?>" alt="bitcoin" width="150"></figure>
@@ -32,6 +33,7 @@
             <p class="lead"><?php echo $block['block_data']['sub_title']?></p>
             <?php } ?>
         </header>
+        <?php } ?>
         <?php foreach ($block['block_unit_data']['block_unit'] as $block_unit) { 
             $subjects = unserialize($block_unit['subject']);
         ?>
@@ -45,8 +47,12 @@
                 <?php } else { ?>
                     <span class="img-responsive wow fade-in-up animated" style="visibility: visible;"><img src="<?php echo $this->content->getImage(273,199)?>"></span>
                 <?php } ?>
+                <?php if ($this->content->getTitle()) { ?>
                 <h3 class="h4"><?php echo $this->content->getTitle()?></h3>
+                <?php } ?>
+                <?php if ($this->content->getContent()) { ?>
                 <p><?php echo $this->content->getContent()?></p>
+                <?php } ?>
             </div>
             <?php } ?>
             <?php } ?>

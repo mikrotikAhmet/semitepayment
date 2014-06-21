@@ -68,12 +68,16 @@ class Content {
 
         if ($this->getType('title')){
             return $this->content_data->row['title'];
+        } else {
+            return false;
         }
     }
 
     public function getContent() {
         if ($this->getType('description')){
             return html_entity_decode($this->content_data->row['description'], ENT_QUOTES, 'UTF-8');
+        } else {
+            return false;
         }
     }
     
@@ -86,6 +90,8 @@ class Content {
                 }
 
             return $this->image;
+        } else {
+            return false;
         }
     }
 
