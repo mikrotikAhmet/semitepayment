@@ -59,6 +59,9 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_pages'] = $this->language->get('text_pages');
             $this->data['text_block'] = $this->language->get('text_block');
             $this->data['text_menu'] = $this->language->get('text_menu');
+        // Extension Menu
+            $this->data['text_extension'] = $this->language->get('text_extension');
+            $this->data['text_module'] = $this->language->get('text_module');
         //System Menu
             $this->data['text_system'] = $this->language->get('text_system');
             $this->data['text_setting'] = $this->language->get('text_setting');
@@ -101,6 +104,8 @@ class ControllerCommonHeader extends Controller{
             // Application Menu
                 $this->data['content'] = $this->url->link('application/content', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['content_type'] = $this->url->link('application/content_type', 'token=' . $this->session->data['token'], 'SSL');
+            // Extension Menu
+                $this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
             // System Menu
                 $this->data['setting'] = $this->url->link('setting/application', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');

@@ -7224,4 +7224,23 @@ li.plupload_droptext {
 color: #4f4f4f;
 }
 
+/* LIST GROUP ITEMS */
+
+.list-group-item {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    cursor: pointer;
+}
+
+.buttons{
+position: absolute;
+top: 15px;
+right: 3px;
+}
+
+.list-group-item:hover {
+    z-index: 2;
+    background: #eee;
+}
+
 

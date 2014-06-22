@@ -178,6 +178,7 @@ class ModelDesignPage extends Model {
         $this->db->query("DELETE FROM " . DB_PREFIX . "page_description WHERE page_id = '" . (int) $page_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "page_to_layout WHERE page_id = '" . (int) $page_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "page_to_block WHERE page_id = '" . (int) $page_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "page_to_application WHERE page_id = '" . (int) $page_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'page_id=" . (int) $page_id . "'");
     }
 

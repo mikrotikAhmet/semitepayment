@@ -21,6 +21,10 @@ $_['text_dashboard']                   = 'Dashboard';
 $_['text_content'] = 'Contents';
 $_['text_content_type'] = 'Content Types';
 
+// Extension Menu
+$_['text_extension'] = 'Extensions';
+$_['text_module'] = 'Modules';
+
 // System Menu
 $_['text_system'] = 'System';
 $_['text_setting'] = 'Settings';

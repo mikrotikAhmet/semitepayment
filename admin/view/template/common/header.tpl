@@ -311,6 +311,12 @@
                                 </li>
                             </ul>
                         </li>
+                        <li id="extension">
+                            <a href="#"><span><?php echo $text_extension?></span> <i class="icon-picassa"></i></a>
+                            <ul>
+                                <li id="module"><a href="<?php echo $module?>"><i class="icon-puzzle4"></i><span> <?php echo $text_module ?></span></a></li>
+                            </ul>
+                        </li>
                         <li id="system">
                             <a href="#"><span><?php echo $text_system?></span> <i class="icon-cogs"></i></a>
                             <ul>
