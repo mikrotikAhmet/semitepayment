@@ -44,7 +44,15 @@ class ControllerModuleRegistration extends Controller{
     
     protected function index(){
         
-//        echo __METHOD__;
+        $this->language->load('module/registration');
+        
+         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/registration.tpl')) {
+            $this->template = $this->config->get('config_template') . '/template/module/registration.tpl';
+        } else {
+            $this->template = 'default/template/module/registration.tpl';
+        }
+
+        $this->render();
     }
 }
 
