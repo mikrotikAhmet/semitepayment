@@ -138,7 +138,8 @@ $classes['library'] = array(
     'pagination',
     'image',
     'encryption',
-    'content');
+    'content',
+    'module');
 
 if ((isset($classes)) && is_array($classes)) {
 

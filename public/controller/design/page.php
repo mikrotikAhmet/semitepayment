@@ -45,7 +45,7 @@ class ControllerDesignPage extends Controller {
     public $page_info = array();
 
     public function index() {
-
+        
         $this->page_info = $this->page->getPage();
         
         if ($this->page_info) {
@@ -121,7 +121,8 @@ class ControllerDesignPage extends Controller {
 
         $this->children = array(
             'common/footer',
-            'common/header'
+            'common/header',
+            'common/module'
         );
 
         $this->response->setOutput($this->render());

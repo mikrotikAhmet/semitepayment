@@ -185,8 +185,18 @@
                                                     <?php foreach ($unit_subjects[$unit_row] as $unit_subject) { ?>
                                                     <tbody id="subject-row-<?php echo $unit_row?>-<?php echo $subject_row; ?>">
                                                         <tr>
-                                                            <td></td>
-                                                            <td><select name="subject[<?php echo $unit_row?>][<?php echo $subject_row?>][subject_id]" class="form-control">
+                                                            <td><select name="subject[<?php echo $unit_row?>][<?php echo $subject_row?>][type]" class="form-control" onchange="getType(this.value,<?php echo $unit_row?>,<?php echo $subject_row?>)">
+                                                                    <option value=""></option>
+                                                                    <?php if ($unit_subject['type'] == 'content') { ?>
+                                                                    <option value="content" selected="selected">Content</option>
+                                                                    <option value="module">Module</option>
+                                                                    <?php } elseif ($unit_subject['type'] == 'module') { ?>
+                                                                    <option value="content">Content</option>
+                                                                    <option value="module" selected="selected">Module</option>
+                                                                    <?php } ?>
+                                                                </select></td>
+                                                                <?php if ($unit_subject['type'] == 'content') { ?>
+                                                            <td><select name="subject[<?php echo $unit_row?>][<?php echo $subject_row?>][subject_id]" class="form-control" id="subject-<?php echo $unit_row?>-<?php echo $subject_row?>">
                                                                     <?php foreach ($contents as $content) { ?>
                                                                     <?php if ($unit_subject['subject_id'] == $content['content_id']) { ?>
                                                                     <option value="<?php echo $content['content_id']?>" selected="selected"><?php echo $content['title']?></option>
@@ -195,6 +205,17 @@
                                                                     <?php } ?>
                                                                     <?php } ?>
                                                                 </select></td>
+                                                                <?php } elseif ($unit_subject['type'] == 'module') { ?>
+                                                                <td><select name="subject[<?php echo $unit_row?>][<?php echo $subject_row?>][subject_id]" class="form-control" id="subject-<?php echo $unit_row?>-<?php echo $subject_row?>">
+                                                                    <?php foreach ($extensions as $extension) { ?>
+                                                                    <?php if ($unit_subject['subject_id'] == $extension['subject_id']) { ?>
+                                                                    <option value="<?php echo $extension['subject_id']?>" selected="selected"><?php echo $extension['title']?></option>
+                                                                    <?php } else { ?>
+                                                                    <option value="<?php echo $extension['subject_id']?>" ><?php echo $extension['title']?></option>
+                                                                    <?php } ?>
+                                                                    <?php } ?>
+                                                                </select></td>
+                                                                <?php } ?>
                                                                 <td><input type="text" name="subject[<?php echo $unit_row?>][<?php echo $subject_row?>][column]" class="form-control" value="<?php echo $unit_subject['column']?>"/></td>
                                                             <td class="left"><a onclick="$('#subject-row-<?php echo $unit_row; ?>-<?php echo $subject_row; ?>').remove();" class="btn btn-danger"><?php echo $button_remove; ?></a></td>
                                                         </tr>

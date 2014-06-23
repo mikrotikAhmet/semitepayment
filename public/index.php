@@ -223,6 +223,9 @@ $registry->set('user', new User($registry));
 // Content
 $registry->set('content', new Content($registry));
 
+// Module
+$registry->set('module', new Module($registry));
+
 // Page
 $registry->set('page', new Page($registry));
 

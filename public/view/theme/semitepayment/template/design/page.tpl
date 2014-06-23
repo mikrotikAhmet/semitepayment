@@ -41,6 +41,7 @@
             <?php if ($subjects) { ?>
             <?php foreach ($subjects as $subject) { ?>
             <div class="<?php echo $subject['column']?>">
+                <?php if ($subject['type'] == 'content') { ?>
                 <?php $this->content->setContent($subject['subject_id'])?>
                 <?php if (empty($block_unit['additional_class'])) { ?>
                     <span><img src="<?php echo $this->content->getImage()?>"></span>
@@ -52,6 +53,12 @@
                 <?php } ?>
                 <?php if ($this->content->getContent()) { ?>
                 <p><?php echo $this->content->getContent()?></p>
+                <?php } ?>
+                <?php } elseif ($subject['type'] == 'module') {  ?>
+                <?php 
+                    $this->module->setModule($subject['subject_id']);
+                    echo $module;
+                ?>
                 <?php } ?>
             </div>
             <?php } ?>

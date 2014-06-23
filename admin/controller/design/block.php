@@ -466,6 +466,44 @@ class ControllerDesignBlock extends Controller {
         } else {
             $this->data['unit_subjects'] = array();
         }
+        
+        $this->load->model('setting/extension');
+        
+        $extensions = $this->model_setting_extension->getInstalled('module');
+
+            foreach ($extensions as $key => $value) {
+                if (!file_exists(DIR_APPLICATION . 'controller/module/' . $value . '.php')) {
+                    $this->model_setting_extension->uninstall('module', $value);
+
+                    unset($extensions[$key]);
+                }
+            }
+
+            $this->data['extensions'] = array();
+            
+            $files = glob(DIR_APPLICATION . 'controller/module/*.php');
+            
+            if ($files) {
+                
+                foreach ($files as $file) {
+                    
+                $extension = basename($file, '.php');
+
+                $this->language->load('module/' . $extension);
+                
+                $extension_info = $this->model_setting_extension->getExtensionByCode($extension);
+                    if (!empty($extension_info['extension_id']) || isset($extension_info['extension_id'])){
+                        $this->data['extensions'][] = array(
+                            'subject_id' => $extension_info['extension_id'],
+                            'title' => $this->language->get('heading_title')
+                        );
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        
+        
 
 
 
