@@ -175,6 +175,7 @@
                                                 <table id="subject-<?php echo $unit_row?>" class="table table-hover">
                                                     <thead>
                                                         <tr>
+                                                            <th class="left">Subject Type</th>
                                                             <th class="left"><?php echo $entry_subject; ?></th>
                                                             <th class="left">Subject Column</th>
                                                             <th></th>
@@ -184,6 +185,7 @@
                                                     <?php foreach ($unit_subjects[$unit_row] as $unit_subject) { ?>
                                                     <tbody id="subject-row-<?php echo $unit_row?>-<?php echo $subject_row; ?>">
                                                         <tr>
+                                                            <td></td>
                                                             <td><select name="subject[<?php echo $unit_row?>][<?php echo $subject_row?>][subject_id]" class="form-control">
                                                                     <?php foreach ($contents as $content) { ?>
                                                                     <?php if ($unit_subject['subject_id'] == $content['content_id']) { ?>
@@ -278,6 +280,7 @@ function addUnit() {
         html +='<table id="subject-'+unit_row+'" class="table table-hover">';
         html +='<thead>';
         html +='    <tr>';
+        html +='        <th class="left">Subject Type</th>';
         html +='        <th class="left"><?php echo $entry_subject; ?></th>';
         html +='        <th class="left">Subject Column</th>';
         html +='        <th></th>';
@@ -308,11 +311,16 @@ function addUnit() {
 function addSubject(unit) {
 html  = '<tbody id="subject-row' + unit + '-'+subject_row+'">';
 	html += '  <tr>';
+        html +='<td class="left"><div class="col-sm-10">';
+        html +='<select name="subject['+unit+']['+subject_row+'][type]" id="type" class="form-control" onchange="getType(this.value,\''+unit_row+'\',\''+subject_row+'\')">';
+        html +='<option value=""></option>';
+        html +='<option value="content">Content</option>';
+        html +='<option value="module">Module</option>';
+        html +='</select>';
+        html +='</div></td>';
 	html += '    <td class="left"><div class="col-sm-10">';
-        html +='<select name="subject['+unit+']['+subject_row+'][subject_id]" class="form-control">';
-        <?php foreach ($contents as $content) { ?>
-        html +='<option value="<?php echo $content['content_id']?>"><?php echo $content['title']?></option>';
-        <?php } ?>
+        html +='<select name="subject['+unit+']['+subject_row+'][subject_id]" class="form-control" id="subject-'+unit_row+'-'+subject_row+'">';
+        html +='<option value=""><?php echo $text_select?></option>';
         html +='</select>';
         html +='</div></td>';
 	html += '    <td class="left"><div class="col-sm-10">';
@@ -329,6 +337,36 @@ html  = '<tbody id="subject-row' + unit + '-'+subject_row+'">';
 //--></script>
 <script type="text/javascript"><!--
   
+function getType(value,unit,subject){
+    $.ajax({
+		url: 'index.php?route=design/block/getType&token=<?php echo $token; ?>&type=' + value,
+		dataType: 'json',
+		beforeSend: function() {
+		},		
+		complete: function() {
+		},			
+		success: function(json) {
+			
+			html = '<option value=""><?php echo $text_select; ?></option>';
+			
+			if (json != '') {
+				for (i = 0; i < json.length; i++) {
+        			html += '<option value="' + json[i]['subject_id'] + '"';
+	
+	    			html += '>' + json[i]['title'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+			
+			$('#subject-'+unit+'-'+subject).html(html);
+                
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+    }
     
 function image_upload(field, thumb) {
 	$('#dialog').remove();

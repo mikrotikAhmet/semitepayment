@@ -18,16 +18,17 @@
 
 /**
  * @package     Semite LLC
- * @version     $Id: authentication.php Jun 22, 2014 ahmet
+ * @version     $Id: registration.php Jun 23, 2014 ahmet
  * @copyright   Copyright (c) 2014 Semite LLC .
  * @license     http://www.semitepayment.com/license/
  */
 /**
- * Description of authentication.php
+ * Description of registration.php
  *
  * @author ahmet
  */
 // Heading Title
-$_['heading_title'] = 'Authentication Module';
-$_['module_description'] = 'This module handles the site authentication.<br/>Site login form is fully customizable.';
+$_['heading_title'] = 'Registration Module';
+$_['module_description'] = 'This module handles the site registration.<br/>Registration form is fully customizable.';
+
 

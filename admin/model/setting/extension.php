@@ -53,6 +53,12 @@ class ModelSettingExtension extends Model {
 
         return $extension_data;
     }
+    
+    public function getExtensionByCode($code){
+        $result = $this->db->query("SELECT * FROM ".DB_PREFIX."extension WHERE `code` = '".$this->db->escape($code)."'");
+        
+        return $result->row;
+    }
 
     public function install($type, $code) {
         $this->db->query("INSERT INTO " . DB_PREFIX . "extension SET `type` = '" . $this->db->escape($type) . "', `code` = '" . $this->db->escape($code) . "'");

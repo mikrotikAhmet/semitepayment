@@ -282,6 +282,7 @@ class ControllerDesignBlock extends Controller {
 
         $this->data['text_default'] = $this->language->get('text_default');
         $this->data['text_select'] = $this->language->get('text_select');
+        $this->data['text_none'] = $this->language->get('text_none');
         $this->data['text_image_manager'] = $this->language->get('text_image_manager');
         $this->data['text_browse'] = $this->language->get('text_browse');
         $this->data['text_clear'] = $this->language->get('text_clear');
@@ -295,7 +296,7 @@ class ControllerDesignBlock extends Controller {
         $this->data['entry_show_title'] = $this->language->get('entry_show_title');
         $this->data['entry_show_sub_title'] = $this->language->get('entry_show_sub_title');
         $this->data['entry_description'] = $this->language->get('entry_description');
-        
+
         $this->data['entry_subject'] = $this->language->get('entry_subject');
         $this->data['entry_unit_class'] = $this->language->get('entry_unit_class');
         $this->data['entry_unit_additional_class'] = $this->language->get('entry_unit_additional_class');
@@ -377,7 +378,7 @@ class ControllerDesignBlock extends Controller {
         } else {
             $this->data['block_description'] = array();
         }
-        
+
         if (isset($this->request->post['image'])) {
             $this->data['image'] = $this->request->post['image'];
         } elseif (!empty($block_info)) {
@@ -397,7 +398,7 @@ class ControllerDesignBlock extends Controller {
         }
 
         $this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
-        
+
         if (isset($this->request->post['class'])) {
             $this->data['class'] = $this->request->post['class'];
         } elseif (!empty($block_info)) {
@@ -413,7 +414,7 @@ class ControllerDesignBlock extends Controller {
         } else {
             $this->data['additional_classes'] = '';
         }
-        
+
         if (isset($this->request->post['show_image'])) {
             $this->data['show_image'] = $this->request->post['show_image'];
         } elseif (!empty($block_info)) {
@@ -421,7 +422,7 @@ class ControllerDesignBlock extends Controller {
         } else {
             $this->data['show_image'] = 0;
         }
-        
+
         if (isset($this->request->post['show_title'])) {
             $this->data['show_title'] = $this->request->post['show_title'];
         } elseif (!empty($block_info)) {
@@ -429,7 +430,7 @@ class ControllerDesignBlock extends Controller {
         } else {
             $this->data['show_title'] = 0;
         }
-        
+
         if (isset($this->request->post['show_sub_title'])) {
             $this->data['show_sub_title'] = $this->request->post['show_sub_title'];
         } elseif (!empty($block_info)) {
@@ -437,7 +438,7 @@ class ControllerDesignBlock extends Controller {
         } else {
             $this->data['show_sub_title'] = 0;
         }
-        
+
         if (isset($this->request->post['units'])) {
             $this->data['units'] = $this->request->post['units'];
         } elseif (!empty($block_info)) {
@@ -445,30 +446,29 @@ class ControllerDesignBlock extends Controller {
         } else {
             $this->data['units'] = array();
         }
-        
+
         $this->load->model('application/content');
-        
+
         $this->data['contents'] = $this->model_application_content->getContents();
-        
+
         $this->data['unit_subjects'] = array();
-        
+
         if (isset($this->request->post['subject'])) {
             $this->data['unit_subjects'] = $this->request->post['subject'];
         } elseif (!empty($block_info)) {
             $units = $this->model_design_block->getUnitsByBlockId($block_info['block_id']);
             $subjects = array();
-            
+
             foreach ($units as $unit) {
                 $subjects[] = (!empty($unit['subject']) ? unserialize($unit['subject']) : null);
-                
             }
             $this->data['unit_subjects'] = $subjects;
         } else {
             $this->data['unit_subjects'] = array();
         }
-        
 
-        
+
+
         $this->template = 'design/block_form.tpl';
         $this->children = array(
             'common/header',
@@ -500,11 +500,11 @@ class ControllerDesignBlock extends Controller {
         if (!$this->user->hasPermission('modify', 'design/block')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
-        
+
         $this->load->model('design/page');
-        
+
         foreach ($this->request->post['selected'] as $block_id) {
-            
+
             $page_total = $this->model_design_page->getTotalPagesByBlockId($block_id);
 
             if ($page_total) {
@@ -517,6 +517,70 @@ class ControllerDesignBlock extends Controller {
         } else {
             return false;
         }
+    }
+
+    public function getType() {
+
+        $json = array();
+
+        $type = $this->request->get['type'];
+
+        if ($type == 'content') {
+
+            $this->load->model('application/content');
+
+            $contents = $this->model_application_content->getContents();
+
+            if ($contents) {
+
+                foreach ($contents as $content) {
+
+                    $json[] = array(
+                        'subject_id' => $content['content_id'],
+                        'title' => $content['title']
+                    );
+                }
+            }
+        } elseif ($type == 'module') {
+
+            $this->load->model('setting/extension');
+
+            $extensions = $this->model_setting_extension->getInstalled('module');
+
+            foreach ($extensions as $key => $value) {
+                if (!file_exists(DIR_APPLICATION . 'controller/module/' . $value . '.php')) {
+                    $this->model_setting_extension->uninstall('module', $value);
+
+                    unset($extensions[$key]);
+                }
+            }
+
+            $this->data['extensions'] = array();
+            
+            $files = glob(DIR_APPLICATION . 'controller/module/*.php');
+            
+            if ($files) {
+                
+                foreach ($files as $file) {
+                    
+                $extension = basename($file, '.php');
+
+                $this->language->load('module/' . $extension);
+                
+                $extension_info = $this->model_setting_extension->getExtensionByCode($extension);
+                    if (!empty($extension_info['extension_id']) || isset($extension_info['extension_id'])){
+                        $json[] = array(
+                            'subject_id' => $extension_info['extension_id'],
+                            'title' => $this->language->get('heading_title')
+                        );
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        $this->response->setOutput(json_encode($json));
     }
 
 }
