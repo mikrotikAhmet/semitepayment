@@ -28,3 +28,10 @@
     text-transform: uppercase;
 }
 
+/*
+    Register Form
+*/
+#apply{
+    font-size: 14px;
+    font-weight: normal;
+}
