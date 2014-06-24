@@ -56,9 +56,8 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_application'] = $this->config->get('config_name');
             $this->data['text_content'] = $this->language->get('text_content');
             $this->data['text_content_type'] = $this->language->get('text_content_type');
-            $this->data['text_pages'] = $this->language->get('text_pages');
-            $this->data['text_block'] = $this->language->get('text_block');
-            $this->data['text_menu'] = $this->language->get('text_menu');
+            $this->data['text_task_manager'] = $this->language->get('text_task_manager');
+            $this->data['text_task'] = $this->language->get('text_task');
         // Extension Menu
             $this->data['text_extension'] = $this->language->get('text_extension');
             $this->data['text_module'] = $this->language->get('text_module');
@@ -69,6 +68,9 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_layout'] = $this->language->get('text_layout');
             $this->data['text_page'] = $this->language->get('text_page');
             $this->data['text_add_new'] = $this->language->get('text_add_new');
+            $this->data['text_pages'] = $this->language->get('text_pages');
+            $this->data['text_block'] = $this->language->get('text_block');
+            $this->data['text_menu'] = $this->language->get('text_menu');
             $this->data['text_users'] = $this->language->get('text_users');
             $this->data['text_user'] = $this->language->get('text_user');
             $this->data['text_user_group'] = $this->language->get('text_user_group');
@@ -104,6 +106,7 @@ class ControllerCommonHeader extends Controller{
             // Application Menu
                 $this->data['content'] = $this->url->link('application/content', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['content_type'] = $this->url->link('application/content_type', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['task'] = $this->url->link('application/task', 'token=' . $this->session->data['token'], 'SSL');
             // Extension Menu
                 $this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
             // System Menu

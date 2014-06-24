@@ -32,5 +32,9 @@
     Register Form
 */
 .start{
-    background: #fff;
+    margin: 0px;
+    text-align: left;
+    background-color: #FFF;
+    box-shadow: 0 0 1px #ddd;
+    border-radius: 4px;
 }

@@ -319,6 +319,11 @@
                                         <li id="content_type"><a href="<?php echo $content_type?>"><?php echo $text_content_type?></a></li>
                                     </ul>
                                 </li>
+                                <li id="task"><a href="#"><i class="icon-numbered-list"></i><span> <?php echo $text_task_manager ?></span></a>
+                                    <ul>
+                                        <li id="task"><a href="<?php echo $task?>"><?php echo $text_task?></a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li id="extension">
