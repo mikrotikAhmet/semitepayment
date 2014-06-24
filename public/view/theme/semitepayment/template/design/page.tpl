@@ -43,10 +43,12 @@
             <div class="<?php echo $subject['column']?>">
                 <?php if ($subject['type'] == 'content') { ?>
                 <?php $this->content->setContent($subject['subject_id'])?>
+                <?php if ($this->content->getImage()) { ?>
                 <?php if (empty($block_unit['additional_class'])) { ?>
                     <span><img src="<?php echo $this->content->getImage()?>"></span>
                 <?php } else { ?>
                     <span class="img-responsive wow fade-in-up animated" style="visibility: visible;"><img src="<?php echo $this->content->getImage(273,199)?>"></span>
+                <?php } ?>
                 <?php } ?>
                 <?php if ($this->content->getTitle()) { ?>
                 <h3 class="h4"><?php echo $this->content->getTitle()?></h3>
@@ -57,7 +59,6 @@
                 <?php } elseif ($subject['type'] == 'module') {  ?>
                 <?php 
                     $this->module->setModule($subject['subject_id']);
-                    echo $module;
                 ?>
                 <?php } ?>
             </div>

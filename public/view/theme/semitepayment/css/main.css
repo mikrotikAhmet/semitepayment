@@ -31,7 +31,6 @@
 /*
     Register Form
 */
-#apply{
-    font-size: 14px;
-    font-weight: normal;
+.start{
+    background: #fff;
 }

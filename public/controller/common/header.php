@@ -43,6 +43,7 @@ if (!defined('DIR_APPLICATION'))
 class ControllerCommonHeader extends Controller {
 
     protected function index() {
+               
         $this->data['title'] = $this->document->getTitle();
 
         if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {

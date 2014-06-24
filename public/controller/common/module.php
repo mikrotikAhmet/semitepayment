@@ -44,7 +44,7 @@ class ControllerCommonModule extends Controller{
     
     protected function index() {
         
-        $module = $this->getChild('module/registration');
+        $module = $this->getChild('module/'.$this->module->getModule());
         
         if ($module) {
                 $this->data['module'] = $module;

@@ -36,29 +36,23 @@ if (!defined('DIR_APPLICATION'))
  */
 
 /*
- * Semite LLC module Class
+ * Semite LLC authentication Class
  * Date : Jun 23, 2014
  */
 
-class Module {
+class ControllerModuleAuthentication extends Controller{
     
-    private $block_module;
-    
-    public function __construct($registry) {
-        $this->db = $registry->get('db');
-        $this->config = $registry->get('config');
-    }
-    
-    public function setModule($code) {
+    protected function index(){
         
-        $result = $this->db->query("SELECT * FROM ".DB_PREFIX."extension WHERE extension_id = '".(int) $code."'");
+        $this->language->load('module/authentication');
         
-        $this->getModule($result);
-        
-    }
-    
-    public function getModule($module){
-        return $module->row['code'];
+         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/authentication.tpl')) {
+            $this->template = $this->config->get('config_template') . '/template/module/authentication.tpl';
+        } else {
+            $this->template = 'default/template/module/authentication.tpl';
+        }
+
+        $this->render();
     }
 }
 
