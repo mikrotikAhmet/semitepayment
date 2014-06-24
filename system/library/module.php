@@ -53,12 +53,12 @@ class Module {
         
         $result = $this->db->query("SELECT * FROM ".DB_PREFIX."extension WHERE extension_id = '".(int) $code."'");
         
-        $this->getModule($result);
+        $this->block_module = $result->row['code'];
         
     }
     
-    public function getModule($module){
-        return $module->row['code'];
+    public function getModule(){
+        return $this->block_module;
     }
 }
 

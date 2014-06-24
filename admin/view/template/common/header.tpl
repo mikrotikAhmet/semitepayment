@@ -236,7 +236,17 @@
                         </table>
                     </div>
                 </li>
-
+                <li class="user dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <span><?php echo $text_help?></span>
+                        <i class="caret"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right icons-right">
+                        <li><a href="<?php echo $documentation?>"><i class="icon-quill"></i> <?php echo $text_documentation?></a></li>
+                        <li><a href="<?php echo $support?>"><i class="icon-support"></i> <?php echo $text_support?></a></li>
+                        <li><a href="<?php echo $front?>" target="_blank"><i class="icon-home2"></i> <?php echo $text_front?></a></li>
+                    </ul>
+                </li>
                 <li class="user dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?php echo $avatar?>" alt="">

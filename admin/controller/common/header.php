@@ -87,8 +87,8 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_semitepayment'] = $this->language->get('text_semitepayment');
             $this->data['text_documentation'] = $this->language->get('text_documentation');
             $this->data['text_support'] = $this->language->get('text_support');
-        $this->data['text_logout'] = $this->language->get('text_logout');
-        $this->data['text_front'] = sprintf($this->language->get('text_front'),$this->config->get('config_name'));
+            $this->data['text_logout'] = $this->language->get('text_logout');
+            $this->data['text_front'] = sprintf($this->language->get('text_front'),$this->config->get('config_name'));
         
 
         if (!$this->user->isLogged() || !isset($this->request->get['token']) || !isset($this->session->data['token']) || ($this->request->get['token'] != $this->session->data['token'])) {
@@ -128,8 +128,8 @@ class ControllerCommonHeader extends Controller{
                 $this->data['semitepayment'] = HTTPS_PUBLIC;
                 $this->data['documentation'] = HTTP_DOCUMENTATION;
                 $this->data['support'] = HTTP_SUPPORT;
-            $this->data['front'] = HTTP_PUBLIC;
-            $this->data['logout'] = $this->url->link('common/logout', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['front'] = HTTP_PUBLIC;
+                $this->data['logout'] = $this->url->link('common/logout', 'token=' . $this->session->data['token'], 'SSL');
         }
 
 

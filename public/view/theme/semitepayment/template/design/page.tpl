@@ -58,7 +58,14 @@
                 <?php } ?>
                 <?php } elseif ($subject['type'] == 'module') {  ?>
                 <?php 
-                    $this->module->setModule($subject['subject_id']);
+                    if ($modules){
+                        foreach ($modules as $key=>$module){
+                            
+                                echo $module;
+                                $modules = array();
+                            
+                        }
+                    }
                 ?>
                 <?php } ?>
             </div>
