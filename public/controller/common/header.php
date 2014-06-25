@@ -43,7 +43,7 @@ if (!defined('DIR_APPLICATION'))
 class ControllerCommonHeader extends Controller {
 
     protected function index() {
-               
+
         $this->data['title'] = $this->document->getTitle();
 
         if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
@@ -113,22 +113,22 @@ class ControllerCommonHeader extends Controller {
         foreach ($menus as $menu) {
 
             $link = $this->url->link('design/page', $menu['page_link']);
+            if (!$menu['bottom']) {
+                if ($menu['position'] == 'left') {
 
-            if ($menu['position'] == 'left') {
+                    // Left menu
+                    $this->data['leftmenus'][] = array(
+                        'title' => $menu['title'],
+                        'href' => $link
+                    );
+                } elseif ($menu['position'] == 'right') {
 
-                // Left menu
-                $this->data['leftmenus'][] = array(
-                    'title' => $menu['title'],
-                    'href' => $link
-                );
-                
-            } elseif ($menu['position'] == 'right'){
-                
-                // Right menu
-                $this->data['rightmenus'][] = array(
-                    'title' => $menu['title'],
-                    'href' => $link
-                );
+                    // Right menu
+                    $this->data['rightmenus'][] = array(
+                        'title' => $menu['title'],
+                        'href' => $link
+                    );
+                }
             }
         }
 

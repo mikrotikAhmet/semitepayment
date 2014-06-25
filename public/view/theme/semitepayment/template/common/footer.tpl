@@ -1,14 +1,8 @@
 <footer class="section-block">
   <div class="container text-center">
-    <a class="footer-link " href="/team">Team</a>
-    <a class="footer-link " href="/media" data-no-instant>Media</a>
-    <a class="footer-link" href="https://support.semitepayment.com/">Support</a>
-    
-    <a class="footer-link " href="/legal">Legal</a>
-    <a class="footer-link " href="/developers">Developers</a>
-    <a class="footer-link " href="/pricing">Pricing</a>
-    <a class="footer-link" href="http://blog.semitepayment.com/" data-no-instant>Blog</a>
-    <a class="footer-link" href="/start" data-no-instant>Sign Up</a>
+            <?php foreach ($footer_menus as $footer_menu) { ?>
+    <a class="footer-link " href="<?php echo $footer_menu['href']?>"><?php echo $footer_menu['title']?></a>
+    <?php } ?>
   </div>
 </footer>
 <!-- Bootstrap core JavaScript

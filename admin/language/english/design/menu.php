@@ -42,7 +42,8 @@ $_['column_action']     = 'Action';
 
 // Entry
 $_['entry_title'] = 'Menu Title:';
-$_['entry_position'] = 'Position:';
+$_['entry_position'] = 'Position:<br/><span class="help">Works only for top menus.</span>';
+$_['entry_bottom'] = 'Bottom:';
 $_['entry_link'] = 'Page Link:';
 $_['entry_status'] = 'Status:';
 $_['entry_sort_order'] = 'Sort Order:';

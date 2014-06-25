@@ -88,6 +88,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="bottom" class="col-sm-2 control-label"><?php echo $entry_bottom; ?></label>
+                                    <div class="col-sm-3">
+                                        <label class="checkbox-inline checkbox-info">
+                                            <?php if ($bottom) {  ?>
+                                            <input type="checkbox" class="styled" name="bottom" value="1" checked="checked">
+                                            <?php } else { ?>
+                                            <input type="checkbox" class="styled" name="bottom" value="1">
+                                            <?php } ?>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $entry_link?> </label>
                                         <div class="col-sm-7">
                                         <select data-placeholder="<?php echo $text_data_link?>" name="page_link" class="select-full" tabindex="2">

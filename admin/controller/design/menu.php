@@ -315,6 +315,7 @@ class ControllerDesignMenu extends Controller {
         $this->data['entry_title'] = $this->language->get('entry_title');
         $this->data['entry_link'] = $this->language->get('entry_link');
         $this->data['entry_position'] = $this->language->get('entry_position');
+        $this->data['entry_bottom'] = $this->language->get('entry_bottom');
         $this->data['entry_status'] = $this->language->get('entry_status');
         $this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
@@ -408,6 +409,14 @@ class ControllerDesignMenu extends Controller {
             $this->data['position'] = $menu_info['position'];
         } else {
             $this->data['position'] = '';
+        }
+        
+        if (isset($this->request->post['bottom'])) {
+            $this->data['bottom'] = $this->request->post['bottom'];
+        } elseif (!empty($menu_info)) {
+            $this->data['bottom'] = $menu_info['bottom'];
+        } else {
+            $this->data['bottom'] = 0;
         }
 
         if (isset($this->request->post['status'])) {
