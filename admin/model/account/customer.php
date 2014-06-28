@@ -48,6 +48,14 @@ class ModelAccountCustomer extends Model {
             }
         }
         
+        $this->db->query("DELETE FROM " . DB_PREFIX . "customer_card WHERE customer_id = '" . (int) $customer_id . "'");
+        
+        if (isset($data['card'])) {
+            foreach ($data['card'] as $card) {
+                $this->db->query("INSERT INTO " . DB_PREFIX . "customer_card SET customer_id = '" . (int) $customer_id . "', card_holder = '" . $this->db->escape(strtoupper($card['card_holder'])) . "', cc_number = '".$this->db->escape($card['cc_number'])."',ccv = '" . $this->db->escape(strtoupper($card['ccv'])) . "', `type` = '" . $this->db->escape(strtoupper($card['type'])) . "', date_expire = '" . $this->db->escape($card['date_expire']) . "', hex = '".$this->db->escape($this->encryption->encrypt($card['cc_number']))."'");
+            }
+        }
+        
     }
 
     public function editToken($customer_id, $token) {
@@ -467,6 +475,13 @@ class ModelAccountCustomer extends Model {
     public function getCustomerBanks($customer_id){
         
         $query = $this->db->query("SELECT * FROM ".DB_PREFIX."customer_bank WHERE customer_id = '".(int) $customer_id."'");
+        
+        return $query->rows;
+    }
+    
+    public function getCustomerCards($customer_id){
+        
+        $query = $this->db->query("SELECT * FROM ".DB_PREFIX."customer_card WHERE customer_id = '".(int) $customer_id."'");
         
         return $query->rows;
     }

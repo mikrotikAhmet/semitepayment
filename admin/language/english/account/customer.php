@@ -50,9 +50,9 @@ $_['text_holder']          = '<b>Card Holder :</b>';
 $_['text_card']          = '<b>V-Card Number :</b>';
 $_['text_cvv']          = '<b>CVV :</b>';
 $_['text_expire']          = '<b>Expire Date :</b>';
-$_['text_no_bank']          = '<h5>No Bank</h5><p>You do not has any Bank Information yet. <a data-toggle="modal" role="button" href="#createBank">Create one here.</a> or just click on <b>Add New</b> button below.</p>';
-$_['text_no_card']          = '<p class="alert alert-danger">You do not has any Credit Card Information yet!</p>';
-$_['text_no_transaction']          = '<p class="alert alert-danger">You do not has any Transaction(s) yet!</p>';
+$_['text_no_bank']          = '<h5>No Bank</h5><p>You do not have any Bank Information yet. <a data-toggle="modal" role="button" href="#createBank">Create one here.</a> or just click on <b>Add New</b> button below.</p>';
+$_['text_no_card']          = '<h5>No Card</h5><p>You do not have any Card Information yet. <a data-toggle="modal" role="button" href="#createCard">Create one here.</a> or just click on <b>Add New</b> button below.</p>';
+$_['text_no_transaction']          = '<h5>No Transaction</h5><p>You do not have any Transaction Information yet.</p>';
 
 // Column
 $_['column_name']           = 'Customer Name';
@@ -69,6 +69,16 @@ $_['column_points']         = 'Points';
 $_['column_ip']             = 'IP';
 $_['column_total']          = 'Total Accounts';
 $_['column_action']         = 'Action';
+
+$_['column_bank_name']         = 'Bank Name';
+$_['column_currency']         = 'Settlement Currency';
+$_['column_ahn']         = 'Account Holder Name';
+$_['column_iban']         = 'IBAN';
+$_['column_swift']         = 'SWFIT';
+
+$_['column_card_holder']         = 'Crad Holder Name';
+$_['column_type']         = 'Card Type';
+$_['column_number']         = 'Card #';
 
 // Entry
 $_['entry_firstname']       = 'First Name:';

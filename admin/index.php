@@ -169,6 +169,12 @@ $registry->set('currency', new Currency($registry));
 // User
 $registry->set('user', new User($registry));
 
+// Credit Card
+$registry->set('creditcard', new CreditCardValidator());
+
+// Encryption
+$registry->set('encryption', new Encryption($config->get('config_encryption')));
+
 // Front Controller
 $controller = new Front($registry);
 

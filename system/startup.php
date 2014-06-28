@@ -139,7 +139,8 @@ $classes['library'] = array(
     'image',
     'encryption',
     'content',
-    'module');
+    'module',
+    'creditcards');
 
 if ((isset($classes)) && is_array($classes)) {
 

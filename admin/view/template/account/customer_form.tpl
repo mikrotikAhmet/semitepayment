@@ -324,17 +324,17 @@
                     </div>
                         <div class="tab-pane fade" id="tab_bank">
                         <?php if (!$banks) { ?>
-                                <div class="callout callout-danger fade in">
+                                <div class="callout callout-danger fade in bank">
                                    <?php echo $text_no_bank?>
                                 </div>
                         <?php } ?>
                         <table class="table table-hover" id="bank">
                             <thead>
-                                <th>Bank Name</th>
-                                <th>Settlement Currency</th>
-                                <th>Account Holder Name</th>
-                                <th>IBAN</th>
-                                <th>SWFIT</th>
+                                <th><?php echo $column_bank_name?></th>
+                                <th><?php echo $column_currency?></th>
+                                <th><?php echo $column_ahn?></th>
+                                <th><?php echo $column_iban?></th>
+                                <th><?php echo $column_swift?></th>
                                 <th width="5%"></th>
                             </thead>
                             <?php $bank_row = 0; ?>
@@ -355,23 +355,54 @@
                             <tr>
                                 <td colspan="5"></td>
                                 <td class="left">
-                                    <a data-toggle="modal" role="button" href="#createBank" class="btn btn-primary btn-sm">Add New</a>
+                                    <a data-toggle="modal" role="button" href="#createBank" class="btn btn-primary btn-sm"><?php echo $button_add_new?></a>
                                 </td>
                             </tr>
                         </tfoot>
                         </table>
                         </div>
                         <div class="tab-pane fade" id="tab_card">
-                        <?php echo $text_no_card?>
-                        <div class="buttons">
-                            <div class="right">
-                                <a href="<?php echo $add_card?>" class="btn btn-primary colorbox"><?php echo $button_add_card?></a>
-                            </div>
-                        </div>
+                            <?php if (!$cards) { ?>
+                        <div class="callout callout-danger fade in card">
+                            <?php echo $text_no_card?>
+                         </div>
+                            <?php } ?>
+                            <table class="table table-hover" id="card">
+                            <thead>
+                                <th><?php echo $column_card_holder?></th>
+                                <th><?php echo $column_type?></th>
+                                <th><?php echo $column_number?></th>
+                                <th width="5%"></th>
+                            </thead>
+                            <?php $card_row = 0; ?>
+                            <?php foreach ($cards as $card) { ?>
+                            <tbody id="card-row<?php echo $card_row; ?>">
+                                <tr>
+                                    <td><input type="hidden" name="card[<?php echo $card_row?>][card_holder]" value="<?php echo $card['card_holder']?>"/><?php echo $card['card_holder']?></td>
+                                    <td><input type="hidden" name="card[<?php echo $card_row?>][type]" value="<?php echo $card['type']?>"/><?php echo $card['type']?></td>
+                                    <td><input type="hidden" name="card[<?php echo $card_row?>][cc_number]" value="<?php echo $card['cc_number']?>"/><?php echo $card['cc_number']?></td>
+                                    <td><input type="hidden" name="card[<?php echo $card_row?>][ccv]" value="<?php echo $card['ccv']?>"/></td>
+                                    <td><input type="hidden" name="card[<?php echo $card_row?>][date_expire]" value="<?php echo $card['date_expire']?>"/></td>
+                                    <td class="left"><a onclick="$('#card-row<?php echo $card_row; ?>').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>
+                                </tr>
+                            </tbody>
+                            <?php $card_row++; ?>
+                            <?php } ?>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="left">
+                                    <a data-toggle="modal" role="button" href="#createCard" class="btn btn-primary btn-sm"><?php echo $button_add_new?></a>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        </table>
                     </div>
                     <div class="tab-pane fade" id="tab_transaction">
                         <?php if (!$transactions) { ?>
-                        <?php echo $text_no_transaction?>
+                        <div class="callout callout-danger fade in">
+                                   <?php echo $text_no_transaction?>
+                                </div>
                         <?php } ?>
                         <table class="list table table-bordered table-hover">
                         <thead>
@@ -490,6 +521,56 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal"><?php echo $button_cancel?></button>
                     <button type="button"  onclick="addBank();" data-dismiss="modal" class="btn btn-primary">Submit form</button>
+                </div>
+            
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /form modal -->
+<!-- Form modal -->
+<div id="createCard" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-paragraph-justify2"></i> Modal with form</h4>
+            </div>
+            <!-- Form inside modal -->
+            <form role="form" id="card-form">
+    
+                <div class="modal-body with-padding">
+                    <div class="block-inner text-danger">
+                        <h6 class="heading-hr"><?php echo $title_bank?> <small class="display-block"><?php echo $text_information_bank?></small></h6>
+                    </div>
+                    <div class="form-group">
+                    <label><?php echo $entry_card_holder_name?></label>
+                    <input type="text" class="form-control" name="card_holder_name" value="" />
+                    </div>
+                    <div class="form-group">
+                    <label><?php echo $entry_cc?></label>
+                    <input type="creditcard" class="form-control" name="cc" value="" />
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label><?php echo $entry_ccv?></label>
+                                <input type="text" class="form-control" name="ccv" value="" />
+                                <span class="help-block"></span>
+                            </div>
+                                    
+                            <div class="col-sm-6">
+                                <label><?php echo $entry_expd?></label>
+                                <input type="text" class="form-control" name="expd" value="" />
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"><?php echo $button_cancel?></button>
+                    <button type="button"  onclick="addCard();" data-dismiss="modal" class="btn btn-primary">Submit form</button>
                 </div>
             
             </form>
@@ -704,9 +785,58 @@ function addBank(){
             this.reset();
         });
         
-        $('.callout').hide();
+        $('.callout .bank').hide();
 	
 	bank_row++;
+}
+
+var card_row = <?php echo ($card_row ? $card_row : 0) ?>;
+
+function addCard(){
+
+    var data = $('#card-form').serializeArray();
+    
+    $.ajax({
+        url: 'index.php?route=account/customer/cardcheck&token=<?php echo $token; ?>',
+        dataType: 'json',
+        type : 'GET',
+        data : 'cardnum='+$('input[name=\'cc\']').val(),
+        success : function (json){
+            alert(json[0].card_validation);
+            
+            if (json[0].card_validation == 'valid'){
+                    alert('This is just a test.\n\n Real time Credit Card Validation will be\n\n implemented after Acquiring System integrated.');
+                    
+                    html  = '<tbody id="card-row' + card_row + '">';
+                    html += '  <tr>';
+                    html += '    <td class="left"><input type="hidden" name="card['+card_row+'][card_holder]" value="'+data[0].value+'"/>'+data[0].value+'</td>';
+                    html += '    <td class="left"><input type="hidden" name="card['+card_row+'][type]" value="'+json[0].card_type+'"/>'+json[0].card_type+'</td>';
+                    html += '    <td class="left"><input type="hidden" name="card['+card_row+'][cc_number]" value="'+json[0].card+'"/>'+data[1].value+'</td>';
+                    html += '    <td class="left"><input type="hidden" name="card['+card_row+'][ccv]" value="'+data[2].value+'"/></td>';
+                    html += '    <td class="left"><input type="hidden" name="card['+card_row+'][date_expire]" value="'+data[3].value+'"/></td>';
+                    html += '    <td class="left"><a onclick="$(\'#card-row' + card_row + '\').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>';
+                    html += '  </tr>';
+                    html += '</tbody>';
+
+                    $('#card > tfoot').before(html);
+
+                    $('#card-form').each(function(){
+                        this.reset();
+                    });
+
+                    $('.callout .card').hide();
+
+                    card_row++;
+        
+                } else {
+                
+                alert('Invalid Card Data!');
+                }
+            },
+        error : function(){
+            alert('Error!');
+            }
+    });
 }
 //--></script>
 <?php echo $footer?>

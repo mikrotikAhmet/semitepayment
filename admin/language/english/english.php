@@ -95,6 +95,7 @@ $_['button_reset']                  = 'Reset';
 $_['button_add_profile']            = 'Add Profile';
 $_['button_add_unit']            = 'Add Unit';
 $_['button_add_subject']            = 'Add Subject';
+$_['button_add_new']                   = 'Add New';
 
 // Tab
 $_['tab_account']                   = 'Customer Account';

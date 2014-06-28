@@ -673,11 +673,28 @@ class ControllerAccountCustomer extends Controller {
         
         // Banking Form Variables
         
+        $this->data['column_bank_name'] = $this->language->get('column_bank_name');
+        $this->data['column_currency'] = $this->language->get('column_currency');
+        $this->data['column_ahn'] = $this->language->get('column_ahn');
+        $this->data['column_iban'] = $this->language->get('column_iban');
+        $this->data['column_swift'] = $this->language->get('column_swift');
+        
         $this->data['entry_currency'] = $this->language->get('entry_currency');
         $this->data['entry_bank'] = $this->language->get('entry_bank');
         $this->data['entry_holder_name'] = $this->language->get('entry_holder_name');
         $this->data['entry_iban'] = $this->language->get('entry_iban');
         $this->data['entry_bic'] = $this->language->get('entry_bic');
+        
+        // Credit Card Variables
+        
+        $this->data['column_card_holder'] = $this->language->get('column_card_holder');
+        $this->data['column_type'] = $this->language->get('column_type');
+        $this->data['column_number'] = $this->language->get('column_number');
+        
+        $this->data['entry_card_holder_name'] = $this->language->get('entry_card_holder_name');
+        $this->data['entry_cc'] = $this->language->get('entry_cc');
+        $this->data['entry_ccv'] = $this->language->get('entry_ccv');
+        $this->data['entry_expd'] = $this->language->get('entry_expd');
 
         $this->data['button_save'] = $this->language->get('button_save');
         $this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -687,6 +704,7 @@ class ControllerAccountCustomer extends Controller {
         $this->data['button_add_history'] = $this->language->get('button_add_history');
         $this->data['button_add_transaction'] = $this->language->get('button_add_transaction');
         $this->data['button_remove'] = $this->language->get('button_remove');
+        $this->data['button_add_new'] = $this->language->get('button_add_new');
 
         $this->data['tab_general'] = $this->language->get('tab_general');
         $this->data['tab_address'] = $this->language->get('tab_address');
@@ -1015,6 +1033,7 @@ class ControllerAccountCustomer extends Controller {
 
             $this->data['customer_account'] = $this->model_account_customer->getCustomerAccount($this->request->get['customer_id']);
             $this->data['banks'] = $this->model_account_customer->getCustomerBanks($this->request->get['customer_id']);
+            $this->data['cards'] = $this->model_account_customer->getCustomerCards($this->request->get['customer_id']);
             $this->data['transactions'] = $this->model_account_transaction->getTransactions($this->request->get['customer_id']);
         }
         
@@ -1490,7 +1509,8 @@ class ControllerAccountCustomer extends Controller {
 
             $json[] = array(
                 'card_validation' => $card_info['status'],
-                'card_type' => $card_info['type']
+                'card_type' => $card_info['type'],
+                'card'=>$card_info['substring']
             );
         }
 
