@@ -58,6 +58,11 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_content_type'] = $this->language->get('text_content_type');
             $this->data['text_task_manager'] = $this->language->get('text_task_manager');
             $this->data['text_task'] = $this->language->get('text_task');
+        // Accounting Menu
+            $this->data['text_account'] = $this->language->get('text_account');
+            $this->data['text_customer'] = $this->language->get('text_customer');
+            $this->data['text_customer_group'] = $this->language->get('text_customer_group');
+            $this->data['text_customer_ban_ip'] = $this->language->get('text_customer_ban_ip');
         // Extension Menu
             $this->data['text_extension'] = $this->language->get('text_extension');
             $this->data['text_module'] = $this->language->get('text_module');
@@ -109,6 +114,10 @@ class ControllerCommonHeader extends Controller{
                 $this->data['task'] = $this->url->link('application/task', 'token=' . $this->session->data['token'], 'SSL');
             // Extension Menu
                 $this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
+            // Accounting Menu
+                $this->data['customer'] = $this->url->link('account/customer', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['customer_group'] = $this->url->link('account/customer_group', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['customer_ban_ip'] = $this->url->link('account/customer_ban_ip', 'token=' . $this->session->data['token'], 'SSL');
             // System Menu
                 $this->data['setting'] = $this->url->link('setting/application', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');

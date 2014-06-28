@@ -433,9 +433,19 @@ class ControllerSettingApplication extends Controller {
             $this->data['config_layout_id'] = '';
         }
 
-//        $this->load->model('design/layout');
-//
-//        $this->data['layouts'] = $this->model_design_layout->getLayouts();
+        $this->load->model('design/layout');
+
+        $this->data['layouts'] = $this->model_design_layout->getLayouts();
+        
+        if (isset($this->request->post['config_page_id'])) {
+            $this->data['config_page_id'] = $this->request->post['config_page_id'];
+        } else {
+            $this->data['config_page_id'] = $this->config->get('config_page_id');
+        }
+
+        $this->load->model('design/page');
+
+        $this->data['pages'] = $this->model_design_page->getPages();
 
         if (isset($this->request->post['config_template'])) {
             $this->data['config_template'] = $this->request->post['config_template'];
@@ -534,9 +544,9 @@ class ControllerSettingApplication extends Controller {
             $this->data['config_account_id'] = '';
         }
 
-//        $this->load->model('catalog/information');
-//
-//        $this->data['informations'] = $this->model_catalog_information->getInformations();
+        $this->load->model('application/content');
+
+        $this->data['contents'] = $this->model_application_content->getContents();
 
 
         $this->load->model('tool/image');

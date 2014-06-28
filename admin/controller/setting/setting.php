@@ -428,6 +428,10 @@ class ControllerSettingSetting extends Controller {
         } else {
             $this->data['config_account_id'] = $this->config->get('config_account_id');
         }
+        
+        $this->load->model('application/content');
+
+        $this->data['contents'] = $this->model_application_content->getContents();
 
         $this->load->model('tool/image');
 

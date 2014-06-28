@@ -42,6 +42,7 @@ $_['entry_fax']                    = 'Fax:';
 $_['entry_title']                  = 'Title:';
 $_['entry_meta_description']       = 'Meta Tag Description:';
 $_['entry_layout']                 = 'Default Layout:';
+$_['entry_page']               = 'Page:';
 $_['entry_template']               = 'Template:';
 $_['entry_country']                = 'Country:';
 $_['entry_zone']                   = 'Region / State:';

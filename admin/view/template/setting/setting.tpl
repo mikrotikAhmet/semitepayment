@@ -329,35 +329,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <h2><?php echo $text_menu?></h2>
-                                <div class="form-group">
-                                    <label for="config_main_menu" class="col-sm-3 control-label"><?php echo $entry_main_menu; ?></label>
-                                    <div class="col-sm-4">
-                                        <select name="config_main_menu_id"  class="form-control">
-                                            <?php foreach ($menu_groups as $menu_group) { ?>
-                                            <?php if ($menu_group['menu_group_id'] == $config_main_menu_id) { ?>
-                                            <option value="<?php echo $menu_group['menu_group_id']; ?>" selected="selected"><?php echo $menu_group['title']; ?></option>
-                                            <?php } else { ?>
-                                            <option value="<?php echo $menu_group['menu_group_id']; ?>"><?php echo $menu_group['title']; ?></option>
-                                            <?php } ?>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="config_footer_menu" class="col-sm-3 control-label"><?php echo $entry_footer_menu; ?></label>
-                                    <div class="col-sm-4">
-                                        <select name="config_footer_menu_id"  class="form-control">
-                                            <?php foreach ($menu_groups as $menu_group) { ?>
-                                            <?php if ($menu_group['menu_group_id'] == $config_footer_menu_id) { ?>
-                                            <option value="<?php echo $menu_group['menu_group_id']; ?>" selected="selected"><?php echo $menu_group['title']; ?></option>
-                                            <?php } else { ?>
-                                            <option value="<?php echo $menu_group['menu_group_id']; ?>"><?php echo $menu_group['title']; ?></option>
-                                            <?php } ?>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                             <div class="tab-pane fade" id="tab_image">
                                 <div class="form-group">

@@ -3,7 +3,7 @@
 class ModelAccountCustomer extends Model {
 
     public function addCustomer($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int) $data['newsletter'] . "', customer_group_id = '" . (int) $data['customer_group_id'] . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', status = '" . (int) $data['status'] . "', date_added = NOW()");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', personal_id = '".$this->db->escape($data['personal_id'])."' ,email = '" . $this->db->escape($data['email']) . "',  newsletter = '" . (int) $data['newsletter'] . "', customer_group_id = '" . (int) $data['customer_group_id'] . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', status = '" . (int) $data['status'] . "', date_added = NOW()");
 
         $customer_id = $this->db->getLastId();
 
@@ -11,17 +11,18 @@ class ModelAccountCustomer extends Model {
             foreach ($data['address'] as $address) {
                 $this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int) $customer_id . "', firstname = '" . $this->db->escape($address['firstname']) . "', lastname = '" . $this->db->escape($address['lastname']) . "', company = '" . $this->db->escape($address['company']) . "', company_id = '" . $this->db->escape($address['company_id']) . "', tax_id = '" . $this->db->escape($address['tax_id']) . "', address_1 = '" . $this->db->escape($address['address_1']) . "', address_2 = '" . $this->db->escape($address['address_2']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int) $address['country_id'] . "', zone_id = '" . (int) $address['zone_id'] . "'");
 
-                if (isset($address['default'])) {
                     $address_id = $this->db->getLastId();
 
                     $this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . $address_id . "' WHERE customer_id = '" . (int) $customer_id . "'");
-                }
             }
         }
+        
+        $this->db->query("INSERT INTO ".DB_PREFIX."customer_account SET account_number = '".$this->db->escape($data['account_number'])."',customer_id = '".(int) $customer_id."',iban = '".$this->db->escape($data['iban'])."',swift_bic = '".$this->db->escape($data['bic'])."' ,v_card_number = '".$this->db->escape($data['cc'])."', v_card_ccv = '".(int) $data['ccv']."', date_expire = '".$this->db->escape($data['expire_date'])."'");
+        
     }
 
     public function editCustomer($customer_id, $data) {
-        $this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int) $data['newsletter'] . "', customer_group_id = '" . (int) $data['customer_group_id'] . "', status = '" . (int) $data['status'] . "' WHERE customer_id = '" . (int) $customer_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', personal_id = '".$this->db->escape($data['personal_id'])."', email = '" . $this->db->escape($data['email']) . "',  newsletter = '" . (int) $data['newsletter'] . "', customer_group_id = '" . (int) $data['customer_group_id'] . "', status = '" . (int) $data['status'] . "' WHERE customer_id = '" . (int) $customer_id . "'");
 
         if ($data['password']) {
             $this->db->query("UPDATE " . DB_PREFIX . "customer SET salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "' WHERE customer_id = '" . (int) $customer_id . "'");
@@ -33,13 +34,20 @@ class ModelAccountCustomer extends Model {
             foreach ($data['address'] as $address) {
                 $this->db->query("INSERT INTO " . DB_PREFIX . "address SET address_id = '" . (int) $address['address_id'] . "', customer_id = '" . (int) $customer_id . "', firstname = '" . $this->db->escape($address['firstname']) . "', lastname = '" . $this->db->escape($address['lastname']) . "', company = '" . $this->db->escape($address['company']) . "', company_id = '" . $this->db->escape($address['company_id']) . "', tax_id = '" . $this->db->escape($address['tax_id']) . "', address_1 = '" . $this->db->escape($address['address_1']) . "', address_2 = '" . $this->db->escape($address['address_2']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int) $address['country_id'] . "', zone_id = '" . (int) $address['zone_id'] . "'");
 
-                if (isset($address['default'])) {
                     $address_id = $this->db->getLastId();
 
                     $this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int) $address_id . "' WHERE customer_id = '" . (int) $customer_id . "'");
-                }
             }
         }
+        
+        $this->db->query("DELETE FROM " . DB_PREFIX . "customer_bank WHERE customer_id = '" . (int) $customer_id . "'");
+        
+        if (isset($data['bank'])) {
+            foreach ($data['bank'] as $bank) {
+                $this->db->query("INSERT INTO " . DB_PREFIX . "customer_bank SET customer_id = '" . (int) $customer_id . "', bank_name = '" . $this->db->escape(strtoupper($bank['bank_name'])) . "', settlement_currency = '".$this->db->escape($bank['settlement_currency'])."',account_holder = '" . $this->db->escape(strtoupper($bank['account_holder_name'])) . "', iban = '" . $this->db->escape($bank['iban']) . "', swift = '" . $this->db->escape($bank['swift']) . "'");
+            }
+        }
+        
     }
 
     public function editToken($customer_id, $token) {
@@ -51,6 +59,10 @@ class ModelAccountCustomer extends Model {
         $this->db->query("DELETE FROM " . DB_PREFIX . "customer_transaction WHERE customer_id = '" . (int) $customer_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "customer_ip WHERE customer_id = '" . (int) $customer_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "address WHERE customer_id = '" . (int) $customer_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "customer_bank WHERE customer_id = '" . (int) $customer_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "customer_card WHERE customer_id = '" . (int) $customer_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "customer_statement WHERE customer_id = '" . (int) $customer_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "customer_account WHERE customer_id = '" . (int) $customer_id . "'");
     }
 
     public function getCustomer($customer_id) {
@@ -86,10 +98,6 @@ class ModelAccountCustomer extends Model {
             $implode[] = "c.customer_group_id = '" . (int) $data['filter_customer_group_id'] . "'";
         }
 
-        if (!empty($data['filter_ip'])) {
-            $implode[] = "c.customer_id IN (SELECT customer_id FROM " . DB_PREFIX . "customer_ip WHERE ip = '" . $this->db->escape($data['filter_ip']) . "')";
-        }
-
         if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
             $implode[] = "c.status = '" . (int) $data['filter_status'] . "'";
         }
@@ -112,7 +120,6 @@ class ModelAccountCustomer extends Model {
             'customer_group',
             'c.status',
             'c.approved',
-            'c.ip',
             'c.date_added'
         );
 
@@ -153,24 +160,12 @@ class ModelAccountCustomer extends Model {
 
             $this->language->load('mail/customer');
 
-            $this->load->model('setting/store');
-
-            $store_info = $this->model_setting_store->getStore($customer_info['store_id']);
-
-            if ($store_info) {
-                $store_name = $store_info['name'];
-                $store_url = $store_info['url'] . 'index.php?route=account/login';
-            } else {
-                $store_name = $this->config->get('config_name');
-                $store_url = HTTP_CATALOG . 'index.php?route=account/login';
-            }
-
-            $message = sprintf($this->language->get('text_approve_welcome'), $store_name) . "\n\n";
+            $message = sprintf($this->language->get('text_approve_welcome'), $this->config->get('config_name')) . "\n\n";
             $message .= $this->language->get('text_approve_login') . "\n";
-            $message .= $store_url . "\n\n";
+            $message .= HTTPS_MERCHANT . "\n\n";
             $message .= $this->language->get('text_approve_services') . "\n\n";
             $message .= $this->language->get('text_approve_thanks') . "\n";
-            $message .= $store_name;
+            $message .= $this->config->get('config_name');
 
             $mail = new Mail();
             $mail->protocol = $this->config->get('config_mail_protocol');
@@ -182,8 +177,8 @@ class ModelAccountCustomer extends Model {
             $mail->timeout = $this->config->get('config_smtp_timeout');
             $mail->setTo($customer_info['email']);
             $mail->setFrom($this->config->get('config_email'));
-            $mail->setSender($store_name);
-            $mail->setSubject(html_entity_decode(sprintf($this->language->get('text_approve_subject'), $store_name), ENT_QUOTES, 'UTF-8'));
+            $mail->setSender($this->config->get('config_name'));
+            $mail->setSubject(html_entity_decode(sprintf($this->language->get('text_approve_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
             $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
             $mail->send();
         }
@@ -356,6 +351,14 @@ class ModelAccountCustomer extends Model {
 
         return $query->row['total'];
     }
+    
+    public function getCustomerAccount($customer_id){
+        
+        $query = $this->db->query("SELECT DISTINCT * FROM ".DB_PREFIX."customer_account WHERE customer_id = '".(int) $customer_id."'");
+
+        return $query->row;
+        
+        }
 
     public function addTransaction($customer_id, $description = '', $amount = '', $order_id = 0) {
         $customer_info = $this->getCustomer($customer_id);
@@ -392,7 +395,7 @@ class ModelAccountCustomer extends Model {
             $mail->timeout = $this->config->get('config_smtp_timeout');
             $mail->setTo($customer_info['email']);
             $mail->setFrom($this->config->get('config_email'));
-            $mail->setSender($store_name);
+            $mail->setSender($this->config->get('config_name'));
             $mail->setSubject(html_entity_decode(sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
             $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
             $mail->send();
@@ -460,7 +463,12 @@ class ModelAccountCustomer extends Model {
 
         return $query->row['total'];
     }
+    
+    public function getCustomerBanks($customer_id){
+        
+        $query = $this->db->query("SELECT * FROM ".DB_PREFIX."customer_bank WHERE customer_id = '".(int) $customer_id."'");
+        
+        return $query->rows;
+    }
 
 }
-
-?>

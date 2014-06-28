@@ -97,12 +97,15 @@ $_['button_add_unit']            = 'Add Unit';
 $_['button_add_subject']            = 'Add Subject';
 
 // Tab
+$_['tab_account']                   = 'Customer Account';
 $_['tab_application']                   = 'Application';
 $_['tab_address']                   = 'Address';
 $_['tab_admin']                     = 'Admin';
 $_['tab_attribute']                 = 'Attribute';
+$_['tab_bank'] = 'Bank Account';
 $_['tab_block_content'] = 'Block Content';
 $_['tab_blocks'] = 'Blocks';
+$_['tab_card'] = 'Virtual Card';
 $_['tab_customer']                  = 'Customer Details';
 $_['tab_data']                      = 'Data';
 $_['tab_unit']                      = 'Unit';
