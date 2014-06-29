@@ -28,16 +28,16 @@
  * @author ahmet
  */
 // HTTP
-define('HTTP_SERVER', 'http://local.semitepayment.com/admin/');
-define('HTTP_PUBLIC', 'http://local.semitepayment.com/');
-define('HTTP_IMAGE', 'http://local.semitepayment.com/image/');
+define('HTTP_SERVER', 'http://www.semitepayment.com/admin/');
+define('HTTP_PUBLIC', 'http://www.semitepayment.com/');
+define('HTTP_IMAGE', 'http://www.semitepayment.com/image/');
 define('HTTP_DOCUMENTATION', 'http://docs.semitepayment.com/');
 define('HTTP_SUPPORT', 'http://form.semitepayment.com/');
 
 // HTTPS
-define('HTTPS_SERVER', 'https://local.semitepayment.com/admin/');
-define('HTTPS_PUBLIC', 'https://local.semitepayment.com/');
-define('HTTPS_IMAGE', 'https://local.semitepayment.com/image/');
+define('HTTPS_SERVER', 'https://www.semitepayment.com/admin/');
+define('HTTPS_PUBLIC', 'https://www.semitepayment.com/');
+define('HTTPS_IMAGE', 'https://www.semitepayment.com/image/');
 
 // DIR
 define('DIR_APPLICATION', '/var/www/html/semitepayment.com/admin/');
@@ -54,8 +54,8 @@ define('DIR_LOGS', '/var/www/html/semitepayment.com/system/logs/');
 define('DIR_PUBLIC', '/var/www/html/semitepayment.com/public/');
 
 // DB
-define('DB_DRIVER', 'mysql');
-define('DB_HOSTNAME', 'localhost');
+define('DB_DRIVER', 'mysqli');
+define('DB_HOSTNAME', 'semite.cvv87auvsvsm.us-west-2.rds.amazonaws.com');
 define('DB_USERNAME', 'semitepayment');
 define('DB_PASSWORD', 's3m1t3P@ym3nT');
 define('DB_DATABASE', 'semitepayment');
