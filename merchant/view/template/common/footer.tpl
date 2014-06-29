@@ -1,0 +1,17 @@
+<!-- Scripts
+================================================== -->
+  <script id="chartData" type="application/json">{"BTC":{"columns":[{"type":"string","label":"Day"},{"type":"number","label":"Sales (BTC)"}],"rows":[["30",0],["31",0],["1",0],["2",0],["3",0],["4",0],["5",0],["6",0],["7",0],["8",0],["9",0],["10",0],["11",0],["12",0],["13",0],["14",0],["15",0],["16",0],["17",0],["18",0],["19",0],["20",0],["21",0],["22",0],["23",0],["24",0],["25",0],["26",0],["27",0],["28",0]]}}</script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="view/js/jquery.form.js"></script>
+  <script type="text/javascript" src="//www.google.com/jsapi"></script>
+  <script type="text/javascript" src="view/js/bitpay.js"></script>
+  
+  <script type="text/javascript">
+    window.lstrs={};
+    
+    (function(){var divName='modal';(function(){var a=Handlebars.template,b=Handlebars.templates=Handlebars.templates||{};b[divName]=a(function(a,b,c,d,e){this.compilerInfo=[2,">= 1.0.0-rc.3"],c=c||a.helpers,e=e||{};var f="",g,h="function",i=this.escapeExpression;return f+='<div class="modal hide" id="pageModal">\n  <div class="modal-header">\n    '+i((g=b.title,typeof g===h?g.apply(b):g))+'\n  </div>\n  <div class="modal-body">\n    <p>'+i((g=b.message,typeof g===h?g.apply(b):g))+'</p>\n\t<br><br><br>\n    <a href="#" class="btn btn-large" data-dismiss="modal">Close</a>\n  </div>\n</div>\n',f})})();})();(function(){var divName='message';(function(){var a=Handlebars.template,b=Handlebars.templates=Handlebars.templates||{};b[divName]=a(function(a,b,c,d,e){function m(a,b){var c="",d,e;c+='\n\t<div class="alert '+j((d=a.messageType,typeof d===i?d.apply(a):d))+' fade in">\n\t\t',e=(d=(d=a.showClose,typeof d===i?d.apply(a):d),l.call(a,d,{hash:{},inverse:k.noop,fn:k.program(2,n,b),data:b}));if(e||e===0)c+=e;c+="\n\t\t",e=(d=a.message,typeof d===i?d.apply(a):d);if(e||e===0)c+=e;return c+="\n\t</div>\n",c}function n(a,b){return'<a class="close" data-dismiss="alert" href="#">&times;</a>'}this.compilerInfo=[2,">= 1.0.0-rc.3"],c=c||a.helpers,e=e||{};var f="",g,h,i="function",j=this.escapeExpression,k=this,l=c.blockHelperMissing;h=(g=(g=b.messages,typeof g===i?g.apply(b):g),l.call(b,g,{hash:{},inverse:k.noop,fn:k.program(1,m,e),data:e}));if(h||h===0)f+=h;return f+="\n",f})})();})();(function(){var divName='alert';(function(){var a=Handlebars.template,b=Handlebars.templates=Handlebars.templates||{};b[divName]=a(function(a,b,c,d,e){function l(a,b){var c="",d,e;c+='\n\t<div class="alert alert-block '+i((d=a.alertType,typeof d===h?d.apply(a):d))+' fade in">\n\t\t<h2 class="alert-heading">',e=(d=a.alertHeading,typeof d===h?d.apply(a):d);if(e||e===0)c+=e;c+="</h2>\n\t\t<p>",e=(d=a.alertBody,typeof d===h?d.apply(a):d);if(e||e===0)c+=e;return c+='</p>\n\t\t<p><a class="btn '+i((d=a.buttonType,typeof d===h?d.apply(a):d))+'" href="'+i((d=a.alertLink,typeof d===h?d.apply(a):d))+'">'+i((d=a.alertAction,typeof d===h?d.apply(a):d))+"</a></p>\n\t</div>\n",c}this.compilerInfo=[2,">= 1.0.0-rc.3"],c=c||a.helpers,e=e||{};var f,g,h="function",i=this.escapeExpression,j=this,k=c.blockHelperMissing;return g=(f=(f=b.alerts,typeof f===h?f.apply(b):f),k.call(b,f,{hash:{},inverse:j.noop,fn:j.program(1,l,e),data:e})),g||g===0?g:""})})();})();
+    
+  </script>
+  
+</body>
+</html>
