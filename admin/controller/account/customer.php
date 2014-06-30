@@ -692,6 +692,13 @@ class ControllerAccountCustomer extends Controller {
         $this->data['column_type'] = $this->language->get('column_type');
         $this->data['column_number'] = $this->language->get('column_number');
         
+        // Transaction Variables
+        
+        $this->data['column_transaction_id'] = $this->language->get('column_transaction_id');
+        $this->data['column_date'] = $this->language->get('column_date');
+        $this->data['column_ttype'] = $this->language->get('column_ttype');
+        $this->data['column_description'] = $this->language->get('column_description');
+        
         $this->data['entry_card_holder_name'] = $this->language->get('entry_card_holder_name');
         $this->data['entry_cc'] = $this->language->get('entry_cc');
         $this->data['entry_ccv'] = $this->language->get('entry_ccv');

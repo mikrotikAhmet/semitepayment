@@ -384,7 +384,7 @@
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][card_holder]" value="<?php echo $card['card_holder']?>"/><?php echo $card['card_holder']?></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][type]" value="<?php echo $card['type']?>"/><?php echo $card['type']?></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][cc_number]" value="<?php echo $card['cc_number']?>"/><?php echo $card['cc_number']?></td>
-                                    <td><input type="hidden" name="bank[<?php echo $card_row?>][verified]" value="<?php echo $card['verified']?>"/><?php echo $card['status']?></td>
+                                    <td><input type="hidden" name="card[<?php echo $card_row?>][verified]" value="<?php echo $card['verified']?>"/><?php echo $card['status']?></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][ccv]" value="<?php echo $card['ccv']?>"/></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][date_expire]" value="<?php echo $card['date_expire']?>"/></td>
                                     <td class="left"><a onclick="$('#card-row<?php echo $card_row; ?>').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>
@@ -410,11 +410,11 @@
                         <?php } ?>
                         <table class="list table table-bordered table-hover">
                         <thead>
-                            <th></th>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                            <th>Status</th>
+                            <th><?php echo $column_transaction_id?></th>
+                            <th><?php echo $column_date?></th>
+                            <th><?php echo $column_ttype?></th>
+                            <th><?php echo $column_description?></th>
+                            <th><?php echo $column_status?></th>
                         </thead>
                         <tbody>
                             <?php foreach ($transactions as $transaction) { ?>
