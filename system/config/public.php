@@ -40,17 +40,17 @@ define('HTTPS_PUBLIC', 'https://local.semitepayment.com/');
 define('HTTPS_IMAGE', 'https://local.semitepayment.com/image/');
 
 // DIR
-define('DIR_APPLICATION', '/var/local/html/semitepayment.com/public/');
-define('DIR_SYSTEM', '/var/local/html/semitepayment.com/system/');
-define('DIR_LIBRARY', '/var/local/html/semitepayment.com/system/library/');
-define('DIR_DATABASE', '/var/local/html/semitepayment.com/system/database/');
-define('DIR_LANGUAGE', '/var/local/html/semitepayment.com/public/language/');
-define('DIR_TEMPLATE', '/var/local/html/semitepayment.com/public/view/theme/');
-define('DIR_CONFIG', '/var/local/html/semitepayment.com/system/library/config/');
-define('DIR_IMAGE', '/var/local/html/semitepayment.com/image/');
-define('DIR_CACHE', '/var/local/html/semitepayment.com/system/cache/');
-define('DIR_DOWNLOAD', '/var/local/html/semitepayment.com/download/');
-define('DIR_LOGS', '/var/local/html/semitepayment.com/system/logs/');
+define('DIR_APPLICATION', '/var/www/html/semitepayment.com/public/');
+define('DIR_SYSTEM', '/var/www/html/semitepayment.com/system/');
+define('DIR_LIBRARY', '/var/www/html/semitepayment.com/system/library/');
+define('DIR_DATABASE', '/var/www/html/semitepayment.com/system/database/');
+define('DIR_LANGUAGE', '/var/www/html/semitepayment.com/public/language/');
+define('DIR_TEMPLATE', '/var/www/html/semitepayment.com/public/view/theme/');
+define('DIR_CONFIG', '/var/www/html/semitepayment.com/system/library/config/');
+define('DIR_IMAGE', '/var/www/html/semitepayment.com/image/');
+define('DIR_CACHE', '/var/www/html/semitepayment.com/system/cache/');
+define('DIR_DOWNLOAD', '/var/www/html/semitepayment.com/download/');
+define('DIR_LOGS', '/var/www/html/semitepayment.com/system/logs/');
 
 // DB
 define('DB_DRIVER', 'mysqli');

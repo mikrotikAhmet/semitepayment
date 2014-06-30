@@ -75,6 +75,7 @@ $_['column_currency']         = 'Settlement Currency';
 $_['column_ahn']         = 'Account Holder Name';
 $_['column_iban']         = 'IBAN';
 $_['column_swift']         = 'SWFIT';
+$_['column_status']         = 'Status';
 
 $_['column_card_holder']         = 'Crad Holder Name';
 $_['column_type']         = 'Card Type';

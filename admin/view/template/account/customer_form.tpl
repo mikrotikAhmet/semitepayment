@@ -335,6 +335,7 @@
                                 <th><?php echo $column_ahn?></th>
                                 <th><?php echo $column_iban?></th>
                                 <th><?php echo $column_swift?></th>
+                                <th><?php echo $column_status?></th>
                                 <th width="5%"></th>
                             </thead>
                             <?php $bank_row = 0; ?>
@@ -346,6 +347,7 @@
                                     <td><input type="hidden" name="bank[<?php echo $bank_row?>][account_holder_name]" value="<?php echo $bank['account_holder']?>"/><?php echo $bank['account_holder']?></td>
                                     <td><input type="hidden" name="bank[<?php echo $bank_row?>][iban]" value="<?php echo $bank['iban']?>"/><?php echo $bank['iban']?></td>
                                     <td><input type="hidden" name="bank[<?php echo $bank_row?>][swift]" value="<?php echo $bank['swift']?>"/><?php echo $bank['swift']?></td>
+                                    <td><input type="hidden" name="bank[<?php echo $bank_row?>][verified]" value="<?php echo $bank['verified']?>"/><?php echo $bank['status']?></td>
                                     <td class="left"><a onclick="$('#bank-row<?php echo $bank_row; ?>').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>
                                 </tr>
                             </tbody>
@@ -353,7 +355,7 @@
                             <?php } ?>
                             <tfoot>
                             <tr>
-                                <td colspan="5"></td>
+                                <td colspan="6"></td>
                                 <td class="left">
                                     <a data-toggle="modal" role="button" href="#createBank" class="btn btn-primary btn-sm"><?php echo $button_add_new?></a>
                                 </td>
@@ -372,6 +374,7 @@
                                 <th><?php echo $column_card_holder?></th>
                                 <th><?php echo $column_type?></th>
                                 <th><?php echo $column_number?></th>
+                                <th><?php echo $column_status?></th>
                                 <th width="5%"></th>
                             </thead>
                             <?php $card_row = 0; ?>
@@ -381,6 +384,7 @@
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][card_holder]" value="<?php echo $card['card_holder']?>"/><?php echo $card['card_holder']?></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][type]" value="<?php echo $card['type']?>"/><?php echo $card['type']?></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][cc_number]" value="<?php echo $card['cc_number']?>"/><?php echo $card['cc_number']?></td>
+                                    <td><input type="hidden" name="bank[<?php echo $card_row?>][verified]" value="<?php echo $card['verified']?>"/><?php echo $card['status']?></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][ccv]" value="<?php echo $card['ccv']?>"/></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][date_expire]" value="<?php echo $card['date_expire']?>"/></td>
                                     <td class="left"><a onclick="$('#card-row<?php echo $card_row; ?>').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>
@@ -390,7 +394,7 @@
                             <?php } ?>
                             <tfoot>
                             <tr>
-                                <td colspan="5"></td>
+                                <td colspan="6"></td>
                                 <td class="left">
                                     <a data-toggle="modal" role="button" href="#createCard" class="btn btn-primary btn-sm"><?php echo $button_add_new?></a>
                                 </td>

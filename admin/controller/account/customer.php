@@ -678,6 +678,7 @@ class ControllerAccountCustomer extends Controller {
         $this->data['column_ahn'] = $this->language->get('column_ahn');
         $this->data['column_iban'] = $this->language->get('column_iban');
         $this->data['column_swift'] = $this->language->get('column_swift');
+        $this->data['column_status'] = $this->language->get('column_status');
         
         $this->data['entry_currency'] = $this->language->get('entry_currency');
         $this->data['entry_bank'] = $this->language->get('entry_bank');
@@ -1032,8 +1033,55 @@ class ControllerAccountCustomer extends Controller {
 
 
             $this->data['customer_account'] = $this->model_account_customer->getCustomerAccount($this->request->get['customer_id']);
-            $this->data['banks'] = $this->model_account_customer->getCustomerBanks($this->request->get['customer_id']);
-            $this->data['cards'] = $this->model_account_customer->getCustomerCards($this->request->get['customer_id']);
+            
+            $this->data['banks'] = array();
+            
+            $banks = $this->model_account_customer->getCustomerBanks($this->request->get['customer_id']);
+            
+            foreach ($banks as $bank){
+                
+                
+                if ($bank['verified']){
+                    $verified = '<span class="label label-success">Verified</span>';
+                } else {
+                    $verified = '<span class="label label-info">In progress</span>';
+                }
+                
+                $this->data['banks'][] = array(
+                    'bank_name'=>$bank['bank_name'],
+                    'settlement_currency'=>$bank['settlement_currency'],
+                    'account_holder'=>$bank['account_holder'],
+                    'iban'=>$bank['iban'],
+                    'swift'=>$bank['swift'],
+                    'status'=>$verified,
+                    'verified'=>$bank['verified']
+                );
+            }
+            
+            
+            $this->data['cards'] = array();
+            
+            $cards = $this->model_account_customer->getCustomerCards($this->request->get['customer_id']);
+            
+            foreach ($cards as $card){
+                
+                
+                if ($card['verified']){
+                    $verified = '<span class="label label-success">Verified</span>';
+                } else {
+                    $verified = '<span class="label label-info">In progress</span>';
+                }
+                
+                $this->data['cards'][] = array(
+                    'card_holder'=>$card['card_holder'],
+                    'type'=>$card['type'],
+                    'cc_number'=>$card['cc_number'],
+                    'ccv'=>$card['ccv'],
+                    'date_expire'=>$card['date_expire'],
+                    'status'=>$verified,
+                    'verified'=>$card['verified']
+                );
+            }
             $this->data['transactions'] = $this->model_account_transaction->getTransactions($this->request->get['customer_id']);
         }
         

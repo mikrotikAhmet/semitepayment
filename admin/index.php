@@ -53,7 +53,7 @@ if (file_exists(APPLICATION_PATH_COR . 'system/config/admin.php')) {
 if (file_exists(DIR_SYSTEM . 'startup.php')) {
     require_once(DIR_SYSTEM . 'startup.php');
 } else {
-    trigger_error('Startup file can not be located!');
+    trigger_error('Startup file can not be located!'. DIR_SYSTEM);
 }
 
 // Registry
