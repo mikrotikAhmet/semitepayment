@@ -29,11 +29,11 @@
  */
 
 // HTTP
-define('HTTP_SERVER', 'http://www.semitepayment.com/api/');
-define('HTTP_PUBLIC', 'http://www.semitepayment.com/');
+define('HTTP_SERVER', 'http://local.semitepayment.com/api/');
+define('HTTP_PUBLIC', 'http://local.semitepayment.com/');
 
 // HTTPS
-define('HTTPS_SERVER', 'https://www.semitepayment.com/api/');
+define('HTTPS_SERVER', 'https://local.semitepayment.com/api/');
 
 // DIR
 define('DIR_APPLICATION', '/var/www/html/semitepayment.com/api/');
@@ -48,7 +48,7 @@ define('DIR_LOGS', '/var/www/html/semitepayment.com/system/logs/');
 
 // DB
 define('DB_DRIVER', 'mysql');
-define('DB_HOSTNAME', 'semite.cvv87auvsvsm.us-west-2.rds.amazonaws.com');
+define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'semitepayment');
 define('DB_PASSWORD', 's3m1t3P@ym3nT');
 define('DB_DATABASE', 'semitepayment');
