@@ -64,6 +64,7 @@ class ControllerSettingSetting extends Controller {
         $this->data['text_clear'] = $this->language->get('text_clear');
         $this->data['text_mail'] = $this->language->get('text_mail');
         $this->data['text_smtp'] = $this->language->get('text_smtp');
+        $this->data['text_api'] = $this->language->get('text_api');
 
         $this->data['entry_name'] = $this->language->get('entry_name');
         $this->data['entry_owner'] = $this->language->get('entry_owner');
@@ -120,6 +121,10 @@ class ControllerSettingSetting extends Controller {
         $this->data['entry_error_log'] = $this->language->get('entry_error_log');
         $this->data['entry_error_filename'] = $this->language->get('entry_error_filename');
         $this->data['entry_google_analytics'] = $this->language->get('entry_google_analytics');
+        $this->data['entry_test_publickey_api_prefix'] = $this->language->get('entry_test_publickey_api_prefix');
+        $this->data['entry_test_secretkey_api_prefix'] = $this->language->get('entry_test_secretkey_api_prefix');
+        $this->data['entry_live_publickey_api_prefix'] = $this->language->get('entry_live_publickey_api_prefix');
+        $this->data['entry_live_secretkey_api_prefix'] = $this->language->get('entry_live_secretkey_api_prefix');
 
         $this->data['button_save'] = $this->language->get('button_save');
         $this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -432,6 +437,31 @@ class ControllerSettingSetting extends Controller {
         $this->load->model('application/content');
 
         $this->data['contents'] = $this->model_application_content->getContents();
+        
+        if (isset($this->request->post['config_test_secretkey_api_prefix'])) {
+            $this->data['config_test_secretkey_api_prefix'] = $this->request->post['config_test_secretkey_api_prefix'];
+        } else {
+            $this->data['config_test_secretkey_api_prefix'] = $this->config->get('config_test_secretkey_api_prefix');
+        }
+        
+        if (isset($this->request->post['config_test_publickey_api_prefix'])) {
+            $this->data['config_test_publickey_api_prefix'] = $this->request->post['config_test_publickey_api_prefix'];
+        } else {
+            $this->data['config_test_publickey_api_prefix'] = $this->config->get('config_test_publickey_api_prefix');
+        }
+        
+        
+         if (isset($this->request->post['config_live_secretkey_api_prefix'])) {
+            $this->data['config_live_secretkey_api_prefix'] = $this->request->post['config_live_secretkey_api_prefix'];
+        } else {
+            $this->data['config_live_secretkey_api_prefix'] = $this->config->get('config_live_secretkey_api_prefix');
+        }
+        
+        if (isset($this->request->post['config_live_publickey_api_prefix'])) {
+            $this->data['config_live_publickey_api_prefix'] = $this->request->post['config_live_publickey_api_prefix'];
+        } else {
+            $this->data['config_live_publickey_api_prefix'] = $this->config->get('config_live_publickey_api_prefix');
+        }
 
         $this->load->model('tool/image');
 

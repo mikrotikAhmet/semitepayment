@@ -329,6 +329,31 @@
                                         </select>
                                     </div>
                                 </div>
+                                <h2><?php echo $text_api?></h2>
+                                <div class="form-group">
+                                    <label for="config_test_secretkey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_test_secretkey_api_prefix; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="config_test_secretkey_api_prefix" placeholder="" name="config_test_secretkey_api_prefix" value="<?php echo $config_test_secretkey_api_prefix; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_test_publickey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_test_publickey_api_prefix; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="config_test_publickey_api_prefix" placeholder="" name="config_test_publickey_api_prefix" value="<?php echo $config_test_publickey_api_prefix; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_live_secretkey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_live_secretkey_api_prefix; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="config_live_secretkey_api_prefix" placeholder="" name="config_live_secretkey_api_prefix" value="<?php echo $config_live_secretkey_api_prefix; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_live_publickey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_live_publickey_api_prefix; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="config_live_publickey_api_prefix" placeholder="" name="config_live_publickey_api_prefix" value="<?php echo $config_live_publickey_api_prefix; ?>">
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="tab_image">
                                 <div class="form-group">

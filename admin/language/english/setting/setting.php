@@ -20,6 +20,7 @@ $_['text_items']                   = 'Items';
 $_['text_account']                 = 'Account';
 $_['text_mail']                    = 'Mail';
 $_['text_smtp']                    = 'SMTP';
+$_['text_api']                    = 'API';
 
 // Entry
 $_['entry_name']                   = 'Application Name:';
@@ -77,6 +78,11 @@ $_['entry_error_display']          = 'Display Errors:';
 $_['entry_error_log']              = 'Log Errors:';
 $_['entry_error_filename']         = 'Error Log Filename:';
 $_['entry_google_analytics']       = 'Google Analytics Code:<br /><span class="help">Login to your <a href="http://www.google.com/analytics/" target="_blank"><u>Google Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.</span>';
+$_['entry_test_publickey_api_prefix'] = 'API Test Public Key Prefix';
+$_['entry_test_secretkey_api_prefix'] = 'API Test Secret Key Prefix';
+$_['entry_live_publickey_api_prefix'] = 'API Live Public Key Prefix';
+$_['entry_live_secretkey_api_prefix'] = 'API Live Secret Key Prefix';
+
 
 // Error
 $_['error_warning']                = 'Warning: Please check the form carefully for errors!';
