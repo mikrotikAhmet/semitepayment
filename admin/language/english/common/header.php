@@ -38,6 +38,7 @@ $_['text_system'] = 'System';
 $_['text_setting'] = 'Settings';
 $_['text_design'] = 'Design';
 $_['text_layout'] = 'Layouts';
+$_['text_mail'] = 'Mail Templates';
 $_['text_pages'] = 'Page Manager';
 $_['text_page'] = 'Page';
 $_['text_block'] = 'Page Blocks';

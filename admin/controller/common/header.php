@@ -71,6 +71,7 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_setting'] = $this->language->get('text_setting');
             $this->data['text_design'] = $this->language->get('text_design');
             $this->data['text_layout'] = $this->language->get('text_layout');
+            $this->data['text_mail'] = $this->language->get('text_mail');
             $this->data['text_page'] = $this->language->get('text_page');
             $this->data['text_add_new'] = $this->language->get('text_add_new');
             $this->data['text_pages'] = $this->language->get('text_pages');
@@ -121,6 +122,7 @@ class ControllerCommonHeader extends Controller{
             // System Menu
                 $this->data['setting'] = $this->url->link('setting/application', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['mail'] = $this->url->link('design/mail', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['page'] = $this->url->link('design/page', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['block'] = $this->url->link('design/block', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['menu'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');

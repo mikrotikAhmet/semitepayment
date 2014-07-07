@@ -353,6 +353,7 @@
                                                 <li id="menu"><a href="<?php echo $menu?>"><?php echo $text_menu?></a></li>
                                             </ul>
                                         </li>
+                                        <li id="mail"><a href="<?php echo $mail?>"><?php echo $text_mail?></a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#"><i class="icon-users"></i><span> <?php echo $text_users?></span></a>

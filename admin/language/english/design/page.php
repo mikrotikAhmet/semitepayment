@@ -66,5 +66,5 @@ $_['entry_block']       = 'Blocks:';
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify pages!';
 $_['error_title']        = 'Page Title must be between 3 and 64 characters!';
-$_['error_default']     = 'Warning: This page cannot be deleted as it is currently assigned as the default application layout!';
+$_['error_default']     = 'Warning: This page cannot be deleted as it is currently assigned as the default application page!';
 
