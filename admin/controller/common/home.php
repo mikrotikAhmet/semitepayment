@@ -36,6 +36,13 @@ class ControllerCommonHome extends Controller {
 
         $this->data['heading_title'] = $this->language->get('heading_title');
         $this->data['heading_sub_title'] = sprintf($this->language->get('heading_sub_title'), $this->config->get('config_name'));
+        
+        $this->data['text_total_customer'] = $this->language->get('text_total_customer');
+        $this->data['text_total_customer_approval'] = $this->language->get('text_total_customer_approval');
+        $this->data['text_total_transfer'] = $this->language->get('text_total_transfer');
+        $this->data['text_total_transfer_request'] = $this->language->get('text_total_transfer_request');
+        $this->data['text_transfer_request'] = $this->language->get('text_transfer_request');
+        $this->data['text_general_balance'] = $this->language->get('text_general_balance');
 
         // Check install directory exists
         if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
@@ -138,6 +145,28 @@ class ControllerCommonHome extends Controller {
         );
 
         $this->data['token'] = $this->session->data['token'];
+        
+        $this->load->model('account/customer');
+        
+        $this->data['total_customer'] = $this->model_account_customer->getTotalCustomers();
+        $this->data['total_customer_approval'] = $this->model_account_customer->getTotalCustomersAwaitingApproval();
+        
+        $this->load->model('account/transaction');
+        
+        $total_withdraw = $this->model_account_transaction->getTotalWithdrawAmount();
+        $total_withdraw_approval = $this->model_account_transaction->getTotalWithdrawAmountApproval();
+        
+        $this->data['total_transfer_request'] = $this->model_account_transaction->getTotalTransferRequest();
+        
+        $general_balance = $this->model_account_transaction->getTotalAmount();
+        
+        $this->data['total_withdraw'] = $this->currency->format((isset($total_withdraw) ? str_replace('-',"",$total_withdraw) : 0), $this->config->get('config_currency'));
+        $this->data['total_withdraw_approval'] = $this->currency->format((isset($total_withdraw_approval) ? str_replace('-',"",$total_withdraw_approval) : 0), $this->config->get('config_currency'));
+        
+        $this->data['general_balance'] = $this->currency->format((isset($general_balance) ? str_replace('-',"",$general_balance) : 0), $this->config->get('config_currency'));
+        
+        $this->data['customer_approved'] = $this->url->link('account/customer','token='.$this->session->data['token'].'&filter_approved=1','SSL');
+        $this->data['customer_waiting'] = $this->url->link('account/customer','token='.$this->session->data['token'].'&filter_approved=0','SSL');
 
         if ($this->config->get('config_currency_auto')) {
             $this->load->model('localisation/currency');

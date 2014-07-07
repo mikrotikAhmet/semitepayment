@@ -419,7 +419,7 @@
                         <tbody>
                             <?php foreach ($transactions as $transaction) { ?>
                             <tr>
-                                <td>+</td>
+                                <td><?php echo $transaction['transaction_id']?></td>
                                 <td><?php echo $transaction['date_added']?></td>
                                 <?php if ($transaction['type'] == 'Deposit') { ?>
                                 <td><i class="glyphicon glyphicon-share-alt"></i> <?php echo $transaction['type']?></td>

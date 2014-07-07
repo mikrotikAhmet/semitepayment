@@ -81,15 +81,53 @@ class ModelAccountTransaction extends Model {
 
         return $query->rows;
     }
+    
+    public function getTotalWithdrawAmount(){
+        
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '1'");
 
-    public function getTotalTransactions() {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE customer_id = '" . (int) $this->customer->getId() . "'");
+        if ($query->num_rows) {
+            return $query->row['total'];
+        } else {
+            return 0;
+        }
+    }
+    
+    public function getTotalWithdrawAmountApproval(){
+        
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '0'");
+
+        if ($query->num_rows) {
+            return $query->row['total'];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getTotalTransactions($customer_id) {
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE customer_id = '" . (int) $customer_id . "'");
+
+        return $query->row['total'];
+    }
+    
+    public function getTotalTransferRequest() {
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '0'");
 
         return $query->row['total'];
     }
 
+    public function getTotalAmountByCustomerId($customer_id) {
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE customer_id = '" . (int) $customer_id . "' GROUP BY customer_id");
+
+        if ($query->num_rows) {
+            return $query->row['total'];
+        } else {
+            return 0;
+        }
+    }
+    
     public function getTotalAmount() {
-        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE customer_id = '" . (int) $this->customer->getId() . "' GROUP BY customer_id");
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE status = '1'");
 
         if ($query->num_rows) {
             return $query->row['total'];

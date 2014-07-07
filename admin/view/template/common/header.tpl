@@ -37,6 +37,7 @@
         <script type="text/javascript" src="view/javascript/jquery/jquery.cookie.js"></script>
         
         <script type="text/javascript" src="view/js/plugins/charts/sparkline.min.js"></script>
+        
 
         <script type="text/javascript" src="view/js/plugins/forms/uniform.min.js"></script>
         <script type="text/javascript" src="view/js/plugins/forms/select2.min.js"></script>
@@ -72,8 +73,6 @@
         <script type="text/javascript" src="view/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="view/js/application.js"></script>
         
-        <script type="text/javascript" src="view/js/plugins/forms/uploader/plupload.full.min.js"></script>
-        <script type="text/javascript" src="view/js/plugins/forms/uploader/plupload.queue.min.js"></script>
     </head>
     <body>
         <div id="filemanager"></div>
