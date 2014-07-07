@@ -419,13 +419,11 @@
                         <tbody>
                             <?php foreach ($transactions as $transaction) { ?>
                             <tr>
-                                <td>+</td>
+                                <td><?php echo $transaction['transaction_id']?></td>
                                 <td><?php echo $transaction['date_added']?></td>
-                                <?php if ($transaction['type'] == 'Deposit') { ?>
-                                <td><i class="glyphicon glyphicon-share-alt"></i> <?php echo $transaction['type']?></td>
-                                <?php } ?>
+                                <td><i class=""></i> <?php echo $transaction['type']?></td>
                                 <td><?php echo $transaction['description']?></td>
-                                <td><i class="glyphicon glyphicon-ok"></i> Processed</td>
+                                <td><i class=""></i> Processed</td>
                             </tr>
                             <?php } ?>
                         </tbody>
