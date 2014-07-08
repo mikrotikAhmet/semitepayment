@@ -135,6 +135,12 @@ class ModelAccountTransaction extends Model {
             return 0;
         }
     }
+    
+    public function getTotalWithdrawHistoriesByTransactionStatusId($transaction_status_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "withdraw WHERE status = '" . (int)$transaction_status_id . "'");
+
+		return $query->row['total'];
+	}
 
 }
 

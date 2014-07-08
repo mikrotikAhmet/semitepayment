@@ -78,6 +78,7 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_block'] = $this->language->get('text_block');
             $this->data['text_menu'] = $this->language->get('text_menu');
             $this->data['text_users'] = $this->language->get('text_users');
+            $this->data['text_transaction_status'] = $this->language->get('text_transaction_status');
             $this->data['text_user'] = $this->language->get('text_user');
             $this->data['text_user_group'] = $this->language->get('text_user_group');
             $this->data['text_localisations'] = $this->language->get('text_localisations');
@@ -124,6 +125,7 @@ class ControllerCommonHeader extends Controller{
                 $this->data['layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['mail'] = $this->url->link('design/mail', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['page'] = $this->url->link('design/page', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['transaction_status'] = $this->url->link('localisation/transaction_status', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['block'] = $this->url->link('design/block', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['menu'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['new_page'] = $this->url->link('design/page/insert', 'token=' . $this->session->data['token'], 'SSL');

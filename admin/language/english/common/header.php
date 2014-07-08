@@ -43,6 +43,7 @@ $_['text_pages'] = 'Page Manager';
 $_['text_page'] = 'Page';
 $_['text_block'] = 'Page Blocks';
 $_['text_menu'] = 'Page Menus';
+$_['text_transaction_status']                      = 'Transaction Statuses';
 $_['text_users']                      = 'User Management';
 $_['text_user']                      = 'User';
 $_['text_user_group']                      = 'User Groups';

@@ -368,6 +368,7 @@
                                             <li id="currency"><a href="<?php echo $currency?>"><?php echo $text_currency?></a></li>
                                             <li id="country"><a href="<?php echo $country?>"><?php echo $text_country?></a></li>
                                             <li id="zone"><a href="<?php echo $zone?>"><?php echo $text_zone?></a></li>
+                                            <li id="transaction_status"><a href="<?php echo $transaction_status?>"><?php echo $text_transaction_status?></a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#"><i class="icon-wrench2"></i><span> <?php echo $text_tool?></span></a>
