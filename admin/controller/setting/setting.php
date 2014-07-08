@@ -89,6 +89,7 @@ class ControllerSettingSetting extends Controller {
         $this->data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
         $this->data['entry_customer_price'] = $this->language->get('entry_customer_price');
         $this->data['entry_account'] = $this->language->get('entry_account');
+        $this->data['entry_mail_template'] = $this->language->get('entry_mail_template');
         $this->data['entry_logo'] = $this->language->get('entry_logo');
         $this->data['entry_icon'] = $this->language->get('entry_icon');
         $this->data['entry_ftp_host'] = $this->language->get('entry_ftp_host');
@@ -437,6 +438,16 @@ class ControllerSettingSetting extends Controller {
         $this->load->model('application/content');
 
         $this->data['contents'] = $this->model_application_content->getContents();
+        
+        if (isset($this->request->post['config_mail_template_id'])) {
+            $this->data['config_mail_template_id'] = $this->request->post['config_mail_template_id'];
+        } else {
+            $this->data['config_mail_template_id'] = $this->config->get('config_mail_template_id');
+        }
+        
+        $this->load->model('design/mail');
+
+        $this->data['mail_templates'] = $this->model_design_mail->getMailTemplates();
         
         if (isset($this->request->post['config_test_secretkey_api_prefix'])) {
             $this->data['config_test_secretkey_api_prefix'] = $this->request->post['config_test_secretkey_api_prefix'];

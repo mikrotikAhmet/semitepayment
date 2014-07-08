@@ -329,6 +329,20 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="config_mail_template" class="col-sm-3 control-label"><?php echo $entry_mail_template; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_mail_template_id"  class="form-control">
+                                            <?php foreach ($mail_templates as $mail_template) { ?>
+                                            <?php if ($mail_template['mail_template_id'] == $config_mail_template_id) { ?>
+                                            <option value="<?php echo $mail_template['mail_template_id']; ?>" selected="selected"><?php echo $mail_template['title']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $mail_template['mail_template_id']; ?>"><?php echo $mail_template['title']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
                                 <h2><?php echo $text_api?></h2>
                                 <div class="form-group">
                                     <label for="config_test_secretkey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_test_secretkey_api_prefix; ?></label>

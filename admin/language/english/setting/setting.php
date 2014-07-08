@@ -46,6 +46,7 @@ $_['entry_customer_group']         = 'Customer Group:<br /><span class="help">De
 $_['entry_customer_group_display'] = 'Customer Groups:<br /><span class="help">Display customer groups that new customers can select to use such as wholesale and business when signing up.</span>';
 $_['entry_customer_price']         = 'Login Display Prices:<br /><span class="help">Only show prices when a customer is logged in.</span>';
 $_['entry_account']                = 'Account Terms:<br /><span class="help">Forces people to agree to terms before an account can be created.</span>';
+$_['entry_mail_template']                = 'Welcome Mail:<br /><span class="help">Default Welcome Mail Template for new customer(s).</span>';
 $_['entry_logo']                   = 'Store Logo:';
 $_['entry_icon']                   = 'Icon:<br /><span class="help">The icon should be a PNG that is 16px x 16px.</span>';
 $_['entry_ftp_host']               = 'FTP Host:';

@@ -25,9 +25,37 @@ if (!defined('DIR_APPLICATION'))
  */
 class ModelDesignMail extends Model{
     
+    public function addMailTemplate($data=array()){
+        
+        $this->db->query("INSERT INTO ".DB_PREFIX."mail_template SET date_added = NOW(), date_modified = NOW(), status = '".(int) $data['status']."'");
+        
+        $mail_template_id = $this->db->getLastId();
+        
+        if ($data['mail_description']){
+            foreach ($data['mail_description'] as $language_id => $value) {
+                $this->db->query("INSERT INTO " . DB_PREFIX . "mail_template_description SET mail_template_id = '" . (int) $mail_template_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', template = '" . $this->db->escape($value['mail_template']) . "'");
+            }
+        }
+        
+    }
+    
+    public function editMailTemplate($mail_template_id,$data=array()){
+        
+        $this->db->query("UPDATE ".DB_PREFIX."mail_template SET date_modified = NOW(), status = '".(int) $data['status']."'");
+        
+        $this->db->query("DELETE FROM ".DB_PREFIX."mail_template_description WHERE mail_template_id = '".(int) $mail_template_id."'");
+        
+        if ($data['mail_description']){
+            foreach ($data['mail_description'] as $language_id => $value) {
+                $this->db->query("INSERT INTO " . DB_PREFIX . "mail_template_description SET mail_template_id = '" . (int) $mail_template_id . "', language_id = '" . (int) $language_id . "', title = '" . $this->db->escape($value['title']) . "', template = '" . $this->db->escape($value['mail_template']) . "'");
+            }
+        }
+        
+    }
+    
     public function getMailTemplate($mail_template_id) {
 
-        $query = $this->db->query("SELECT DISTINCT * " . DB_PREFIX . "mail_template WHERE mail_template_id = '" . (int) $mail_template_id . "'");
+        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "mail_template WHERE mail_template_id = '" . (int) $mail_template_id . "'");
 
         return $query->row;
     }
@@ -68,13 +96,13 @@ class ModelDesignMail extends Model{
     
      public function deleteMailTemplate($mail_template_id) {
         $this->db->query("DELETE FROM " . DB_PREFIX . "mail_template WHERE mail_template_id = '" . (int) $mail_template_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "mail_description WHERE mail_template_id = '" . (int) $mail_template_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "mail_template_description WHERE mail_template_id = '" . (int) $mail_template_id . "'");
     }
 
     public function getMailTemplateDescriptions($mail_template_id) {
         $mail_description_data = array();
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "mail_description WHERE mail_template_id = '" . (int) $mail_template_id . "'");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "mail_template_description WHERE mail_template_id = '" . (int) $mail_template_id . "'");
 
         foreach ($query->rows as $result) {
             $mail_description_data[$result['language_id']] = array(

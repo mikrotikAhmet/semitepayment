@@ -204,7 +204,7 @@ class ControllerDesignMail extends Controller{
 
             $action[] = array(
                 'text' => $this->language->get('text_edit'),
-                'href' => $this->url->link('design/mail/update', 'token=' . $this->session->data['token'] . '&page_id=' . $result['page_id'] . $url, 'SSL')
+                'href' => $this->url->link('design/mail/update', 'token=' . $this->session->data['token'] . '&mail_template_id=' . $result['mail_template_id'] . $url, 'SSL')
             );
 
             $this->data['mail_templates'][] = array(
@@ -288,6 +288,8 @@ class ControllerDesignMail extends Controller{
     
     protected function getForm() {
         $this->data['heading_title'] = $this->language->get('heading_title');
+        
+        $this->document->addScript('view/javascript/jquery/tabs.js');
 
         $this->data['text_enabled'] = $this->language->get('text_enabled');
         $this->data['text_default'] = $this->language->get('text_default');
@@ -340,7 +342,7 @@ class ControllerDesignMail extends Controller{
             'separator' => ' :: '
         );
 
-        if (!isset($this->request->get['page_id'])) {
+        if (!isset($this->request->get['mail_template_id'])) {
             $this->data['action'] = $this->url->link('design/mail/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
         } else {
             $this->data['action'] = $this->url->link('design/mail/update', 'token=' . $this->session->data['token'] . '&mail_template_id=' . $this->request->get['mail_template_id'] . $url, 'SSL');
@@ -360,7 +362,7 @@ class ControllerDesignMail extends Controller{
 
         if (isset($this->request->post['mail_description'])) {
             $this->data['mail_description'] = $this->request->post['mail_description'];
-        } elseif (isset($this->request->get['page_id'])) {
+        } elseif (isset($this->request->get['mail_template_id'])) {
             $this->data['mail_description'] = $this->model_design_mail->getMailTemplateDescriptions($this->request->get['mail_template_id']);
         } else {
             $this->data['mail_description'] = array();
@@ -389,9 +391,10 @@ class ControllerDesignMail extends Controller{
         }
 
         foreach ($this->request->post['mail_description'] as $language_id => $value) {
-            if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 64)) {
+            if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 255)) {
                 $this->error['title'][$language_id] = $this->language->get('error_title');
             }
+
         }
 
         if (!$this->error) {
