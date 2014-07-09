@@ -345,6 +345,38 @@
                                 </div>
                                 <h2><?php echo $text_transaction?></h2>
                                 <div class="form-group">
+                                    <label for="config_transaction_autocapture" class="col-sm-3 control-label"><?php echo $entry_auto_capture; ?></label>
+                                    <div class="col-sm-2">
+                                        <?php if ($config_transaction_autocapture) { ?>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="config_transaction_autocapture" id="optionsRadios1" value="1" checked>
+                                                <?php echo $text_yes; ?>
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="config_transaction_autocapture" id="optionsRadios2" value="0">
+                                                <?php echo $text_no; ?>
+                                            </label>
+                                        </div>
+                                        <?php } else { ?>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="config_transaction_autocapture" id="optionsRadios1" value="1">
+                                                <?php echo $text_yes; ?>
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="config_transaction_autocapture" id="optionsRadios2" value="0" checked>
+                                                <?php echo $text_no; ?>
+                                            </label>
+                                        </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="config_transaction_status_id" class="col-sm-3 control-label"><?php echo $entry_transaction_status; ?></label>
                                     <div class="col-sm-4">
                                         <select name="config_transaction_status_id"  class="form-control">

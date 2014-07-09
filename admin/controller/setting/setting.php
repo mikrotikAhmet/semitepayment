@@ -93,6 +93,8 @@ class ControllerSettingSetting extends Controller {
         $this->data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
         $this->data['entry_customer_price'] = $this->language->get('entry_customer_price');
         $this->data['entry_account'] = $this->language->get('entry_account');
+        
+        $this->data['entry_auto_capture'] = $this->language->get('entry_auto_capture');
         $this->data['entry_transaction_status'] = $this->language->get('entry_transaction_status');
         $this->data['entry_transaction_status_complete'] = $this->language->get('entry_transaction_status_complete');
         
@@ -422,6 +424,12 @@ class ControllerSettingSetting extends Controller {
             $this->data['config_customer_online'] = $this->request->post['config_customer_online'];
         } else {
             $this->data['config_customer_online'] = $this->config->get('config_customer_online');
+        }
+        
+        if (isset($this->request->post['config_transaction_autocapture'])) {
+            $this->data['config_transaction_autocapture'] = $this->request->post['config_transaction_autocapture'];
+        } else {
+            $this->data['config_transaction_autocapture'] = $this->config->get('config_transaction_autocapture');
         }
 
         if (isset($this->request->post['config_customer_group_id'])) {

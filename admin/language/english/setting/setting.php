@@ -52,6 +52,7 @@ $_['entry_customer_price']         = 'Login Display Prices:<br /><span class="he
 $_['entry_account']                = 'Account Terms:<br /><span class="help">Forces people to agree to terms before an account can be created.</span>';
 $_['entry_mail_template']                = 'Welcome Mail:<br /><span class="help">Default Welcome Mail Template for new customer(s).</span>';
 
+$_['entry_auto_capture'] = 'Enable Auto Capture:<br/><span class="help">Enables or Disables the auto capture Credit Card transactions.</span>';
 $_['entry_transaction_status'] = 'Transaction Status:<br/><span class="help">Set the default transaction status when an transaction is processed.</span>';
 $_['entry_transaction_status_complete'] = 'Completed Transaction Status:<br /><span class="help">Set the transaction status the customers transaction must be approved by the Aquirer Bank to add the amount into customers Account Balance.</span>';
 

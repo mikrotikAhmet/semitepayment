@@ -84,7 +84,7 @@ class ModelAccountTransaction extends Model {
     
     public function getTotalWithdrawAmount(){
         
-        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '1'");
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '".(int) $this->config->get('config_complete_transfer_status_id')."'");
 
         if ($query->num_rows) {
             return $query->row['total'];
@@ -95,7 +95,7 @@ class ModelAccountTransaction extends Model {
     
     public function getTotalWithdrawAmountApproval(){
         
-        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '0'");
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '".(int) $this->config->get('config_transfer_status_id')."'");
 
         if ($query->num_rows) {
             return $query->row['total'];
@@ -111,7 +111,7 @@ class ModelAccountTransaction extends Model {
     }
     
     public function getTotalTransferRequest() {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '0'");
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '".(int) $this->config->get('config_transfer_status_id')."'");
 
         return $query->row['total'];
     }
@@ -127,7 +127,7 @@ class ModelAccountTransaction extends Model {
     }
     
     public function getTotalAmount() {
-        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE status = '1'");
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE status = '".(int) $this->config->get('config_complete_transaction_status_id')."'");
 
         if ($query->num_rows) {
             return $query->row['total'];

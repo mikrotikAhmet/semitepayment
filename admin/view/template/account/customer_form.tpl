@@ -423,7 +423,7 @@
                                 <td><?php echo $transaction['date_added']?></td>
                                 <td><i class=""></i> <?php echo $transaction['type']?></td>
                                 <td><?php echo $transaction['description']?></td>
-                                <td><i class=""></i> Processed</td>
+                                <td><i class=""></i> <?php echo $transaction['status']?></td>
                             </tr>
                             <?php } ?>
                         </tbody>

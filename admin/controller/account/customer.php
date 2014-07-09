@@ -1086,7 +1086,26 @@ class ControllerAccountCustomer extends Controller {
                     'verified'=>$card['status']
                 );
             }
-            $this->data['transactions'] = $this->model_account_transaction->getTransactions($this->request->get['customer_id']);
+            
+            $this->data['transactions'] = array();
+            
+            $transactions = $this->model_account_transaction->getTransactions($this->request->get['customer_id']);
+            
+            foreach ($transactions as $transaction){
+                
+                
+                $transaction_status = $this->model_localisation_transaction_status->getTransactionStatus($transaction['status']);
+                
+                $status = '<span class="label label-primary">'.$transaction_status['name'].'</span>';
+                
+                $this->data['transactions'][] = array(
+                    'transaction_id'=>$transaction['transaction_id'],
+                    'type'=>$transaction['type'],
+                    'date_added'=>date($this->language->get('date_format_short'), strtotime($transaction['date_added'])),
+                    'description'=>$transaction['description'],
+                    'status'=>$status
+                );
+            }
         }
         
         $this->load->model('localisation/currency');
