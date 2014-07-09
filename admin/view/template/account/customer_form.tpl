@@ -777,6 +777,7 @@ function addBank(){
 	html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][account_holder_name]" value="'+data[2].value+'"/>'+data[2].value+'</td>';
         html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][iban]" value="'+data[3].value+'"/>'+data[3].value+'</td>';
         html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][swift]" value="'+data[4].value+'"/>'+data[4].value+'</td>';
+        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][status]" value="<?php echo $this->config->get('config_bankaccount_status_id')?>"/></td>';
 	html += '    <td class="left"><a onclick="$(\'#bank-row' + bank_row + '\').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
@@ -816,6 +817,7 @@ function addCard(){
                     html += '    <td class="left"><input type="hidden" name="card['+card_row+'][cc_number]" value="'+json[0].card+'"/>'+data[1].value+'</td>';
                     html += '    <td class="left"><input type="hidden" name="card['+card_row+'][ccv]" value="'+data[2].value+'"/></td>';
                     html += '    <td class="left"><input type="hidden" name="card['+card_row+'][date_expire]" value="'+data[3].value+'"/></td>';
+                    html += '    <td class="left"><input type="hidden" name="card['+card_row+'][status]" value="<?php echo $this->config->get('config_creditcard_status_id')?>"/></td>';
                     html += '    <td class="left"><a onclick="$(\'#card-row' + card_row + '\').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>';
                     html += '  </tr>';
                     html += '</tbody>';

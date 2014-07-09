@@ -44,7 +44,7 @@ class ModelAccountCustomer extends Model {
         
         if (isset($data['bank'])) {
             foreach ($data['bank'] as $bank) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "customer_bank SET customer_id = '" . (int) $customer_id . "', bank_name = '" . $this->db->escape(strtoupper($bank['bank_name'])) . "', settlement_currency = '".$this->db->escape($bank['settlement_currency'])."',account_holder = '" . $this->db->escape(strtoupper($bank['account_holder_name'])) . "', iban = '" . $this->db->escape($bank['iban']) . "', swift = '" . $this->db->escape($bank['swift']) . "'");
+                $this->db->query("INSERT INTO " . DB_PREFIX . "customer_bank SET customer_id = '" . (int) $customer_id . "', bank_name = '" . $this->db->escape(strtoupper($bank['bank_name'])) . "', settlement_currency = '".$this->db->escape($bank['settlement_currency'])."',account_holder = '" . $this->db->escape(strtoupper($bank['account_holder_name'])) . "', iban = '" . $this->db->escape($bank['iban']) . "', swift = '" . $this->db->escape($bank['swift']) . "', status = '".(int) $this->config->get('config_bankaccount_status_id')."'");
             }
         }
         
@@ -52,7 +52,7 @@ class ModelAccountCustomer extends Model {
         
         if (isset($data['card'])) {
             foreach ($data['card'] as $card) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "customer_card SET customer_id = '" . (int) $customer_id . "', card_holder = '" . $this->db->escape(strtoupper($card['card_holder'])) . "', cc_number = '".$this->db->escape($card['cc_number'])."',ccv = '" . $this->db->escape(strtoupper($card['ccv'])) . "', `type` = '" . $this->db->escape(strtoupper($card['type'])) . "', date_expire = '" . $this->db->escape($card['date_expire']) . "', hex = '".$this->db->escape($this->encryption->encrypt($card['cc_number']))."'");
+                $this->db->query("INSERT INTO " . DB_PREFIX . "customer_card SET customer_id = '" . (int) $customer_id . "', card_holder = '" . $this->db->escape(strtoupper($card['card_holder'])) . "', cc_number = '".$this->db->escape($card['cc_number'])."',ccv = '" . $this->db->escape(strtoupper($card['ccv'])) . "', `type` = '" . $this->db->escape(strtoupper($card['type'])) . "', date_expire = '" . $this->db->escape($card['date_expire']) . "', hex = '".$this->db->escape($this->encryption->encrypt($card['cc_number'])).",status = '".(int) $this->config->get('config_creditcard_status_id')."'");
             }
         }
         
@@ -71,6 +71,8 @@ class ModelAccountCustomer extends Model {
         $this->db->query("DELETE FROM " . DB_PREFIX . "customer_card WHERE customer_id = '" . (int) $customer_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "customer_statement WHERE customer_id = '" . (int) $customer_id . "'");
         $this->db->query("DELETE FROM " . DB_PREFIX . "customer_account WHERE customer_id = '" . (int) $customer_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "withdraw WHERE customer_id = '" . (int) $customer_id . "'");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "customer_history WHERE customer_id = '" . (int) $customer_id . "'");
     }
 
     public function getCustomer($customer_id) {

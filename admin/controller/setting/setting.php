@@ -67,6 +67,8 @@ class ControllerSettingSetting extends Controller {
         $this->data['text_api'] = $this->language->get('text_api');
         $this->data['text_transaction'] = $this->language->get('text_transaction');
         $this->data['text_transfer'] = $this->language->get('text_transfer');
+        $this->data['text_affiliate'] = $this->language->get('text_affiliate');
+        $this->data['text_verification'] = $this->language->get('text_verification');
 
         $this->data['entry_name'] = $this->language->get('entry_name');
         $this->data['entry_owner'] = $this->language->get('entry_owner');
@@ -97,6 +99,14 @@ class ControllerSettingSetting extends Controller {
         $this->data['entry_invoice_prefix'] = $this->language->get('entry_invoice_prefix');
         $this->data['entry_transfer_status'] = $this->language->get('entry_transfer_status');
         $this->data['entry_transfer_status_complete'] = $this->language->get('entry_transfer_status_complete');
+        
+        $this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
+        $this->data['entry_commission'] = $this->language->get('entry_commission');
+        
+        $this->data['entry_creditcard_status'] = $this->language->get('entry_creditcard_status');
+        $this->data['entry_complete_creditcard_status'] = $this->language->get('entry_complete_creditcard_status');
+        $this->data['entry_bankaccount_status'] = $this->language->get('entry_bankaccount_status');
+        $this->data['entry_complete_bankaccount_status'] = $this->language->get('entry_complete_bankaccount_status');
         
         $this->data['entry_mail_template'] = $this->language->get('entry_mail_template');
         $this->data['entry_logo'] = $this->language->get('entry_logo');
@@ -492,6 +502,41 @@ class ControllerSettingSetting extends Controller {
         
         $this->data['transaction_statuses'] = $this->model_localisation_transaction_status->getTransactionStatuses();
         
+        if (isset($this->request->post['config_affiliate_id'])) {
+            $this->data['config_affiliate_id'] = $this->request->post['config_affiliate_id'];
+        } else {
+            $this->data['config_affiliate_id'] = $this->config->get('config_affiliate_id');
+        }
+        
+        if (isset($this->request->post['config_commission'])) {
+            $this->data['config_commission'] = $this->request->post['config_commission'];
+        } else {
+            $this->data['config_commission'] = $this->config->get('config_commission');
+        }
+        
+        if (isset($this->request->post['config_creditcard_status_id'])) {
+            $this->data['config_creditcard_status_id'] = $this->request->post['config_creditcard_status_id'];
+        } else {
+            $this->data['config_creditcard_status_id'] = $this->config->get('config_creditcard_status_id');
+        }
+        
+        if (isset($this->request->post['config_complete_creditcard_status_id'])) {
+            $this->data['config_complete_creditcard_status_id'] = $this->request->post['config_complete_creditcard_status_id'];
+        } else {
+            $this->data['config_complete_creditcard_status_id'] = $this->config->get('config_complete_creditcard_status_id');
+        }
+        
+        if (isset($this->request->post['config_bankaccount_status_id'])) {
+            $this->data['config_bankaccount_status_id'] = $this->request->post['config_bankaccount_status_id'];
+        } else {
+            $this->data['config_bankaccount_status_id'] = $this->config->get('config_bankaccount_status_id');
+        }
+        
+        if (isset($this->request->post['config_complete_bankaccount_status_id'])) {
+            $this->data['config_complete_bankaccount_status_id'] = $this->request->post['config_complete_bankaccount_status_id'];
+        } else {
+            $this->data['config_complete_bankaccount_status_id'] = $this->config->get('config_complete_bankaccount_status_id');
+        }
         
         if (isset($this->request->post['config_test_secretkey_api_prefix'])) {
             $this->data['config_test_secretkey_api_prefix'] = $this->request->post['config_test_secretkey_api_prefix'];

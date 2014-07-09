@@ -23,6 +23,8 @@ $_['text_smtp']                    = 'SMTP';
 $_['text_api']                    = 'API';
 $_['text_transaction']                    = 'Transactions';
 $_['text_transfer']                    = 'Asset Transfers ( Withdraw )';
+$_['text_affiliate']                    = 'Affiliates';
+$_['text_verification']                    = 'Verifications';
 
 // Entry
 $_['entry_name']                   = 'Application Name:';
@@ -58,7 +60,14 @@ $_['entry_invoice_prefix']         = 'Invoice Prefix:<br /><span class="help">Se
 $_['entry_transfer_status'] = 'Transfer Status:<br/><span class="help">Set the default transfer (WITHDRAW) status when an transfer is processed and/or requested.</span>';
 $_['entry_transfer_status_complete'] = 'Completed Transfer Status:<br /><span class="help">Set the transfer status when the requested transfer amount has been processed by the system.</span>';
 
+$_['entry_affiliate']              = 'Affiliate Terms:<br /><span class="help">Forces people to agree to terms before an affiliate account can be created.</span>';
+$_['entry_commission']             = 'Affiliate Commission (%):<br /><span class="help">The default affiliate commission percentage.</span>';
 
+
+$_['entry_creditcard_status']              = 'Credit Card Verification:<br /><span class="help">Set default verification status for Credit Cards.</span>';
+$_['entry_complete_creditcard_status']              = 'Comleted Credit Card Verification:<br /><span class="help">Set the verification status when the Customer Cards informations are approved.</span>';
+$_['entry_bankaccount_status']             = 'Bank Account Verification:<br /><span class="help">Set default verification status for Bank Accounts.</span>';
+$_['entry_complete_bankaccount_status']             = 'Complete Bank Account Verification:<br /><span class="help">Set the verification status when the Customer Bank informations are approved.</span>';
 
 $_['entry_logo']                   = 'Store Logo:';
 $_['entry_icon']                   = 'Icon:<br /><span class="help">The icon should be a PNG that is 16px x 16px.</span>';

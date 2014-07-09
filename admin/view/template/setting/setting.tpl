@@ -407,6 +407,85 @@
                                         </select>
                                     </div>
                                 </div>
+                                <h2><?php echo $text_affiliate?></h2>
+                                <div class="form-group">
+                                    <label for="config_affiliate_id" class="col-sm-3 control-label"><?php echo $entry_affiliate; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_affiliate_id"  class="form-control">
+                                            <?php foreach ($contents as $content) { ?>
+                                            <?php if ($content['content_id'] == $config_affiliate_id) { ?>
+                                            <option value="<?php echo $content['content_id']; ?>" selected="selected"><?php echo $content['title']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $content['content_id']; ?>"><?php echo $content['title']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_commission" class="col-sm-3 control-label"><?php echo $entry_commission; ?></label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="config_commission" placeholder="" name="config_commission" value="<?php echo $config_commission; ?>">
+                                    </div>
+                                </div>
+                                <h2><?php echo $text_verification?></h2>
+                                <div class="form-group">
+                                    <label for="config_creditcard_status_id" class="col-sm-3 control-label"><?php echo $entry_creditcard_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_creditcard_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_creditcard_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_complete_creditcard_status_id" class="col-sm-3 control-label"><?php echo $entry_complete_creditcard_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_complete_creditcard_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_complete_creditcard_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_bankaccount_status_id" class="col-sm-3 control-label"><?php echo $entry_bankaccount_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_bankaccount_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_bankaccount_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_complete_bankaccount_status_id" class="col-sm-3 control-label"><?php echo $entry_complete_bankaccount_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_complete_bankaccount_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_complete_bankaccount_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                
                                 <h2><?php echo $text_api?></h2>
                                 <div class="form-group">
                                     <label for="config_test_secretkey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_test_secretkey_api_prefix; ?></label>

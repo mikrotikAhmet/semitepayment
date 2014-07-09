@@ -1045,14 +1045,13 @@ class ControllerAccountCustomer extends Controller {
             
             $banks = $this->model_account_customer->getCustomerBanks($this->request->get['customer_id']);
             
+            $this->load->model('localisation/transaction_status');
+            
             foreach ($banks as $bank){
                 
+                $transaction_status = $this->model_localisation_transaction_status->getTransactionStatus($bank['status']);
                 
-                if ($bank['verified']){
-                    $verified = '<span class="label label-success">Verified</span>';
-                } else {
-                    $verified = '<span class="label label-info">In progress</span>';
-                }
+                $status = '<span class="label label-primary">'.$transaction_status['name'].'</span>';
                 
                 $this->data['banks'][] = array(
                     'bank_name'=>$bank['bank_name'],
@@ -1060,8 +1059,8 @@ class ControllerAccountCustomer extends Controller {
                     'account_holder'=>$bank['account_holder'],
                     'iban'=>$bank['iban'],
                     'swift'=>$bank['swift'],
-                    'status'=>$verified,
-                    'verified'=>$bank['verified']
+                    'status'=>$status,
+                    'verified'=>$bank['status']
                 );
             }
             
@@ -1073,11 +1072,9 @@ class ControllerAccountCustomer extends Controller {
             foreach ($cards as $card){
                 
                 
-                if ($card['verified']){
-                    $verified = '<span class="label label-success">Verified</span>';
-                } else {
-                    $verified = '<span class="label label-info">In progress</span>';
-                }
+                $transaction_status = $this->model_localisation_transaction_status->getTransactionStatus($card['status']);
+                
+                $status = '<span class="label label-primary">'.$transaction_status['name'].'</span>';
                 
                 $this->data['cards'][] = array(
                     'card_holder'=>$card['card_holder'],
@@ -1085,8 +1082,8 @@ class ControllerAccountCustomer extends Controller {
                     'cc_number'=>$card['cc_number'],
                     'ccv'=>$card['ccv'],
                     'date_expire'=>$card['date_expire'],
-                    'status'=>$verified,
-                    'verified'=>$card['verified']
+                    'status'=>$status,
+                    'verified'=>$card['status']
                 );
             }
             $this->data['transactions'] = $this->model_account_transaction->getTransactions($this->request->get['customer_id']);
