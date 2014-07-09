@@ -65,6 +65,8 @@ class ControllerSettingSetting extends Controller {
         $this->data['text_mail'] = $this->language->get('text_mail');
         $this->data['text_smtp'] = $this->language->get('text_smtp');
         $this->data['text_api'] = $this->language->get('text_api');
+        $this->data['text_transaction'] = $this->language->get('text_transaction');
+        $this->data['text_transfer'] = $this->language->get('text_transfer');
 
         $this->data['entry_name'] = $this->language->get('entry_name');
         $this->data['entry_owner'] = $this->language->get('entry_owner');
@@ -89,6 +91,13 @@ class ControllerSettingSetting extends Controller {
         $this->data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
         $this->data['entry_customer_price'] = $this->language->get('entry_customer_price');
         $this->data['entry_account'] = $this->language->get('entry_account');
+        $this->data['entry_transaction_status'] = $this->language->get('entry_transaction_status');
+        $this->data['entry_transaction_status_complete'] = $this->language->get('entry_transaction_status_complete');
+        
+        $this->data['entry_invoice_prefix'] = $this->language->get('entry_invoice_prefix');
+        $this->data['entry_transfer_status'] = $this->language->get('entry_transfer_status');
+        $this->data['entry_transfer_status_complete'] = $this->language->get('entry_transfer_status_complete');
+        
         $this->data['entry_mail_template'] = $this->language->get('entry_mail_template');
         $this->data['entry_logo'] = $this->language->get('entry_logo');
         $this->data['entry_icon'] = $this->language->get('entry_icon');
@@ -448,6 +457,41 @@ class ControllerSettingSetting extends Controller {
         $this->load->model('design/mail');
 
         $this->data['mail_templates'] = $this->model_design_mail->getMailTemplates();
+        
+        if (isset($this->request->post['config_invoice_prefix'])) {
+            $this->data['config_invoice_prefix'] = $this->request->post['config_invoice_prefix'];
+        } else {
+            $this->data['config_invoice_prefix'] = $this->config->get('config_invoice_prefix');
+        }
+        
+        if (isset($this->request->post['config_transaction_status_id'])) {
+            $this->data['config_transaction_status_id'] = $this->request->post['config_transaction_status_id'];
+        } else {
+            $this->data['config_transaction_status_id'] = $this->config->get('config_transaction_status_id');
+        }
+        
+        if (isset($this->request->post['config_complete_transaction_status_id'])) {
+            $this->data['config_complete_transaction_status_id'] = $this->request->post['config_complete_transaction_status_id'];
+        } else {
+            $this->data['config_complete_transaction_status_id'] = $this->config->get('config_complete_transaction_status_id');
+        }
+        
+        if (isset($this->request->post['config_transfer_status_id'])) {
+            $this->data['config_transfer_status_id'] = $this->request->post['config_transfer_status_id'];
+        } else {
+            $this->data['config_transfer_status_id'] = $this->config->get('config_transfer_status_id');
+        }
+        
+        if (isset($this->request->post['config_complete_transfer_status_id'])) {
+            $this->data['config_complete_transfer_status_id'] = $this->request->post['config_complete_transfer_status_id'];
+        } else {
+            $this->data['config_complete_transfer_status_id'] = $this->config->get('config_complete_transfer_status_id');
+        }
+        
+        $this->load->model('localisation/transaction_status');
+        
+        $this->data['transaction_statuses'] = $this->model_localisation_transaction_status->getTransactionStatuses();
+        
         
         if (isset($this->request->post['config_test_secretkey_api_prefix'])) {
             $this->data['config_test_secretkey_api_prefix'] = $this->request->post['config_test_secretkey_api_prefix'];

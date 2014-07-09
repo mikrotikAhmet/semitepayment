@@ -21,6 +21,8 @@ $_['text_account']                 = 'Account';
 $_['text_mail']                    = 'Mail';
 $_['text_smtp']                    = 'SMTP';
 $_['text_api']                    = 'API';
+$_['text_transaction']                    = 'Transactions';
+$_['text_transfer']                    = 'Asset Transfers ( Withdraw )';
 
 // Entry
 $_['entry_name']                   = 'Application Name:';
@@ -47,6 +49,17 @@ $_['entry_customer_group_display'] = 'Customer Groups:<br /><span class="help">D
 $_['entry_customer_price']         = 'Login Display Prices:<br /><span class="help">Only show prices when a customer is logged in.</span>';
 $_['entry_account']                = 'Account Terms:<br /><span class="help">Forces people to agree to terms before an account can be created.</span>';
 $_['entry_mail_template']                = 'Welcome Mail:<br /><span class="help">Default Welcome Mail Template for new customer(s).</span>';
+
+$_['entry_transaction_status'] = 'Transaction Status:<br/><span class="help">Set the default transaction status when an transaction is processed.</span>';
+$_['entry_transaction_status_complete'] = 'Completed Transaction Status:<br /><span class="help">Set the transaction status the customers transaction must be approved by the Aquirer Bank to add the amount into customers Account Balance.</span>';
+
+
+$_['entry_invoice_prefix']         = 'Invoice Prefix:<br /><span class="help">Set the invoice prefix (e.g. INV-2011-00). Invoice ID\'s will start at 1 for each unique prefix</span>';
+$_['entry_transfer_status'] = 'Transfer Status:<br/><span class="help">Set the default transfer (WITHDRAW) status when an transfer is processed and/or requested.</span>';
+$_['entry_transfer_status_complete'] = 'Completed Transfer Status:<br /><span class="help">Set the transfer status when the requested transfer amount has been processed by the system.</span>';
+
+
+
 $_['entry_logo']                   = 'Store Logo:';
 $_['entry_icon']                   = 'Icon:<br /><span class="help">The icon should be a PNG that is 16px x 16px.</span>';
 $_['entry_ftp_host']               = 'FTP Host:';

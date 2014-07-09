@@ -343,6 +343,70 @@
                                         </select>
                                     </div>
                                 </div>
+                                <h2><?php echo $text_transaction?></h2>
+                                <div class="form-group">
+                                    <label for="config_transaction_status_id" class="col-sm-3 control-label"><?php echo $entry_transaction_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_transaction_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_transaction_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_complete_transaction_status_id" class="col-sm-3 control-label"><?php echo $entry_transaction_status_complete; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_complete_transaction_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_complete_transaction_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <h2><?php echo $text_transfer?></h2>
+                                <div class="form-group">
+                                    <label for="config_invoice_prefix" class="col-sm-3 control-label"><?php echo $entry_invoice_prefix; ?></label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="config_invoice_prefix" placeholder="" name="config_invoice_prefix" value="<?php echo $config_invoice_prefix; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_transfer_status_id" class="col-sm-3 control-label"><?php echo $entry_transfer_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_transfer_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_transfer_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_complete_transfer_status_id" class="col-sm-3 control-label"><?php echo $entry_transfer_status_complete; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_complete_transfer_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_complete_transfer_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
                                 <h2><?php echo $text_api?></h2>
                                 <div class="form-group">
                                     <label for="config_test_secretkey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_test_secretkey_api_prefix; ?></label>
