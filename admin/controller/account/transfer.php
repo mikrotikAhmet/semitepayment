@@ -1392,7 +1392,7 @@ class ControllerAccountTransfer extends Controller {
 				'href'      => $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
-
+                        
 			$this->template = 'account/transfer_info.tpl';
 			$this->children = array(
 				'common/header',
