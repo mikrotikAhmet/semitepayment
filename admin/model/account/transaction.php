@@ -42,9 +42,8 @@ if (!defined('DIR_APPLICATION'))
 
 class ModelAccountTransaction extends Model {
 
-    
-    public function getTransactions($customer_id,$data = array()) {
-        
+    public function getTransactions($customer_id, $data = array()) {
+
         $sql = "SELECT * FROM `" . DB_PREFIX . "customer_transaction` WHERE customer_id = '" . (int) $customer_id . "'";
 
         $sort_data = array(
@@ -81,10 +80,10 @@ class ModelAccountTransaction extends Model {
 
         return $query->rows;
     }
-    
-    public function getTotalWithdrawAmount(){
-        
-        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '".(int) $this->config->get('config_complete_transfer_status_id')."'");
+
+    public function getTotalWithdrawAmount() {
+
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '" . (int) $this->config->get('config_complete_transfer_status_id') . "'");
 
         if ($query->num_rows) {
             return $query->row['total'];
@@ -92,10 +91,10 @@ class ModelAccountTransaction extends Model {
             return 0;
         }
     }
-    
-    public function getTotalWithdrawAmountApproval(){
-        
-        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '".(int) $this->config->get('config_transfer_status_id')."'");
+
+    public function getTotalWithdrawAmountApproval() {
+
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '" . (int) $this->config->get('config_transfer_status_id') . "'");
 
         if ($query->num_rows) {
             return $query->row['total'];
@@ -109,11 +108,79 @@ class ModelAccountTransaction extends Model {
 
         return $query->row['total'];
     }
-    
+
     public function getTotalTransferRequest() {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '".(int) $this->config->get('config_transfer_status_id')."'");
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "withdraw` WHERE status = '" . (int) $this->config->get('config_transfer_status_id') . "'");
 
         return $query->row['total'];
+    }
+
+    public function getTransfers($data = array()) {
+
+        $sql = "SELECT w.withdraw_id, CONCAT(w.firstname, ' ', w.lastname) AS customer, (SELECT ts.name FROM " . DB_PREFIX . "transaction_status ts WHERE ts.transaction_status_id = w.status AND ts.language_id = '" . (int) $this->config->get('config_language_id') . "') AS status, w.amount, w.currency_code, w.currency_value,w.date_added, w.date_proceed FROM `" . DB_PREFIX . "withdraw` w";
+
+//        if (isset($data['filter_order_status_id']) && !is_null($data['filter_order_status_id'])) {
+//            $sql .= " WHERE o.order_status_id = '" . (int) $data['filter_order_status_id'] . "'";
+//        } else {
+//            $sql .= " WHERE o.order_status_id > '0'";
+//        }
+//
+//        if (!empty($data['filter_order_id'])) {
+//            $sql .= " AND o.order_id = '" . (int) $data['filter_order_id'] . "'";
+//        }
+//
+//        if (!empty($data['filter_customer'])) {
+//            $sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+//        }
+//
+//        if (!empty($data['filter_date_added'])) {
+//            $sql .= " AND DATE(o.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+//        }
+//
+//        if (!empty($data['filter_date_modified'])) {
+//            $sql .= " AND DATE(o.date_modified) = DATE('" . $this->db->escape($data['filter_date_modified']) . "')";
+//        }
+//
+//        if (!empty($data['filter_total'])) {
+//            $sql .= " AND o.total = '" . (float) $data['filter_total'] . "'";
+//        }
+
+        $sort_data = array(
+            'w.withdraw_id',
+            'customer',
+            'status',
+            'w.date_added',
+            'w.date_proceed',
+            'w.amount'
+        );
+
+        if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+            $sql .= " ORDER BY " . $data['sort'];
+        } else {
+            $sql .= " ORDER BY w.withdraw_id";
+        }
+
+        if (isset($data['order']) && ($data['order'] == 'DESC')) {
+            $sql .= " DESC";
+        } else {
+            $sql .= " ASC";
+        }
+
+        if (isset($data['start']) || isset($data['limit'])) {
+            if ($data['start'] < 0) {
+                $data['start'] = 0;
+            }
+
+            if ($data['limit'] < 1) {
+                $data['limit'] = 20;
+            }
+
+            $sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
+        }
+
+        $query = $this->db->query($sql);
+
+        return $query->rows;
     }
 
     public function getTotalAmountByCustomerId($customer_id) {
@@ -125,9 +192,9 @@ class ModelAccountTransaction extends Model {
             return 0;
         }
     }
-    
+
     public function getTotalAmount() {
-        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE status = '".(int) $this->config->get('config_complete_transaction_status_id')."'");
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE status = '" . (int) $this->config->get('config_complete_transaction_status_id') . "'");
 
         if ($query->num_rows) {
             return $query->row['total'];
@@ -135,12 +202,11 @@ class ModelAccountTransaction extends Model {
             return 0;
         }
     }
-    
-    public function getTotalWithdrawHistoriesByTransactionStatusId($transaction_status_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "withdraw WHERE status = '" . (int)$transaction_status_id . "'");
 
-		return $query->row['total'];
-	}
+    public function getTotalWithdrawHistoriesByTransactionStatusId($transaction_status_id) {
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "withdraw WHERE status = '" . (int) $transaction_status_id . "'");
+
+        return $query->row['total'];
+    }
 
 }
-

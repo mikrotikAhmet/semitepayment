@@ -92,7 +92,42 @@
             </li>
         </ul>
     </div>
-    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+        <div class="panel-heading"><h6 class="panel-title"><i class="icon-transmission"></i> 10 Latest Withdraw Request(s)</h6></div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Customer Name</th>
+                        <th>Date Request</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($latest_transfers as $latest_transfer) { ?>
+                    <tr>
+                        <td><?php echo $latest_transfer['withdraw_id']?></td>
+                        <td><?php echo $latest_transfer['customer']?></td>
+                        <td><?php echo $latest_transfer['date_added']?></td>
+                        <td><?php echo $latest_transfer['amount']?></td>
+                        <td><?php echo $latest_transfer['status']?></td>
+                        <td><?php foreach ($latest_transfer['action'] as $action) { ?>
+                        [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
+                        <?php } ?></td>
+                    </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+        </div>
+    </div>
+
 </div>
 <!-- /form components -->
 <?php echo $footer?>

@@ -168,6 +168,37 @@ class ControllerCommonHome extends Controller {
         $this->data['customer_approved'] = $this->url->link('account/customer','token='.$this->session->data['token'].'&filter_approved=1','SSL');
         $this->data['customer_waiting'] = $this->url->link('account/customer','token='.$this->session->data['token'].'&filter_approved=0','SSL');
 
+        
+        $data = array(
+                'sort'  => 'w.date_added',
+                'order' => 'DESC',
+                'start' => 0,
+                'limit' => 10
+        );
+        
+        $this->data['latest_transfers'] = array();
+        
+        $transfers = $this->model_account_transaction->getTransfers($data);
+        
+        foreach ($transfers as $transfer){
+            
+            $action = array();
+
+            $action[] = array(
+                    'text' => $this->language->get('text_view'),
+                    'href' => $this->url->link('account/transfer/info', 'token=' . $this->session->data['token'] . '&withdraw_id=' . $transfer['withdraw_id'], 'SSL')
+            );
+            
+            $this->data['latest_transfers'][] = array(
+                'withdraw_id'=>$transfer['withdraw_id'],
+                'customer'=>$transfer['customer'],
+                'date_added'=>date($this->language->get('date_format_short'), strtotime($transfer['date_added'])),
+                'amount'=>$this->currency->format($transfer['amount'], $transfer['currency_code'], $transfer['currency_value']),
+                'status'=>$transfer['status'],
+                'action'=>$action
+            );
+        }
+        
         if ($this->config->get('config_currency_auto')) {
             $this->load->model('localisation/currency');
 
