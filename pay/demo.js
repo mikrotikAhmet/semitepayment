@@ -46,21 +46,21 @@
 }).call(this);
 $(function(){
        
-    $('#form').on('submit',function(){
-           
-        var formData = $(this).serialize();
-           
-        $.ajax({
-            url : 'http://api.semitepayment.com/v1/_requestAPI?route=semite/users/getUsers',
-            type : 'POST',
-            data : formData,
-            dataType : 'jsonp',
-            success : function(json){
-                
-            }
-        });       
-          
-        return false;
-    });
+//    $('#form').on('submit',function(){
+//           
+//        var formData = $(this).serialize();
+//           
+//        $.ajax({
+//            url : 'http://api.semitepayment.com/v1/_requestAPI?route=semite/users/getUsers',
+//            type : 'POST',
+//            data : formData,
+//            dataType : 'jsonp',
+//            success : function(json){
+//                
+//            }
+//        });       
+//          
+//        return false;
+//    });
        
 });

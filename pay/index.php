@@ -1,3 +1,46 @@
+<?php
+
+/**
+ * CodeIgniter
+ *
+ * An open source application development framework for PHP 5.1.6 or newer
+ *
+ * @package		CodeIgniter
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * @package     EGC Services Ltd
+ * @version     $Id: index.php Jul 11, 2014 ahmet
+ * @copyright   Copyright (c) 2014 EGC Services Ltd .
+ * @license     http://www.egamingc.com/license/
+ */
+/**
+ * Description of index.php
+ *
+ * @author ahmet
+ */
+
+if(isset($_POST['submit'])){
+    require_once 'cc.php';
+
+    $result = CallAPI('GET', 'http://lapi.semitepayment.com/v1/_requestAPI?route=semite/users/getUsers');
+    
+    $output = json_decode($result);
+
+    echo '<pre>';
+    print_r($output);
+    echo '</pre>';
+}
+?>
+
 
 <!DOCTYPE HTML>
 <html lang="en-GB">
@@ -29,7 +72,7 @@
                     </ul>
                 </div>
 
-                <form id="form" method="POST">
+                <form id="form" method="POST" action="<?php $_SERVER['PHP_SELF']?>">
                     <h2>Payment details</h2>
                     <ul>
                         <li>
@@ -80,8 +123,10 @@
                             <input type="text" name="name_on_card" id="name_on_card">
                         </li>
                     </ul>
-                    <button type="submit">Pay</button>
+                    <input type="submit" name="submit">
                 </form>
             </div>
     </body>
 </html>
+
+
