@@ -37,12 +37,19 @@ class ControllerCommonHome extends Controller {
         $this->data['heading_title'] = $this->language->get('heading_title');
         $this->data['heading_sub_title'] = sprintf($this->language->get('heading_sub_title'), $this->config->get('config_name'));
         
+        $this->data['column_customer'] = $this->language->get('column_customer');
+        $this->data['column_date_added'] = $this->language->get('column_date_added');
+        $this->data['column_amount'] = $this->language->get('column_amount');
+        $this->data['column_status'] = $this->language->get('column_status');
+        $this->data['column_action'] = $this->language->get('column_action');
+        
         $this->data['text_total_customer'] = $this->language->get('text_total_customer');
         $this->data['text_total_customer_approval'] = $this->language->get('text_total_customer_approval');
         $this->data['text_total_transfer'] = $this->language->get('text_total_transfer');
         $this->data['text_total_transfer_request'] = $this->language->get('text_total_transfer_request');
         $this->data['text_transfer_request'] = $this->language->get('text_transfer_request');
         $this->data['text_general_balance'] = $this->language->get('text_general_balance');
+        $this->data['text_latest_transfer'] = $this->language->get('text_latest_transfer');
 
         // Check install directory exists
         if (is_dir(dirname(DIR_APPLICATION) . '/install')) {

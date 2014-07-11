@@ -114,6 +114,13 @@ class ModelAccountTransaction extends Model {
 
         return $query->row['total'];
     }
+    
+    public function getTransfer($withdraw_id){
+        
+        $result = $this->db->query("SELECT * FROM ".DB_PREFIX."withdraw WHERE withdraw_id = '".(int) $withdraw_id."'");
+        
+        return $result->row;
+    }
 
     public function getTransfers($data = array()) {
 

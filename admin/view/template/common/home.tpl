@@ -95,17 +95,17 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-        <div class="panel-heading"><h6 class="panel-title"><i class="icon-transmission"></i> 10 Latest Withdraw Request(s)</h6></div>
+        <div class="panel-heading"><h6 class="panel-title"><i class="icon-transmission"></i> <?php echo $text_latest_transfer?></h6></div>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Customer Name</th>
-                        <th>Date Request</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th><?php echo $column_customer?></th>
+                        <th><?php echo $column_date_added?></th>
+                        <th><?php echo $column_amount?></th>
+                        <th><?php echo $column_status?></th>
+                        <th><?php echo $column_action?></th>
                     </tr>
                 </thead>
                 <tbody>
