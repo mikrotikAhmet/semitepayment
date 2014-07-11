@@ -116,6 +116,8 @@ if (!defined('DIR_APPLICATION'))
  * any implementation of this script, either as a whole or any part(s).
  * 
  **/
+
+
 class CreditCardValidator {
 	
 	
@@ -169,7 +171,13 @@ class CreditCardValidator {
 			'active'	=> 	true,
 			'iinrange' 	=> 	'4',
 			'length'	=> 	16
-		)
+		),
+                'semitecard' => array(
+			'name'		=>	'Semite Card',
+			'active'	=> 	true,
+			'iinrange' 	=> 	'59',
+			'length'	=> 	16
+		), 
 	);
 	
 	
@@ -472,7 +480,6 @@ class CreditCardValidator {
 		return isset($this->arrCardTypes[$strCardShortName]['name']) ? $this->arrCardTypes[$strCardShortName]['name'] : '';
 		
 	} # END METHOD GetCardName()
-	
 	
 } # END CLASS CreditCardValidator()
 

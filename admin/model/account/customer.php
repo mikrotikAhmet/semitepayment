@@ -52,7 +52,7 @@ class ModelAccountCustomer extends Model {
         
         if (isset($data['card'])) {
             foreach ($data['card'] as $card) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "customer_card SET customer_id = '" . (int) $customer_id . "', card_holder = '" . $this->db->escape(strtoupper($card['card_holder'])) . "', cc_number = '".$this->db->escape($card['cc_number'])."',ccv = '" . $this->db->escape(strtoupper($card['ccv'])) . "', `type` = '" . $this->db->escape(strtoupper($card['type'])) . "', date_expire = '" . $this->db->escape($card['date_expire']) . "', hex = '".$this->db->escape($this->encryption->encrypt($card['cc_number'])).",status = '".(int) $this->config->get('config_creditcard_status_id')."'");
+                $this->db->query("INSERT INTO " . DB_PREFIX . "customer_card SET customer_id = '" . (int) $customer_id . "', card_holder = '" . $this->db->escape(strtoupper($card['card_holder'])) . "', cc_number = '".$this->db->escape($card['cc_number'])."',ccv = '" . $this->db->escape(strtoupper($card['ccv'])) . "', `type` = '" . $this->db->escape(strtoupper($card['type'])) . "', date_expire = '" . $this->db->escape($card['date_expire']) . "', hex = '".$this->db->escape($this->encryption->encrypt($card['cc_number']))."',status = '".(int) $this->config->get('config_creditcard_status_id')."'");
             }
         }
         
