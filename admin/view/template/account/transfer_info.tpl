@@ -23,9 +23,24 @@
                 <div class="panel-body">
                     <div class="tabbable page-tabs">
                         <div class="vtabs">
-                            <a href="#tab-unit" id="">Tab 1</a>
-                            <a href="#tab-unit" id="">Tab 2</a>
-                            <a href="#tab-unit" id="">Tab 3</a>
+                            <a href="#tab-unit1" id="">Transfer Details</a>
+                            <a href="#tab-unit2" id="">Merchant Details</a>
+                            <a href="#tab-unit3" id="">Transfer Form</a>
+                            <a href="#tab-unit4" id="">Transfer History</a>
+                        </div>
+                        <div class="unit-form">
+                            <div id="tab-unit1" class="vtabs-content">
+                                Hello Tab
+                            </div>
+                            <div id="tab-unit2" class="vtabs-content">
+                                Hello Tab 2
+                            </div>
+                            <div id="tab-unit3" class="vtabs-content">
+                                Hello Tab 3
+                            </div>
+                            <div id="tab-unit4" class="vtabs-content">
+                                Hello Tab 4
+                            </div>
                         </div>
                     </div>
                 </div>
