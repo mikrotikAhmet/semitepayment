@@ -1356,6 +1356,9 @@ class ControllerAccountTransfer extends Controller {
 	}
 
 	public function info() {
+            
+                $this->document->addScript('view/javascript/jquery/tabs.js');
+            
 		$this->load->model('account/transaction');
 
 		if (isset($this->request->get['withdraw_id'])) {
