@@ -1396,6 +1396,8 @@ class ControllerAccountTransfer extends Controller {
 				'separator' => ' :: '
 			);
                         
+                        
+                        
 			$this->template = 'account/transfer_info.tpl';
 			$this->children = array(
 				'common/header',

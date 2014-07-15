@@ -40,14 +40,14 @@ if (!defined('DIR_APPLICATION'))
  * Date : Jun 14, 2014
  */
 
-function limolabs_var_dump($data) {
+function semite_var_dump($data) {
 
     print "<pre>";
         var_dump($data);
     print "</pre>";
 }
 
-function limolabs_print_r($data) {
+function semite_print_r($data) {
     print "<pre>";
         print_r($data);
     print "</pre>";
