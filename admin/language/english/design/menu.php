@@ -45,6 +45,7 @@ $_['entry_title'] = 'Menu Title:';
 $_['entry_position'] = 'Position:<br/><span class="help">Works only for top menus.</span>';
 $_['entry_bottom'] = 'Bottom:';
 $_['entry_link'] = 'Page Link:';
+$_['entry_external_link'] = 'External Link:<br/><span class="help">If you enter an external link, will override the <b>Page Link</b></span>';
 $_['entry_status'] = 'Status:';
 $_['entry_sort_order'] = 'Sort Order:';
 

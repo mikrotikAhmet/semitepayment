@@ -223,6 +223,9 @@ $registry->set('user', new User($registry));
 // Content
 $registry->set('content', new Content($registry));
 
+// Credit Card
+$registry->set('creditcard', new CreditCardValidator());
+
 // Module
 $registry->set('module', new Module($registry));
 

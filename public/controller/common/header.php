@@ -111,8 +111,16 @@ class ControllerCommonHeader extends Controller {
         $menus = $this->model_design_menu->getMenus();
 
         foreach ($menus as $menu) {
+            
+            if(!$menu['is_external']){
 
-            $link = $this->url->link('design/page', $menu['page_link']);
+                $link = $this->url->link('design/page', $menu['page_link']);
+            
+            } else {
+                
+                $link = $menu['external_link'];
+            }
+            
             if (!$menu['bottom']) {
                 if ($menu['position'] == 'left') {
 

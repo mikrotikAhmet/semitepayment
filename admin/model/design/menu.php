@@ -43,7 +43,7 @@ if (!defined('DIR_APPLICATION'))
 class ModelDesignMenu extends Model {
 
     public function addMenu($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "menu SET status = '" . (isset($data['status']) ? (int) $data['status'] : 0) . "', sort_order = '" . (isset($data['sort_order']) ? (int) $data['sort_order'] : 0) . "', position = '".$this->db->escape($data['position'])."', bottom = '".(int) $data['bottom']."',page_link = '".$this->db->escape($data['page_link'])."'");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "menu SET status = '" . (isset($data['status']) ? (int) $data['status'] : 0) . "', sort_order = '" . (isset($data['sort_order']) ? (int) $data['sort_order'] : 0) . "', position = '".$this->db->escape($data['position'])."', bottom = '".(int) $data['bottom']."',page_link = '".$this->db->escape($data['page_link'])."', external_link = '".$this->db->escape($data['external_link'])."', is_external = '".(!empty($data['external_link']) ? 1 : 0)."'");
 
         $menu_id = $this->db->getLastId();
 
