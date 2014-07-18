@@ -36,51 +36,47 @@
                                     <table class="table table-responsive table-hover col-md-5">
                                 <tr>
                                     <td class="col-md-3">Order Id :</td>
-                                    <td>#11072014/9</td>
+                                    <td>#<?php echo $transfer['transfer_id']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Invoice No.: </td>
-                                    <td>[ Generate ]</td>
+                                    <td>[ <?php echo $transfer['generate']?> ]</td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Store Url: </td>
-                                    <td>http://demo.semitepayment.com/</td>
+                                    <td><?php echo $transfer['url']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Customer: </td>
-                                    <td>Hakan ISLEK</td>
+                                    <td><?php echo $transfer['customer']?></td>
                                 </tr>
                                  <tr>
                                     <td class="col-md-3">Total: </td>
-                                    <td>$205.00</td>
+                                    <td><?php echo $transfer['total']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Transfer Status: </td>
-                                    <td>Pending</td>
+                                    <td><?php echo $transfer['status']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Comment: </td>
-                                    <td>Test test test test</td>
+                                    <td><?php echo $transfer['comment']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">IP Address: </td>
-                                    <td>183.87.125.42</td>
+                                    <td><?php echo $transfer['ip']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">User Agent: </td>
-                                    <td>Mozilla/5.0 (Windows NT 6.1; rv:30.0) Gecko/20100101 Firefox/30.0</td>
+                                    <td><?php echo $transfer['user_agent']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Accept Language: </td>
-                                    <td>en-US,en;q=0.5</td>
+                                    <td><?php echo $transfer['accept_language']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Date Added: </td>
-                                    <td>15/07/2014</td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-3">Date Modified: </td>
-                                    <td>15/07/2014</td>
+                                    <td><?php echo $transfer['date_added']?></td>
                                 </tr>
                             </table> 
                                 </div>
@@ -94,7 +90,7 @@
                                     <table class="table table-responsive table-hover col-md-5">
                                 <tr>
                                     <td class="col-md-3">Customer: </td>
-                                    <td>Hakan ISLEK</td>
+                                    <td><?php echo $merchant['customer']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Customer Group: </td>

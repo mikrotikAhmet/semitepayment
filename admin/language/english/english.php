@@ -45,6 +45,7 @@ $_['text_browse']                  = 'Browse';
 $_['text_clear']                   = 'Clear';
 $_['text_no_message']                   = 'No Message';
 $_['text_add_new']                   = 'Add New';
+$_['text_generate']                   = 'Generate';
 
 // Button
 $_['button_insert']                 = 'Insert';

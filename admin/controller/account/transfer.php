@@ -1370,6 +1370,7 @@ class ControllerAccountTransfer extends Controller {
 		$transfer_info = $this->model_account_transaction->getTransfer($withdraw_id);
 
 		if ($transfer_info) {
+                    
 			$this->language->load('account/transfer');
 
 			$this->document->setTitle($this->language->get('heading_title'));
@@ -1396,8 +1397,32 @@ class ControllerAccountTransfer extends Controller {
 				'separator' => ' :: '
 			);
                         
+                        $this->load->model('account/customer');
+                        $this->load->model('localisation/transaction_status');
                         
+                        $statement = $this->model_account_customer->getCustomerStatement($transfer_info['customer_id']);
+                        $customer = $this->model_account_customer->getCustomer($transfer_info['customer_id']);
+                        $transaction_status = $this->model_localisation_transaction_status->getTransactionStatus($transfer_info['status']);
                         
+                        $this->data['transfer'] = array(
+                            'transfer_id'=>  str_replace("-", "", date('Y-m-d')).DS.$transfer_info['withdraw_id'],
+                            'generate'=>$this->language->get('text_generate'),
+                            'url'=>$statement['business_url'],
+                            'customer'=> $customer['firstname'].' '.  strtoupper($customer['lastname']),
+                            'total'=>$this->currency->format(trim($transfer_info['amount'], '-'), $transfer_info['currency_code']),
+                            'status'=>$transaction_status['name'],
+                            'comment'=>$transfer_info['comment'],
+                            'ip'=>$transfer_info['ip'],
+                            'user_agent'=>$transfer_info['user_agent'],
+                            'accept_language'=>$transfer_info['accept_language'],
+                            'date_added'=>date($this->language->get('date_format_short'), strtotime($transfer_info['date_added'])),
+                        );
+                        
+                        $this->data['merchant'] = array(
+                            'customer'=> $customer['firstname'].' '.  strtoupper($customer['lastname']),
+                        );
+                        
+                      
 			$this->template = 'account/transfer_info.tpl';
 			$this->children = array(
 				'common/header',

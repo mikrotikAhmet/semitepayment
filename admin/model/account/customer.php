@@ -487,5 +487,12 @@ class ModelAccountCustomer extends Model {
         
         return $query->rows;
     }
+    
+     public function getCustomerStatement($customer_id){
+        
+        $query = $this->db->query("SELECT * FROM ".DB_PREFIX."customer_statement WHERE customer_id = '".(int) $customer_id."'");
+        
+        return $query->row;
+    }
 
 }
