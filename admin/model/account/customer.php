@@ -481,6 +481,13 @@ class ModelAccountCustomer extends Model {
         return $query->rows;
     }
     
+    public function getCustomerBank($customer_bank_id){
+        
+        $query = $this->db->query("SELECT * FROM ".DB_PREFIX."customer_bank WHERE customer_bank_id = '".(int) $customer_bank_id."'");
+        
+        return $query->row;
+    }
+    
     public function getCustomerCards($customer_id){
         
         $query = $this->db->query("SELECT * FROM ".DB_PREFIX."customer_card WHERE customer_id = '".(int) $customer_id."'");

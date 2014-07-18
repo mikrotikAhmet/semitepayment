@@ -1398,11 +1398,15 @@ class ControllerAccountTransfer extends Controller {
 			);
                         
                         $this->load->model('account/customer');
+                        $this->load->model('account/customer_group');
                         $this->load->model('localisation/transaction_status');
                         
                         $statement = $this->model_account_customer->getCustomerStatement($transfer_info['customer_id']);
                         $customer = $this->model_account_customer->getCustomer($transfer_info['customer_id']);
+                        $customer_group = $this->model_account_customer_group->getCustomerGroup($customer['customer_group_id']);
                         $transaction_status = $this->model_localisation_transaction_status->getTransactionStatus($transfer_info['status']);
+                        $customer_bank = $this->model_account_customer->getCustomerBank($transfer_info['to_account']);
+                        
                         
                         $this->data['transfer'] = array(
                             'transfer_id'=>  str_replace("-", "", date('Y-m-d')).DS.$transfer_info['withdraw_id'],
@@ -1420,6 +1424,19 @@ class ControllerAccountTransfer extends Controller {
                         
                         $this->data['merchant'] = array(
                             'customer'=> $customer['firstname'].' '.  strtoupper($customer['lastname']),
+                            'customer_group'=>$customer_group['name'],
+                            'email'=>$customer['email'],
+                            'telephone'=>$customer['telephone'],
+                            'date_added'=>date($this->language->get('date_format_short'), strtotime($customer['date_added'])),
+                        );
+                        
+                        $this->data['account'] = array(
+                            'customer'=> $customer['firstname'].' '.  strtoupper($customer['lastname']),
+                            'bank_name'=>$customer_bank['bank_name'],
+                            'iban'=>$customer_bank['iban'],
+                            'swift'=>$customer_bank['swift'],
+                            'invoice_no'=>$transfer_info['invoice_no'],
+                            'total'=>$this->currency->format(trim($transfer_info['amount'], '-'), $transfer_info['currency_code']),
                         );
                         
                       

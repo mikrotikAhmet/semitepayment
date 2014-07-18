@@ -94,26 +94,60 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Customer Group: </td>
-                                    <td>Individual / Sole Proprietorship</td>
+                                    <td><?php echo $merchant['customer_group']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">E-Mail: </td>
-                                    <td>islekhakan@test.com</td>
+                                    <td><?php echo $merchant['email']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Telephone: </td>
-                                    <td>589647123</td>
+                                    <td><?php echo $merchant['telephone']?></td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Date Registered: </td>
-                                    <td>11/07/2014</td>
+                                    <td><?php echo $merchant['date_added']?></td>
                                 </tr>
                             </table> 
                                 </div>
                             </div>
                     </div>
                     <div id="tab-unit3" class="vtabs-content">
-                        Hello Tab 3
+                        <h2>Transfer Order</h2>
+                        <p>Please include the following information on all wire transfers to your bank account:</p>
+                        <div class='row'>
+                            <div class='col-md-6'>
+                                <table class="table table-responsive table-hover col-md-6">
+                                <tr>
+                                    <td class="col-md-3">Account Holder: </td>
+                                    <td><?php echo $account['customer']?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-3">Bank Name: </td>
+                                    <td><?php echo $account['bank_name']?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-3">IBAN: </td>
+                                    <td><?php echo $account['iban']?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-3">SWIFT / BIC: </td>
+                                    <td><?php echo $account['swift']?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-3">REFERENCE :<br/><span class='help'>[EX : INVOICE NUMBER]</span> </td>
+                                    <td><?php echo $account['invoice_no']?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-3">Amount & Currency: </td>
+                                    <td><?php echo $account['total']?></td>
+                                </tr>
+                            </table> 
+                            </div>
+                            <div class='col-md-6'>
+                                
+                            </div>
+                        </div>
                     </div>
                     <div id="tab-unit4" class="vtabs-content">
                         Hello Tab 4
