@@ -23,13 +23,13 @@
             <div class="panel-body">
                 <div class="tabbable page-tabs">
                     <div class="vtabs">
-                        <a href="#tab-unit1" id="">Transfer Details</a>
+                        <a href="#tab-transfer_detail" id="">Transfer Details</a>
                         <a href="#tab-unit2" id="">Merchant Details</a>
                         <a href="#tab-unit3" id="">Transfer Form</a>
                         <a href="#tab-unit4" id="">Transfer History</a>
                     </div>
                     <div class="unit-form">
-                        <div id="tab-unit1" class="vtabs-content">
+                        <div id="tab-transfer_detail" class="vtabs-content">
                             <div class="row">
                                 <h2>Transfer Details</h2>
                                 <div class="col-md-6">
@@ -40,7 +40,13 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Invoice No.: </td>
-                                    <td>[ <?php echo $transfer['generate']?> ]</td>
+                                    <td>
+                                        <?php if ($transfer['invoice_no']) { ?>
+                                        <?php echo $transfer['invoice_no']?>
+                                        <?php } else { ?>
+                                        <span id="invoice"><b>[ </b> <a id="invoice-generate"><?php echo $transfer['generate'] ?></a> <b> ]</span>
+                                        <?php } ?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Store Url: </td>
@@ -136,11 +142,19 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">REFERENCE :<br/><span class='help'>[EX : INVOICE NUMBER]</span> </td>
-                                    <td><?php echo $account['invoice_no']?></td>
+                                    <td>
+                                        <?php if ($account['invoice_no']) { ?>
+                                        <?php echo $account['invoice_no']?>
+                                        <?php } else { ?>
+                                        <span id='reference'>--</span>
+                                        <?php } ?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-3">Amount & Currency: </td>
-                                    <td><?php echo $account['total']?></td>
+                                    <td>
+                                        <?php echo $account['total']?>
+                                    </td>
                                 </tr>
                             </table> 
                             </div>
@@ -160,5 +174,38 @@
 </div>
 <script type="text/javascript"><!--
     $('.vtabs a').tabs();
+//--></script>
+<script type="text/javascript"><!--
+$('#invoice-generate').bind('click', function() {
+	$.ajax({
+		url: 'index.php?route=account/transfer/createinvoiceno&token=<?php echo $token; ?>&transfer_id=<?php echo $transfer['transfer']; ?>',
+		dataType: 'json',
+		beforeSend: function() {
+			$('#invoice').after('<img src="view/image/loading.gif" class="loading" style="padding-left: 5px;" />');	
+		},
+		complete: function() {
+			$('.loading').remove();
+		},
+		success: function(json) {
+			$('.success, .warning').remove();
+						
+			if (json['error']) {
+				$('#tab-transfer_detail').prepend('<div class="warning" style="display: none;">' + json['error'] + '</div>');
+				
+				$('.warning').fadeIn('slow');
+			}
+			
+			if (json.invoice_no) {
+				$('#invoice').fadeOut('slow', function() {
+					$('#invoice').html(json['invoice_no']);
+                                        $('#reference').html(json['invoice_no']);
+					
+					$('#invoice').fadeIn('slow');
+                                        $('#reference').fadeIn('slow');
+				});
+			}
+		}
+	});
+});
 //--></script>
 <?php echo $footer?>

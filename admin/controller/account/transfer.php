@@ -1409,9 +1409,11 @@ class ControllerAccountTransfer extends Controller {
                         
                         
                         $this->data['transfer'] = array(
+                            'transfer'=>  $transfer_info['withdraw_id'],
                             'transfer_id'=>  str_replace("-", "", date('Y-m-d')).DS.$transfer_info['withdraw_id'],
+                            'invoice_no'=>  ($transfer_info['invoice_no'] ? $transfer_info['invoice_prefix'].$transfer_info['invoice_no'] : null),
                             'generate'=>$this->language->get('text_generate'),
-                            'url'=>$statement['business_url'],
+                            'url'=>(isset($statement['business_url']) ? $statement['business_url'] : null),
                             'customer'=> $customer['firstname'].' '.  strtoupper($customer['lastname']),
                             'total'=>$this->currency->format(trim($transfer_info['amount'], '-'), $transfer_info['currency_code']),
                             'status'=>$transaction_status['name'],
@@ -1435,7 +1437,7 @@ class ControllerAccountTransfer extends Controller {
                             'bank_name'=>$customer_bank['bank_name'],
                             'iban'=>$customer_bank['iban'],
                             'swift'=>$customer_bank['swift'],
-                            'invoice_no'=>$transfer_info['invoice_no'],
+                            'invoice_no'=>  ($transfer_info['invoice_no'] ? $transfer_info['invoice_prefix'].$transfer_info['invoice_no'] : null),
                             'total'=>$this->currency->format(trim($transfer_info['amount'], '-'), $transfer_info['currency_code']),
                         );
                         
@@ -1481,16 +1483,16 @@ class ControllerAccountTransfer extends Controller {
 	}
 
 	public function createInvoiceNo() {
-		$this->language->load('sale/order');
+		$this->language->load('account/transfer');
 
 		$json = array();
 
-		if (!$this->user->hasPermission('modify', 'sale/order')) {
+		if (!$this->user->hasPermission('modify', 'account/transfer')) {
 			$json['error'] = $this->language->get('error_permission');
-		} elseif (isset($this->request->get['withdraw_id'])) {
-			$this->load->model('sale/order');
+		} elseif (isset($this->request->get['transfer_id'])) {
+			$this->load->model('account/transaction');
 
-			$invoice_no = $this->model_sale_order->createInvoiceNo($this->request->get['withdraw_id']);
+			$invoice_no = $this->model_account_transaction->createInvoiceNo($this->request->get['transfer_id']);
 
 			if ($invoice_no) {
 				$json['invoice_no'] = $invoice_no;

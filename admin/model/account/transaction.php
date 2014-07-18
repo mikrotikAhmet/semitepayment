@@ -215,5 +215,23 @@ class ModelAccountTransaction extends Model {
 
         return $query->row['total'];
     }
+    
+    public function createInvoiceNo($transfer_id) {
+		$transfer_info = $this->getTransfer($transfer_id);
+
+		if ($transfer_info && !$transfer_info['invoice_no']) {
+			$query = $this->db->query("SELECT MAX(invoice_no) AS invoice_no FROM `" . DB_PREFIX . "withdraw` WHERE invoice_prefix = '" . $this->db->escape($transfer_info['invoice_prefix']) . "'");
+
+			if ($query->row['invoice_no']) {
+				$invoice_no = $query->row['invoice_no'] + 1;
+			} else {
+				$invoice_no = 1;
+			}
+
+			$this->db->query("UPDATE `" . DB_PREFIX . "withdraw` SET invoice_no = '" . (int)$invoice_no . "', invoice_prefix = '" . $this->db->escape($transfer_info['invoice_prefix']) . "' WHERE withdraw_id = '" . (int)$transfer_id . "'");
+
+			return $transfer_info['invoice_prefix'] . $invoice_no;
+		}
+	}
 
 }
