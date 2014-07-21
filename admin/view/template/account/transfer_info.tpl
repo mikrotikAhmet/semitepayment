@@ -17,7 +17,7 @@
         </ul>
     </div>
     <!-- /breadcrumb line -->
-    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" class="form-horizontal form-bordered" role="form" id="form">
+    <form class="form-horizontal form-btransfered" role="form" id="form">
         <div class="panel panel-default">
             <div class="panel-heading"><h6 class="panel-title"><i class="icon-transmission"></i> <?php echo $heading_title?></h6></div>
             <div class="panel-body">
@@ -62,12 +62,14 @@
                                         </tr>
                                         <tr>
                                             <td class="col-md-3"><?php echo $entry_status?> </td>
-                                            <td><?php echo $transfer['status']?></td>
+                                            <td><span id="transfer-status"><?php echo $transfer['status']?></span></td>
                                         </tr>
+                                        <?php if ($transfer['comment']) { ?>
                                         <tr>
                                             <td class="col-md-3"><?php echo $entry_comment?> </td>
                                             <td><?php echo $transfer['comment']?></td>
                                         </tr>
+                                        <?php } ?>
                                         <tr>
                                             <td class="col-md-3"><?php echo $entry_ip?> </td>
                                             <td><?php echo $transfer['ip']?></td>
@@ -174,7 +176,7 @@
                                         <div class="form-group">
                                             <label for="personal_id" class="col-md-3 control-label"><?php echo $entry_status?></label>
                                             <div class="col-md-3">
-                                                <select name='status' class="form-control">
+                                                <select name='transfer_status_id' class="form-control">
                                                     <?php foreach ($transaction_statuses As $transaction_status) { ?>
                                                     <?php if ($transfer['transaction_status'] == $transaction_status['transaction_status_id']) { ?>
                                                     <option value="<?php echo $transaction_status['transaction_status_id']?>" selected="selected"><?php echo $transaction_status['name']?></option>
@@ -186,7 +188,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="personal_id" class="col-md-3 control-label"><?php echo $entry_notify?></label>
+                                            <label for="notify" class="col-md-3 control-label"><?php echo $entry_notify?></label>
                                             <div class="col-md-3">
                                                 <label class="checkbox-inline checkbox-info">
                                                     <input type="checkbox" class="styled" name="notify" value="1">
@@ -194,13 +196,13 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="personal_id" class="col-md-3 control-label"><?php echo $entry_comment?></label>
+                                            <label for="comment" class="col-md-3 control-label"><?php echo $entry_comment?></label>
                                             <div class="col-md-9">
                                                 <textarea name='comment' class="form-control" rows="10"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-actions text-right">
-                                            <button type="submit" class="btn btn-primary"><i class="icon-transmission"></i> <?php echo $button_modify?></button>
+                                            <button type="button" id="button-history" class="btn btn-primary"><i class="icon-transmission"></i> <?php echo $button_modify?></button>
                                         </div>
                                     </div>
                                 </div>
@@ -252,5 +254,32 @@ $('#invoice-generate').bind('click', function() {
    
 
     $('#history').load('index.php?route=account/transfer/history&token=<?php echo $token; ?>&transfer_id=<?php echo $transfer['transfer']; ?>');
+    
+    $('#button-history').bind('click', function() {
+
+	$.ajax({
+		url: 'index.php?route=account/transfer/history&token=<?php echo $token; ?>&transfer_id=<?php echo $transfer['transfer']; ?>',
+		type: 'post',
+		dataType: 'html',
+		data: 'transfer_status_id=' + encodeURIComponent($('select[name=\'transfer_status_id\']').val()) + '&notify=' + encodeURIComponent($('input[name=\'notify\']').attr('checked') ? 1 : 0) + '&append=' + encodeURIComponent($('input[name=\'append\']').attr('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),
+		beforeSend: function() {
+			$('.success, .warning').remove();
+			$('#button-history').attr('disabled', true);
+			$('#history').prepend('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+		},
+		complete: function() {
+			$('#button-history').attr('disabled', false);
+			$('.attention').remove();
+		},
+		success: function(html) {
+			$('#history').html(html);
+			
+			$('textarea[name=\'comment\']').val('');
+			
+			$('#transfer-status').html($('select[name=\'transfer_status_id\'] option:selected').text());
+		}
+	});
+});
 //--></script>
+
 <?php echo $footer?>

@@ -1416,7 +1416,6 @@ class ControllerAccountTransfer extends Controller {
 
 			$this->data['token'] = $this->session->data['token'];
                         
-                        $this->data['action'] = $this->url->link('account/transfer/history','token='.$this->session->data['token'].'&transfer_id='.$withdraw_id,'SSL');
 
 			$url = '';
 
@@ -1731,7 +1730,7 @@ class ControllerAccountTransfer extends Controller {
 			}
 
 			if (!$this->data['error']) {
-				$this->model_sale_order->addOrderHistory($this->request->get['transfer_id'], $this->request->post);
+				$this->model_account_transaction->addTransferHistory($this->request->get['transfer_id'], $this->request->post);
 
 				$this->data['success'] = $this->language->get('text_success');
 			}
