@@ -163,6 +163,10 @@
                     <div id="tab-transfer_history" class="vtabs-content">
                         <h2><?php echo $heading_transfer_history?></h2>
                         <div class='row'>
+                            <div class='col-md-12'>
+                                <div id="history"></div>
+                            </div>
+                            <br/>
                             <div class='col-md-6'>
                                 <div class="panel-default">
                                     <div class="panel-heading"><h6 class="panel-title"><i class="icon-transmission"></i> Managing Transfer:</h6></div>
@@ -201,42 +205,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class='col-md-6'>
-                                <table class="table table-responsive table-hover col-md-6">
-                                    <tr>
-                                        <td class="col-md-3"><?php echo $entry_account_holder?> </td>
-                                        <td><?php echo $account['customer']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-3"><?php echo $entry_bank_name?> </td>
-                                        <td><?php echo $account['bank_name']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-3"><?php echo $entry_iban?></td>
-                                        <td><?php echo $account['iban']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-3"><?php echo $entry_swift?> </td>
-                                        <td><?php echo $account['swift']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-3"><?php echo $entry_reference?> </td>
-                                        <td>
-                                            <?php if ($account['invoice_no']) { ?>
-                                            <?php echo $account['invoice_no']?>
-                                            <?php } else { ?>
-                                            <span id='reference'>--</span>
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-3"><?php echo $entry_amount?> </td>
-                                        <td>
-                                            <?php echo $account['total']?>
-                                        </td>
-                                    </tr>
-                                </table> 
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -279,5 +248,9 @@ $('#invoice-generate').bind('click', function() {
             }
         });
     });
+    
+   
+
+    $('#history').load('index.php?route=account/transfer/history&token=<?php echo $token; ?>&transfer_id=<?php echo $transfer['transfer']; ?>');
 //--></script>
 <?php echo $footer?>

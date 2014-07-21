@@ -60,3 +60,11 @@ $_['entry_reference'] = 'REFERENCE:<br/><span class="help">[EX : INVOICE NUMBER]
 $_['entry_amount'] = 'Amount & Currency:';
 $_['entry_notify'] = 'Notify Customer:';
 
+// Column
+$_['column_transfer_id']                         = 'Transfer ID';
+$_['column_status']                           = 'Status';
+$_['column_date_added']                       = 'Date Added';
+$_['column_total']                            = 'Total';
+$_['column_comment']                          = 'Comment';
+$_['column_notify']                           = 'Customer Notified';
+

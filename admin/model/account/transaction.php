@@ -233,5 +233,31 @@ class ModelAccountTransaction extends Model {
 			return $transfer_info['invoice_prefix'] . $invoice_no;
 		}
 	}
+        
+        public function getTransferHistories($transfer_id, $start = 0, $limit = 10) {
+		if ($start < 0) {
+			$start = 0;
+		}
+
+		if ($limit < 1) {
+			$limit = 10;
+		}	
+
+		$query = $this->db->query("SELECT wh.date_added, ts.name AS status, wh.comment, wh.notify FROM " . DB_PREFIX . "withdraw_history wh LEFT JOIN " . DB_PREFIX . "transaction_status ts ON wh.withdraw_status_id = ts.transaction_status_id WHERE wh.withdraw_id = '" . (int)$transfer_id . "'  ORDER BY wh.date_added ASC LIMIT " . (int)$start . "," . (int)$limit);
+
+		return $query->rows;
+	}
+        
+        public function getTotalTransferHistories($transfer_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "withdraw_history WHERE withdraw_id = '" . (int)$transfer_id . "'");
+
+		return $query->row['total'];
+	}	
+
+	public function getTotalTransferHistoriesByOrderStatusId($withdraw_status_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "withdraw_history WHERE widthdraw_status_id = '" . (int)$withdraw_status_id . "'");
+
+		return $query->row['total'];
+	}
 
 }

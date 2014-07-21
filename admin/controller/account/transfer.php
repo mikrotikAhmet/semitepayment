@@ -1718,20 +1718,20 @@ class ControllerAccountTransfer extends Controller {
 	}
 
 	public function history() {
-		$this->language->load('sale/order');
+		$this->language->load('account/transfer');
 
 		$this->data['error'] = '';
 		$this->data['success'] = '';
 
-		$this->load->model('sale/order');
+		$this->load->model('account/transaction');
 
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
-			if (!$this->user->hasPermission('modify', 'sale/order')) {
+			if (!$this->user->hasPermission('modify', 'account/transfer')) {
 				$this->data['error'] = $this->language->get('error_permission');
 			}
 
 			if (!$this->data['error']) {
-				$this->model_sale_order->addOrderHistory($this->request->get['withdraw_id'], $this->request->post);
+				$this->model_sale_order->addOrderHistory($this->request->get['transfer_id'], $this->request->post);
 
 				$this->data['success'] = $this->language->get('text_success');
 			}
@@ -1739,6 +1739,7 @@ class ControllerAccountTransfer extends Controller {
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
+                $this->data['column_transfer_id'] = $this->language->get('column_transfer_id');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_notify'] = $this->language->get('column_notify');
@@ -1752,29 +1753,30 @@ class ControllerAccountTransfer extends Controller {
 
 		$this->data['histories'] = array();
 
-		$results = $this->model_sale_order->getOrderHistories($this->request->get['withdraw_id'], ($page - 1) * 10, 10);
+		$results = $this->model_account_transaction->getTransferHistories($this->request->get['transfer_id'], ($page - 1) * 10, 10);
 
 		foreach ($results as $result) {
 			$this->data['histories'][] = array(
+                                'transfer_id'=>$this->request->get['transfer_id'],
 				'notify'     => $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'status'     => $result['status'],
 				'comment'    => nl2br($result['comment']),
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
-
-		$history_total = $this->model_sale_order->getTotalOrderHistories($this->request->get['withdraw_id']);
+                
+		$history_total = $this->model_account_transaction->getTotalTransferHistories($this->request->get['transfer_id']);
 
 		$pagination = new Pagination();
 		$pagination->total = $history_total;
 		$pagination->page = $page;
 		$pagination->limit = 10;
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('sale/order/history', 'token=' . $this->session->data['token'] . '&withdraw_id=' . $this->request->get['withdraw_id'] . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('account/transfer/history', 'token=' . $this->session->data['token'] . '&transfer_id=' . $this->request->get['transfer_id'] . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 
-		$this->template = 'sale/order_history.tpl';
+		$this->template = 'account/transfer_history.tpl';
 
 		$this->response->setOutput($this->render());
 	}
