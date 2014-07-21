@@ -331,6 +331,7 @@
                                 <li id="customer"><a href="<?php echo $customer?>"><?php echo $text_customer?></a></li>
                                 <li id="group"><a href="<?php echo $customer_group?>"><?php echo $text_customer_group?></a></li>
                                 <li id="ban"><a href="<?php echo $customer_ban_ip?>"><?php echo $text_customer_ban_ip?></a></li>
+                                <li id="transfer"><a href="<?php echo $transfer?>"><?php echo $text_transfer?></a></li>
                             </ul>
                         </li>
                         <li id="extension">

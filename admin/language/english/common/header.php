@@ -28,6 +28,7 @@ $_['text_account']                      = 'Accounting';
 $_['text_customer']                    = 'Customers';
 $_['text_customer_group']              = 'Customer Groups';
 $_['text_customer_ban_ip']             = 'Banned IP';
+$_['text_transfer']             = 'Transfers';
 
 // Extension Menu
 $_['text_extension'] = 'Extensions';

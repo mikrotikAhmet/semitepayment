@@ -1407,6 +1407,8 @@ class ControllerAccountTransfer extends Controller {
                         $transaction_status = $this->model_localisation_transaction_status->getTransactionStatus($transfer_info['status']);
                         $customer_bank = $this->model_account_customer->getCustomerBank($transfer_info['to_account']);
                         
+                        $this->data['transaction_statuses'] = $this->model_localisation_transaction_status->getTransactionStatuses();
+                        
                         
                         $this->data['transfer'] = array(
                             'transfer'=>  $transfer_info['withdraw_id'],
@@ -1417,6 +1419,7 @@ class ControllerAccountTransfer extends Controller {
                             'customer'=> $customer['firstname'].' '.  strtoupper($customer['lastname']),
                             'total'=>$this->currency->format(trim($transfer_info['amount'], '-'), $transfer_info['currency_code']),
                             'status'=>$transaction_status['name'],
+                            'transaction_status'=> $transfer_info['status'],
                             'comment'=>$transfer_info['comment'],
                             'ip'=>$transfer_info['ip'],
                             'user_agent'=>$transfer_info['user_agent'],

@@ -63,6 +63,7 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_customer'] = $this->language->get('text_customer');
             $this->data['text_customer_group'] = $this->language->get('text_customer_group');
             $this->data['text_customer_ban_ip'] = $this->language->get('text_customer_ban_ip');
+            $this->data['text_transfer'] = $this->language->get('text_transfer');
         // Extension Menu
             $this->data['text_extension'] = $this->language->get('text_extension');
             $this->data['text_module'] = $this->language->get('text_module');
@@ -120,6 +121,7 @@ class ControllerCommonHeader extends Controller{
                 $this->data['customer'] = $this->url->link('account/customer', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['customer_group'] = $this->url->link('account/customer_group', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['customer_ban_ip'] = $this->url->link('account/customer_ban_ip', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['transfer'] = $this->url->link('account/transfer', 'token=' . $this->session->data['token'], 'SSL');
             // System Menu
                 $this->data['setting'] = $this->url->link('setting/application', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');

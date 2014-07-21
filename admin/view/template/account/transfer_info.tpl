@@ -173,7 +173,15 @@
                                         <div class="form-group">
                                             <label for="personal_id" class="col-md-3 control-label">Transfer Status :</label>
                                             <div class="col-md-3">
-                                                
+                                                <select name='status' class="form-control">
+                                                    <?php foreach ($transaction_statuses As $transaction_status) { ?>
+                                                    <?php if ($transfer['transaction_status'] == $transaction_status['transaction_status_id']) { ?>
+                                                    <option value="<?php echo $transaction_status['transaction_status_id']?>" selected="selected"><?php echo $transaction_status['name']?></option>
+                                                    <?php } else { ?>
+                                                    <option value="<?php echo $transaction_status['transaction_status_id']?>" ><?php echo $transaction_status['name']?></option>
+                                                    <?php } ?>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
