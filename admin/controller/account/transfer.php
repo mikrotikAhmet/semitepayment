@@ -1376,9 +1376,47 @@ class ControllerAccountTransfer extends Controller {
 			$this->document->setTitle($this->language->get('heading_title'));
 
 			$this->data['heading_title'] = $this->language->get('heading_title');
+                        
+                        $this->data['heading_transfer_detail'] = $this->language->get('heading_transfer_detail');
+                        $this->data['heading_merchant_detail'] = $this->language->get('heading_merchant_detail');
+                        $this->data['heading_transfer_form'] = $this->language->get('heading_transfer_form');
+                        $this->data['heading_transfer_form_introduction'] = $this->language->get('heading_transfer_form_introduction');
+                        $this->data['heading_transfer_history'] = $this->language->get('heading_transfer_history');
+                        
+                        $this->data['entry_transfer_id'] = $this->language->get('entry_transfer_id');
+                        $this->data['entry_invoice_no'] = $this->language->get('entry_invoice_no');
+                        $this->data['entry_app_url'] = $this->language->get('entry_app_url');
+                        $this->data['entry_customer'] = $this->language->get('entry_customer');
+                        $this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
+                        $this->data['entry_total'] = $this->language->get('entry_total');
+                        $this->data['entry_status'] = $this->language->get('entry_status');
+                        $this->data['entry_comment'] = $this->language->get('entry_comment');
+                        $this->data['entry_ip'] = $this->language->get('entry_ip');
+                        $this->data['entry_agent'] = $this->language->get('entry_agent');
+                        $this->data['entry_accept_language'] = $this->language->get('entry_accept_language');
+                        $this->data['entry_date_added'] = $this->language->get('entry_date_added');
+                        $this->data['entry_email'] = $this->language->get('entry_email');
+                        $this->data['entry_telephone'] = $this->language->get('entry_telephone');
+                        $this->data['entry_date_register'] = $this->language->get('entry_date_register');
+                        $this->data['entry_account_holder'] = $this->language->get('entry_account_holder');
+                        $this->data['entry_bank_name'] = $this->language->get('entry_bank_name');
+                        $this->data['entry_iban'] = $this->language->get('entry_iban');
+                        $this->data['entry_swift'] = $this->language->get('entry_swift');
+                        $this->data['entry_reference'] = $this->language->get('entry_reference');
+                        $this->data['entry_amount'] = $this->language->get('entry_amount');
+                        $this->data['entry_notify'] = $this->language->get('entry_notify');
+                        
+                        $this->data['tab_transfer_detail'] = $this->language->get('tab_transfer_detail');
+                        $this->data['tab_merchant_detail'] = $this->language->get('tab_merchant_detail');
+                        $this->data['tab_transfer_form'] = $this->language->get('tab_transfer_form');
+                        $this->data['tab_transfer_history'] = $this->language->get('tab_transfer_history');
+                        
+                        $this->data['button_modify'] = $this->language->get('button_modify');
 
 
 			$this->data['token'] = $this->session->data['token'];
+                        
+                        $this->data['action'] = $this->url->link('account/transfer/history','token='.$this->session->data['token'].'&transfer_id='.$withdraw_id,'SSL');
 
 			$url = '';
 

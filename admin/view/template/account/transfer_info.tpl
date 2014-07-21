@@ -23,23 +23,23 @@
             <div class="panel-body">
                 <div class="tabbable page-tabs">
                     <div class="vtabs">
-                        <a href="#tab-transfer_detail" id="">Transfer Details</a>
-                        <a href="#tab-merchant_detail" id="">Merchant Details</a>
-                        <a href="#tab-transfer_form" id="">Transfer Form</a>
-                        <a href="#tab-transfer_history" id="">Transfer History</a>
+                        <a href="#tab-transfer_detail" id=""><?php echo $tab_transfer_detail?></a>
+                        <a href="#tab-merchant_detail" id=""><?php echo $tab_merchant_detail?></a>
+                        <a href="#tab-transfer_form" id=""><?php echo $tab_transfer_form?></a>
+                        <a href="#tab-transfer_history" id=""><?php echo $tab_transfer_history?></a>
                     </div>
                     <div class="unit-form">
                         <div id="tab-transfer_detail" class="vtabs-content">
                             <div class="row">
-                                <h2>Transfer Details</h2>
+                                <h2><?php echo $heading_transfer_detail?></h2>
                                 <div class="col-md-6">
                                     <table class="table table-responsive table-hover col-md-5">
                                         <tr>
-                                            <td class="col-md-3">Order Id :</td>
+                                            <td class="col-md-3"><?php echo $entry_transfer_id?></td>
                                             <td>#<?php echo $transfer['transfer_id']?></td>
                                         </tr>
                                         <tr>
-                                            <td class="col-md-3">Invoice No.: </td>
+                                            <td class="col-md-3"><?php echo $entry_invoice_no?> </td>
                                             <td>
                                                 <?php if ($transfer['invoice_no']) { ?>
                                                 <?php echo $transfer['invoice_no']?>
@@ -49,39 +49,39 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="col-md-3">Store Url: </td>
+                                            <td class="col-md-3"><?php echo $entry_app_url?> </td>
                                             <td><?php echo $transfer['url']?></td>
                                         </tr>
                                         <tr>
-                                            <td class="col-md-3">Customer: </td>
+                                            <td class="col-md-3"><?php echo $entry_customer?> </td>
                                             <td><?php echo $transfer['customer']?></td>
                                         </tr>
                                         <tr>
-                                            <td class="col-md-3">Total: </td>
+                                            <td class="col-md-3"><?php echo $entry_total?> </td>
                                             <td><?php echo $transfer['total']?></td>
                                         </tr>
                                         <tr>
-                                            <td class="col-md-3">Transfer Status: </td>
+                                            <td class="col-md-3"><?php echo $entry_status?> </td>
                                             <td><?php echo $transfer['status']?></td>
                                         </tr>
                                         <tr>
-                                            <td class="col-md-3">Comment: </td>
+                                            <td class="col-md-3"><?php echo $entry_comment?> </td>
                                             <td><?php echo $transfer['comment']?></td>
                                         </tr>
                                         <tr>
-                                            <td class="col-md-3">IP Address: </td>
+                                            <td class="col-md-3"><?php echo $entry_ip?> </td>
                                             <td><?php echo $transfer['ip']?></td>
                                         </tr>
                                         <tr>
-                                            <td class="col-md-3">User Agent: </td>
+                                            <td class="col-md-3"><?php echo $entry_agent?></td>
                                             <td><?php echo $transfer['user_agent']?></td>
                                         </tr>
                                         <tr>
-                                            <td class="col-md-3">Accept Language: </td>
+                                            <td class="col-md-3"><?php echo $entry_accept_language?> </td>
                                             <td><?php echo $transfer['accept_language']?></td>
                                         </tr>
                                         <tr>
-                                            <td class="col-md-3">Date Added: </td>
+                                            <td class="col-md-3"><?php echo $entry_date_added?> </td>
                                             <td><?php echo $transfer['date_added']?></td>
                                         </tr>
                                     </table> 
@@ -91,27 +91,27 @@
                     </div>
                     <div id="tab-merchant_detail" class="vtabs-content">
                         <div class="row">
-                            <h2>Merchant Details</h2>
+                            <h2><?php echo $heading_merchant_detail?></h2>
                             <div class="col-md-6">
                                 <table class="table table-responsive table-hover col-md-5">
                                     <tr>
-                                        <td class="col-md-3">Customer: </td>
+                                        <td class="col-md-3"><?php echo $entry_customer?> </td>
                                         <td><?php echo $merchant['customer']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">Customer Group: </td>
+                                        <td class="col-md-3"><?php echo $entry_customer_group?></td>
                                         <td><?php echo $merchant['customer_group']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">E-Mail: </td>
+                                        <td class="col-md-3"><?php echo $entry_email?> </td>
                                         <td><?php echo $merchant['email']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">Telephone: </td>
+                                        <td class="col-md-3"><?php echo $entry_telephone?></td>
                                         <td><?php echo $merchant['telephone']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">Date Registered: </td>
+                                        <td class="col-md-3"><?php echo $entry_date_register?> </td>
                                         <td><?php echo $merchant['date_added']?></td>
                                     </tr>
                                 </table> 
@@ -119,29 +119,29 @@
                         </div>
                     </div>
                     <div id="tab-transfer_form" class="vtabs-content">
-                        <h2>Transfer Order</h2>
-                        <p>Please include the following information on all wire transfers to your bank account:</p>
+                        <h2><?php echo $heading_transfer_form?></h2>
+                        <p><?php echo $heading_transfer_form_introduction?></p>
                         <div class='row'>
                             <div class='col-md-6'>
                                 <table class="table table-responsive table-hover col-md-6">
                                     <tr>
-                                        <td class="col-md-3">Account Holder: </td>
+                                        <td class="col-md-3"><?php echo $entry_account_holder?> </td>
                                         <td><?php echo $account['customer']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">Bank Name: </td>
+                                        <td class="col-md-3"><?php echo $entry_bank_name?> </td>
                                         <td><?php echo $account['bank_name']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">IBAN: </td>
+                                        <td class="col-md-3"><?php echo $entry_iban?></td>
                                         <td><?php echo $account['iban']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">SWIFT / BIC: </td>
+                                        <td class="col-md-3"><?php echo $entry_swift?> </td>
                                         <td><?php echo $account['swift']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">REFERENCE :<br/><span class='help'>[EX : INVOICE NUMBER]</span> </td>
+                                        <td class="col-md-3"><?php echo $entry_reference?> </td>
                                         <td>
                                             <?php if ($account['invoice_no']) { ?>
                                             <?php echo $account['invoice_no']?>
@@ -151,27 +151,24 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">Amount & Currency: </td>
+                                        <td class="col-md-3"><?php echo $entry_amount?> </td>
                                         <td>
                                             <?php echo $account['total']?>
                                         </td>
                                     </tr>
                                 </table> 
                             </div>
-                            <div class='col-md-6'>
-
-                            </div>
                         </div>
                     </div>
                     <div id="tab-transfer_history" class="vtabs-content">
-                        <h2>Transfer History</h2>
+                        <h2><?php echo $heading_transfer_history?></h2>
                         <div class='row'>
                             <div class='col-md-6'>
                                 <div class="panel-default">
                                     <div class="panel-heading"><h6 class="panel-title"><i class="icon-transmission"></i> Managing Transfer:</h6></div>
                                     <div class="panel-body">
                                         <div class="form-group">
-                                            <label for="personal_id" class="col-md-3 control-label">Transfer Status :</label>
+                                            <label for="personal_id" class="col-md-3 control-label"><?php echo $entry_status?></label>
                                             <div class="col-md-3">
                                                 <select name='status' class="form-control">
                                                     <?php foreach ($transaction_statuses As $transaction_status) { ?>
@@ -185,16 +182,21 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="personal_id" class="col-md-3 control-label">Notify Customer :</label>
+                                            <label for="personal_id" class="col-md-3 control-label"><?php echo $entry_notify?></label>
                                             <div class="col-md-3">
-                                                
+                                                <label class="checkbox-inline checkbox-info">
+                                                    <input type="checkbox" class="styled" name="notify" value="1">
+                                                </label>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="personal_id" class="col-md-3 control-label">Comment :</label>
-                                            <div class="col-md-3">
-                                                
+                                            <label for="personal_id" class="col-md-3 control-label"><?php echo $entry_comment?></label>
+                                            <div class="col-md-9">
+                                                <textarea name='comment' class="form-control" rows="10"></textarea>
                                             </div>
+                                        </div>
+                                        <div class="form-actions text-right">
+                                            <button type="submit" class="btn btn-primary"><i class="icon-transmission"></i> <?php echo $button_modify?></button>
                                         </div>
                                     </div>
                                 </div>
@@ -202,23 +204,23 @@
                             <div class='col-md-6'>
                                 <table class="table table-responsive table-hover col-md-6">
                                     <tr>
-                                        <td class="col-md-3">Account Holder: </td>
+                                        <td class="col-md-3"><?php echo $entry_account_holder?> </td>
                                         <td><?php echo $account['customer']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">Bank Name: </td>
+                                        <td class="col-md-3"><?php echo $entry_bank_name?> </td>
                                         <td><?php echo $account['bank_name']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">IBAN: </td>
+                                        <td class="col-md-3"><?php echo $entry_iban?></td>
                                         <td><?php echo $account['iban']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">SWIFT / BIC: </td>
+                                        <td class="col-md-3"><?php echo $entry_swift?> </td>
                                         <td><?php echo $account['swift']?></td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">REFERENCE :<br/><span class='help'>[EX : INVOICE NUMBER]</span> </td>
+                                        <td class="col-md-3"><?php echo $entry_reference?> </td>
                                         <td>
                                             <?php if ($account['invoice_no']) { ?>
                                             <?php echo $account['invoice_no']?>
@@ -228,7 +230,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="col-md-3">Amount & Currency: </td>
+                                        <td class="col-md-3"><?php echo $entry_amount?> </td>
                                         <td>
                                             <?php echo $account['total']?>
                                         </td>

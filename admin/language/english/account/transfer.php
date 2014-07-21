@@ -27,4 +27,36 @@
  *
  * @author ahmet
  */
+// Heading
+
+$_['heading_title'] = 'Transfers';
+$_['heading_transfer_detail'] = 'Transfer Details';
+$_['heading_merchant_detail'] = 'Merchant Details';
+$_['heading_transfer_form'] = 'Transfer Form';
+$_['heading_transfer_history'] = 'Transfer History';
+$_['heading_transfer_form_introduction'] = 'Please include the following information on all wire transfers to your bank account:';
+
+// Entry
+$_['entry_transfer_id'] = 'Transfer ID:';
+$_['entry_invoice_no'] = 'Invoice No.:';
+$_['entry_app_url'] = 'Application Url:';
+$_['entry_customer'] = 'Customer:';
+$_['entry_customer_group'] = 'Customer Group :';
+$_['entry_total'] = 'Total:';
+$_['entry_status'] = 'Transfer Status:';
+$_['entry_comment'] = 'Comment:';
+$_['entry_ip'] = 'IP Address:';
+$_['entry_agent'] = 'User Agent:';
+$_['entry_accept_language'] = 'Accept Language:';
+$_['entry_date_added'] = 'Date Added:';
+$_['entry_email'] = 'E-Mail:';
+$_['entry_telephone'] = 'Telephone:';
+$_['entry_date_register'] = 'Date Registered:';
+$_['entry_account_holder'] = 'Account Holder:';
+$_['entry_bank_name'] = 'Bank Name:';
+$_['entry_iban'] = 'IBAN:';
+$_['entry_swift'] = 'SWIFT / BIC:';
+$_['entry_reference'] = 'REFERENCE:<br/><span class="help">[EX : INVOICE NUMBER]</span>';
+$_['entry_amount'] = 'Amount & Currency:';
+$_['entry_notify'] = 'Notify Customer:';
 
