@@ -40,27 +40,7 @@
             });
             return e.length_valid&&e.luhn_valid?$("#card_number").addClass("valid"):$("#card_number").removeClass("valid")
         },{
-            accept:["visa","visa_electron","mastercard","maestro","discover"]
+            accept:["visa","visa_electron","mastercard","maestro","discover","semite"]
         })
     })
 }).call(this);
-$(function(){
-       
-//    $('#form').on('submit',function(){
-//           
-//        var formData = $(this).serialize();
-//           
-//        $.ajax({
-//            url : 'http://api.semitepayment.com/v1/_requestAPI?route=semite/users/getUsers',
-//            type : 'POST',
-//            data : formData,
-//            dataType : 'jsonp',
-//            success : function(json){
-//                
-//            }
-//        });       
-//          
-//        return false;
-//    });
-       
-});

@@ -30,8 +30,10 @@
 
 if(isset($_POST['submit'])){
     require_once 'cc.php';
+    
+    $data = $_POST;
 
-    $result = CallAPI('GET', 'http://lapi.semitepayment.com/v1/_requestAPI?route=semite/users/getUsers');
+    $result = CallAPI('POST', 'http://lapi.semitepayment.com/v1/payment/pay',$data);
     
     $output = json_decode($result);
 
@@ -59,8 +61,8 @@ if(isset($_POST['submit'])){
     <body>
         <div id="container">
             <div class="demo">
-
-                <div class="numbers">
+                
+                <div class="numbers" style="display: none">
                     <p>Try some of these numbers:</p>
 
                     <ul class="list">
@@ -69,19 +71,21 @@ if(isset($_POST['submit'])){
                         <li>501800000009</li>
                         <li>5100000000000008</li>
                         <li>6011000000000004</li>
+                        <li>5998113247083847</li>
                     </ul>
                 </div>
-
+                <p>Please enter you Semite Payment V-Card Details below and make the payment.</p>
                 <form id="form" method="POST" action="<?php $_SERVER['PHP_SELF']?>">
                     <h2>Payment details</h2>
                     <ul>
                         <li>
-                            <ul class="cards">
+                            <ul class="cards" style="display: none">
                                 <li class="visa">Visa</li>
                                 <li class="visa_electron">Visa Electron</li>
                                 <li class="mastercard">MasterCard</li>
                                 <li class="maestro">Maestro</li>
                                 <li class="discover">Discover</li>
+                                <li class="semitecard">Semite</li>
                             </ul>
                         </li>
 
