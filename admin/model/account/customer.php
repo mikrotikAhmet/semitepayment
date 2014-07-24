@@ -41,32 +41,21 @@ class ModelAccountCustomer extends Model {
         }
     }
     
-    public function addBank($data=array()){
+    public function addBank($customer_id,$data=array()){
         
         if (isset($data)) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "customer_bank SET customer_id = '" . (int) $this->customer->getId() . "', bank_name = '" . $this->db->escape(strtoupper($data['bank_name'])) . "', settlement_currency = '".$this->db->escape($data['settlement_currency'])."',account_holder = '" . $this->db->escape(strtoupper($data['account_holder_name'])) . "', iban = '" . $this->db->escape($data['iban']) . "', swift = '" . $this->db->escape($data['swift']) . "', status = '".(int) $this->config->get('config_bankaccount_status_id')."'");
+            $this->db->query("INSERT INTO " . DB_PREFIX . "customer_bank SET customer_id = '" . (int) $customer_id . "', bank_name = '" . $this->db->escape(strtoupper($data['bank_name'])) . "', settlement_currency = '".$this->db->escape($data['settlement_currency'])."',account_holder = '" . $this->db->escape(strtoupper($data['account_holder_name'])) . "', iban = '" . $this->db->escape($data['iban']) . "', swift = '" . $this->db->escape($data['swift']) . "', status = '".(int) $this->config->get('config_bankaccount_status_id')."'");
+            
+            $bank_id = $this->db->getLastId();
         }
+        
+        return $bank_id;
     }
     
     public function removeBank($bank_id){
-        $this->db->query("DELETE FROM ".DB_PREFIX."customer_bank WHERE customer_id = '".(int) $this->customer->getId()."' AND customer_bank_id = '".(int) $bank_id."'");
+        $this->db->query("DELETE FROM ".DB_PREFIX."customer_bank WHERE customer_bank_id = '".(int) $bank_id."'");
     }
     
-//    public function addCustomerCard(){
-//        
-//        $this->db->query("DELETE FROM " . DB_PREFIX . "customer_card WHERE customer_id = '" . (int) $customer_id . "'");
-//        
-//        if (isset($data['card'])) {
-//            foreach ($data['card'] as $card) {
-//                $this->db->query("INSERT INTO " . DB_PREFIX . "customer_card SET customer_id = '" . (int) $customer_id . "', card_holder = '" . $this->db->escape(strtoupper($card['card_holder'])) . "', cc_number = '".$this->db->escape($card['cc_number'])."',ccv = '" . $this->db->escape(strtoupper($card['ccv'])) . "', `type` = '" . $this->db->escape(strtoupper($card['type'])) . "', date_expire = '" . $this->db->escape($card['date_expire']) . "', hex = '".$this->db->escape($this->encryption->encrypt($card['cc_number']))."',status = '".(int) $this->config->get('config_creditcard_status_id')."'");
-//            }
-//        }
-//    }
-//    
-//    public function removeCustomerCard(){
-//        
-//    }
-
     public function editToken($customer_id, $token) {
         $this->db->query("UPDATE " . DB_PREFIX . "customer SET token = '" . $this->db->escape($token) . "' WHERE customer_id = '" . (int) $customer_id . "'");
     }

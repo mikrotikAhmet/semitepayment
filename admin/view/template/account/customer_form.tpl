@@ -348,7 +348,7 @@
                                     <td><input type="hidden" name="bank[<?php echo $bank_row?>][iban]" value="<?php echo $bank['iban']?>"/><?php echo $bank['iban']?></td>
                                     <td><input type="hidden" name="bank[<?php echo $bank_row?>][swift]" value="<?php echo $bank['swift']?>"/><?php echo $bank['swift']?></td>
                                     <td><input type="hidden" name="bank[<?php echo $bank_row?>][verified]" value="<?php echo $bank['verified']?>"/><?php echo $bank['status']?></td>
-                                    <td class="left"><a onclick="$('#bank-row<?php echo $bank_row; ?>').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>
+                                    <td class="left"><a onclick="removeBank('<?php echo $bank_row?>','<?php echo $bank['bank_id']?>');" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>
                                 </tr>
                             </tbody>
                             <?php $bank_row++; ?>
@@ -771,20 +771,10 @@ function addBank(){
     var data = $('#bank-form').serializeArray();
     var data_serialized = $('#bank-form').serialize();
     
-        html  = '<tbody id="bank-row' + bank_row + '">';
-	html += '  <tr>';
-	html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][bank_name]" value="'+data[0].value+'"/>'+data[0].value+'</td>';
-        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][settlement_currency]" value="'+data[1].value+'"/>'+data[1].value+'</td>';
-	html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][account_holder_name]" value="'+data[2].value+'"/>'+data[2].value+'</td>';
-        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][iban]" value="'+data[3].value+'"/>'+data[3].value+'</td>';
-        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][swift]" value="'+data[4].value+'"/>'+data[4].value+'</td>';
-        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][status]" value="<?php echo $this->config->get('config_bankaccount_status_id')?>"/></td>';
-	html += '    <td class="left"><a onclick="$(\'#bank-row' + bank_row + '\').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>';
-	html += '  </tr>';
-	html += '</tbody>';
+       
         
         $.ajax({
-		url: 'index.php?route=account/customer/addbank&token=<?php echo $token; ?>',
+		url: 'index.php?route=account/customer/addbank&token=<?php echo $token; ?>&customer_id=<?php echo $this->request->get['customer_id']?>',
 		type: 'post',
 		dataType: 'json',
 		data: data_serialized,
@@ -793,7 +783,22 @@ function addBank(){
 		},	
 		success: function(json) {
                     
-                        console.log(json);
+                    console.log(json.new_bank_id);
+                    
+                        html  = '<tbody id="bank-row' + bank_row + '">';
+                        html += '  <tr>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][bank_name]" value="'+data[0].value+'"/>'+data[0].value+'</td>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][settlement_currency]" value="'+data[1].value+'"/>'+data[1].value+'</td>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][account_holder_name]" value="'+data[2].value+'"/>'+data[2].value+'</td>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][iban]" value="'+data[3].value+'"/>'+data[3].value+'</td>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][swift]" value="'+data[4].value+'"/>'+data[4].value+'</td>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][status]" value="<?php echo $this->config->get('config_bankaccount_status_id')?>"/></td>';
+                        html += '    <td class="left"><a onclick="removeBank(\''+bank_row+'\',\''+json.new_bank_id+'\')" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>';
+                        html += '  </tr>';
+                        html += '</tbody>';
+                        
+                        //$(\'#bank-row' + bank_row + '\').remove();
+                        
 			$('#bank > tfoot').before(html);
         
                         $('#bank-form').each(function(){
@@ -811,6 +816,27 @@ function addBank(){
                 $('.callout .bank').hide();
 	
 	
+}
+
+function removeBank(row, bank_id){
+    
+        $.ajax({
+		url: 'index.php?route=account/customer/removeBank&token=<?php echo $token; ?>&bank_id='+bank_id,
+		type: 'post',
+		dataType: 'json',
+		beforeSend: function() {
+				
+		},	
+		success: function(json) {
+			$('#bank-row'+row).remove();
+
+                        row--;
+		},
+                error : function(){
+                    console.log('error');
+                }
+            });
+
 }
 
 var card_row = <?php echo ($card_row ? $card_row : 0) ?>;

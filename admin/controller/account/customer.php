@@ -1055,6 +1055,7 @@ class ControllerAccountCustomer extends Controller {
                 $status = '<span class="label label-primary">' . $transaction_status['name'] . '</span>';
 
                 $this->data['banks'][] = array(
+                    'bank_id' => $bank['customer_bank_id'],
                     'bank_name' => $bank['bank_name'],
                     'settlement_currency' => $bank['settlement_currency'],
                     'account_holder' => $bank['account_holder'],
@@ -1173,6 +1174,18 @@ class ControllerAccountCustomer extends Controller {
     }
 
     protected function validateBank() {
+        if (!$this->user->hasPermission('modify', 'account/customer')) {
+            $this->error['warning'] = $this->language->get('error_permission');
+        }
+
+        if (!$this->error) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    protected function validateRemoveBank() {
         if (!$this->user->hasPermission('modify', 'account/customer')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
@@ -1556,7 +1569,10 @@ class ControllerAccountCustomer extends Controller {
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateBank()) {
 
             $this->load->model('account/customer');
+            
+            $last_id = $this->model_account_customer->addBank($this->request->get['customer_id'],$this->request->post);
 
+            $json['new_bank_id'] = $last_id;
             $json['data'] = $this->request->post;
             $json['success'] = $this->language->get('text_success');
 
@@ -1572,6 +1588,21 @@ class ControllerAccountCustomer extends Controller {
 
             $this->response->setOutput($this->render());
         }
+    }
+    
+    public function removeBank(){
+        
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateRemoveBank()) {
+            
+            $this->load->model('account/customer');
+            
+            $this->model_account_customer->removeBank($this->request->get['bank_id']);
+            
+            $json['success'] = $this->language->get('text_success');
+            
+        }
+        
+        $this->response->setOutput(json_encode($json));
     }
 
     public function addcard() {
