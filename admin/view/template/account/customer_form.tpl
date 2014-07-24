@@ -769,6 +769,7 @@ var bank_row = <?php echo ($bank_row ? $bank_row : 0) ?>;
 
 function addBank(){
     var data = $('#bank-form').serializeArray();
+    var data_serialized = $('#bank-form').serialize();
     
         html  = '<tbody id="bank-row' + bank_row + '">';
 	html += '  <tr>';
@@ -781,16 +782,35 @@ function addBank(){
 	html += '    <td class="left"><a onclick="$(\'#bank-row' + bank_row + '\').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
-	
-	$('#bank > tfoot').before(html);
         
-        $('#bank-form').each(function(){
-            this.reset();
-        });
+        $.ajax({
+		url: 'index.php?route=account/customer/addbank&token=<?php echo $token; ?>',
+		type: 'post',
+		dataType: 'json',
+		data: data_serialized,
+		beforeSend: function() {
+								
+		},	
+		success: function(json) {
+                    
+                        console.log(json);
+			$('#bank > tfoot').before(html);
         
-        $('.callout .bank').hide();
+                        $('#bank-form').each(function(){
+                            this.reset();
+                        });
+
+                        $('.callout .bank').hide();
+
+                        bank_row++;
+		},
+                error : function(){
+                    console.log('error');
+                }
+            });
+                $('.callout .bank').hide();
 	
-	bank_row++;
+	
 }
 
 var card_row = <?php echo ($card_row ? $card_row : 0) ?>;
