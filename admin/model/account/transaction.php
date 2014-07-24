@@ -261,7 +261,10 @@ class ModelAccountTransaction extends Model {
 	}
         
         public function addTransferHistory($transfer_id, $data) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "withdraw` SET status = '" . (int)$data['transfer_status_id'] . "', date_proceed = NOW() WHERE withdraw_id = '" . (int)$transfer_id . "'");
+		
+                $this->db->query("UPDATE `" . DB_PREFIX . "withdraw` SET status = '" . (int)$data['transfer_status_id'] . "', date_proceed = NOW() WHERE withdraw_id = '" . (int)$transfer_id . "'");
+                
+                $this->db->query("UPDATE `" . DB_PREFIX . "customer_transaction` SET status = '" . (int)$data['transfer_status_id'] . "', date_modified = NOW() WHERE transaction_id = '" . (int)$transfer_id . "'");
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "withdraw_history SET withdraw_id = '" . (int)$transfer_id . "', withdraw_status_id = '" . (int)$data['transfer_status_id'] . "', notify = '" . (isset($data['notify']) ? (int)$data['notify'] : 0) . "', comment = '" . $this->db->escape(strip_tags($data['comment'])) . "', date_added = NOW()");
 

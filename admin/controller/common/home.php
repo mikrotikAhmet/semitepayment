@@ -167,13 +167,16 @@ class ControllerCommonHome extends Controller {
         $this->data['total_transfer_request'] = $this->model_account_transaction->getTotalTransferRequest();
         
         $general_balance = $this->model_account_transaction->getTotalAmount();
+        
         $available_balance = $general_balance - (str_replace('-',"",$total_withdraw));
+        
+        $available = $total_withdraw - $available_balance;
         
         $this->data['total_withdraw'] = $this->currency->format((isset($total_withdraw) ? str_replace('-',"",$total_withdraw) : 0), $this->config->get('config_currency'));
         $this->data['total_withdraw_approval'] = $this->currency->format((isset($total_withdraw_approval) ? str_replace('-',"",$total_withdraw_approval) : 0), $this->config->get('config_currency'));
         
         $this->data['general_balance'] = $this->currency->format((isset($general_balance) ? str_replace('-',"",$general_balance) : 0), $this->config->get('config_currency'));
-        $this->data['available_balance'] = $this->currency->format((isset($available_balance) ? $available_balance : 0), $this->config->get('config_currency'));
+        $this->data['available_balance'] = $this->currency->format((isset($available) ? $available : 0), $this->config->get('config_currency'));
         
         $this->data['customer_approved'] = $this->url->link('account/customer','token='.$this->session->data['token'].'&filter_approved=1','SSL');
         $this->data['customer_waiting'] = $this->url->link('account/customer','token='.$this->session->data['token'].'&filter_approved=0','SSL');
