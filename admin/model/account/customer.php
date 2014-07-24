@@ -56,6 +56,10 @@ class ModelAccountCustomer extends Model {
         $this->db->query("DELETE FROM ".DB_PREFIX."customer_bank WHERE customer_bank_id = '".(int) $bank_id."'");
     }
     
+    public function verifyBank($status,$bank_id){
+        $this->db->query("UPDATE " . DB_PREFIX . "customer_bank SET status = '" . $this->db->escape($status) . "' WHERE customer_bank_id = '" . (int) $bank_id . "'");
+    }
+    
     public function editToken($customer_id, $token) {
         $this->db->query("UPDATE " . DB_PREFIX . "customer SET token = '" . $this->db->escape($token) . "' WHERE customer_id = '" . (int) $customer_id . "'");
     }

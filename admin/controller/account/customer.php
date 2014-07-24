@@ -1047,12 +1047,14 @@ class ControllerAccountCustomer extends Controller {
             $banks = $this->model_account_customer->getCustomerBanks($this->request->get['customer_id']);
 
             $this->load->model('localisation/transaction_status');
+            
+            $this->data['transaction_statuses'] = $this->model_localisation_transaction_status->getTransactionStatuses();
 
             foreach ($banks as $bank) {
 
                 $transaction_status = $this->model_localisation_transaction_status->getTransactionStatus($bank['status']);
 
-                $status = '<span class="label label-primary">' . $transaction_status['name'] . '</span>';
+                $status = $transaction_status['name'];
 
                 $this->data['banks'][] = array(
                     'bank_id' => $bank['customer_bank_id'],
@@ -1121,6 +1123,22 @@ class ControllerAccountCustomer extends Controller {
         );
 
         $this->response->setOutput($this->render());
+    }
+    
+    public function verifyBank(){
+        
+        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+            
+            $this->load->model('account/customer');
+            
+            $this->model_account_customer->verifyBank($this->request->post['status'],$this->request->post['bank_id']);
+            
+            $json['success'] = $this->language->get('text_success');
+        
+            $this->response->setOutput(json_encode($json));
+        }
+        
+        
     }
 
     protected function validateForm() {
