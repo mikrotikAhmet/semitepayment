@@ -271,7 +271,8 @@ class ModelAccountTransaction extends Model {
 		$withdraw_info = $this->getTransfer($transfer_id);
 
 		if ($data['notify']) {
-//			$language = new Language($withdraw_info['language_directory']);
+			
+//                        $language = new Language($withdraw_info['language_directory']);
 //			$language->load($withdraw_info['language_filename']);
 //			$language->load('mail/withdraw');
 //
@@ -308,7 +309,7 @@ class ModelAccountTransaction extends Model {
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
 			$mail->setTo('ahmet.gudenoglu@gmail.com');
-			$mail->setFrom('test@semitepayment.com');
+			$mail->setFrom('no-reply@semitepayment.com');
 			$mail->setSender('Semite Payment');
 			$mail->setSubject(html_entity_decode('Fund Transfer', ENT_QUOTES, 'UTF-8'));
 			$mail->setText(html_entity_decode('You are rich ha!', ENT_QUOTES, 'UTF-8'));
