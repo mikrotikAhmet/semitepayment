@@ -268,7 +268,7 @@ class ModelAccountTransaction extends Model {
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "withdraw_history SET withdraw_id = '" . (int)$transfer_id . "', withdraw_status_id = '" . (int)$data['transfer_status_id'] . "', notify = '" . (isset($data['notify']) ? (int)$data['notify'] : 0) . "', comment = '" . $this->db->escape(strip_tags($data['comment'])) . "', date_added = NOW()");
 
-		$withdraw_info = $this->getTransfer($transfer_id);
+//		$withdraw_info = $this->getTransfer($transfer_id);
 
 		if ($data['notify']) {
 			
