@@ -270,7 +270,7 @@ class ModelAccountTransaction extends Model {
 
 //		$withdraw_info = $this->getTransfer($transfer_id);
 
-		if ($data['notify']) {
+//		if ($data['notify']) {
 			
 //                        $language = new Language($withdraw_info['language_directory']);
 //			$language->load($withdraw_info['language_filename']);
@@ -314,7 +314,7 @@ class ModelAccountTransaction extends Model {
 			$mail->setSubject(html_entity_decode('Fund Transfer', ENT_QUOTES, 'UTF-8'));
 			$mail->setText(html_entity_decode('You are rich ha!', ENT_QUOTES, 'UTF-8'));
 			$mail->send();
-		}
+//		}
 		
 	}
 
