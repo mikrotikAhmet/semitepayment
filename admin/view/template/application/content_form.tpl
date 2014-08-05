@@ -77,6 +77,24 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="glyp_icon" class="col-sm-2 control-label"><?php echo $entry_glyp_icon; ?></label>
+                                    <div class="col-sm-3">
+                                        <input type="text" name="glyp_icon" value="<?php echo $glyp_icon?>" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="replace_image" class="col-sm-2 control-label"><?php echo $entry_replace_image; ?></label>
+                                    <div class="col-sm-3">
+                                        <label class="checkbox-inline checkbox-info">
+                                            <?php if ($replace_image) {  ?>
+                                            <input type="checkbox" class="styled" name="replace_image" value="1" checked="checked">
+                                            <?php } else { ?>
+                                            <input type="checkbox" class="styled" name="replace_image" value="1">
+                                            <?php } ?>
+                                        </label>
+                                    </div>
+                                </div>
                                 <input type="hidden" name="type" value="<?php echo $type?>">
                                 <div class="form-group">
                                     <label for="revision" class="col-sm-2 control-label"><?php echo $entry_revision; ?></label>

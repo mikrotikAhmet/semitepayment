@@ -36,6 +36,9 @@ $_['heading_transfer_form'] = 'Transfer Form';
 $_['heading_transfer_history'] = 'Transfer History';
 $_['heading_transfer_form_introduction'] = 'Please include the following information on all wire transfers to your bank account:';
 
+// Text
+$_['text_success'] = 'Transfer History successfully updated.';
+
 // Entry
 $_['entry_transfer_id'] = 'Transfer ID:';
 $_['entry_invoice_no'] = 'Invoice No.:';

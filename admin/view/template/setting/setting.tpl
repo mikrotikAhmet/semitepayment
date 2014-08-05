@@ -565,6 +565,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="config_featured_image_width" class="col-sm-3 control-label"><?php echo $entry_featured_image; ?></label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="config_featured_image_width" placeholder="<?php echo $entry_featured_image_width; ?>" name="config_featured_image_width" value="<?php echo $config_featured_image_width; ?>">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="config_featured_image_width" placeholder="<?php echo $entry_featured_image_height; ?>" name="config_featured_image_height" value="<?php echo $config_featured_image_height; ?>">
+                                    </div>
+                                    
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="tab_ftp">
                                 <div class="form-group">

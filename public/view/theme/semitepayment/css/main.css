@@ -28,3 +28,23 @@
     text-transform: uppercase;
 }
 
+/* CUSTOM */
+.registration-form{
+    background: #fff;
+    padding: 0px 11px;
+    border: 1px solid #ddd;
+    color: #3c4a52;
+}
+
+.registration-form .h4{
+    font-size: 24px;
+    line-height: 1.6;
+    font-weight: 500;
+    margin: .2em 0 .6em;
+ color: #3c4a52;
+
+}
+
+.registration-form label{
+}
+

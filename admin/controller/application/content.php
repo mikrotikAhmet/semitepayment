@@ -358,6 +358,8 @@ class ControllerApplicationContent extends Controller {
         $this->data['entry_title'] = $this->language->get('entry_title');
         $this->data['entry_description'] = $this->language->get('entry_description');
         $this->data['entry_image'] = $this->language->get('entry_image');
+        $this->data['entry_glyp_icon'] = $this->language->get('entry_glyp_icon');
+        $this->data['entry_replace_image'] = $this->language->get('entry_replace_image');
         $this->data['entry_type'] = $this->language->get('entry_type');
         $this->data['entry_status'] = $this->language->get('entry_status');
         $this->data['entry_review'] = $this->language->get('entry_review');
@@ -477,6 +479,24 @@ class ControllerApplicationContent extends Controller {
         $this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
 
+        
+        if (isset($this->request->post['glyp_icon'])) {
+            $this->data['glyp_icon'] = $this->request->post['glyp_icon'];
+        } elseif (!empty($content_info)) {
+            $this->data['glyp_icon'] = $content_info['glyp_icon'];
+        } else {
+            $this->data['glyp_icon'] = '';
+        }
+        
+        if (isset($this->request->post['replace_image'])) {
+            $this->data['replace_image'] = $this->request->post['replace_image'];
+        } elseif (!empty($content_info)) {
+            $this->data['replace_image'] = $content_info['replace_image'];
+        } else {
+            $this->data['replace_image'] = '';
+        }
+        
+        
         $this->load->model('application/content_type');
         $this->data['fields'] = array();
 

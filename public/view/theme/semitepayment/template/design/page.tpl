@@ -43,18 +43,23 @@
             <div class="<?php echo $subject['column']?>">
                 <?php if ($subject['type'] == 'content') { ?>
                 <?php $this->content->setContent($subject['subject_id'])?>
+                
+                <?php if ($this->content->getReplaceImage()) { ?>
+                <i class="<?php echo $this->content->getGlypIcon()?>"></i>
+                <?php } else { ?>
                 <?php if ($this->content->getImage()) { ?>
                 <?php if (empty($block_unit['additional_class'])) { ?>
                     <span><img src="<?php echo $this->content->getImage()?>"></span>
                 <?php } else { ?>
-                    <span class="img-responsive wow fade-in-up animated" style="visibility: visible;"><img src="<?php echo $this->content->getImage(273,199)?>"></span>
+                    <span class="img-responsive wow fade-in-up animated" style="visibility: visible;"><img src="<?php echo $this->content->getImage($this->config->get('config_featured_image_width'),$this->config->get('config_featured_image_height'))?>"></span>
+                <?php } ?>
                 <?php } ?>
                 <?php } ?>
                 <?php if ($this->content->getTitle()) { ?>
                 <h3 class="h4"><?php echo $this->content->getTitle()?></h3>
                 <?php } ?>
                 <?php if ($this->content->getContent()) { ?>
-                <p><?php echo $this->content->getContent()?></p>
+                <?php echo $this->content->getContent()?>
                 <?php } ?>
                 <?php } elseif ($subject['type'] == 'module') {  ?>
                 <?php 
