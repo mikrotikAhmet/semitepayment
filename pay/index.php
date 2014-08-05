@@ -37,7 +37,9 @@ if(isset($_POST['submit'])){
     
     $output = json_decode($result);
 
+    
     echo '<pre>';
+    print_r($_GET);
     print_r($output);
     echo '</pre>';
 }

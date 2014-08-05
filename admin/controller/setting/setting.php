@@ -113,6 +113,7 @@ class ControllerSettingSetting extends Controller {
         $this->data['entry_mail_template'] = $this->language->get('entry_mail_template');
         $this->data['entry_logo'] = $this->language->get('entry_logo');
         $this->data['entry_icon'] = $this->language->get('entry_icon');
+        $this->data['entry_featured_image'] = $this->language->get('entry_featured_image');
         $this->data['entry_ftp_host'] = $this->language->get('entry_ftp_host');
         $this->data['entry_ftp_port'] = $this->language->get('entry_ftp_port');
         $this->data['entry_ftp_username'] = $this->language->get('entry_ftp_username');
@@ -584,7 +585,7 @@ class ControllerSettingSetting extends Controller {
         } else {
             $this->data['logo'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
         }
-
+        
         if (isset($this->request->post['config_icon'])) {
             $this->data['config_icon'] = $this->request->post['config_icon'];
         } else {
@@ -599,6 +600,18 @@ class ControllerSettingSetting extends Controller {
 
         $this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
+         if (isset($this->request->post['config_featured_image_width'])) {
+            $this->data['config_featured_image_width'] = $this->request->post['config_featured_image_width'];
+        } else {
+            $this->data['config_featured_image_width'] = $this->config->get('config_featured_image_width');
+        }
+        
+        if (isset($this->request->post['config_featured_image_height'])) {
+            $this->data['config_featured_image_height'] = $this->request->post['config_featured_image_height'];
+        } else {
+            $this->data['config_featured_image_height'] = $this->config->get('config_featured_image_height');
+        }
+        
         if (isset($this->request->post['config_ftp_host'])) {
             $this->data['config_ftp_host'] = $this->request->post['config_ftp_host'];
         } elseif ($this->config->get('config_ftp_host')) {

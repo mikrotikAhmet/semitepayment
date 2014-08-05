@@ -72,6 +72,7 @@ $_['entry_complete_bankaccount_status']             = 'Complete Bank Account Ver
 
 $_['entry_logo']                   = 'Store Logo:';
 $_['entry_icon']                   = 'Icon:<br /><span class="help">The icon should be a PNG that is 16px x 16px.</span>';
+$_['entry_featured_image']         = 'Featured Image (W/H):';
 $_['entry_ftp_host']               = 'FTP Host:';
 $_['entry_ftp_port']               = 'FTP Port:';
 $_['entry_ftp_username']           = 'FTP Username:';

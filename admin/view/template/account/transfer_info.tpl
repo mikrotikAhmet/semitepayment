@@ -169,7 +169,7 @@
                                 <div id="history"></div>
                             </div>
                             <br/>
-                            <div class='col-md-6'>
+                            <div class='col-md-12'>
                                 <div class="panel-default">
                                     <div class="panel-heading"><h6 class="panel-title"><i class="icon-transmission"></i> Managing Transfer:</h6></div>
                                     <div class="panel-body">
@@ -224,7 +224,7 @@ $('#invoice-generate').bind('click', function() {
             url: 'index.php?route=account/transfer/createinvoiceno&token=<?php echo $token; ?>&transfer_id=<?php echo $transfer['transfer']; ?>',
                     dataType: 'json',
             beforeSend: function() {
-                $('#invoice').after('<img src="view/image/loading.gif" class="loading" style="padding-left: 5px;" />');
+                $('#invoice').after('<img src="view/images/custom/loading.gif" class="loading" style="padding-left: 5px;" />');
             },
             complete: function() {
                 $('.loading').remove();
@@ -265,7 +265,7 @@ $('#invoice-generate').bind('click', function() {
 		beforeSend: function() {
 			$('.success, .warning').remove();
 			$('#button-history').attr('disabled', true);
-			$('#history').prepend('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+			$('#history').prepend('<div class="attention"><img src="view/images/custom/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
 		},
 		complete: function() {
 			$('#button-history').attr('disabled', false);

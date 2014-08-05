@@ -1,3 +1,4 @@
+<div class="registration-form">
 <h3 class="h4">Apply for an Account</h3>
 <form action="http://local.semitepayment.com/register" method="post" enctype="multipart/form-data" id="form" class="form" role="form">
     <div class="form-group">
@@ -37,3 +38,4 @@
     <button type="submit" class="btn btn-default">Continue</button>
 </form>
 <p class="block small">Already have an account ? <a href="http://lmerchant.semitepayment.com/">Log in</a>.</p>
+</div>

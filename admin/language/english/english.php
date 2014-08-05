@@ -46,6 +46,7 @@ $_['text_clear']                   = 'Clear';
 $_['text_no_message']                   = 'No Message';
 $_['text_add_new']                   = 'Add New';
 $_['text_generate']                   = 'Generate';
+$_['text_wait']                      = 'Your request is processing. Please wait.';
 
 // Button
 $_['button_insert']                 = 'Insert';

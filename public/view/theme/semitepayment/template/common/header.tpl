@@ -47,9 +47,10 @@
                         <?php if (!$logo) { ?>
                             <a class="navbar-brand" href="<?php echo $home?>" title="<?php echo $name?>"><?php echo $name?></a>
                             <?php } else { ?>
-                            <a href="<?php echo $home?>" title="<?php echo $name?>"><img style="padding: 5px 0px;" src="<?php echo $logo?>"/></a>
+                            <a href="<?php echo $home?>" title="<?php echo $name?>"><img style="padding: 0px 0px;" src="<?php echo $logo?>"/></a>
                         <?php } ?>
                     </div>
+                    <?php if ($this->page->getPageHeader()) { ?>
                     <div class="navbar-collapse collapse">
                         <?php if ($leftmenus) { ?>
                         <ul class="nav navbar-nav">
@@ -66,6 +67,7 @@
                         </ul>
                         <?php } ?>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
