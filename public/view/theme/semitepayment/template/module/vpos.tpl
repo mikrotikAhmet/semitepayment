@@ -9,6 +9,7 @@
         Pay to       : <span><?php echo $merchant['statement']['business_name']?></span><br/>
         <a href="#">More Details</a>
     </div>
+    <form id="form" method="POST" action="<?php echo $action?>">
     <div class="vpos">
         <input type="hidden" name="M_SK" value="<?php echo $merchant['M_SK']?>"/>
         <input type="hidden" name="M_MODE" value="<?php echo strtolower($merchant['mode'])?>"/>
@@ -33,5 +34,6 @@
         </div>
         <button class="btn btn-primary"><i class="glyphicon glyphicon-check"></i> Pay Now!</button>
     </div>
+        </form>
 </div>
 <?php } ?>

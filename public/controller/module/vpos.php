@@ -30,7 +30,19 @@ class ControllerModuleVpos extends Controller{
     public function index() {
         
         $merchant_key = $this->request->get;
+        
         $customer_info = array();
+        
+         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+             
+             $this->load->helper('creditcard');
+             
+             $res = CallAPI('POST', 'http://lapi.semitepayment.com/v1/payment/pay', $this->request->post);
+             
+             $output = json_decode($res);
+             
+             print_r($output);
+         }
         
         if (isset($merchant_key['key'])){
             
@@ -52,6 +64,8 @@ class ControllerModuleVpos extends Controller{
             }
             
             $this->data['merchant'] = $customer_info;
+            
+            $this->data['action'] = $this->url->link('module/vpos','key='.$merchant_key['key'],'SSL');
             
             if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/vpos.tpl')) {
                 $this->template = $this->config->get('config_template') . '/template/module/vpos.tpl';
