@@ -32,18 +32,7 @@ class ControllerModuleVpos extends Controller{
         $merchant_key = $this->request->get;
         
         $customer_info = array();
-        
-         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-             
-             $this->load->helper('creditcard');
-             
-             $res = CallAPI('POST', 'http://lapi.semitepayment.com/v1/payment/pay', $this->request->post);
-             
-             $output = json_decode($res);
-             
-             print_r($output);
-         }
-        
+               
         if (isset($merchant_key['key'])){
             
             $this->load->model('account/customer');
@@ -86,6 +75,28 @@ class ControllerModuleVpos extends Controller{
 
             $this->render();
         }
+    }
+    
+    public function pay(){
+        
+        $json = array();
+        
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+             
+             $this->load->helper('creditcard');
+             
+             $res = CallAPI('POST', 'http://lapi.semitepayment.com/v1/payment/pay', $this->request->post);
+             
+             $output = json_decode($res);
+             
+             if ($output->stat == 'OK'){
+                 $json['status'] = 'OK';
+             } else {
+                 $json['status'] = $output->stat;
+             }
+             
+             $this->response->setOutput(json_encode($json));
+         }
     }
     
      protected function validateForm() {
