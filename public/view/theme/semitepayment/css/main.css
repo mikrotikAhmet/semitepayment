@@ -41,10 +41,29 @@
     line-height: 1.6;
     font-weight: 500;
     margin: .2em 0 .6em;
- color: #3c4a52;
+    color: #3c4a52;
 
 }
 
 .registration-form label{
+}
+
+.vpos_detail{
+
+}
+
+.vpos{
+    display: block;
+    padding: 14.5px;
+    margin: 0 0 15px;
+    font-size: 15px;
+    line-height: 1.9;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #3c4a52;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-height: 400px;
 }
 
