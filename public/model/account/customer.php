@@ -40,4 +40,77 @@ class ModelAccountCustomer extends Model{
 
         return $query->row['total'];
     }
+    
+    public function getCustomerByKey($key){
+        
+        $customer_data = array();
+        
+        $sql = "SELECT * FROM ".DB_PREFIX."customer c LEFT JOIN ".DB_PREFIX."customer_account ca ON(c.customer_id = ca.customer_id)";
+        
+        $sql .=" WHERE test_secret_key = '".$this->db->escape($key)."' OR";
+        $sql .=" test_public_key = '".$this->db->escape($key)."' OR";
+        $sql .=" live_secret_key = '".$this->db->escape($key)."' OR";
+        $sql .=" live_public_key = '".$this->db->escape($key)."' LIMIT 1";
+        
+        $result = $this->db->query($sql);
+        
+        if ($result) {
+            $customer_data = array(
+                'customer_id'=>$result->row['customer_id'],
+                'statement'=>$this->getCustomerStatementByCustomerId($result->row['customer_id']),
+                'M_PK'=>$key,
+                'type'=>  $this->getKeyType($key),
+                'mode'=> $this->getTransactionMode($key),
+                'approved'=>$result->row['approved'],
+                'M_SK'=>$this->getSecretKeyByPublicKey($key)
+
+            );
+        }
+        
+        return $customer_data;
+    }
+    
+    public function getCustomerStatementByCustomerId($customer_id){
+        
+        $result = $this->db->query("SELECT * FROM ".DB_PREFIX."customer_statement WHERE customer_id = '".(int) $customer_id."'");
+        
+        return $result->row;
+    }
+    
+    protected function getKeyType($key){
+        
+        $trim_key = explode("_", $key);
+        $type = "";
+        
+        switch ($trim_key[0]){
+            case "pk":
+                $type = 'Public Key';
+                break;
+            case "sk":
+                $type = 'Secret Key';
+                break;
+        }
+        
+        return $type;
+    }
+    
+    protected function getTransactionMode($key){
+        
+        $trim_key = explode("_", $key);
+        
+        return ucfirst($trim_key[1]);
+    }
+    
+    protected function getSecretKeyByPublicKey($key){
+        
+        $trim_key = explode("_", $key);
+        
+        $result = $this->db->query("SELECT * FROM ".DB_PREFIX."customer_account WHERE ".$trim_key[1]."_public_key = '".$this->db->escape($key)."'");
+        
+        if ($result->row){
+            return $result->row[$trim_key[1]."_secret_key"];
+        } else {
+            return false;
+        }
+    }
 }
