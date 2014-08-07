@@ -149,7 +149,7 @@ function CallAPI($method, $url, $data = false)
     switch ($method)
     {
         case "POST":
-            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POST, count($data));
 
             if ($data)
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $data);

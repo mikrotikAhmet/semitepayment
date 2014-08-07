@@ -60,8 +60,8 @@
     line-height: 1.9;
     word-break: break-all;
     word-wrap: break-word;
-    color: #3c4a52;
-    background-color: #f5f5f5;
+    color: #FFF;
+    background-color: #3C4A52;
     border: 1px solid #ccc;
     border-radius: 4px;
     min-height: 400px;
@@ -112,23 +112,23 @@ overlay,
     overflow: hidden;
 } .overlay .toolbar a.close {
     display: inline-block;
-        *display: inline;
-         zoom: 1;
+    *display: inline;
+    zoom: 1;
     padding: 0 8px;
     font-size: 12px;
     text-decoration: none;
     font-weight: bold;
     line-height: 18px;
     border-radius: 5px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        -o-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
     color: #999999;
     background-color: #515151;
 } .overlay .toolbar a.close span {
     color: #818181;
 } .overlay .toolbar a.close:hover,
-  .overlay .toolbar a.close:hover span {
+.overlay .toolbar a.close:hover span {
     background-color: #b90900;
     color: #fff;
 }

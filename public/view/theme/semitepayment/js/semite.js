@@ -19,14 +19,13 @@ $(document).ready(function() {
 
 function openOverlay(olEl) {
     
-    var data = $('#paymentform').serialize();
     var pk = $('input[name=\'M_PK\']').val();
     
     $.ajax({
         url: 'index.php?route=module/vpos/pay&key='+pk,
         type : 'post',
         dataType: 'json',
-        data : data,
+        data : $('#paymentform :input'),
         beforeSend : function(){
             $oLay = $(olEl);
             
@@ -68,8 +67,8 @@ function openOverlay(olEl) {
         },
         success : function(json){
             var timer = setInterval(function() {
-                
-                if (json.status == 'OK'){
+                               
+                if (json.stat == 'OK'){
                     closeOverlay();
                     if ($(this).attr('href') == '#') e.preventDefault();
                     clearInterval(timer);
