@@ -28,16 +28,30 @@
  * @author ahmet
  */
 // HTTP
+<<<<<<< HEAD
 define('HTTP_SERVER', 'http://www.semitepayment.com/');
 define('HTTP_PUBLIC', 'http://www.semitepayment.com/');
 define('HTTP_IMAGE', 'http://www.semitepayment.com/image/');
+=======
+define('HTTP_SERVER', 'http://local.semitepayment.com/');
+define('HTTP_MERCHANT', 'http://lmerchant.semitepayment.com/');
+define('HTTP_PUBLIC', 'http://local.semitepayment.com/');
+define('HTTP_IMAGE', 'http://local.semitepayment.com/image/');
+>>>>>>> 8d88a0f6c8bb9ad22ef8b679f39b22b79441f662
 define('HTTP_DOCUMENTATION', 'http://docs.semitepayment.com/');
 define('HTTP_SUPPORT', 'http://form.semitepayment.com/');
 
 // HTTPS
+<<<<<<< HEAD
 define('HTTPS_SERVER', 'https://www.semitepayment.com/');
 define('HTTPS_PUBLIC', 'https://www.semitepayment.com/');
 define('HTTPS_IMAGE', 'https://www.semitepayment.com/image/');
+=======
+define('HTTPS_SERVER', 'https://local.semitepayment.com/');
+define('HTTPS_MERCHANT', 'https://lmerchant.semitepayment.com/');
+define('HTTPS_PUBLIC', 'https://local.semitepayment.com/');
+define('HTTPS_IMAGE', 'https://local.semitepayment.com/image/');
+>>>>>>> 8d88a0f6c8bb9ad22ef8b679f39b22b79441f662
 
 // DIR
 define('DIR_APPLICATION', '/var/www/html/semitepayment.com/public/');

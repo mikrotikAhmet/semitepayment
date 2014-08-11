@@ -71,4 +71,20 @@
                 </div>
             </div>
         </div>
+        <?php if(!$_GET) { ?>
+<div class="dark">
+    <div class="jumbotron">
+        <div class="container">
+            <img class="jumbotron-bitcoin" id="btc" src="public/view/theme/semitepayment/img/examples/semite-ccard.png" onerror="this.onerror=null; this.src='public/view/theme/semitepayment/img/examples/semite-ccard.png'">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="primary-text" id="title">Pay online, safely and easily.</h1>
+                    <p class="secondary-text" id="sub">With SemitePay your financial details are always safe when you shop and pay online..</p>
+                    <p><a href="/register" class="btn btn-primary btn-lg" id="btn" role="button">Sign up for free »</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <?php }?>
         

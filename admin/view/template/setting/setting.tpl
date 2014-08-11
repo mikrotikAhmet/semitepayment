@@ -1,4 +1,4 @@
-<?php echo $header?>
+    <?php echo $header?>
 <!-- Page content -->
 <div class="page-content">
     <!-- Page header -->
@@ -404,6 +404,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                
                                 <h2><?php echo $text_transfer?></h2>
                                 <div class="form-group">
                                     <label for="config_invoice_prefix" class="col-sm-3 control-label"><?php echo $entry_invoice_prefix; ?></label>
@@ -437,6 +438,12 @@
                                             <?php } ?>
                                             <?php } ?>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_transfer_comission" class="col-sm-3 control-label"><?php echo $entry_transfer_comission; ?></label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="config_transfer_comission" placeholder="" name="config_transfer_comission" value="<?php echo $config_transfer_comission; ?>">
                                     </div>
                                 </div>
                                 <h2><?php echo $text_affiliate?></h2>

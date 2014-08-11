@@ -26,24 +26,48 @@ if (!defined('DIR_APPLICATION'))
 class ControllerModuleVpos extends Controller{
     
     private $error = array();
-    
+
     public function index() {
+                
+        $this->language->load('module/vpos');
+
+        $this->data['text_credit_card'] = $this->language->get('text_credit_card');
+        $this->data['text_start_date'] = $this->language->get('text_start_date');
+        $this->data['text_issue'] = $this->language->get('text_issue');
+        $this->data['text_wait'] = $this->language->get('text_wait');
+
+        $this->data['entry_cc_holder'] = $this->language->get('entry_cc_holder');
+        $this->data['entry_cc_type'] = $this->language->get('entry_cc_type');
+        $this->data['entry_cc_number'] = $this->language->get('entry_cc_number');
+        $this->data['entry_cc_start_date'] = $this->language->get('entry_cc_start_date');
+        $this->data['entry_cc_expire_date'] = $this->language->get('entry_cc_expire_date');
+        $this->data['entry_cc_cvv2'] = $this->language->get('entry_cc_cvv2');
+        $this->data['entry_cc_issue'] = $this->language->get('entry_cc_issue');
+        
+        $this->data['months'] = array();
+
+        for ($i = 1; $i <= 12; $i++) {
+                $this->data['months'][] = array(
+                        'text'  => strftime('%B', mktime(0, 0, 0, $i, 1, 2000)), 
+                        'value' => sprintf('%02d', $i)
+                );
+        }
+
+        $today = getdate();
+
+        $this->data['year_expire'] = array();
+
+        for ($i = $today['year']; $i < $today['year'] + 11; $i++) {
+                $this->data['year_expire'][] = array(
+                        'text'  => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
+                        'value' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)) 
+                );
+        }
         
         $merchant_key = $this->request->get;
         
         $customer_info = array();
-        
-         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-             
-             $this->load->helper('creditcard');
-             
-             $res = CallAPI('POST', 'http://lapi.semitepayment.com/v1/payment/pay', $this->request->post);
-             
-             $output = json_decode($res);
-             
-             print_r($output);
-         }
-        
+               
         if (isset($merchant_key['key'])){
             
             $this->load->model('account/customer');
@@ -88,9 +112,87 @@ class ControllerModuleVpos extends Controller{
         }
     }
     
+    public function pay(){
+        
+        $json = array();
+        
+        $merchant_key = $this->request->get;
+        
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+            
+            $this->load->model('account/customer');
+            
+            $customer_info = $this->model_account_customer->getCustomerByKey($merchant_key['key']);
+             
+             $this->load->helper('creditcard');
+             
+             $request = $this->request->post;
+                 
+             $res = CallAPI('POST', 'http://lapi.semitepayment.com/v1/payment/pay',$request);
+             
+             $output = json_decode($res);
+             
+             if ($output->stat == 'OK' && isset($output->customer_id)){
+                 
+                 $AMT = $request['AMT'];
+                 $CVV = $request['cc_cvv2'];
+                 $EXPM = $request['cc_expire_date_month'];
+                 $EXPY = $request['cc_expire_date_year'];
+                 
+                 $expiry_date = explode('-', $output->date_expire);
+                 
+                 $ac_exp_month = $expiry_date[1];
+                 $ac_exp_year = $expiry_date[0];
+                 
+                 if ($AMT > $output->balance){
+                     $json['stat'] = 'Insufficient Balance.';
+                 } elseif ($CVV != $output->v_card_ccv){
+                     $json['stat'] = 'Card Security Code (CVV2) Error';
+                 } elseif ($EXPM != $ac_exp_month || $EXPY != $ac_exp_year) {
+                     $json['stat'] = 'Expire Date Error';
+                 } else {
+                     
+                     $this->load->model('account/payment');
+                     
+                     $transaction_data = array(
+                         'from_account'=>$request['cc_number'],
+                         'to_account'=>  $customer_info['customer_id'],
+                         'amount'=> $AMT
+                     );
+                     
+                     $transaction = $this->model_account_payment->makeTransaction($transaction_data,'Payment',$AMT);
+                     
+                     $json['stat'] = $output->stat;
+                 }
+             } else {
+                $json['stat'] = $output->stat;
+             }
+             
+             $this->response->setOutput(json_encode($json));
+         } else {
+             $json['stat'] = 'Bad Request';
+             $this->response->setOutput(json_encode($json));
+         }
+    }
+    
      protected function validateForm() {
 
-
+         if (empty($this->request->post['cc_number'])){
+             $this->error['error'] = 'Error';
+         }
+         
+         if (empty($this->request->post['cc_cvv2'])){
+             $this->error['error'] = 'Error';
+         }
+         
+         if (empty($this->request->post['cc_expire_date_month'])){
+             $this->error['error'] = 'Error';
+         }
+         
+         if (empty($this->request->post['cc_expire_date_year'])){
+             $this->error['error'] = 'Error';
+         }
+         
         if (!$this->error) {
             return true;
         } else {

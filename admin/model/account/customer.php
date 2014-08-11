@@ -378,39 +378,39 @@ class ModelAccountCustomer extends Model {
         if ($customer_info) {
             $this->db->query("INSERT INTO " . DB_PREFIX . "customer_transaction SET customer_id = '" . (int) $customer_id . "', order_id = '" . (int) $order_id . "', description = '" . $this->db->escape($description) . "', amount = '" . (float) $amount . "', date_added = NOW()");
 
-            $this->language->load('mail/customer');
+//            $this->language->load('mail/customer');
+//
+//            if ($customer_info['store_id']) {
+//                $this->load->model('setting/store');
+//
+//                $store_info = $this->model_setting_store->getStore($customer_info['store_id']);
+//
+//                if ($store_info) {
+//                    $store_name = $store_info['name'];
+//                } else {
+//                    $store_name = $this->config->get('config_name');
+//                }
+//            } else {
+//                $store_name = $this->config->get('config_name');
+//            }
 
-            if ($customer_info['store_id']) {
-                $this->load->model('setting/store');
-
-                $store_info = $this->model_setting_store->getStore($customer_info['store_id']);
-
-                if ($store_info) {
-                    $store_name = $store_info['name'];
-                } else {
-                    $store_name = $this->config->get('config_name');
-                }
-            } else {
-                $store_name = $this->config->get('config_name');
-            }
-
-            $message = sprintf($this->language->get('text_transaction_received'), $this->currency->format($amount, $this->config->get('config_currency'))) . "\n\n";
-            $message .= sprintf($this->language->get('text_transaction_total'), $this->currency->format($this->getTransactionTotal($customer_id)));
-
-            $mail = new Mail();
-            $mail->protocol = $this->config->get('config_mail_protocol');
-            $mail->parameter = $this->config->get('config_mail_parameter');
-            $mail->hostname = $this->config->get('config_smtp_host');
-            $mail->username = $this->config->get('config_smtp_username');
-            $mail->password = $this->config->get('config_smtp_password');
-            $mail->port = $this->config->get('config_smtp_port');
-            $mail->timeout = $this->config->get('config_smtp_timeout');
-            $mail->setTo($customer_info['email']);
-            $mail->setFrom($this->config->get('config_email'));
-            $mail->setSender($this->config->get('config_name'));
-            $mail->setSubject(html_entity_decode(sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
-            $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
-            $mail->send();
+//            $message = sprintf($this->language->get('text_transaction_received'), $this->currency->format($amount, $this->config->get('config_currency'))) . "\n\n";
+//            $message .= sprintf($this->language->get('text_transaction_total'), $this->currency->format($this->getTransactionTotal($customer_id)));
+//
+//            $mail = new Mail();
+//            $mail->protocol = $this->config->get('config_mail_protocol');
+//            $mail->parameter = $this->config->get('config_mail_parameter');
+//            $mail->hostname = $this->config->get('config_smtp_host');
+//            $mail->username = $this->config->get('config_smtp_username');
+//            $mail->password = $this->config->get('config_smtp_password');
+//            $mail->port = $this->config->get('config_smtp_port');
+//            $mail->timeout = $this->config->get('config_smtp_timeout');
+//            $mail->setTo($customer_info['email']);
+//            $mail->setFrom($this->config->get('config_email'));
+//            $mail->setSender($this->config->get('config_name'));
+//            $mail->setSubject(html_entity_decode(sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
+//            $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+//            $mail->send();
         }
     }
 
@@ -502,6 +502,17 @@ class ModelAccountCustomer extends Model {
         $query = $this->db->query("SELECT * FROM ".DB_PREFIX."customer_statement WHERE customer_id = '".(int) $customer_id."'");
         
         return $query->row;
+    }
+    
+    public function getCustomerBalance($customer_id){
+        
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM ".DB_PREFIX."customer_transaction WHERE customer_id = '".(int) $customer_id."' AND `type` = 'Sale'");
+        
+        if ($query->num_rows) {
+            return $query->row['total'];
+        } else {
+            return 0;
+        }
     }
 
 }

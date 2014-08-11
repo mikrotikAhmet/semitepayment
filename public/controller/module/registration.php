@@ -67,7 +67,7 @@ class ControllerModuleRegistration extends Controller {
             );
             $this->model_account_customer->addCustomer($data);
 
-            $this->redirect($this->url->link('module/login', 'token=' . $this->session->data['token'], 'SSL'));
+            $this->redirect(HTTP_MERCHANT);
         } else {
 
             if (isset($this->error['firstname'])) {

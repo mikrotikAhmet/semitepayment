@@ -14,6 +14,7 @@
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
 <script src="public/view/theme/semitepayment/js/public.js" data-no-instant></script>
+<script src="public/view/theme/semitepayment/js/semite.js" data-no-instant></script>
 <script src="public/view/theme/semitepayment/js/instantclick.js" data-no-instant></script>
 <script data-no-instant>InstantClick.init();</script>
 <script>new WOW().init();</script>
