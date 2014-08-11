@@ -97,6 +97,7 @@ class ControllerSettingSetting extends Controller {
         $this->data['entry_auto_capture'] = $this->language->get('entry_auto_capture');
         $this->data['entry_transaction_status'] = $this->language->get('entry_transaction_status');
         $this->data['entry_transaction_status_complete'] = $this->language->get('entry_transaction_status_complete');
+        $this->data['entry_transfer_comission'] = $this->language->get('entry_transfer_comission');
         
         $this->data['entry_invoice_prefix'] = $this->language->get('entry_invoice_prefix');
         $this->data['entry_transfer_status'] = $this->language->get('entry_transfer_status');
@@ -431,6 +432,12 @@ class ControllerSettingSetting extends Controller {
             $this->data['config_transaction_autocapture'] = $this->request->post['config_transaction_autocapture'];
         } else {
             $this->data['config_transaction_autocapture'] = $this->config->get('config_transaction_autocapture');
+        }
+        
+        if (isset($this->request->post['config_transfer_comission'])) {
+            $this->data['config_transfer_comission'] = $this->request->post['config_transfer_comission'];
+        } else {
+            $this->data['config_transfer_comission'] = $this->config->get('config_transfer_comission');
         }
 
         if (isset($this->request->post['config_customer_group_id'])) {

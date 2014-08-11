@@ -55,6 +55,7 @@ $_['entry_mail_template']                = 'Welcome Mail:<br /><span class="help
 $_['entry_auto_capture'] = 'Enable Auto Capture:<br/><span class="help">Enables or Disables the auto capture Credit Card transactions.</span>';
 $_['entry_transaction_status'] = 'Transaction Status:<br/><span class="help">Set the default transaction status when an transaction is processed.</span>';
 $_['entry_transaction_status_complete'] = 'Completed Transaction Status:<br /><span class="help">Set the transaction status the customers transaction must be approved by the Aquirer Bank to add the amount into customers Account Balance.</span>';
+$_['entry_transfer_comission']             = 'Money Transfer Commission (%):<br /><span class="help">The default money transfer commission percentage.</span>';
 
 
 $_['entry_invoice_prefix']         = 'Invoice Prefix:<br /><span class="help">Set the invoice prefix (e.g. INV-2011-00). Invoice ID\'s will start at 1 for each unique prefix</span>';

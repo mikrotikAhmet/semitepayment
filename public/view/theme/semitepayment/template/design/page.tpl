@@ -9,7 +9,7 @@
     <div class="jumbotron">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12 col-md-offset-2">
           <h1 class="primary-text"><?php echo $this->page->getPageTitle()?></h1>
           <p class="secondary-text"><?php echo $this->page->getPageSubTitle()?></p>
         </div>

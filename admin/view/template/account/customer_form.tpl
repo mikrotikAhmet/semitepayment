@@ -17,6 +17,22 @@
         </ul>
     </div>
     <!-- /breadcrumb line -->
+    <div class="block">
+        <ul class="statistics">
+            <li>
+                <div class="statistics-info">
+                    <a href="#" title="" class="bg-success"><i class="icon-coin"></i></a>
+                    <strong><?php echo $available_balance?></strong>
+                </div>
+                <div class="progress progress-micro">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width: 93%;">
+                        <span class="sr-only">93% Complete</span>
+                    </div>
+                </div>
+                <span><?php echo $text_available_balance?></span>
+            </li>
+        </ul>
+    </div>
     <?php if ($error_warning) { ?>
     <div class="alert alert-danger fade in block-inner">
         <button type="button" class="close" data-dismiss="alert">×</button>

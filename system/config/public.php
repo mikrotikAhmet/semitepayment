@@ -29,6 +29,7 @@
  */
 // HTTP
 define('HTTP_SERVER', 'http://local.semitepayment.com/');
+define('HTTP_MERCHANT', 'http://lmerchant.semitepayment.com/');
 define('HTTP_PUBLIC', 'http://local.semitepayment.com/');
 define('HTTP_IMAGE', 'http://local.semitepayment.com/image/');
 define('HTTP_DOCUMENTATION', 'http://docs.semitepayment.com/');
@@ -36,6 +37,7 @@ define('HTTP_SUPPORT', 'http://form.semitepayment.com/');
 
 // HTTPS
 define('HTTPS_SERVER', 'https://local.semitepayment.com/');
+define('HTTPS_MERCHANT', 'https://lmerchant.semitepayment.com/');
 define('HTTPS_PUBLIC', 'https://local.semitepayment.com/');
 define('HTTPS_IMAGE', 'https://local.semitepayment.com/image/');
 

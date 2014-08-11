@@ -615,6 +615,8 @@ class ControllerAccountCustomer extends Controller {
 
     protected function getForm() {
 
+        $this->load->model('account/customer');
+        
         $this->data['heading_title'] = $this->language->get('heading_title');
 
         $this->data['title_bank'] = $this->language->get('title_bank');
@@ -640,6 +642,8 @@ class ControllerAccountCustomer extends Controller {
         $this->data['text_no_bank'] = $this->language->get('text_no_bank');
         $this->data['text_no_card'] = $this->language->get('text_no_card');
         $this->data['text_no_transaction'] = $this->language->get('text_no_transaction');
+        $this->data['text_available_balance'] = $this->language->get('text_available_balance');
+        
 
         $this->data['column_ip'] = $this->language->get('column_ip');
         $this->data['column_total'] = $this->language->get('column_total');
@@ -895,6 +899,13 @@ class ControllerAccountCustomer extends Controller {
 
         if (isset($this->request->get['customer_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $customer_info = $this->model_account_customer->getCustomer($this->request->get['customer_id']);
+        }
+        
+        if (!empty($customer_info)){
+            $balance = $this->model_account_customer->getCustomerBalance($customer_info['customer_id']);
+            $this->data['available_balance'] = $this->currency->format((isset($balance) ? $balance : 0), $this->config->get('config_currency'));
+        } else {
+            $this->data['available_balance'] = 0;
         }
 
 
