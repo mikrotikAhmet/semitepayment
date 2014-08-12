@@ -56,7 +56,7 @@ class ModelAccountCustomer extends Model{
 			$message .= $this->language->get('text_approval') . "\n";
 		}
 
-		$message .= $this->url->link('account/login', '', 'SSL') . "\n\n";
+		$message .= HTTP_MERCHANT . "\n\n";
 		$message .= $this->language->get('text_services') . "\n\n";
 		$message .= $this->language->get('text_thanks') . "\n";
 		$message .= $this->config->get('config_name');
