@@ -7,3 +7,5 @@
 */system/logs
 */cache/!.htaccess
 /nbproject/private/
+/system/logs/
+/download/

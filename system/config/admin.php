@@ -55,9 +55,13 @@ define('DIR_PUBLIC', '/var/www/html/semitepayment.com/public/');
 
 // DB
 define('DB_DRIVER', 'mysqli');
+<<<<<<< Updated upstream
 define('DB_HOSTNAME', 'localhost');
-define('DB_USERNAME', 'semitepayment');
-define('DB_PASSWORD', 's3m1t3P@ym3nT');
+=======
+define('DB_HOSTNAME', '127.0.0.1');
+>>>>>>> Stashed changes
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'ahm671et');
 define('DB_DATABASE', 'semitepayment');
 define('DB_PREFIX', 'engine4_');
 

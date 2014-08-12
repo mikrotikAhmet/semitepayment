@@ -28,18 +28,42 @@
  * @author ahmet
  */
 // HTTP
+<<<<<<< Updated upstream
+=======
+
+define('HTTP_SERVER', 'http://www.semitepayment.com/');
+define('HTTP_PUBLIC', 'http://www.semitepayment.com/');
+define('HTTP_IMAGE', 'http://www.semitepayment.com/image/');
+
+>>>>>>> Stashed changes
 define('HTTP_SERVER', 'http://local.semitepayment.com/');
-define('HTTP_MERCHANT', 'http://lmerchant.semitepayment.com/');
 define('HTTP_PUBLIC', 'http://local.semitepayment.com/');
 define('HTTP_IMAGE', 'http://local.semitepayment.com/image/');
+<<<<<<< Updated upstream
+define('HTTP_MERCHANT', 'http://lmerchant.semitepayment.com/');
+=======
+
+>>>>>>> Stashed changes
 define('HTTP_DOCUMENTATION', 'http://docs.semitepayment.com/');
 define('HTTP_SUPPORT', 'http://form.semitepayment.com/');
 
 // HTTPS
+<<<<<<< Updated upstream
+=======
+
+define('HTTPS_SERVER', 'https://www.semitepayment.com/');
+define('HTTPS_PUBLIC', 'https://www.semitepayment.com/');
+define('HTTPS_IMAGE', 'https://www.semitepayment.com/image/');
+
+>>>>>>> Stashed changes
 define('HTTPS_SERVER', 'https://local.semitepayment.com/');
-define('HTTPS_MERCHANT', 'https://lmerchant.semitepayment.com/');
 define('HTTPS_PUBLIC', 'https://local.semitepayment.com/');
 define('HTTPS_IMAGE', 'https://local.semitepayment.com/image/');
+<<<<<<< Updated upstream
+define('HTTPS_MERCHANT', 'https://lmerchant.semitepayment.com/');
+=======
+
+>>>>>>> Stashed changes
 
 // DIR
 define('DIR_APPLICATION', '/var/www/html/semitepayment.com/public/');
@@ -56,9 +80,13 @@ define('DIR_LOGS', '/var/www/html/semitepayment.com/system/logs/');
 
 // DB
 define('DB_DRIVER', 'mysqli');
+<<<<<<< Updated upstream
 define('DB_HOSTNAME', 'localhost');
-define('DB_USERNAME', 'semitepayment');
-define('DB_PASSWORD', 's3m1t3P@ym3nT');
+=======
+define('DB_HOSTNAME', '127.0.0.1');
+>>>>>>> Stashed changes
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'ahm671et');
 define('DB_DATABASE', 'semitepayment');
 define('DB_PREFIX', 'engine4_');
 
