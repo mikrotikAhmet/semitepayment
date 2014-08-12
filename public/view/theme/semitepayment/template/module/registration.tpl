@@ -1,6 +1,6 @@
 <div class="registration-form">
 <h3 class="h4">Apply for an Account</h3>
-<form action="http://local.semitepayment.com/register" method="post" enctype="multipart/form-data" id="form" class="form" role="form">
+<form action="<?php echo HTTP_SERVER?>/register" method="post" enctype="multipart/form-data" id="form" class="form" role="form">
     <div class="form-group">
         <label for="city" class="control-label">Full Name :</label>
         <div class="clearfix"></div>
