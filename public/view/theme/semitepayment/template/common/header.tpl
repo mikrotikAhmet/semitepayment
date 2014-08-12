@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <?php if(!$_GET) { ?>
+        <?php if(!$_GET && !$this->config->get('config_maintenance')) { ?>
 <div class="dark">
     <div class="jumbotron">
         <div class="container">
