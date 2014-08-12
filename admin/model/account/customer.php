@@ -506,7 +506,7 @@ class ModelAccountCustomer extends Model {
     
     public function getCustomerBalance($customer_id){
         
-        $query = $this->db->query("SELECT SUM(amount) AS total FROM ".DB_PREFIX."customer_transaction WHERE customer_id = '".(int) $customer_id."' AND `type` = 'Sale'");
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM ".DB_PREFIX."customer_transaction WHERE customer_id = '".(int) $customer_id."' AND `type` = 'Sale' OR `type` = 'Deposit'");
         
         if ($query->num_rows) {
             return $query->row['total'];
