@@ -786,6 +786,20 @@
                             </div>
                             <div class="tab-pane fade" id="tab_server">
                                 <div class="form-group">
+                                    <label for="config_success" class="col-sm-3 control-label"><?php echo $entry_success; ?></label>
+                                    <div class="col-sm-5">
+                                        <select name="config_success" class="form-control">
+                                            <?php foreach ($pages as $page) { ?>
+                                            <?php if ($page['page_id'] == $config_success) { ?>
+                                            <option value="<?php echo $page['page_id']; ?>" selected="selected"><?php echo $page['title']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $page['page_id']; ?>"><?php echo $page['title']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="config_secure" class="col-sm-3 control-label"><?php echo $entry_secure; ?></label>
                                     <div class="col-sm-2">
                                         <?php if ($config_secure) { ?>

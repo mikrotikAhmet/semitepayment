@@ -108,6 +108,7 @@ $_['entry_test_publickey_api_prefix'] = 'API Test Public Key Prefix';
 $_['entry_test_secretkey_api_prefix'] = 'API Test Secret Key Prefix';
 $_['entry_live_publickey_api_prefix'] = 'API Live Public Key Prefix';
 $_['entry_live_secretkey_api_prefix'] = 'API Live Secret Key Prefix';
+$_['entry_success']                = 'Success Page:<br /><span class="help">Default Success Page for new customer(s) registration.</span>';
 
 
 // Error

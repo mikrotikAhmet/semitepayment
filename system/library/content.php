@@ -80,7 +80,7 @@ class Content {
 
     public function getContent() {
         if ($this->getType('description')){
-            return html_entity_decode($this->content_data->row['description'], ENT_QUOTES, 'UTF-8');
+            return html_entity_decode(str_replace('{config_name}', $this->config->get('config_name'), $this->content_data->row['description']), ENT_QUOTES, 'UTF-8');
         } else {
             return false;
         }

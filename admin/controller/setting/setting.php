@@ -131,6 +131,7 @@ class ControllerSettingSetting extends Controller {
         $this->data['entry_alert_mail'] = $this->language->get('entry_alert_mail');
         $this->data['entry_account_mail'] = $this->language->get('entry_account_mail');
         $this->data['entry_alert_emails'] = $this->language->get('entry_alert_emails');
+        $this->data['entry_success'] = $this->language->get('entry_success');
         $this->data['entry_secure'] = $this->language->get('entry_secure');
         $this->data['entry_shared'] = $this->language->get('entry_shared');
         $this->data['entry_robots'] = $this->language->get('entry_robots');
@@ -250,6 +251,12 @@ class ControllerSettingSetting extends Controller {
             $this->data['error_encryption'] = $this->error['encryption'];
         } else {
             $this->data['error_encryption'] = '';
+        }
+        
+        if (isset($this->error['success'])) {
+            $this->data['error_success'] = $this->error['success'];
+        } else {
+            $this->data['error_success'] = '';
         }
 
         $this->data['breadcrumbs'] = array();
@@ -722,6 +729,17 @@ class ControllerSettingSetting extends Controller {
         } else {
             $this->data['config_alert_emails'] = $this->config->get('config_alert_emails');
         }
+        
+        // Pages
+        $this->load->model('design/page');
+        
+        $this->data['pages'] = $this->model_design_page->getPages();
+        
+        if (isset($this->request->post['config_success'])) {
+            $this->data['config_success'] = $this->request->post['config_success'];
+        } else {
+            $this->data['config_success'] = $this->config->get('config_success');
+        }
 
         if (isset($this->request->post['config_secure'])) {
             $this->data['config_secure'] = $this->request->post['config_secure'];
@@ -877,6 +895,10 @@ class ControllerSettingSetting extends Controller {
 
         if ((utf8_strlen($this->request->post['config_encryption']) < 3) || (utf8_strlen($this->request->post['config_encryption']) > 32)) {
             $this->error['encryption'] = $this->language->get('error_encryption');
+        }
+        
+        if (!$this->request->post['config_success']) {
+            $this->error['success'] = $this->language->get('config_success');
         }
 
         if ($this->error && !isset($this->error['warning'])) {

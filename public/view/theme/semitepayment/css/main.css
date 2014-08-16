@@ -45,7 +45,8 @@
 
 }
 
-.registration-form label{
+.registration-form p,.registration-form a{
+    color: #3c4a52;
 }
 
 .vpos_detail{
@@ -131,109 +132,5 @@ overlay,
 .overlay .toolbar a.close:hover span {
     background-color: #b90900;
     color: #fff;
-}
-
-/* CUSTOMIZE THE CAROUSEL
-    -------------------------------------------------- */
-
-    /* Carousel base class */
-    .carousel {
-      margin-bottom: 60px;
-    }
-
-    .carousel .container {
-      position: relative;
-      z-index: 9;
-    }
-
-    .carousel-control {
-      height: 80px;
-      margin-top: 0;
-      font-size: 120px;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-      background-color: transparent;
-      border: 0;
-      z-index: 10;
-    }
-
-    .carousel .item {
-      height: 500px;
-    }
-    .carousel img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      height: 500px;
-    }
-
-    .carousel-caption {
-      background-color: transparent;
-      position: static;
-      max-width: 760px;
-      padding: 0 20px;
-      margin-top: 200px;
-      text-align: left;
-    }
-    .carousel-caption h1,
-    .carousel-caption .lead {
-      margin: 0;
-      line-height: 1.25;
-      color: #fff;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-    }
-    .carousel-caption .btn {
-      margin-top: 10px;
-    }
-    .carousel-inner > .item > img, .carousel-inner > .item > a > img {
-display: block;
-line-height: 1;
-}
-.carousel {
-position: relative;
-margin-bottom: 20px;
-line-height: 1;
-}
-.carousel-caption {
-right: 0;
-bottom: 0;
-left: 30px;
-padding: 15px;
-/*background: #333333;*/
-/*background: rgba(0, 0, 0, 0.75);*/
-position: relative;
-}
-.carousel-control:hover, .carousel-control:focus {
-color: #ffffff;
-text-decoration: none;
-opacity: 0.9;
-filter: alpha(opacity=90);
-}
-.carousel-control.right {
-right: 15px;
-left: auto;
-}
-.carousel-inner > .item > img, .carousel-inner > .item > a > img {
-display: block;
-line-height: 1;
-}
-.carousel-control {
-height: 80px;
-margin-top: 200px;
-font-size: 120px;
-text-shadow: 0 1px 1px rgba(0,0,0,.4);
-background-color: transparent;
-border: 0;
-z-index: 10;
-}
-
-.purple {
--webkit-font-smoothing: antialiased;
-overflow: hidden;
-background-color: #9f60b5;
-background-image: -webkit-radial-gradient(bottom center, circle, #9f60b5, #001c3b);
-background-image: radial-gradient(bottom center, circle, #9f60b5, #001c3b);
-background-repeat: no-repeat;
-color: rgba(255,255,255,0.7);
 }
 

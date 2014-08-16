@@ -49,7 +49,8 @@ class ControllerModuleRegistration extends Controller {
         $this->language->load('module/registration');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-
+            
+           
             $this->load->helper('creditcard');
 
             $data = array(
@@ -67,7 +68,7 @@ class ControllerModuleRegistration extends Controller {
             );
             $this->model_account_customer->addCustomer($data);
 
-            $this->redirect(HTTP_MERCHANT);
+            $this->redirect($this->url->link('design/page','page_id='.$this->config->get('config_success'), 'SSL'));
         } else {
 
             if (isset($this->error['firstname'])) {
@@ -100,6 +101,8 @@ class ControllerModuleRegistration extends Controller {
                 $this->data['error_email_exist'] = '';
             }
         }
+        
+        $this->data['action'] = HTTP_SERVER.'register';
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/registration.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/module/registration.tpl';
