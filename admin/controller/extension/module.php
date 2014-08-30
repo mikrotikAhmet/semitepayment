@@ -114,11 +114,20 @@ class ControllerExtensionModule extends Controller {
                         'class' => 'btn-primary'
                     );
                 } else {
+                    if ($extension == "vpos"){
+                     $action[] = array(
+                            'text' => $this->language->get('text_edit'),
+                            'href' => $this->url->link('module/vpos', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL'),
+                            'class' => 'btn-primary'
+                        );
+                    }
                     $action[] = array(
                         'text' => $this->language->get('text_uninstall'),
                         'href' => $this->url->link('extension/module/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL'),
                         'class' => 'btn-danger'
                     );
+
+                       
                 }
 
                 $this->data['extensions'][] = array(

@@ -168,9 +168,9 @@ class ControllerCommonHome extends Controller {
         
         $general_balance = $this->model_account_transaction->getTotalAmount();
         
-        $available_balance = $general_balance - (str_replace('-',"",$total_withdraw));
+        $available_balance = $this->model_account_transaction->getTotalAvailableAmount();
         
-        $available = $available_balance - $total_withdraw;       
+        $available = $available_balance;       
         $this->data['total_withdraw'] = $this->currency->format((isset($total_withdraw) ? str_replace('-',"",$total_withdraw) : 0), $this->config->get('config_currency'));
         $this->data['total_withdraw_approval'] = $this->currency->format((isset($total_withdraw_approval) ? str_replace('-',"",$total_withdraw_approval) : 0), $this->config->get('config_currency'));
         

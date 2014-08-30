@@ -486,13 +486,14 @@ class ControllerAccountCustomerGroup extends Controller {
         }
 
         $this->load->model('account/customer');
+        $this->load->model('setting/application');
 
         foreach ($this->request->post['selected'] as $customer_group_id) {
             if ($this->config->get('config_customer_group_id') == $customer_group_id) {
                 $this->error['warning'] = $this->language->get('error_default');
             }
 
-            $store_total = $this->model_setting_store->getTotalStoresByCustomerGroupId($customer_group_id);
+            $store_total = $this->model_setting_application->getTotalApplicationssByCustomerGroupId($customer_group_id);
 
             if ($store_total) {
                 $this->error['warning'] = sprintf($this->language->get('error_store'), $store_total);

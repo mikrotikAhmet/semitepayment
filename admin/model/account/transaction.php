@@ -201,7 +201,17 @@ class ModelAccountTransaction extends Model {
     }
 
     public function getTotalAmount() {
-        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE status = '" . (int) $this->config->get('config_complete_transaction_status_id') . "'");
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE status = '" . (int) $this->config->get('config_complete_transaction_status_id') . "' AND `type` IN('Withdraw','Commision','Deposit','Sale')");
+
+        if ($query->num_rows) {
+            return $query->row['total'];
+        } else {
+            return 0;
+        }
+    }
+    
+    public function getTotalAvailableAmount() {
+        $query = $this->db->query("SELECT SUM(amount) AS total FROM `" . DB_PREFIX . "customer_transaction` WHERE status = '" . (int) $this->config->get('config_complete_transaction_status_id') . "' AND `type` IN('Withdraw','Deposit')");
 
         if ($query->num_rows) {
             return $query->row['total'];
@@ -265,6 +275,7 @@ class ModelAccountTransaction extends Model {
                 $this->db->query("UPDATE `" . DB_PREFIX . "withdraw` SET status = '" . (int)$data['transfer_status_id'] . "', date_proceed = NOW() WHERE withdraw_id = '" . (int)$transfer_id . "'");
                 
                 $this->db->query("UPDATE `" . DB_PREFIX . "customer_transaction` SET status = '" . (int)$data['transfer_status_id'] . "', date_modified = NOW() WHERE transaction_id = '" . (int)$transfer_id . "'");
+                $this->db->query("UPDATE `" . DB_PREFIX . "customer_transaction` SET status = '" . (int)$data['transfer_status_id'] . "', date_modified = NOW() WHERE description LIKE '%REF : ".(int)$transfer_id."%'");
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "withdraw_history SET withdraw_id = '" . (int)$transfer_id . "', withdraw_status_id = '" . (int)$data['transfer_status_id'] . "', notify = '" . (isset($data['notify']) ? (int)$data['notify'] : 0) . "', comment = '" . $this->db->escape(strip_tags($data['comment'])) . "', date_added = NOW()");
 
@@ -300,21 +311,21 @@ class ModelAccountTransaction extends Model {
 //
 //			$message .= $language->get('text_footer');
 //
-			$mail = new Mail();
-			$mail->protocol = $this->config->get('config_mail_protocol');
-			$mail->parameter = $this->config->get('config_mail_parameter');
-			$mail->hostname = $this->config->get('config_smtp_host');
-			$mail->username = $this->config->get('config_smtp_username');
-			$mail->password = $this->config->get('config_smtp_password');
-			$mail->port = $this->config->get('config_smtp_port');
-			$mail->timeout = $this->config->get('config_smtp_timeout');
-			$mail->setTo('ahmet.gudenoglu@gmail.com');
-			$mail->setFrom('no-reply@semitepayment.com');
-			$mail->setSender('Semite Payment');
-			$mail->setSubject(html_entity_decode('Fund Transfer', ENT_QUOTES, 'UTF-8'));
-			$mail->setText(html_entity_decode('You are rich ha!', ENT_QUOTES, 'UTF-8'));
-			$mail->send();
-//		}
+//			$mail = new Mail();
+//			$mail->protocol = $this->config->get('config_mail_protocol');
+//			$mail->parameter = $this->config->get('config_mail_parameter');
+//			$mail->hostname = $this->config->get('config_smtp_host');
+//			$mail->username = $this->config->get('config_smtp_username');
+//			$mail->password = $this->config->get('config_smtp_password');
+//			$mail->port = $this->config->get('config_smtp_port');
+//			$mail->timeout = $this->config->get('config_smtp_timeout');
+//			$mail->setTo('ahmet.gudenoglu@gmail.com');
+//			$mail->setFrom('no-reply@semitepayment.com');
+//			$mail->setSender('Semite Payment');
+//			$mail->setSubject(html_entity_decode('Fund Transfer', ENT_QUOTES, 'UTF-8'));
+//			$mail->setText(html_entity_decode('You are rich ha!', ENT_QUOTES, 'UTF-8'));
+//			$mail->send();
+////		}
 		
 	}
 

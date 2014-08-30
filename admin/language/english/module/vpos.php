@@ -30,3 +30,17 @@
 // Heading Title
 $_['heading_title'] = 'Virtual POS Module';
 $_['module_description'] = 'Virtual Point Of Sale Module.<br/>Semite Payment VPOS module enables merchant to accept V-Card Transactions.';
+
+
+// Entry
+$_['entry_company'] = 'Company Name:';
+$_['entry_company_owner'] = 'Company Owner:';
+$_['entry_company_code'] = 'Company Code:';
+$_['entry_terminal'] = 'Terminal Number:';
+$_['entry_user_id'] = 'User Code:';
+$_['entry_password'] = 'Password:';
+$_['entry_organization'] = 'Organization Code:';
+$_['entry_merchant_id'] = 'Merchant ID:';
+$_['entry_merchant_key'] = 'Merchant Key:';
+$_['entry_3dsecure'] = 'Use 3-D Secure:';
+$_['entry_status'] = 'Status:';
