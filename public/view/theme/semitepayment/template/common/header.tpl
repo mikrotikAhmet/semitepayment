@@ -134,9 +134,9 @@
     </div>
             <div class="overlay">
     <div class="container subtle">
-      <header class="section-block-header">
+<!--      <header class="section-block-header">
         <small class="section-block-header-topic">Trusted by Over 40,000 Businesses and Organizations</small> 
-      </header>
+      </header>-->
       <div class="row-partner-logo">
         <img class="partner-logo wordpress" alt="WordPress.com" src="public/view/theme/semitepayment/img/logos/wordpress.png">
         <img class="partner-logo virgin" alt="Virgin" src="public/view/theme/semitepayment/img/logos/virgin.png">
