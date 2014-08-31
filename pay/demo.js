@@ -40,7 +40,7 @@
             });
             return e.length_valid&&e.luhn_valid?$("#card_number").addClass("valid"):$("#card_number").removeClass("valid")
         },{
-            accept:["visa","visa_electron","mastercard","maestro","discover","semite"]
+            accept:["visa","visa_electron","mastercard","maestro","discover"]
         })
     })
 }).call(this);

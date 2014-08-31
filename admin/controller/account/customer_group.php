@@ -320,6 +320,8 @@ class ControllerAccountCustomerGroup extends Controller {
         $this->data['entry_company_id_required'] = $this->language->get('entry_company_id_required');
         $this->data['entry_tax_id_display'] = $this->language->get('entry_tax_id_display');
         $this->data['entry_tax_id_required'] = $this->language->get('entry_tax_id_required');
+        $this->data['entry_sale'] = $this->language->get('entry_sale');
+        $this->data['entry_commission'] = $this->language->get('entry_commission');
         $this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
         $this->data['button_save'] = $this->language->get('button_save');
@@ -443,6 +445,22 @@ class ControllerAccountCustomerGroup extends Controller {
             $this->data['tax_id_required'] = $customer_group_info['tax_id_required'];
         } else {
             $this->data['tax_id_required'] = '';
+        }
+        
+        if (isset($this->request->post['sale'])) {
+            $this->data['sale'] = $this->request->post['sale'];
+        } elseif (!empty($customer_group_info)) {
+            $this->data['sale'] = $customer_group_info['sale'];
+        } else {
+            $this->data['sale'] = '';
+        }
+        
+        if (isset($this->request->post['commission'])) {
+            $this->data['commission'] = $this->request->post['commission'];
+        } elseif (!empty($customer_group_info)) {
+            $this->data['commission'] = $customer_group_info['commission'];
+        } else {
+            $this->data['commission'] = $this->config->get('config_commission');
         }
 
         if (isset($this->request->post['sort_order'])) {
