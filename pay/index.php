@@ -53,8 +53,8 @@
     $pXid = date("YmdHis") . rand(100000, 999999);
     $merchant = "Jhf2DuN4";
     $pokUrl = 'http://merchant.semitepayment.com';
-    $pfailUrl = 'https://www.e-tahsildar.com.tr/V2/NetProvOrtakOdeme/ControlFields.aspx?Fail=true';
-?>
+    $pfailUrl = 'http://local.semitepayment.com/pay';
+    ?>
 
 
 <!DOCTYPE HTML>
@@ -71,25 +71,18 @@
         <script type="text/javascript" src="jquery.creditCardValidator.js"></script>
         <script type="text/javascript" src="demo.js"></script>
     </head>
+    <style>
+        .demo a:hover{text-decoration: none}
+    </style>
     <body>
         <div id="container">
             <div class="demo">
-
-                <div class="numbers" style="display:none">
-                    <p>Try some of these numbers:</p>
-
-                    <ul class="list">
-                        <li>4000000000000002</li>
-                        <li>4026000000000002</li>
-                        <li>501800000009</li>
-                        <li>5100000000000008</li>
-                        <li>6011000000000004</li>
-                        <li>5998113247083847</li>
-                    </ul>
-                </div>
-                <p>SEMITE PAYMENT ORTAK ODEME SAYFASI</p>
+                <div style="width: 100px;margin: 0 auto;">
+                    <a href="http://www.semitepayment.com"><img src="semite_logo.png"/></a>
+                </div> 
                 <form id="PostToMPI" name="PostToMPI" method="post" action="https://www.e-tahsildar.com.tr/V2/NetProvOrtakOdeme/NetProvPost.aspx"> 
-                        <input type="hidden" name="pOrgNo" value="<?php echo $pOrgNo?>" /> 
+                       
+                    <input type="hidden" name="pOrgNo" value="<?php echo $pOrgNo?>" /> 
                         <input type="hidden" name="pFirmNo"  value="<?php echo $pFirmNo?>" /> 
                         <input type="hidden" name="pTermNo" value="<?php echo $pTermNo?>" /> 
                             <input type="hidden" name="pAmount" value="<?php echo $pAmount ?>" /> 
@@ -102,7 +95,9 @@
                             <input type="hidden" name="pSipNo" value="<?php echo $pSipNo?>"/> 
                             <input type="hidden" name="pCurrency" value="949"/> 
                             <input type="hidden" name="pMPI3D" value="true" />
-                    <h2>Payment details</h2>
+                    <div style="width: 239px;margin: 0 auto;">
+                    <img src="Provus2.JPG"/>
+                </div> 
                     <ul>
                         <li>
                             <ul class="cards" style="">
@@ -121,7 +116,7 @@
                         <li class="vertical">
                             <ul>
                                 <li>
-                                    <label for="expiry_date">Expiry date <small>mm/yy</small></label>
+                                    <label for="expiry_date">Expiry date <small>yyyymm</small></label>
                                     <input type="text" name="pExpDate" id="expiry_date" maxlength="6">
                                 </li>
 
@@ -136,8 +131,13 @@
                             <input type="text" name="name_on_card" id="name_on_card">
                         </li>
                     </ul>
-                <input type="button" value="ODE" id="ode"/>
+                <input type="button" value="Pay Now!" id="ode"/>
+                <div style="width: 239px;margin: 0 auto;">
+                    <img src="vbv.gif"/>
+                    <img src="sclogo_140x75.gif"/>
+                </div>
                 </form>
+                
                 
             </div>
             <script>
