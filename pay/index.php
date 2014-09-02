@@ -44,7 +44,7 @@
     $pOrgNo = "009";
     $pFirmNo = "9709410";
     $pTermNo = "00063059";
-    $pAmount = "000000000001";
+    $pAmount = "000000010000"; // 12 digit
     $pCardNo = "";
     $pCVV2 = "";
     $pExpDate = "";
@@ -132,9 +132,8 @@
                         </li>
                     </ul>
                 <input type="button" value="Pay Now!" id="ode"/>
-                <div style="width: 239px;margin: 0 auto;">
-                    <img src="vbv.gif"/>
-                    <img src="sclogo_140x75.gif"/>
+                <div style="width: 120px;margin: 10px auto;">
+                    <img src="mastercard-visa-logo-glass-decal-lb-2222.png" width="100px"/>
                 </div>
                 </form>
                 
