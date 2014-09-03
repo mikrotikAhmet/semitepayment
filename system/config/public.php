@@ -28,17 +28,17 @@
  * @author ahmet
  */
 // HTTP
-define('HTTP_SERVER', 'http://local.semitepayment.com/');
-define('HTTP_IMAGE', 'http://local.semitepayment.com/image/');
-define('HTTP_MERCHANT', 'http://lmerchant.semitepayment.com/');
+define('HTTP_SERVER', 'http://www.semitepayment.com/');
+define('HTTP_IMAGE', 'http://www.semitepayment.com/image/');
+define('HTTP_MERCHANT', 'http://merchant.semitepayment.com/');
 define('HTTP_DOCUMENTATION', 'http://docs.semitepayment.com/');
 define('HTTP_SUPPORT', 'http://form.semitepayment.com/');
 
 // HTTPS
-define('HTTPS_SERVER', 'https://local.semitepayment.com/');
-define('HTTPS_PUBLIC', 'https://local.semitepayment.com/');
-define('HTTPS_IMAGE', 'https://local.semitepayment.com/image/');
-define('HTTPS_MERCHANT', 'https://lmerchant.semitepayment.com/');
+define('HTTPS_SERVER', 'https://www.semitepayment.com/');
+define('HTTPS_PUBLIC', 'https://www.semitepayment.com/');
+define('HTTPS_IMAGE', 'https://www.semitepayment.com/image/');
+define('HTTPS_MERCHANT', 'https://merchant.semitepayment.com/');
 
 // DIR
 define('DIR_APPLICATION', '/var/www/html/semitepayment.com/public/');
