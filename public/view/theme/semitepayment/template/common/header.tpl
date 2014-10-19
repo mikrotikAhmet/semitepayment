@@ -47,9 +47,10 @@
                         <?php if (!$logo) { ?>
                             <a class="navbar-brand" href="<?php echo $home?>" title="<?php echo $name?>"><?php echo $name?></a>
                             <?php } else { ?>
-                            <a href="<?php echo $home?>" title="<?php echo $name?>"><img style="padding: 5px 0px;" src="<?php echo $logo?>"/></a>
+                            <a href="<?php echo $home?>" title="<?php echo $name?>"><img style="padding: 0px 0px;" src="<?php echo $logo?>"/></a>
                         <?php } ?>
                     </div>
+                    <?php if ($this->page->getPageHeader()) { ?>
                     <div class="navbar-collapse collapse">
                         <?php if ($leftmenus) { ?>
                         <ul class="nav navbar-nav">
@@ -66,7 +67,87 @@
                         </ul>
                         <?php } ?>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
+        <?php if(!$_GET && !$this->config->get('config_maintenance')) { ?>
+        <div class="dark">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+      </ol>
+      <div class="carousel-inner">
+          <div class="item active">
+          <img src="public/view/theme/semitepayment/img/examples/slide-03.jpg" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+                
+              <h1>Pay with your Semite Payment Account</h1>
+              <img src="public/view/theme/semitepayment/img/examples/semite-ccard.png" width="300">
+              <p>Now you can Pay with your Semite Payment Account for your Online Shoppings.</p>
+              <p><a class="btn btn-lg btn-primary" href="/register" role="button">Open an Account Now!</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item ">
+          <img src="public/view/theme/semitepayment/img/examples/slide-01.jpg" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Accept Payments on Your Website</h1>
+              <div class="col-md-6 pull-left">
+                  <ul class="fancy">
+                        <li>Accept All Major Cards</li>
+                        <li>High Risk Tolerance</li>
+                        <li>TMF Merchant Acceptance</li>
+                        <li>Chargeback Flexibility</li>
+                        <li>Internationals Welcome</li>
+                        <li>Multi-Currency Settlement</li>
+                        <li>Full PCI Compliance</li>
+                  </ul>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+              </div>
+              <div class="col-md-6">
+                  <img src="public/view/theme/semitepayment/img/examples/design_10.png">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="public/view/theme/semitepayment/img/examples/slide-02.jpg" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Accept Payments at Your Store</h1>
+                  <img src="public/view/theme/semitepayment/img/examples/banner-1-object3.png" width="550">
+                  <p>Start Accepting Online Payments with Semite Payment</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                  
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+            <div class="overlay">
+    <div class="container subtle">
+<!--      <header class="section-block-header">
+        <small class="section-block-header-topic">Trusted by Over 40,000 Businesses and Organizations</small> 
+      </header>-->
+      <div class="row-partner-logo">
+        <img class="partner-logo wordpress" alt="WordPress.com" src="public/view/theme/semitepayment/img/logos/wordpress.png">
+        <img class="partner-logo virgin" alt="Virgin" src="public/view/theme/semitepayment/img/logos/virgin.png">
+        <img class="partner-logo gyft" alt="Gyft" src="public/view/theme/semitepayment/img/logos/gyft.png">
+        <img class="partner-logo newegg" alt="NewEgg" src="public/view/theme/semitepayment/img/logos/newegg.png">
+        <img class="partner-logo namecheap" alt="Namecheap" src="public/view/theme/semitepayment/img/logos/namecheap.png">
+        <img class="partner-logo shopify" alt="Shopify" src="public/view/theme/semitepayment/img/logos/shopify.png">
+        <img class="partner-logo tigerdirect" alt="TigerDirect" src="public/view/theme/semitepayment/img/logos/tigerdirect.png">
+      </div>
+    </div>
+  </div>
+        </div>
+        <?php }?>
         

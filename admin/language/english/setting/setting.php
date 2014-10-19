@@ -20,6 +20,11 @@ $_['text_items']                   = 'Items';
 $_['text_account']                 = 'Account';
 $_['text_mail']                    = 'Mail';
 $_['text_smtp']                    = 'SMTP';
+$_['text_api']                    = 'API';
+$_['text_transaction']                    = 'Transactions';
+$_['text_transfer']                    = 'Asset Transfers ( Withdraw )';
+$_['text_affiliate']                    = 'Affiliates';
+$_['text_verification']                    = 'Verifications';
 
 // Entry
 $_['entry_name']                   = 'Application Name:';
@@ -45,8 +50,30 @@ $_['entry_customer_group']         = 'Customer Group:<br /><span class="help">De
 $_['entry_customer_group_display'] = 'Customer Groups:<br /><span class="help">Display customer groups that new customers can select to use such as wholesale and business when signing up.</span>';
 $_['entry_customer_price']         = 'Login Display Prices:<br /><span class="help">Only show prices when a customer is logged in.</span>';
 $_['entry_account']                = 'Account Terms:<br /><span class="help">Forces people to agree to terms before an account can be created.</span>';
+$_['entry_mail_template']                = 'Welcome Mail:<br /><span class="help">Default Welcome Mail Template for new customer(s).</span>';
+
+$_['entry_auto_capture'] = 'Enable Auto Capture:<br/><span class="help">Enables or Disables the auto capture Credit Card transactions.</span>';
+$_['entry_transaction_status'] = 'Transaction Status:<br/><span class="help">Set the default transaction status when an transaction is processed.</span>';
+$_['entry_transaction_status_complete'] = 'Completed Transaction Status:<br /><span class="help">Set the transaction status the customers transaction must be approved by the Aquirer Bank to add the amount into customers Account Balance.</span>';
+$_['entry_transfer_comission']             = 'Money Transfer Commission (%):<br /><span class="help">The default money transfer commission percentage.</span>';
+
+
+$_['entry_invoice_prefix']         = 'Invoice Prefix:<br /><span class="help">Set the invoice prefix (e.g. INV-2011-00). Invoice ID\'s will start at 1 for each unique prefix</span>';
+$_['entry_transfer_status'] = 'Transfer Status:<br/><span class="help">Set the default transfer (WITHDRAW) status when an transfer is processed and/or requested.</span>';
+$_['entry_transfer_status_complete'] = 'Completed Transfer Status:<br /><span class="help">Set the transfer status when the requested transfer amount has been processed by the system.</span>';
+
+$_['entry_affiliate']              = 'Affiliate Terms:<br /><span class="help">Forces people to agree to terms before an affiliate account can be created.</span>';
+$_['entry_commission']             = 'Affiliate Commission (%):<br /><span class="help">The default affiliate commission percentage.</span>';
+
+
+$_['entry_creditcard_status']              = 'Credit Card Verification:<br /><span class="help">Set default verification status for Credit Cards.</span>';
+$_['entry_complete_creditcard_status']              = 'Comleted Credit Card Verification:<br /><span class="help">Set the verification status when the Customer Cards informations are approved.</span>';
+$_['entry_bankaccount_status']             = 'Bank Account Verification:<br /><span class="help">Set default verification status for Bank Accounts.</span>';
+$_['entry_complete_bankaccount_status']             = 'Complete Bank Account Verification:<br /><span class="help">Set the verification status when the Customer Bank informations are approved.</span>';
+
 $_['entry_logo']                   = 'Store Logo:';
 $_['entry_icon']                   = 'Icon:<br /><span class="help">The icon should be a PNG that is 16px x 16px.</span>';
+$_['entry_featured_image']         = 'Featured Image (W/H):';
 $_['entry_ftp_host']               = 'FTP Host:';
 $_['entry_ftp_port']               = 'FTP Port:';
 $_['entry_ftp_username']           = 'FTP Username:';
@@ -77,6 +104,12 @@ $_['entry_error_display']          = 'Display Errors:';
 $_['entry_error_log']              = 'Log Errors:';
 $_['entry_error_filename']         = 'Error Log Filename:';
 $_['entry_google_analytics']       = 'Google Analytics Code:<br /><span class="help">Login to your <a href="http://www.google.com/analytics/" target="_blank"><u>Google Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.</span>';
+$_['entry_test_publickey_api_prefix'] = 'API Test Public Key Prefix';
+$_['entry_test_secretkey_api_prefix'] = 'API Test Secret Key Prefix';
+$_['entry_live_publickey_api_prefix'] = 'API Live Public Key Prefix';
+$_['entry_live_secretkey_api_prefix'] = 'API Live Secret Key Prefix';
+$_['entry_success']                = 'Success Page:<br /><span class="help">Default Success Page for new customer(s) registration.</span>';
+
 
 // Error
 $_['error_warning']                = 'Warning: Please check the form carefully for errors!';

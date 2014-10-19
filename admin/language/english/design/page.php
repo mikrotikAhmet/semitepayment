@@ -52,6 +52,7 @@ $_['entry_meta_description'] = 'Meta Description:';
 $_['entry_meta_keyword'] = 'Meta Keyword:';
 $_['entry_image'] = 'Featured Image:';
 $_['entry_application'] = 'Applications:';
+$_['entry_show_header']       = 'Show Page Header:';
 $_['entry_show_title']       = 'Show Page Title:';
 $_['entry_show_sub_title']       = 'Show Page Sub Title:';
 $_['entry_protected']       = 'Protected Page:<br/><span class="help">Set this page protected. Visitors must be logged in to view this page.</span>';
@@ -66,5 +67,5 @@ $_['entry_block']       = 'Blocks:';
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify pages!';
 $_['error_title']        = 'Page Title must be between 3 and 64 characters!';
-$_['error_default']     = 'Warning: This page cannot be deleted as it is currently assigned as the default application layout!';
+$_['error_default']     = 'Warning: This page cannot be deleted as it is currently assigned as the default application page!';
 

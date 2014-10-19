@@ -37,6 +37,7 @@
         <script type="text/javascript" src="view/javascript/jquery/jquery.cookie.js"></script>
         
         <script type="text/javascript" src="view/js/plugins/charts/sparkline.min.js"></script>
+        
 
         <script type="text/javascript" src="view/js/plugins/forms/uniform.min.js"></script>
         <script type="text/javascript" src="view/js/plugins/forms/select2.min.js"></script>
@@ -72,8 +73,6 @@
         <script type="text/javascript" src="view/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="view/js/application.js"></script>
         
-        <script type="text/javascript" src="view/js/plugins/forms/uploader/plupload.full.min.js"></script>
-        <script type="text/javascript" src="view/js/plugins/forms/uploader/plupload.queue.min.js"></script>
     </head>
     <body>
         <div id="filemanager"></div>
@@ -332,6 +331,7 @@
                                 <li id="customer"><a href="<?php echo $customer?>"><?php echo $text_customer?></a></li>
                                 <li id="group"><a href="<?php echo $customer_group?>"><?php echo $text_customer_group?></a></li>
                                 <li id="ban"><a href="<?php echo $customer_ban_ip?>"><?php echo $text_customer_ban_ip?></a></li>
+                                <li id="transfer"><a href="<?php echo $transfer?>"><?php echo $text_transfer?></a></li>
                             </ul>
                         </li>
                         <li id="extension">
@@ -354,6 +354,7 @@
                                                 <li id="menu"><a href="<?php echo $menu?>"><?php echo $text_menu?></a></li>
                                             </ul>
                                         </li>
+                                        <li id="mail"><a href="<?php echo $mail?>"><?php echo $text_mail?></a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#"><i class="icon-users"></i><span> <?php echo $text_users?></span></a>
@@ -368,6 +369,7 @@
                                             <li id="currency"><a href="<?php echo $currency?>"><?php echo $text_currency?></a></li>
                                             <li id="country"><a href="<?php echo $country?>"><?php echo $text_country?></a></li>
                                             <li id="zone"><a href="<?php echo $zone?>"><?php echo $text_zone?></a></li>
+                                            <li id="transaction_status"><a href="<?php echo $transaction_status?>"><?php echo $text_transaction_status?></a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#"><i class="icon-wrench2"></i><span> <?php echo $text_tool?></span></a>

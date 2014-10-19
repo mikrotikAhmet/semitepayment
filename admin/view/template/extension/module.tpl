@@ -33,7 +33,7 @@
                     <p class="list-group-item-text"><?php echo $extension['description']; ?></p>
                     <div class="buttons">
                         <?php foreach ($extension['action'] as $action) { ?>
-                        <a class="btn btn-sm <?php echo $action['class']?>" href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> 
+                        <a class="btn-sm <?php echo $action['class']?>" href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> 
                         <?php } ?>
                     </div>
                 </div>

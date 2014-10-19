@@ -28,6 +28,7 @@ $_['text_account']                      = 'Accounting';
 $_['text_customer']                    = 'Customers';
 $_['text_customer_group']              = 'Customer Groups';
 $_['text_customer_ban_ip']             = 'Banned IP';
+$_['text_transfer']             = 'Transfers';
 
 // Extension Menu
 $_['text_extension'] = 'Extensions';
@@ -38,10 +39,12 @@ $_['text_system'] = 'System';
 $_['text_setting'] = 'Settings';
 $_['text_design'] = 'Design';
 $_['text_layout'] = 'Layouts';
+$_['text_mail'] = 'Mail Templates';
 $_['text_pages'] = 'Page Manager';
 $_['text_page'] = 'Page';
 $_['text_block'] = 'Page Blocks';
 $_['text_menu'] = 'Page Menus';
+$_['text_transaction_status']                      = 'Transaction Statuses';
 $_['text_users']                      = 'User Management';
 $_['text_user']                      = 'User';
 $_['text_user_group']                      = 'User Groups';

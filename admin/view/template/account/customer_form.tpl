@@ -17,6 +17,22 @@
         </ul>
     </div>
     <!-- /breadcrumb line -->
+    <div class="block">
+        <ul class="statistics">
+            <li>
+                <div class="statistics-info">
+                    <a href="#" title="" class="bg-success"><i class="icon-coin"></i></a>
+                    <strong><?php echo $available_balance?></strong>
+                </div>
+                <div class="progress progress-micro">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width: 93%;">
+                        <span class="sr-only">93% Complete</span>
+                    </div>
+                </div>
+                <span><?php echo $text_available_balance?></span>
+            </li>
+        </ul>
+    </div>
     <?php if ($error_warning) { ?>
     <div class="alert alert-danger fade in block-inner">
         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -342,13 +358,24 @@
                             <?php foreach ($banks as $bank) { ?>
                             <tbody id="bank-row<?php echo $bank_row; ?>">
                                 <tr>
-                                    <td><input type="hidden" name="bank[<?php echo $bank_row?>][bank_name]" value="<?php echo $bank['bank_name']?>"/><?php echo $bank['bank_name']?></td>
+                                    <td><input type="hidden" name="bank[<?php echo $bank_row?>][bank_name]" value="<?php echo $bank['bank_name']?>"/>
+                                        <input type="hidden" name="bank[<?php echo $bank_row?>][bank_id]" value="<?php echo $bank['bank_id']?>"/>
+                                        <?php echo $bank['bank_name']?></td>
                                     <td><input type="hidden" name="bank[<?php echo $bank_row?>][settlement_currency]" value="<?php echo $bank['settlement_currency']?>"/><?php echo $bank['settlement_currency']?></td>
                                     <td><input type="hidden" name="bank[<?php echo $bank_row?>][account_holder_name]" value="<?php echo $bank['account_holder']?>"/><?php echo $bank['account_holder']?></td>
                                     <td><input type="hidden" name="bank[<?php echo $bank_row?>][iban]" value="<?php echo $bank['iban']?>"/><?php echo $bank['iban']?></td>
                                     <td><input type="hidden" name="bank[<?php echo $bank_row?>][swift]" value="<?php echo $bank['swift']?>"/><?php echo $bank['swift']?></td>
-                                    <td><input type="hidden" name="bank[<?php echo $bank_row?>][verified]" value="<?php echo $bank['verified']?>"/><?php echo $bank['status']?></td>
-                                    <td class="left"><a onclick="$('#bank-row<?php echo $bank_row; ?>').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>
+                                    <td><input type="hidden" name="bank[<?php echo $bank_row?>][verified]" value="<?php echo $bank['verified']?>"/>
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="transaction_status<?php echo $bank_row?>"><?php echo $bank['status']?><span> <span class="caret"></span></button>
+			                            <ul id="transaction_status" class="dropdown-menu icons-right">
+                                                        <?php foreach ($transaction_statuses as $transaction_status){ ?>
+                                                        <li id="<?php echo $transaction_status['transaction_status_id']?>" rel="<?php echo $bank_row ?>"><a><?php echo $transaction_status['name']?></a></li>
+                                                        <?php } ?>
+			                            </ul>
+		                            </div>
+                                    </td>
+                                    <td class="left"><a onclick="removeBank('<?php echo $bank_row?>','<?php echo $bank['bank_id']?>');" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>
                                 </tr>
                             </tbody>
                             <?php $bank_row++; ?>
@@ -384,7 +411,7 @@
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][card_holder]" value="<?php echo $card['card_holder']?>"/><?php echo $card['card_holder']?></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][type]" value="<?php echo $card['type']?>"/><?php echo $card['type']?></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][cc_number]" value="<?php echo $card['cc_number']?>"/><?php echo $card['cc_number']?></td>
-                                    <td><input type="hidden" name="bank[<?php echo $card_row?>][verified]" value="<?php echo $card['verified']?>"/><?php echo $card['status']?></td>
+                                    <td><input type="hidden" name="card[<?php echo $card_row?>][verified]" value="<?php echo $card['verified']?>"/><?php echo $card['status']?></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][ccv]" value="<?php echo $card['ccv']?>"/></td>
                                     <td><input type="hidden" name="card[<?php echo $card_row?>][date_expire]" value="<?php echo $card['date_expire']?>"/></td>
                                     <td class="left"><a onclick="$('#card-row<?php echo $card_row; ?>').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>
@@ -410,22 +437,20 @@
                         <?php } ?>
                         <table class="list table table-bordered table-hover">
                         <thead>
-                            <th></th>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                            <th>Status</th>
+                            <th><?php echo $column_transaction_id?></th>
+                            <th><?php echo $column_date?></th>
+                            <th><?php echo $column_ttype?></th>
+                            <th><?php echo $column_description?></th>
+                            <th><?php echo $column_status?></th>
                         </thead>
                         <tbody>
                             <?php foreach ($transactions as $transaction) { ?>
                             <tr>
-                                <td>+</td>
+                                <td><?php echo $transaction['transaction_id']?></td>
                                 <td><?php echo $transaction['date_added']?></td>
-                                <?php if ($transaction['type'] == 'Deposit') { ?>
-                                <td><i class="glyphicon glyphicon-share-alt"></i> <?php echo $transaction['type']?></td>
-                                <?php } ?>
+                                <td><i class=""></i> <?php echo $transaction['type']?></td>
                                 <td><?php echo $transaction['description']?></td>
-                                <td><i class="glyphicon glyphicon-ok"></i> Processed</td>
+                                <td><i class=""></i> <?php echo $transaction['status']?></td>
                             </tr>
                             <?php } ?>
                         </tbody>
@@ -771,27 +796,74 @@ var bank_row = <?php echo ($bank_row ? $bank_row : 0) ?>;
 
 function addBank(){
     var data = $('#bank-form').serializeArray();
+    var data_serialized = $('#bank-form').serialize();
     
-        html  = '<tbody id="bank-row' + bank_row + '">';
-	html += '  <tr>';
-	html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][bank_name]" value="'+data[0].value+'"/>'+data[0].value+'</td>';
-        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][settlement_currency]" value="'+data[1].value+'"/>'+data[1].value+'</td>';
-	html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][account_holder_name]" value="'+data[2].value+'"/>'+data[2].value+'</td>';
-        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][iban]" value="'+data[3].value+'"/>'+data[3].value+'</td>';
-        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][swift]" value="'+data[4].value+'"/>'+data[4].value+'</td>';
-	html += '    <td class="left"><a onclick="$(\'#bank-row' + bank_row + '\').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>';
-	html += '  </tr>';
-	html += '</tbody>';
-	
-	$('#bank > tfoot').before(html);
+       
         
-        $('#bank-form').each(function(){
-            this.reset();
-        });
+        $.ajax({
+		url: 'index.php?route=account/customer/addbank&token=<?php echo $token; ?>&customer_id=<?php echo $this->request->get['customer_id']?>',
+		type: 'post',
+		dataType: 'json',
+		data: data_serialized,
+		beforeSend: function() {
+								
+		},	
+		success: function(json) {
+                    
+                    console.log(json.new_bank_id);
+                    
+                        html  = '<tbody id="bank-row' + bank_row + '">';
+                        html += '  <tr>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][bank_name]" value="'+data[0].value+'"/>'+data[0].value+'</td>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][settlement_currency]" value="'+data[1].value+'"/>'+data[1].value+'</td>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][account_holder_name]" value="'+data[2].value+'"/>'+data[2].value+'</td>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][iban]" value="'+data[3].value+'"/>'+data[3].value+'</td>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][swift]" value="'+data[4].value+'"/>'+data[4].value+'</td>';
+                        html += '    <td class="left"><input type="hidden" name="bank['+bank_row+'][status]" value="<?php echo $this->config->get('config_bankaccount_status_id')?>"/></td>';
+                        html += '    <td class="left"><a onclick="removeBank(\''+bank_row+'\',\''+json.new_bank_id+'\')" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>';
+                        html += '  </tr>';
+                        html += '</tbody>';
+                        
+                        //$(\'#bank-row' + bank_row + '\').remove();
+                        
+			$('#bank > tfoot').before(html);
         
-        $('.callout .bank').hide();
+                        $('#bank-form').each(function(){
+                            this.reset();
+                        });
+
+                        $('.callout .bank').hide();
+
+                        bank_row++;
+		},
+                error : function(){
+                    console.log('error');
+                }
+            });
+                $('.callout .bank').hide();
 	
-	bank_row++;
+	
+}
+
+function removeBank(row, bank_id){
+    
+        $.ajax({
+		url: 'index.php?route=account/customer/removeBank&token=<?php echo $token; ?>&bank_id='+bank_id,
+		type: 'post',
+		dataType: 'json',
+		beforeSend: function() {
+				
+		},	
+		success: function(json) {
+			$('#bank-row'+row).remove();
+
+                        row--;
+		},
+                error : function(){
+                    console.log('error');
+                }
+            });
+
 }
 
 var card_row = <?php echo ($card_row ? $card_row : 0) ?>;
@@ -818,6 +890,7 @@ function addCard(){
                     html += '    <td class="left"><input type="hidden" name="card['+card_row+'][cc_number]" value="'+json[0].card+'"/>'+data[1].value+'</td>';
                     html += '    <td class="left"><input type="hidden" name="card['+card_row+'][ccv]" value="'+data[2].value+'"/></td>';
                     html += '    <td class="left"><input type="hidden" name="card['+card_row+'][date_expire]" value="'+data[3].value+'"/></td>';
+                    html += '    <td class="left"><input type="hidden" name="card['+card_row+'][status]" value="<?php echo $this->config->get('config_creditcard_status_id')?>"/></td>';
                     html += '    <td class="left"><a onclick="$(\'#card-row' + card_row + '\').remove();" class="btn btn-danger btn-sm"><?php echo $button_remove; ?></a></td>';
                     html += '  </tr>';
                     html += '</tbody>';
@@ -842,5 +915,24 @@ function addCard(){
             }
     });
 }
+
+$('ul#transaction_status li').bind('click',function(){
+    
+    var bankid = $('input[name=\'bank['+$(this).attr('rel')+'][bank_id]\']').val();
+    var status = $(this).text();
+    var rowline = parseInt($(this).attr('rel'));
+    
+    $.ajax({
+        url: 'index.php?route=account/customer/verifyBank&token=<?php echo $token; ?>',
+        dataType: 'json',
+        type : 'POST',
+        data : 'status='+this.id+'&bank_id='+bankid,
+        success : function(json){
+            
+            $('.transaction_status' + rowline).html(status + '<span class="caret"></span>');
+        }
+    });
+    
+});
 //--></script>
 <?php echo $footer?>

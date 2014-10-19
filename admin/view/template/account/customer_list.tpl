@@ -33,6 +33,7 @@
         <div class="panel-heading"><h6 class="panel-title"><i class="icon-users2"></i> <?php echo $heading_title?></h6></div>
         <ul class="panel-toolbar">
             <li><a href="<?php echo $insert; ?>" title=""><i class="icon-plus"></i> <?php echo $button_insert; ?></a></li>
+            <li><a href="javascript:void(0)" onclick="$('form').attr('action', '<?php echo $approve; ?>'); $('form').submit();" title=""><i class="icon-checkmark"></i> <?php echo $button_approve; ?></a></li>
             <li><a href="javascript:void(0)" onclick="$('form').submit();" title=""><i class="icon-close"></i> <?php echo $button_delete; ?></a></li>
         </ul>
         <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" class="form-horizontal" role="form">

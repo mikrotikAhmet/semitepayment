@@ -3,7 +3,7 @@
 class ModelAccountCustomerGroup extends Model {
 
     public function addCustomerGroup($data) {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "customer_group SET approval = '" . (int) $data['approval'] . "', company_id_display = '" . (int) $data['company_id_display'] . "', company_id_required = '" . (int) $data['company_id_required'] . "', tax_id_display = '" . (int) $data['tax_id_display'] . "', tax_id_required = '" . (int) $data['tax_id_required'] . "', sort_order = '" . (int) $data['sort_order'] . "'");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "customer_group SET approval = '" . (int) $data['approval'] . "', company_id_display = '" . (int) $data['company_id_display'] . "', company_id_required = '" . (int) $data['company_id_required'] . "', tax_id_display = '" . (int) $data['tax_id_display'] . "', tax_id_required = '" . (int) $data['tax_id_required'] . "', sale = '" . (int) $data['sale'] . "', commission = '".(float) $data['commission']."',sort_order = '" . (int) $data['sort_order'] . "'");
 
         $customer_group_id = $this->db->getLastId();
 
@@ -13,7 +13,7 @@ class ModelAccountCustomerGroup extends Model {
     }
 
     public function editCustomerGroup($customer_group_id, $data) {
-        $this->db->query("UPDATE " . DB_PREFIX . "customer_group SET approval = '" . (int) $data['approval'] . "', company_id_display = '" . (int) $data['company_id_display'] . "', company_id_required = '" . (int) $data['company_id_required'] . "', tax_id_display = '" . (int) $data['tax_id_display'] . "', tax_id_required = '" . (int) $data['tax_id_required'] . "', sort_order = '" . (int) $data['sort_order'] . "' WHERE customer_group_id = '" . (int) $customer_group_id . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "customer_group SET approval = '" . (int) $data['approval'] . "', company_id_display = '" . (int) $data['company_id_display'] . "', company_id_required = '" . (int) $data['company_id_required'] . "', tax_id_display = '" . (int) $data['tax_id_display'] . "', tax_id_required = '" . (int) $data['tax_id_required'] . "',sale = '" . (int) $data['sale'] . "', commission = '".(float) $data['commission']."',sort_order = '" . (int) $data['sort_order'] . "' WHERE customer_group_id = '" . (int) $customer_group_id . "'");
 
         $this->db->query("DELETE FROM " . DB_PREFIX . "customer_group_description WHERE customer_group_id = '" . (int) $customer_group_id . "'");
 

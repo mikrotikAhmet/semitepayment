@@ -85,6 +85,70 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="company_legal" class="col-sm-3 control-label"><?php echo $entry_legal; ?></label>
+                            <div class="col-sm-2">
+                                <?php if ($legal) { ?>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="legal" id="optionsRadios1" value="1" checked>
+                                        <?php echo $text_yes; ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="legal" id="optionsRadios2" value="0">
+                                        <?php echo $text_no; ?>
+                                    </label>
+                                </div>
+                                <?php } else { ?>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="legal" id="optionsRadios1" value="1">
+                                        <?php echo $text_yes; ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="legal" id="optionsRadios2" value="0" checked>
+                                        <?php echo $text_no; ?>
+                                    </label>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="legal_required" class="col-sm-3 control-label"><?php echo $entry_legal_required; ?></label>
+                            <div class="col-sm-2">
+                                <?php if ($legal_required) { ?>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="legal_required" id="optionsRadios1" value="1" checked>
+                                        <?php echo $text_yes; ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="legal_required" id="optionsRadios2" value="0">
+                                        <?php echo $text_no; ?>
+                                    </label>
+                                </div>
+                                <?php } else { ?>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="legal_required" id="optionsRadios1" value="1">
+                                        <?php echo $text_yes; ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="legal_required" id="optionsRadios2" value="0" checked>
+                                        <?php echo $text_no; ?>
+                                    </label>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="company_id_display" class="col-sm-3 control-label"><?php echo $entry_company_id_display; ?></label>
                             <div class="col-sm-2">
                                 <?php if ($company_id_display) { ?>
@@ -212,6 +276,44 @@
                                 <?php } ?>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="sale" class="col-sm-3 control-label"><?php echo $entry_sale; ?></label>
+                            <div class="col-sm-2">
+                                <?php if ($sale) { ?>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="sale" id="optionsRadios1" value="1" checked>
+                                        <?php echo $text_yes; ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="sale" id="optionsRadios2" value="0">
+                                        <?php echo $text_no; ?>
+                                    </label>
+                                </div>
+                                <?php } else { ?>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="sale" id="optionsRadios1" value="1">
+                                        <?php echo $text_yes; ?>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="sale" id="optionsRadios2" value="0" checked>
+                                        <?php echo $text_no; ?>
+                                    </label>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <label for="commission" class="col-sm-2 control-label"><?php echo $entry_commission; ?></label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="title" placeholder="" name="commission" value="<?php echo $commission?>">
+                                </div>
+                            </div>
                         <div class="form-group">
                                 <label for="sort_order" class="col-sm-2 control-label"><?php echo $entry_sort_order; ?></label>
                                 <div class="col-sm-2">

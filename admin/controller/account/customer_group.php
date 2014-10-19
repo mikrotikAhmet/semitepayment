@@ -320,6 +320,8 @@ class ControllerAccountCustomerGroup extends Controller {
         $this->data['entry_company_id_required'] = $this->language->get('entry_company_id_required');
         $this->data['entry_tax_id_display'] = $this->language->get('entry_tax_id_display');
         $this->data['entry_tax_id_required'] = $this->language->get('entry_tax_id_required');
+        $this->data['entry_sale'] = $this->language->get('entry_sale');
+        $this->data['entry_commission'] = $this->language->get('entry_commission');
         $this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
         $this->data['button_save'] = $this->language->get('button_save');
@@ -444,6 +446,22 @@ class ControllerAccountCustomerGroup extends Controller {
         } else {
             $this->data['tax_id_required'] = '';
         }
+        
+        if (isset($this->request->post['sale'])) {
+            $this->data['sale'] = $this->request->post['sale'];
+        } elseif (!empty($customer_group_info)) {
+            $this->data['sale'] = $customer_group_info['sale'];
+        } else {
+            $this->data['sale'] = '';
+        }
+        
+        if (isset($this->request->post['commission'])) {
+            $this->data['commission'] = $this->request->post['commission'];
+        } elseif (!empty($customer_group_info)) {
+            $this->data['commission'] = $customer_group_info['commission'];
+        } else {
+            $this->data['commission'] = $this->config->get('config_commission');
+        }
 
         if (isset($this->request->post['sort_order'])) {
             $this->data['sort_order'] = $this->request->post['sort_order'];
@@ -486,13 +504,14 @@ class ControllerAccountCustomerGroup extends Controller {
         }
 
         $this->load->model('account/customer');
+        $this->load->model('setting/application');
 
         foreach ($this->request->post['selected'] as $customer_group_id) {
             if ($this->config->get('config_customer_group_id') == $customer_group_id) {
                 $this->error['warning'] = $this->language->get('error_default');
             }
 
-            $store_total = $this->model_setting_store->getTotalStoresByCustomerGroupId($customer_group_id);
+            $store_total = $this->model_setting_application->getTotalApplicationssByCustomerGroupId($customer_group_id);
 
             if ($store_total) {
                 $this->error['warning'] = sprintf($this->language->get('error_store'), $store_total);

@@ -330,6 +330,7 @@ class ControllerDesignPage extends Controller {
         $this->data['entry_description'] = $this->language->get('entry_description');
         $this->data['entry_keyword'] = $this->language->get('entry_keyword');
         $this->data['entry_permalink'] = $this->language->get('entry_permalink');
+        $this->data['entry_show_header'] = $this->language->get('entry_show_header');
         $this->data['entry_show_title'] = $this->language->get('entry_show_title');
         $this->data['entry_show_sub_title'] = $this->language->get('entry_show_sub_title');
         $this->data['entry_show_breadcrumb'] = $this->language->get('entry_show_breadcrumb');
@@ -436,6 +437,14 @@ class ControllerDesignPage extends Controller {
 
         $this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
+        if (isset($this->request->post['show_header'])) {
+            $this->data['show_header'] = $this->request->post['show_header'];
+        } elseif (!empty($page_info)) {
+            $this->data['show_header'] = $page_info['show_header'];
+        } else {
+            $this->data['show_header'] = 0;
+        }
+        
         if (isset($this->request->post['show_title'])) {
             $this->data['show_title'] = $this->request->post['show_title'];
         } elseif (!empty($page_info)) {
@@ -546,7 +555,7 @@ class ControllerDesignPage extends Controller {
         }
 
         foreach ($this->request->post['page_description'] as $language_id => $value) {
-            if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 64)) {
+            if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 96)) {
                 $this->error['title'][$language_id] = $this->language->get('error_title');
             }
         }

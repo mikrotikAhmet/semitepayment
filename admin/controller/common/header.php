@@ -63,6 +63,7 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_customer'] = $this->language->get('text_customer');
             $this->data['text_customer_group'] = $this->language->get('text_customer_group');
             $this->data['text_customer_ban_ip'] = $this->language->get('text_customer_ban_ip');
+            $this->data['text_transfer'] = $this->language->get('text_transfer');
         // Extension Menu
             $this->data['text_extension'] = $this->language->get('text_extension');
             $this->data['text_module'] = $this->language->get('text_module');
@@ -71,12 +72,14 @@ class ControllerCommonHeader extends Controller{
             $this->data['text_setting'] = $this->language->get('text_setting');
             $this->data['text_design'] = $this->language->get('text_design');
             $this->data['text_layout'] = $this->language->get('text_layout');
+            $this->data['text_mail'] = $this->language->get('text_mail');
             $this->data['text_page'] = $this->language->get('text_page');
             $this->data['text_add_new'] = $this->language->get('text_add_new');
             $this->data['text_pages'] = $this->language->get('text_pages');
             $this->data['text_block'] = $this->language->get('text_block');
             $this->data['text_menu'] = $this->language->get('text_menu');
             $this->data['text_users'] = $this->language->get('text_users');
+            $this->data['text_transaction_status'] = $this->language->get('text_transaction_status');
             $this->data['text_user'] = $this->language->get('text_user');
             $this->data['text_user_group'] = $this->language->get('text_user_group');
             $this->data['text_localisations'] = $this->language->get('text_localisations');
@@ -118,10 +121,13 @@ class ControllerCommonHeader extends Controller{
                 $this->data['customer'] = $this->url->link('account/customer', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['customer_group'] = $this->url->link('account/customer_group', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['customer_ban_ip'] = $this->url->link('account/customer_ban_ip', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['transfer'] = $this->url->link('account/transfer', 'token=' . $this->session->data['token'], 'SSL');
             // System Menu
                 $this->data['setting'] = $this->url->link('setting/application', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['mail'] = $this->url->link('design/mail', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['page'] = $this->url->link('design/page', 'token=' . $this->session->data['token'], 'SSL');
+                $this->data['transaction_status'] = $this->url->link('localisation/transaction_status', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['block'] = $this->url->link('design/block', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['menu'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
                 $this->data['new_page'] = $this->url->link('design/page/insert', 'token=' . $this->session->data['token'], 'SSL');

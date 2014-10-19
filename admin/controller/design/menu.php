@@ -314,6 +314,7 @@ class ControllerDesignMenu extends Controller {
 
         $this->data['entry_title'] = $this->language->get('entry_title');
         $this->data['entry_link'] = $this->language->get('entry_link');
+        $this->data['entry_external_link'] = $this->language->get('entry_external_link');
         $this->data['entry_position'] = $this->language->get('entry_position');
         $this->data['entry_bottom'] = $this->language->get('entry_bottom');
         $this->data['entry_status'] = $this->language->get('entry_status');
@@ -397,6 +398,14 @@ class ControllerDesignMenu extends Controller {
             $this->data['page_link'] = str_replace("page_id=", "", $menu_info['page_link']);
         } else {
             $this->data['page_link'] = '';
+        }
+        
+        if (isset($this->request->post['external_link'])) {
+            $this->data['external_link'] = $this->request->post['external_link'];
+        } elseif (!empty($menu_info)) {
+            $this->data['external_link'] = $menu_info['external_link'];
+        } else {
+            $this->data['external_link'] = '';
         }
         
         $this->load->model('design/page');

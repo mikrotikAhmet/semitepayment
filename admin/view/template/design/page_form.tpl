@@ -128,7 +128,18 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <label for="show_header" class="col-sm-2 control-label"><?php echo $entry_show_header; ?></label>
+                                    <div class="col-sm-3">
+                                        <label class="checkbox-inline checkbox-info">
+                                            <?php if ($show_header) {  ?>
+                                            <input type="checkbox" class="styled" name="show_header" value="1" checked="checked">
+                                            <?php } else { ?>
+                                            <input type="checkbox" class="styled" name="show_header" value="1">
+                                            <?php } ?>
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="show_title" class="col-sm-2 control-label"><?php echo $entry_show_title; ?></label>
                                     <div class="col-sm-3">

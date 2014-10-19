@@ -114,4 +114,11 @@ class ModelSettingApplication extends Model {
 
 		return $query->row['total'];		
 	}	
+        
+
+	public function getTotalApplicationsByTransactionStatusId($transaction_status_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_transaction_status_id' AND `value` = '" . (int)$transaction_status_id . "' AND application_id != '0'");
+
+		return $query->row['total'];		
+	}
 }

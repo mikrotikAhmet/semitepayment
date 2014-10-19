@@ -115,6 +115,12 @@
                                         </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="sort_order" class="col-sm-2 control-label"><?php echo $entry_external_link; ?></label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="external_link" placeholder="" name="external_link" value="<?php echo $external_link; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="status" class="col-sm-2 control-label"><?php echo $entry_status; ?></label>
                                     <div class="col-sm-2">
                                         <select name="status" class="form-control">

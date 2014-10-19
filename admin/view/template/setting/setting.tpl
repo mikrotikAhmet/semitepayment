@@ -1,4 +1,4 @@
-<?php echo $header?>
+    <?php echo $header?>
 <!-- Page content -->
 <div class="page-content">
     <!-- Page header -->
@@ -329,6 +329,227 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="config_mail_template" class="col-sm-3 control-label"><?php echo $entry_mail_template; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_mail_template_id"  class="form-control">
+                                            <?php foreach ($mail_templates as $mail_template) { ?>
+                                            <?php if ($mail_template['mail_template_id'] == $config_mail_template_id) { ?>
+                                            <option value="<?php echo $mail_template['mail_template_id']; ?>" selected="selected"><?php echo $mail_template['title']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $mail_template['mail_template_id']; ?>"><?php echo $mail_template['title']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <h2><?php echo $text_transaction?></h2>
+                                <div class="form-group">
+                                    <label for="config_transaction_autocapture" class="col-sm-3 control-label"><?php echo $entry_auto_capture; ?></label>
+                                    <div class="col-sm-2">
+                                        <?php if ($config_transaction_autocapture) { ?>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="config_transaction_autocapture" id="optionsRadios1" value="1" checked>
+                                                <?php echo $text_yes; ?>
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="config_transaction_autocapture" id="optionsRadios2" value="0">
+                                                <?php echo $text_no; ?>
+                                            </label>
+                                        </div>
+                                        <?php } else { ?>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="config_transaction_autocapture" id="optionsRadios1" value="1">
+                                                <?php echo $text_yes; ?>
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="config_transaction_autocapture" id="optionsRadios2" value="0" checked>
+                                                <?php echo $text_no; ?>
+                                            </label>
+                                        </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_transaction_status_id" class="col-sm-3 control-label"><?php echo $entry_transaction_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_transaction_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_transaction_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_complete_transaction_status_id" class="col-sm-3 control-label"><?php echo $entry_transaction_status_complete; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_complete_transaction_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_complete_transaction_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <h2><?php echo $text_transfer?></h2>
+                                <div class="form-group">
+                                    <label for="config_invoice_prefix" class="col-sm-3 control-label"><?php echo $entry_invoice_prefix; ?></label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="config_invoice_prefix" placeholder="" name="config_invoice_prefix" value="<?php echo $config_invoice_prefix; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_transfer_status_id" class="col-sm-3 control-label"><?php echo $entry_transfer_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_transfer_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_transfer_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_complete_transfer_status_id" class="col-sm-3 control-label"><?php echo $entry_transfer_status_complete; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_complete_transfer_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_complete_transfer_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_transfer_comission" class="col-sm-3 control-label"><?php echo $entry_transfer_comission; ?></label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="config_transfer_comission" placeholder="" name="config_transfer_comission" value="<?php echo $config_transfer_comission; ?>">
+                                    </div>
+                                </div>
+                                <h2><?php echo $text_affiliate?></h2>
+                                <div class="form-group">
+                                    <label for="config_affiliate_id" class="col-sm-3 control-label"><?php echo $entry_affiliate; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_affiliate_id"  class="form-control">
+                                            <?php foreach ($contents as $content) { ?>
+                                            <?php if ($content['content_id'] == $config_affiliate_id) { ?>
+                                            <option value="<?php echo $content['content_id']; ?>" selected="selected"><?php echo $content['title']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $content['content_id']; ?>"><?php echo $content['title']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_commission" class="col-sm-3 control-label"><?php echo $entry_commission; ?></label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="config_commission" placeholder="" name="config_commission" value="<?php echo $config_commission; ?>">
+                                    </div>
+                                </div>
+                                <h2><?php echo $text_verification?></h2>
+                                <div class="form-group">
+                                    <label for="config_creditcard_status_id" class="col-sm-3 control-label"><?php echo $entry_creditcard_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_creditcard_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_creditcard_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_complete_creditcard_status_id" class="col-sm-3 control-label"><?php echo $entry_complete_creditcard_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_complete_creditcard_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_complete_creditcard_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_bankaccount_status_id" class="col-sm-3 control-label"><?php echo $entry_bankaccount_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_bankaccount_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_bankaccount_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_complete_bankaccount_status_id" class="col-sm-3 control-label"><?php echo $entry_complete_bankaccount_status; ?></label>
+                                    <div class="col-sm-4">
+                                        <select name="config_complete_bankaccount_status_id"  class="form-control">
+                                            <?php foreach ($transaction_statuses as $transaction_status) { ?>
+                                            <?php if ($transaction_status['transaction_status_id'] == $config_complete_bankaccount_status_id) { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>" selected="selected"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $transaction_status['transaction_status_id']; ?>"><?php echo $transaction_status['name']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <h2><?php echo $text_api?></h2>
+                                <div class="form-group">
+                                    <label for="config_test_secretkey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_test_secretkey_api_prefix; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="config_test_secretkey_api_prefix" placeholder="" name="config_test_secretkey_api_prefix" value="<?php echo $config_test_secretkey_api_prefix; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_test_publickey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_test_publickey_api_prefix; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="config_test_publickey_api_prefix" placeholder="" name="config_test_publickey_api_prefix" value="<?php echo $config_test_publickey_api_prefix; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_live_secretkey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_live_secretkey_api_prefix; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="config_live_secretkey_api_prefix" placeholder="" name="config_live_secretkey_api_prefix" value="<?php echo $config_live_secretkey_api_prefix; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_live_publickey_api_prefix" class="col-sm-3 control-label"><?php echo $entry_live_publickey_api_prefix; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="config_live_publickey_api_prefix" placeholder="" name="config_live_publickey_api_prefix" value="<?php echo $config_live_publickey_api_prefix; ?>">
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="tab_image">
                                 <div class="form-group">
@@ -350,6 +571,16 @@
                                             <button type="button" onclick="image_upload('icon', 'thumb-icon');" class="btn btn-primary btn-xs"><?php echo $text_browse; ?></button>&nbsp;&nbsp;|&nbsp;&nbsp;<button type="button" class="btn btn-danger btn-xs" onclick="$('#thumb-icon').attr('src', '<?php echo $no_image; ?>'); $('#icon').attr('value', '');"><?php echo $text_clear; ?></button>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config_featured_image_width" class="col-sm-3 control-label"><?php echo $entry_featured_image; ?></label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="config_featured_image_width" placeholder="<?php echo $entry_featured_image_width; ?>" name="config_featured_image_width" value="<?php echo $config_featured_image_width; ?>">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="config_featured_image_width" placeholder="<?php echo $entry_featured_image_height; ?>" name="config_featured_image_height" value="<?php echo $config_featured_image_height; ?>">
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="tab_ftp">
@@ -554,6 +785,20 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="tab_server">
+                                <div class="form-group">
+                                    <label for="config_success" class="col-sm-3 control-label"><?php echo $entry_success; ?></label>
+                                    <div class="col-sm-5">
+                                        <select name="config_success" class="form-control">
+                                            <?php foreach ($pages as $page) { ?>
+                                            <?php if ($page['page_id'] == $config_success) { ?>
+                                            <option value="<?php echo $page['page_id']; ?>" selected="selected"><?php echo $page['title']; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $page['page_id']; ?>"><?php echo $page['title']; ?></option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="config_secure" class="col-sm-3 control-label"><?php echo $entry_secure; ?></label>
                                     <div class="col-sm-2">

@@ -306,6 +306,7 @@ class ControllerAccountCustomer extends Controller {
     }
 
     protected function getList() {
+
         if (isset($this->request->get['filter_name'])) {
             $filter_name = $this->request->get['filter_name'];
         } else {
@@ -614,8 +615,10 @@ class ControllerAccountCustomer extends Controller {
 
     protected function getForm() {
 
-        $this->data['heading_title'] = $this->language->get('heading_title');
+        $this->load->model('account/customer');
         
+        $this->data['heading_title'] = $this->language->get('heading_title');
+
         $this->data['title_bank'] = $this->language->get('title_bank');
 
         $this->data['text_information_bank'] = $this->language->get('text_information_bank');
@@ -639,6 +642,8 @@ class ControllerAccountCustomer extends Controller {
         $this->data['text_no_bank'] = $this->language->get('text_no_bank');
         $this->data['text_no_card'] = $this->language->get('text_no_card');
         $this->data['text_no_transaction'] = $this->language->get('text_no_transaction');
+        $this->data['text_available_balance'] = $this->language->get('text_available_balance');
+        
 
         $this->data['column_ip'] = $this->language->get('column_ip');
         $this->data['column_total'] = $this->language->get('column_total');
@@ -670,28 +675,35 @@ class ControllerAccountCustomer extends Controller {
         $this->data['entry_description'] = $this->language->get('entry_description');
         $this->data['entry_amount'] = $this->language->get('entry_amount');
         $this->data['entry_points'] = $this->language->get('entry_points');
-        
+
         // Banking Form Variables
-        
+
         $this->data['column_bank_name'] = $this->language->get('column_bank_name');
         $this->data['column_currency'] = $this->language->get('column_currency');
         $this->data['column_ahn'] = $this->language->get('column_ahn');
         $this->data['column_iban'] = $this->language->get('column_iban');
         $this->data['column_swift'] = $this->language->get('column_swift');
         $this->data['column_status'] = $this->language->get('column_status');
-        
+
         $this->data['entry_currency'] = $this->language->get('entry_currency');
         $this->data['entry_bank'] = $this->language->get('entry_bank');
         $this->data['entry_holder_name'] = $this->language->get('entry_holder_name');
         $this->data['entry_iban'] = $this->language->get('entry_iban');
         $this->data['entry_bic'] = $this->language->get('entry_bic');
-        
+
         // Credit Card Variables
-        
+
         $this->data['column_card_holder'] = $this->language->get('column_card_holder');
         $this->data['column_type'] = $this->language->get('column_type');
         $this->data['column_number'] = $this->language->get('column_number');
-        
+
+        // Transaction Variables
+
+        $this->data['column_transaction_id'] = $this->language->get('column_transaction_id');
+        $this->data['column_date'] = $this->language->get('column_date');
+        $this->data['column_ttype'] = $this->language->get('column_ttype');
+        $this->data['column_description'] = $this->language->get('column_description');
+
         $this->data['entry_card_holder_name'] = $this->language->get('entry_card_holder_name');
         $this->data['entry_cc'] = $this->language->get('entry_cc');
         $this->data['entry_ccv'] = $this->language->get('entry_ccv');
@@ -888,6 +900,13 @@ class ControllerAccountCustomer extends Controller {
         if (isset($this->request->get['customer_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
             $customer_info = $this->model_account_customer->getCustomer($this->request->get['customer_id']);
         }
+        
+        if (!empty($customer_info)){
+            $balance = $this->model_account_customer->getCustomerBalance($customer_info['customer_id']);
+            $this->data['available_balance'] = $this->currency->format((isset($balance) ? $balance : 0), $this->config->get('config_currency'));
+        } else {
+            $this->data['available_balance'] = 0;
+        }
 
 
         if (isset($this->request->post['firstname'])) {
@@ -1018,7 +1037,7 @@ class ControllerAccountCustomer extends Controller {
         }
 
         $this->load->model('account/transaction');
-        
+
         $this->data['address_row'] = 0;
 
         if (!empty($customer_info)) {
@@ -1033,60 +1052,79 @@ class ControllerAccountCustomer extends Controller {
 
 
             $this->data['customer_account'] = $this->model_account_customer->getCustomerAccount($this->request->get['customer_id']);
-            
+
             $this->data['banks'] = array();
-            
+
             $banks = $this->model_account_customer->getCustomerBanks($this->request->get['customer_id']);
+
+            $this->load->model('localisation/transaction_status');
             
-            foreach ($banks as $bank){
-                
-                
-                if ($bank['verified']){
-                    $verified = '<span class="label label-success">Verified</span>';
-                } else {
-                    $verified = '<span class="label label-info">In progress</span>';
-                }
-                
+            $this->data['transaction_statuses'] = $this->model_localisation_transaction_status->getTransactionStatuses();
+
+            foreach ($banks as $bank) {
+
+                $transaction_status = $this->model_localisation_transaction_status->getTransactionStatus($bank['status']);
+
+                $status = $transaction_status['name'];
+
                 $this->data['banks'][] = array(
-                    'bank_name'=>$bank['bank_name'],
-                    'settlement_currency'=>$bank['settlement_currency'],
-                    'account_holder'=>$bank['account_holder'],
-                    'iban'=>$bank['iban'],
-                    'swift'=>$bank['swift'],
-                    'status'=>$verified,
-                    'verified'=>$bank['verified']
+                    'bank_id' => $bank['customer_bank_id'],
+                    'bank_name' => $bank['bank_name'],
+                    'settlement_currency' => $bank['settlement_currency'],
+                    'account_holder' => $bank['account_holder'],
+                    'iban' => $bank['iban'],
+                    'swift' => $bank['swift'],
+                    'status' => $status,
+                    'verified' => $bank['status']
                 );
             }
-            
-            
+
+
             $this->data['cards'] = array();
-            
+
             $cards = $this->model_account_customer->getCustomerCards($this->request->get['customer_id']);
-            
-            foreach ($cards as $card){
-                
-                
-                if ($card['verified']){
-                    $verified = '<span class="label label-success">Verified</span>';
-                } else {
-                    $verified = '<span class="label label-info">In progress</span>';
-                }
-                
+
+            foreach ($cards as $card) {
+
+
+                $transaction_status = $this->model_localisation_transaction_status->getTransactionStatus($card['status']);
+
+                $status = '<span class="label label-primary">' . $transaction_status['name'] . '</span>';
+
                 $this->data['cards'][] = array(
-                    'card_holder'=>$card['card_holder'],
-                    'type'=>$card['type'],
-                    'cc_number'=>$card['cc_number'],
-                    'ccv'=>$card['ccv'],
-                    'date_expire'=>$card['date_expire'],
-                    'status'=>$verified,
-                    'verified'=>$card['verified']
+                    'card_holder' => $card['card_holder'],
+                    'type' => $card['type'],
+                    'cc_number' => $card['cc_number'],
+                    'ccv' => $card['ccv'],
+                    'date_expire' => $card['date_expire'],
+                    'status' => $status,
+                    'verified' => $card['status']
                 );
             }
-            $this->data['transactions'] = $this->model_account_transaction->getTransactions($this->request->get['customer_id']);
+
+            $this->data['transactions'] = array();
+
+            $transactions = $this->model_account_transaction->getTransactions($this->request->get['customer_id']);
+
+            foreach ($transactions as $transaction) {
+
+
+                $transaction_status = $this->model_localisation_transaction_status->getTransactionStatus($transaction['status']);
+
+                $status = '<span class="label label-primary">' . $transaction_status['name'] . '</span>';
+
+                $this->data['transactions'][] = array(
+                    'transaction_id' => $transaction['transaction_id'],
+                    'type' => $transaction['type'],
+                    'date_added' => date($this->language->get('date_format_short'), strtotime($transaction['date_added'])),
+                    'description' => $transaction['description'],
+                    'status' => $status
+                );
+            }
         }
-        
+
         $this->load->model('localisation/currency');
-        
+
         $this->data['currencies'] = $this->model_localisation_currency->getCurrencies();
 
         $this->template = 'account/customer_form.tpl';
@@ -1096,6 +1134,22 @@ class ControllerAccountCustomer extends Controller {
         );
 
         $this->response->setOutput($this->render());
+    }
+    
+    public function verifyBank(){
+        
+        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+            
+            $this->load->model('account/customer');
+            
+            $this->model_account_customer->verifyBank($this->request->post['status'],$this->request->post['bank_id']);
+            
+            $json['success'] = $this->language->get('text_success');
+        
+            $this->response->setOutput(json_encode($json));
+        }
+        
+        
     }
 
     protected function validateForm() {
@@ -1139,6 +1193,30 @@ class ControllerAccountCustomer extends Controller {
 
         if ($this->error && !isset($this->error['warning'])) {
             $this->error['warning'] = $this->language->get('error_warning');
+        }
+
+        if (!$this->error) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function validateBank() {
+        if (!$this->user->hasPermission('modify', 'account/customer')) {
+            $this->error['warning'] = $this->language->get('error_permission');
+        }
+
+        if (!$this->error) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    protected function validateRemoveBank() {
+        if (!$this->user->hasPermission('modify', 'account/customer')) {
+            $this->error['warning'] = $this->language->get('error_permission');
         }
 
         if (!$this->error) {
@@ -1517,14 +1595,43 @@ class ControllerAccountCustomer extends Controller {
         $this->data['entry_iban'] = $this->language->get('entry_iban');
         $this->data['entry_bic'] = $this->language->get('entry_bic');
 
-        $this->load->model('localisation/currency');
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateBank()) {
 
-        $this->data['currencies'] = $this->model_localisation_currency->getCurrencies();
+            $this->load->model('account/customer');
+            
+            $last_id = $this->model_account_customer->addBank($this->request->get['customer_id'],$this->request->post);
+
+            $json['new_bank_id'] = $last_id;
+            $json['data'] = $this->request->post;
+            $json['success'] = $this->language->get('text_success');
+
+            $this->response->setOutput(json_encode($json));
+        } else {
+
+            $this->load->model('localisation/currency');
+
+            $this->data['currencies'] = $this->model_localisation_currency->getCurrencies();
 
 
-        $this->template = 'account/add_bank.tpl';
+            $this->template = 'account/add_bank.tpl';
 
-        $this->response->setOutput($this->render());
+            $this->response->setOutput($this->render());
+        }
+    }
+    
+    public function removeBank(){
+        
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateRemoveBank()) {
+            
+            $this->load->model('account/customer');
+            
+            $this->model_account_customer->removeBank($this->request->get['bank_id']);
+            
+            $json['success'] = $this->language->get('text_success');
+            
+        }
+        
+        $this->response->setOutput(json_encode($json));
     }
 
     public function addcard() {
@@ -1558,7 +1665,7 @@ class ControllerAccountCustomer extends Controller {
             $json[] = array(
                 'card_validation' => $card_info['status'],
                 'card_type' => $card_info['type'],
-                'card'=>$card_info['substring']
+                'card' => $card_info['substring']
             );
         }
 
@@ -1566,4 +1673,3 @@ class ControllerAccountCustomer extends Controller {
     }
 
 }
-

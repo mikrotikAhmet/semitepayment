@@ -45,11 +45,15 @@ $_['text_browse']                  = 'Browse';
 $_['text_clear']                   = 'Clear';
 $_['text_no_message']                   = 'No Message';
 $_['text_add_new']                   = 'Add New';
+$_['text_generate']                   = 'Generate';
+$_['text_wait']                      = 'Your request is processing. Please wait.';
+$_['text_module']                   = 'Modules';
 
 // Button
 $_['button_insert']                 = 'Insert';
 $_['button_delete']                 = 'Delete';
 $_['button_save']                   = 'Save';
+$_['button_modify']                   = 'Modify';
 $_['button_cancel']                 = 'Cancel';
 $_['button_clear']                  = 'Clear Log';
 $_['button_close']                  = 'Close';
@@ -143,6 +147,11 @@ $_['tab_price']                     = 'Price';
 $_['tab_revision'] = 'Revision Information';
 $_['tab_review'] = 'Reviews';
 $_['tab_author'] = 'Authoring Information';
+$_['tab_transfer_detail'] = 'Transfer Details';
+$_['tab_merchant_detail'] = 'Merchant Details';
+$_['tab_transfer_form'] = 'Transfer Form';
+$_['tab_transfer_history'] = 'Transfer History';
+
 
 // Error
 $_['error_upload_1']                = 'Warning: The uploaded file exceeds the upload_max_filesize directive in php.ini!';

@@ -81,6 +81,11 @@ $_['column_card_holder']         = 'Crad Holder Name';
 $_['column_type']         = 'Card Type';
 $_['column_number']         = 'Card #';
 
+$_['column_transaction_id']         = 'Transaction ID';
+$_['column_date']         = 'Date';
+$_['column_ttype']         = 'Type';
+$_['column_description']         = 'Description';
+
 // Entry
 $_['entry_firstname']       = 'First Name:';
 $_['entry_lastname']        = 'Last Name:';

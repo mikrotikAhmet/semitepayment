@@ -45,6 +45,7 @@ class Page {
     private $page;
     private $page_id;
     private $page_title;
+    private $page_header;
     private $page_sub_title;
     private $featured;
     private $description;
@@ -75,6 +76,7 @@ class Page {
         $this->setFeatured($this->page['image']);
         $this->setDescription($this->page['meta_description']);
         $this->setKeyword($this->page['meta_keyword']);
+        $this->setPageHeader($this->page['show_header']);
     }
 
     public function getPage() {
@@ -153,6 +155,16 @@ class Page {
         return $this->keyword;
     }
     
+    public function setPageHeader($page_header){
+        
+        $this->page_header = $page_header;
+    }
+    
+    public function getPageHeader(){
+        return $this->page_header;
+    }
+
+
     public function getPageBlocks(){
         
         $results = $this->db->query("SELECT * FROM ".DB_PREFIX."page_to_block WHERE page_id = '".(int) $this->page_id."'");
